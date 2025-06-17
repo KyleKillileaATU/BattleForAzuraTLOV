@@ -7,14 +7,26 @@
       "RelativeMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|solutionrelative:mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|c:\\users\\kylek\\source\\repos\\battleforazuratlov\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|solutionrelative:mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|c:\\users\\kylek\\source\\repos\\battleforazuratlov\\mainmenupage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|solutionrelative:mainmenupage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|c:\\users\\kylek\\source\\repos\\battleforazuratlov\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|solutionrelative:appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|c:\\users\\kylek\\source\\repos\\battleforazuratlov\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|solutionrelative:mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|c:\\users\\kylek\\source\\repos\\battleforazuratlov\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,30 +36,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\App.xaml.cs",
+              "RelativeDocumentMoniker": "App.xaml.cs",
+              "ToolTip": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\App.xaml.cs",
+              "RelativeToolTip": "App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T12:29:33.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AppShell.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\AppShell.xaml.cs",
+              "RelativeDocumentMoniker": "AppShell.xaml.cs",
+              "ToolTip": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\AppShell.xaml.cs",
+              "RelativeToolTip": "AppShell.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T12:29:24.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "MainPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml.cs",
               "RelativeDocumentMoniker": "..\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml.cs",
               "ToolTip": "C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml.cs",
               "RelativeToolTip": "..\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml.cs",
-              "ViewState": "AgIAAFUBAAAAAAAAAAAAAGABAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAALMAAAAAAAAAAAAAAMsAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T10:33:07.269Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "MainPage.xaml",
               "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml",
               "RelativeDocumentMoniker": "..\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml",
               "ToolTip": "C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml",
               "RelativeToolTip": "..\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAAEwAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAUwBoAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-06-17T10:35:00.976Z",
               "EditorCaption": ""
@@ -60,22 +98,35 @@
               "RelativeDocumentMoniker": "MainPage.xaml.cs",
               "ToolTip": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\MainPage.xaml.cs",
               "RelativeToolTip": "MainPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAzwGkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T10:34:31.117Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "MainPage.xaml",
               "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\MainPage.xaml",
               "RelativeDocumentMoniker": "MainPage.xaml",
               "ToolTip": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\MainPage.xaml",
               "RelativeToolTip": "MainPage.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-06-17T09:55:21.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainMenuPage.xaml",
+              "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\MainMenuPage.xaml",
+              "RelativeDocumentMoniker": "MainMenuPage.xaml",
+              "ToolTip": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\MainMenuPage.xaml",
+              "RelativeToolTip": "MainMenuPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-17T12:32:24.909Z",
               "EditorCaption": ""
             }
           ]

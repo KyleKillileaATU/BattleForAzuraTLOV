@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BattleForAzuraTLOV")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+4fc6ff5dbb6f5f077619923a37f9c29ed7f170fe")]
 [assembly: System.Reflection.AssemblyProductAttribute("BattleForAzuraTLOV")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BattleForAzuraTLOV")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

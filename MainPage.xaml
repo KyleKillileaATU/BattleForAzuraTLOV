@@ -3,11 +3,30 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BattleForAzuraTLOV.MainPage"
-             Background="Aqua">
+             Background="LimeGreen">
     <Grid>
         <Image 
+            x:Name ="BackgroundIMG"
+            Source="cityview.png" 
+            HeightRequest="3000"
+            WidthRequest="3000"
+            Aspect="AspectFill"
+    
+            SemanticProperties.Description="player" 
+            />  
+        <BoxView x:Name ="PlayerCameraBox"
+         Color ="DarkBlue"
+         WidthRequest ="300"
+         HeightRequest ="220"/>
+
+        <BoxView x:Name ="PlayerHitBox"
+         Color ="DarkGreen"
+         WidthRequest ="90"
+         HeightRequest ="90"/>
+
+        <Image 
             x:Name ="PlayerIMG"
-            Source="walter2.png" 
+            Source="walter3.png" 
             HeightRequest="100"
             WidthRequest="100"
             Aspect="AspectFill"
@@ -16,60 +35,64 @@
             />
         <Image 
              x:Name ="ei1"
-             Source="blue.png" 
-             HeightRequest="75"
+             Source="ahomeless.png" 
+             HeightRequest="45"
              Aspect="AspectFit"
              SemanticProperties.Description="enemy" 
              />
         <Image 
              x:Name ="ei2"
-             Source="blue.png" 
-             HeightRequest="75"
+             Source="injuredsoldier.png" 
+             HeightRequest="45"
              Aspect="AspectFit"
              SemanticProperties.Description="enemy" 
              />
         <Image 
              x:Name ="ei3"
-             Source="blue.png" 
-             HeightRequest="75"
+             Source="sadman.png" 
+             HeightRequest="45"
              Aspect="AspectFit"
              SemanticProperties.Description="enemy" 
              />
         <Image 
              x:Name ="ei4"
-             Source="blue.png" 
-             HeightRequest="75"
+             Source="medipeasant.png" 
+             HeightRequest="45"
              Aspect="AspectFit"
              SemanticProperties.Description="enemy" 
              />
         <Image 
              x:Name ="ei5"
-             Source="blue.png" 
-             HeightRequest="75"
+             Source="angryfarmer.png" 
+             HeightRequest="45"
              Aspect="AspectFit"
              SemanticProperties.Description="enemy" 
              />
         <Image 
              x:Name ="ei6"
-             Source="blue.png" 
-             HeightRequest="75"
+             Source="british.png" 
+             HeightRequest="45"
              Aspect="AspectFit"
              SemanticProperties.Description="enemy" 
              />
         <Image 
              x:Name ="ei7"
-             Source="blue.png" 
-             HeightRequest="75"
+             Source="childadventuerer.png" 
+             HeightRequest="45"
              Aspect="AspectFit"
              SemanticProperties.Description="enemy" 
              />
         <Image 
              x:Name ="ei8"
-             Source="blue.png" 
-             HeightRequest="75"
+             Source="commonsoldier.png" 
+             HeightRequest="45"
              Aspect="AspectFit"
              SemanticProperties.Description="enemy" 
              />
+        <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End" Padding="10,20" Spacing="5">
+            <Button x:Name="leftmovebutton"  Text="Move" Clicked="MoveBTN_Clicked" WidthRequest="100" TextColor="OrangeRed"/>
+        </VerticalStackLayout>
     </Grid>
     
+                
 </ContentPage>
