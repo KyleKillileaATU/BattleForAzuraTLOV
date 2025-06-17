@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BattleForAzuraTLOV.MainPage"
+             Background="Aqua">
+    <Grid>
+        <Image 
+            x:Name ="PlayerIMG"
+            Source="walter2.png" 
+            HeightRequest="100"
+            WidthRequest="100"
+            Aspect="AspectFill"
+            
+            SemanticProperties.Description="player" 
+            />
+        <Image 
+             x:Name ="ei1"
+             Source="blue.png" 
+             HeightRequest="75"
+             Aspect="AspectFit"
+             SemanticProperties.Description="enemy" 
+             />
+        <Image 
+             x:Name ="ei2"
+             Source="blue.png" 
+             HeightRequest="75"
+             Aspect="AspectFit"
+             SemanticProperties.Description="enemy" 
+             />
+        <Image 
+             x:Name ="ei3"
+             Source="blue.png" 
+             HeightRequest="75"
+             Aspect="AspectFit"
+             SemanticProperties.Description="enemy" 
+             />
+        <Image 
+             x:Name ="ei4"
+             Source="blue.png" 
+             HeightRequest="75"
+             Aspect="AspectFit"
+             SemanticProperties.Description="enemy" 
+             />
+        <Image 
+             x:Name ="ei5"
+             Source="blue.png" 
+             HeightRequest="75"
+             Aspect="AspectFit"
+             SemanticProperties.Description="enemy" 
+             />
+        <Image 
+             x:Name ="ei6"
+             Source="blue.png" 
+             HeightRequest="75"
+             Aspect="AspectFit"
+             SemanticProperties.Description="enemy" 
+             />
+        <Image 
+             x:Name ="ei7"
+             Source="blue.png" 
+             HeightRequest="75"
+             Aspect="AspectFit"
+             SemanticProperties.Description="enemy" 
+             />
+        <Image 
+             x:Name ="ei8"
+             Source="blue.png" 
+             HeightRequest="75"
+             Aspect="AspectFit"
+             SemanticProperties.Description="enemy" 
+             />
+    </Grid>
+    
+</ContentPage>
