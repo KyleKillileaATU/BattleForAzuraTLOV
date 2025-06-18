@@ -18,12 +18,67 @@
          Color ="DarkBlue"
          WidthRequest ="300"
          HeightRequest ="220"/>
-
+        
         <BoxView x:Name ="PlayerHitBox"
          Color ="DarkGreen"
          WidthRequest ="90"
          HeightRequest ="90"/>
-
+        <Ellipse x:Name ="Projectile01"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+        <Ellipse x:Name ="Projectile02"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+        <Ellipse x:Name ="Projectile03"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+        <Ellipse x:Name ="Projectile04"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+        <Ellipse x:Name ="Projectile05"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+        <Ellipse x:Name ="Projectile06"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+        <Ellipse x:Name ="Projectile07"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+        <Ellipse x:Name ="Projectile08"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+        <Ellipse x:Name ="Projectile09"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+        <Ellipse x:Name ="Projectile10"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+        <Ellipse x:Name ="Projectile11"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+        
         <Image 
             x:Name ="PlayerIMG"
             Source="walter3.png" 
@@ -90,8 +145,41 @@
              SemanticProperties.Description="enemy" 
              />
         <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End" Padding="10,20" Spacing="5">
-            <Button x:Name="leftmovebutton"  Text="Move" Clicked="MoveBTN_Clicked" WidthRequest="100" TextColor="OrangeRed"/>
+            <Button x:Name="leftmovebutton"  Text="Move" Clicked="MoveBTN_Clicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="LightBlue"/>
         </VerticalStackLayout>
+        <VerticalStackLayout HorizontalOptions="End" VerticalOptions="End" Padding="10,20,10,20" Spacing="5">
+            <Button x:Name="attackbutton"  Text="Shoot" Clicked="AttackBTN_Clicked" WidthRequest="80" TextColor="blue" BackgroundColor="Red"/>
+        </VerticalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Start" Padding="10,20,10,20" Spacing="5">
+            <BoxView x:Name ="PlayerMagicbase"
+              Color="#393939"
+              WidthRequest ="30"
+              HeightRequest ="150"/>
+            <BoxView x:Name ="PlayerHPbase"
+              Color="#393939"
+              WidthRequest ="30"
+              HeightRequest ="150"/>
+            <BoxView x:Name ="PlayerStaminabase"
+              Color="#393939"
+              WidthRequest ="30"
+              HeightRequest ="150"/>
+            <BoxView x:Name ="PlayerMagicbar"
+              Color="#af0039"
+              WidthRequest ="25"
+              HeightRequest ="140"/>
+            <BoxView x:Name ="PlayerHPbar"
+              Color="#39cf3a"
+              WidthRequest ="25"
+              HeightRequest ="140"/>
+            <BoxView x:Name ="PlayerStaminabar"
+              Color="#ffff39"
+              WidthRequest ="25"
+              HeightRequest ="140"/>
+        </HorizontalStackLayout>
+        <!-- Title screen be going here, next thing to implement  -->
+        <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Start" Padding="10,20,10,20" Spacing="5">
+            
+        </HorizontalStackLayout>
     </Grid>
     
                 
