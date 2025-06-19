@@ -5,6 +5,8 @@ obj\Debug\net8.0-android\resizetizer\r\drawable\british.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\childadventuerer.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\cityview.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\commonsoldier.png
+obj\Debug\net8.0-android\resizetizer\r\drawable\dishonourednewgamescreen.png
+obj\Debug\net8.0-android\resizetizer\r\drawable\dishonouredtitlescreen.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\green.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\injuredsoldier.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\ludomat.png

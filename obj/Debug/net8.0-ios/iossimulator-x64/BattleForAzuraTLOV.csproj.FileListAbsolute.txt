@@ -327,3 +327,5 @@ C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\BattleForAzuraTLOV.pdb
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\BattleForAzuraTLOV.genruntimeconfig.cache
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\ref\BattleForAzuraTLOV.dll
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\dishonourednewgamescreen.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\dishonouredtitlescreen.png

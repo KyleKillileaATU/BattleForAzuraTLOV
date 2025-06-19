@@ -315,3 +315,5 @@ C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\macc
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\BattleForAzuraTLOV.pdb
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\BattleForAzuraTLOV.genruntimeconfig.cache
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\ref\BattleForAzuraTLOV.dll
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\dishonourednewgamescreen.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\dishonouredtitlescreen.png

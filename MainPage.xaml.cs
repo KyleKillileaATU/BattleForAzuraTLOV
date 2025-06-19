@@ -2,8 +2,8 @@
 {
     public partial class MainPage : ContentPage
     {
-        int CurrentPlayerPositionX=0, CurrentPlayerPositionY=0, BackgroundCurrentPositionX=0, BackgroundCurrentPositionY=0;
-        int RandomPositionX = 0, RandomPositionY = 0,rtime,projectilecycle01=0, weaponequipped=0;
+        int CurrentPlayerPositionX = 0, CurrentPlayerPositionY = 0, BackgroundCurrentPositionX = 0, BackgroundCurrentPositionY = 0;
+        int RandomPositionX = 0, RandomPositionY = 0, rtime, projectilecycle01 = 0, weaponequipped = 0;
         int ei1curposX, ei2curposX, ei3curposX, ei4curposX, ei5curposX, ei6curposX, ei7curposX, ei8curposX;
         int ei1curposY, ei2curposY, ei3curposY, ei4curposY, ei5curposY, ei6curposY, ei7curposY, ei8curposY;
         int activeprojectilepositioni1X, activeprojectilepositioni1Y;
@@ -29,20 +29,32 @@
         {
             base.OnAppearing();
             await Task.Delay(200);
+            setupmainmenu();
+            setupnewgamemenu();
             hideallgamecontent();
             //testcontent1();
-            Infinite_RNG_Movement();
+            //Infinite_RNG_Movement();
             Update_All_Position_Constant();
             await PlayerHPbar.TranslateTo(-98, 0, 40);
             await PlayerStaminabar.TranslateTo(-93, 0, 40);
             await PlayerMagicbar.TranslateTo(-102, 0, 40);
         }
-        async void hideallgamecontent() // for testing will be kept out of use FN
+        private void hideallgamecontent() // hides all content game assets (enemies, objects, etc )
+        {
+            hideplayer();
+            hideenemyinstances();
+            hideprojectileinstances();
+            hideplayerui();
+        }
+        async void hideplayer()
         {
             await BackgroundIMG.FadeTo(0, 5);
             await PlayerIMG.FadeTo(0, 5);
             await PlayerHitBox.FadeTo(0, 5);
             await PlayerCameraBox.FadeTo(0, 5);
+        }
+        async void hideenemyinstances()
+        {
             await ei1.FadeTo(0, 5);
             await ei2.FadeTo(0, 5);
             await ei3.FadeTo(0, 5);
@@ -51,6 +63,9 @@
             await ei6.FadeTo(0, 5);
             await ei7.FadeTo(0, 5);
             await ei8.FadeTo(0, 5);
+        }
+        async void hideprojectileinstances()
+        {
             await Projectile01.FadeTo(0, 4);
             await Projectile02.FadeTo(0, 4);
             await Projectile03.FadeTo(0, 4);
@@ -62,6 +77,9 @@
             await Projectile09.FadeTo(0, 4);
             await Projectile10.FadeTo(0, 4);
             await Projectile11.FadeTo(0, 4);
+        }
+        async void hideplayerui()
+        {
             await PlayerMagicbase.FadeTo(0, 5);
             await PlayerMagicbar.FadeTo(0, 5);
             await PlayerHPbase.FadeTo(0, 5);
@@ -71,6 +89,121 @@
             await leftmovebutton.FadeTo(0, 5);
             await attackbutton.FadeTo(0, 5);
         }
+        // menu set ups ( positionings and states )
+        async void setupmainmenu()
+        {
+            await NewGamebutton.TranslateTo(-375, 185, 5);
+            await Continuebutton.TranslateTo(-250, 187, 5);
+            await Trainingbutton.TranslateTo(-125, 189, 5);
+            await Missionbutton.TranslateTo(0, 191, 5);
+            await SuperShopbutton.TranslateTo(125, 193, 5);
+            await Brutalbutton.TranslateTo(250, 195, 5);
+            await Challengebutton.TranslateTo(375, 197, 5);
+            await Musicbutton.TranslateTo(400, -185, 5);
+            await Settingsbutton.TranslateTo(400, -140, 5);
+            await BattleForAzuraTitle.TranslateTo(-50, 0, 5);
+            await NewGamebutton.RotateTo(1, 5);
+            await Continuebutton.RotateTo(1, 5);
+            await Trainingbutton.RotateTo(1, 5);
+            await Missionbutton.RotateTo(1, 5);
+            await SuperShopbutton.RotateTo(1, 5);
+            await Brutalbutton.RotateTo(1, 5);
+            await Challengebutton.RotateTo(1, 5);
+            await BattleForAzuraTitle.RotateTo(-8, 5);
+        }
+        async void setupnewgamemenu()
+        {
+            await easydiffbutton.TranslateTo(-280, -1050, 5);
+            await normaldiffbutton.TranslateTo(-280, -1020, 5);
+            await harddiffbutton.TranslateTo(-280, -1010, 5);
+            await veryharddiffbutton.TranslateTo(-280, -1040, 5);
+            await accept01button.TranslateTo(125, -1195, 5);
+            await leavebutton.TranslateTo(250, -1195, 5);
+            await NewGameScreen01.TranslateTo(0, -1000, 5);
+            await easydiffbutton.ScaleTo(0.6, 5);
+            await normaldiffbutton.ScaleTo(0.6, 5);
+            await harddiffbutton.ScaleTo(0.6, 5);
+            await veryharddiffbutton.ScaleTo(0.6, 5);
+            await accept01button.ScaleTo(0.6, 5);
+            await leavebutton.ScaleTo(0.6, 5);
+        }
+        async void setupcontinuemenu()
+        {
+            await NewGamebutton.TranslateTo(-375, 185, 5);
+            await Continuebutton.TranslateTo(-250, 187, 5);
+            await Trainingbutton.TranslateTo(-125, 189, 5);
+            await Missionbutton.TranslateTo(0, 191, 5);
+            await SuperShopbutton.TranslateTo(125, 193, 5);
+            await Brutalbutton.TranslateTo(250, 195, 5);
+            await Challengebutton.TranslateTo(375, 197, 5);
+            await Musicbutton.TranslateTo(400, -185, 5);
+            await NewGamebutton.RotateTo(1, 5);
+            await Continuebutton.RotateTo(1, 5);
+            await Trainingbutton.RotateTo(1, 5);
+            await Missionbutton.RotateTo(1, 5);
+            await SuperShopbutton.RotateTo(1, 5);
+            await Brutalbutton.RotateTo(1, 5);
+            await Challengebutton.RotateTo(1, 5);
+
+        }
+        async void setupsupershopmenu()
+        {
+            await NewGamebutton.TranslateTo(-375, 185, 5);
+            await Continuebutton.TranslateTo(-250, 187, 5);
+            await Trainingbutton.TranslateTo(-125, 189, 5);
+            await Missionbutton.TranslateTo(0, 191, 5);
+            await SuperShopbutton.TranslateTo(125, 193, 5);
+            await Brutalbutton.TranslateTo(250, 195, 5);
+            await Challengebutton.TranslateTo(375, 197, 5);
+            await Musicbutton.TranslateTo(400, -185, 5);
+            await NewGamebutton.RotateTo(1, 5);
+            await Continuebutton.RotateTo(1, 5);
+            await Trainingbutton.RotateTo(1, 5);
+            await Missionbutton.RotateTo(1, 5);
+            await SuperShopbutton.RotateTo(1, 5);
+            await Brutalbutton.RotateTo(1, 5);
+            await Challengebutton.RotateTo(1, 5);
+
+        }
+        async void setupchallengesmenu()
+        {
+            await NewGamebutton.TranslateTo(-375, 185, 5);
+            await Continuebutton.TranslateTo(-250, 187, 5);
+            await Trainingbutton.TranslateTo(-125, 189, 5);
+            await Missionbutton.TranslateTo(0, 191, 5);
+            await SuperShopbutton.TranslateTo(125, 193, 5);
+            await Brutalbutton.TranslateTo(250, 195, 5);
+            await Challengebutton.TranslateTo(375, 197, 5);
+            await Musicbutton.TranslateTo(400, -185, 5);
+            await NewGamebutton.RotateTo(1, 5);
+            await Continuebutton.RotateTo(1, 5);
+            await Trainingbutton.RotateTo(1, 5);
+            await Missionbutton.RotateTo(1, 5);
+            await SuperShopbutton.RotateTo(1, 5);
+            await Brutalbutton.RotateTo(1, 5);
+            await Challengebutton.RotateTo(1, 5);
+
+        }
+        async void setupmusicmenu()
+        {
+            await NewGamebutton.TranslateTo(-375, 185, 5);
+            await Continuebutton.TranslateTo(-250, 187, 5);
+            await Trainingbutton.TranslateTo(-125, 189, 5);
+            await Missionbutton.TranslateTo(0, 191, 5);
+            await SuperShopbutton.TranslateTo(125, 193, 5);
+            await Brutalbutton.TranslateTo(250, 195, 5);
+            await Challengebutton.TranslateTo(375, 197, 5);
+            await Musicbutton.TranslateTo(400, -185, 5);
+            await NewGamebutton.RotateTo(1, 5);
+            await Continuebutton.RotateTo(1, 5);
+            await Trainingbutton.RotateTo(1, 5);
+            await Missionbutton.RotateTo(1, 5);
+            await SuperShopbutton.RotateTo(1, 5);
+            await Brutalbutton.RotateTo(1, 5);
+            await Challengebutton.RotateTo(1, 5);
+
+        }
+
         async void testcontent1()
         {
             await PlayerIMG.TranslateTo(500, 500, 1000); // set pos
@@ -92,37 +225,37 @@
 
 
         }
-        
+
         private void MoveBTN_Clicked(object sender, EventArgs e)
         {
-            if (CurrentPlayerPositionY >=-290) {
+            if (CurrentPlayerPositionY >= -290) {
                 Move_player();
                 Move_player_Hit_Box();
                 Move_player_Camera_Box();
             }
-            
+
             else
             {
                 // moves world to simulate moving through expanded world
                 BackgroundCurrentPositionY = BackgroundCurrentPositionY + 15;
                 ei1curposY = ei1curposY + 15;
-                ei2curposY = ei2curposY + 15; 
-                ei3curposY = ei3curposY + 15; 
-                ei4curposY = ei4curposY + 15; 
+                ei2curposY = ei2curposY + 15;
+                ei3curposY = ei3curposY + 15;
+                ei4curposY = ei4curposY + 15;
                 ei5curposY = ei5curposY + 15;
                 ei6curposY = ei6curposY + 15;
-                ei7curposY = ei7curposY + 15; 
+                ei7curposY = ei7curposY + 15;
                 ei8curposY = ei8curposY + 15;
 
-                
+
             }
         }
 
         async void Move_player()// split the 3 moving seperately so they all move at once together
         {
-            CurrentPlayerPositionY=CurrentPlayerPositionY - 115;
+            CurrentPlayerPositionY = CurrentPlayerPositionY - 115;
             await PlayerIMG.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 40);
-            
+
 
         }
         async void Move_player_Hit_Box()
@@ -150,7 +283,7 @@
         {
             if (weaponequipped == 0)
             {
-                if(ammunition01 != 0)
+                if (ammunition01 != 0)
                 {
                     if (projectilecycle01 <= 10)
                     {
@@ -162,7 +295,7 @@
                     }
                     bullet_animation01();
 
-                }               
+                }
             }
         }
         async void bullet_animation01()
@@ -325,6 +458,351 @@
             await ei7.TranslateTo(0, 0, 40);
             await ei8.TranslateTo(0, 0, 40);
         }
+        // main menu buttons
+        private void NGameBTN_Clicked(object sender, EventArgs e)
+        {
+            MainMenuRetreatAnim();
+            newgameMenuReturnAnim();
+        }
+        private void ConBTN_Clicked(object sender, EventArgs e)
+        {
+            MainMenuRetreatAnim();
+        }
+        private void TrainBTN_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+        private void MissionBTN_Clicked(object sender, EventArgs e)
+        {
+            MainMenuRetreatAnim();
+        }
+        private void SShopBTN_Clicked(object sender, EventArgs e)
+        {
+            MainMenuRetreatAnim();
+        }
+        private void BrutaBTN_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        private void ChallBTN_Clicked(object sender, EventArgs e)
+        {
+            MainMenuRetreatAnim();
+        }
+        private void MusicBTN_Clicked(object sender, EventArgs e)
+        {
+            MainMenuRetreatAnim();
+        }
+        private void SettingsBTN_Clicked(object sender, EventArgs e)
+        {
+            MainMenuRetreatAnim();
+        }
+        // new game menu buttons
+        private void EasyDBTN_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+        private void NormDBTN_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+        private void HardDBTN_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+        private void VHardDBTN_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+        private void Accept01BTN_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+        private void Accept02BTN_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        private void Save1BTN_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        private void Save2BTN_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        private void Save3BTN_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        private void DelSaveBTN_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        private void EscapeBTN_Clicked(object sender, EventArgs e)
+        {
+            MainMenuReturnAnim();
+            newgameMenuRetreatAnim();
+            ContinueMenuRetreatAnim();
+            MissionMenuRetreatAnim();
+            SuperShopMenuRetreatAnim();
+            ChallengeMenuRetreatAnim();
+            MusicMenuRetreatAnim();
+            SettingsMenuRetreatAnim();
+        }
+        // menu animations
+        // main menu
+        private void MainMenuRetreatAnim() // seperated between multiples to all move in sync at once
+        {
+            SeperatedMenuRetreat01();
+            SeperatedMenuRetreat02();
+            SeperatedMenuRetreat03();
+            SeperatedMenuRetreat04();
+            SeperatedMenuRetreat05();
+            SeperatedMenuRetreat06();
+            SeperatedMenuRetreat07();
+            SeperatedMenuRetreat08();
+            SeperatedMenuRetreat09();
+            SeperatedMenuRetreat10();
+            SeperatedMenuRetreat18();
+        }
+        async void SeperatedMenuRetreat01()
+        {
+            await NewGamebutton.TranslateTo(-375, 1185, 500);
+        }
+        async void SeperatedMenuRetreat02()
+        {
+            await Continuebutton.TranslateTo(-250, 1187, 500);
+        }
+        async void SeperatedMenuRetreat03()
+        {
+            await Trainingbutton.TranslateTo(-125, 1189, 500);
+        }
+        async void SeperatedMenuRetreat04()
+        {
+            await Missionbutton.TranslateTo(0, 1191, 500);
+        }
+        async void SeperatedMenuRetreat05()
+        {
+            await SuperShopbutton.TranslateTo(125, 1193, 500);
+        }
+        async void SeperatedMenuRetreat06()
+        {
+            await Brutalbutton.TranslateTo(250, 1195, 500);
+        }
+        async void SeperatedMenuRetreat07()
+        {
+            await Challengebutton.TranslateTo(375, 1197, 500);
+        }
+        async void SeperatedMenuRetreat08()
+        {
+            await Musicbutton.TranslateTo(400, (-185 + 1000), 500);
+        }
+        async void SeperatedMenuRetreat09()
+        {
+            await Settingsbutton.TranslateTo(400, (-140 + 1000), 500);
+        }
+        async void SeperatedMenuRetreat10()
+        {
+            await TitleScreen01.TranslateTo(0, 1000, 500);
+        }
+        async void SeperatedMenuRetreat18()
+        {
+            await BattleForAzuraTitle.TranslateTo(-50, 1000, 500);
+        }
+        private void MainMenuReturnAnim() // seperated between multiples to all move in sync at once
+        {
+            SeperatedMenuReturn01();
+            SeperatedMenuReturn02();
+            SeperatedMenuReturn03();
+            SeperatedMenuReturn04();
+            SeperatedMenuReturn05();
+            SeperatedMenuReturn06();
+            SeperatedMenuReturn07();
+            SeperatedMenuReturn08();
+            SeperatedMenuReturn09();
+            SeperatedMenuReturn10();
+            SeperatedMenuReturn18();
+        }
+        async void SeperatedMenuReturn01()
+        {
+            await NewGamebutton.TranslateTo(-375, 185, 500);
+        }
+        async void SeperatedMenuReturn02()
+        {
+            await Continuebutton.TranslateTo(-250, 187, 500);
+        }
+        async void SeperatedMenuReturn03()
+        {
+            await Trainingbutton.TranslateTo(-125, 189, 500);
+        }
+        async void SeperatedMenuReturn04()
+        {
+            await Missionbutton.TranslateTo(0, 191, 500);
+        }
+        async void SeperatedMenuReturn05()
+        {
+            await SuperShopbutton.TranslateTo(125, 193, 500);
+        }
+        async void SeperatedMenuReturn06()
+        {
+            await Brutalbutton.TranslateTo(250, 195, 500);
+        }
+        async void SeperatedMenuReturn07()
+        {
+            await Challengebutton.TranslateTo(375, 197, 500);
+        }
+        async void SeperatedMenuReturn08()
+        {
+            await Musicbutton.TranslateTo(400, -185, 500);
+        }
+        async void SeperatedMenuReturn09()
+        {
+            await Settingsbutton.TranslateTo(400, -140, 500);
+        }
+        async void SeperatedMenuReturn10()
+        {
+            await TitleScreen01.TranslateTo(0, 0, 500);
+        }
+        async void SeperatedMenuReturn18()
+        {
+            await BattleForAzuraTitle.TranslateTo(-50, 0, 500);
+        }
+        // new game menu
+        private void newgameMenuRetreatAnim() // seperated between multiples to all move in sync at once
+        {
+            SeperatedMenuRetreat11();
+            SeperatedMenuRetreat12();
+            SeperatedMenuRetreat13();
+            SeperatedMenuRetreat14();
+            SeperatedMenuRetreat15();
+            SeperatedMenuRetreat16();
+            SeperatedMenuRetreat17();
+        }
+        async void SeperatedMenuRetreat11()
+        {
+            await easydiffbutton.TranslateTo(-280, -1050, 500);
+
+        }
+        async void SeperatedMenuRetreat12()
+        {
+            await normaldiffbutton.TranslateTo(-280, -1020, 500);
+
+        }
+        async void SeperatedMenuRetreat13()
+        {
+            await harddiffbutton.TranslateTo(-280, -990, 500);
+
+        }
+        async void SeperatedMenuRetreat14()
+        {
+            await veryharddiffbutton.TranslateTo(-280, -960, 500);
+
+        }
+        async void SeperatedMenuRetreat15()
+        {
+            await accept01button.TranslateTo(125, (195-1000), 500);
+
+        }
+        async void SeperatedMenuRetreat16()
+        {
+            await leavebutton.TranslateTo(250, (195-1000), 500);
+        }
+        async void SeperatedMenuRetreat17()
+        {
+            await NewGameScreen01.TranslateTo(0,-1000, 500);
+        }
+        private void newgameMenuReturnAnim() // seperated between multiples to all move in sync at once
+        {
+            SeperatedMenuReturn11();
+            SeperatedMenuReturn12();
+            SeperatedMenuReturn13();
+            SeperatedMenuReturn14();
+            SeperatedMenuReturn15();
+            SeperatedMenuReturn16();
+            SeperatedMenuReturn17();
+        }
+        async void SeperatedMenuReturn11()
+        {
+            await easydiffbutton.TranslateTo(-280, -50, 500);
+            
+        }
+        async void SeperatedMenuReturn12()
+        {
+            await normaldiffbutton.TranslateTo(-280, -20, 500);
+            
+        }
+        async void SeperatedMenuReturn13()
+        {
+            await harddiffbutton.TranslateTo(-280, 10, 500);
+            
+        }
+        async void SeperatedMenuReturn14()
+        {
+            await veryharddiffbutton.TranslateTo(-280, 40, 500);
+            
+        }
+        async void SeperatedMenuReturn15()
+        {
+            await accept01button.TranslateTo(125, 195, 500);
+            
+        }
+        async void SeperatedMenuReturn16()
+        {
+            await leavebutton.TranslateTo(250, 195, 500);
+        }
+        async void SeperatedMenuReturn17()
+        {
+            await NewGameScreen01.TranslateTo(0, 0, 500);
+        }
+        // continue menu
+        private void ContinueMenuRetreatAnim()
+        {
+
+        }
+        private void ContinueMenuReturnAnim()
+        {
+
+        }
+        private void MissionMenuRetreatAnim()
+        {
+
+        }
+        private void MissionMenuReturnAnim()
+        {
+
+        }
+        private void SuperShopMenuRetreatAnim()
+        {
+
+        }
+        private void SuperShopMenuReturnAnim()
+        {
+
+        }
+        private void ChallengeMenuRetreatAnim()
+        {
+
+        }
+        private void ChallengeMenuReturnAnim()
+        {
+
+        }
+        private void MusicMenuRetreatAnim()
+        {
+
+        }
+        private void MusicMenuReturnAnim()
+        {
+
+        }
+        private void SettingsMenuRetreatAnim()
+        {
+
+        }
+        private void SettingsMenuReturnAnim()
+        {
+
+        }
+        // constantly updates the positions of every game object ( except for player )
         async void Update_All_Position_Constant()
         {
 
@@ -340,7 +818,7 @@
                 await ei7.TranslateTo(ei7curposX, ei7curposY, 40);
                 await ei8.TranslateTo(ei8curposX, ei8curposY, 40);
             }
-        }
-    }
+        }// end of update all Pc
 
-}
+    }// end of all
+}// end of all
