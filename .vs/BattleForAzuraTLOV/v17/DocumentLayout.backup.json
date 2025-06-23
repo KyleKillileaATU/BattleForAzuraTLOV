@@ -14,6 +14,13 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|c:\\users\\kylek\\source\\repos\\battleforazuratlov\\resources\\styles\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|solutionrelative:resources\\styles\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|c:\\users\\kylek\\source\\repos\\battleforazuratlov\\permasave.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|solutionrelative:permasave.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -28,13 +35,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|c:\\users\\kylek\\source\\repos\\battleforazuratlov\\saveslot2.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|solutionrelative:saveslot2.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|c:\\users\\kylek\\source\\repos\\battleforazuratlov\\mainmenupage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|solutionrelative:mainmenupage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D1FD0CE6-62B8-4436-975A-933AAB77BEAE}|BattleForAzuraTLOV.csproj|c:\\users\\kylek\\source\\repos\\battleforazuratlov\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -52,11 +52,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "saveslot3.txt",
               "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\saveslot3.txt",
               "RelativeDocumentMoniker": "saveslot3.txt",
@@ -64,12 +64,11 @@
               "RelativeToolTip": "saveslot3.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-06-19T14:05:57.54Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-19T14:05:57.54Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "saveslot2.txt",
               "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\saveslot2.txt",
               "RelativeDocumentMoniker": "saveslot2.txt",
@@ -77,12 +76,11 @@
               "RelativeToolTip": "saveslot2.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-06-19T14:05:41.77Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-19T14:05:41.77Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "saveslot1.txt",
               "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\saveslot1.txt",
               "RelativeDocumentMoniker": "saveslot1.txt",
@@ -90,12 +88,11 @@
               "RelativeToolTip": "saveslot1.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-06-19T14:05:26.023Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-19T14:05:26.023Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "permasave.txt",
               "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\permasave.txt",
               "RelativeDocumentMoniker": "permasave.txt",
@@ -103,7 +100,19 @@
               "RelativeToolTip": "permasave.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-06-19T14:04:43.996Z",
+              "WhenOpened": "2025-06-19T14:04:43.996Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Colors.xaml",
+              "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\Resources\\Styles\\Colors.xaml",
+              "RelativeDocumentMoniker": "Resources\\Styles\\Colors.xaml",
+              "ToolTip": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\Resources\\Styles\\Colors.xaml",
+              "RelativeToolTip": "Resources\\Styles\\Colors.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-22T15:44:54.39Z",
               "EditorCaption": ""
             },
             {
@@ -132,16 +141,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "MainPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml.cs",
               "RelativeDocumentMoniker": "..\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml.cs",
               "ToolTip": "C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml.cs",
               "RelativeToolTip": "..\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml.cs",
-              "ViewState": "AgIAAEQBAAAAAAAAAAAAAFABAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAABwBAAAAAAAAAAAAADIBAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T10:33:07.269Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T10:33:07.269Z"
             },
             {
               "$type": "Document",
@@ -151,7 +159,7 @@
               "RelativeDocumentMoniker": "..\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml",
               "ToolTip": "C:\\Users\\KyleK\\source\\repos\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml",
               "RelativeToolTip": "..\\LudoExceed\\LudoExceedExcelsius\\MainPage.xaml",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEAAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEIAAACSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-06-17T10:35:00.976Z",
               "EditorCaption": ""
@@ -164,7 +172,7 @@
               "RelativeDocumentMoniker": "MainPage.xaml.cs",
               "ToolTip": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\MainPage.xaml.cs",
               "RelativeToolTip": "MainPage.xaml.cs",
-              "ViewState": "AgIAAAQCAAAAAAAAAAAAwBkCAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJcCAAAAAAAAAAAmwKsCAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T10:34:31.117Z",
               "EditorCaption": ""
@@ -177,22 +185,9 @@
               "RelativeDocumentMoniker": "MainPage.xaml",
               "ToolTip": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\MainPage.xaml",
               "RelativeToolTip": "MainPage.xaml",
-              "ViewState": "AgIAAMkAAAAAAAAAAAAAAN4AAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAAAA4BAACoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-06-17T09:55:21.227Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MainMenuPage.xaml",
-              "DocumentMoniker": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\MainMenuPage.xaml",
-              "RelativeDocumentMoniker": "MainMenuPage.xaml",
-              "ToolTip": "C:\\Users\\KyleK\\source\\repos\\BattleForAzuraTLOV\\MainMenuPage.xaml",
-              "RelativeToolTip": "MainMenuPage.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-17T12:32:24.909Z",
               "EditorCaption": ""
             }
           ]

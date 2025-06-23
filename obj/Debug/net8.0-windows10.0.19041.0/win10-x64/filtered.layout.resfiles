@@ -48,12 +48,16 @@ appiconWideTile.scale-125.png
 appiconWideTile.scale-150.png
 appiconWideTile.scale-200.png
 appiconWideTile.scale-400.png
+backgroundlevel01.scale-100.png
 battleforazuratitleimg.scale-100.png
 blue.scale-100.png
 british.scale-100.png
 childadventuerer.scale-100.png
 cityview.scale-100.png
 commonsoldier.scale-100.png
+dishonouredcontinuescreen.scale-100.png
+dishonouredlevelstatsscreen.scale-100.png
+dishonouredmissionscreen.scale-100.png
 dishonourednewgamescreen.scale-100.png
 dishonouredtitlescreen.scale-100.png
 dotnet_bot.scale-100.png
@@ -62,6 +66,7 @@ dotnet_bot.scale-150.png
 dotnet_bot.scale-200.png
 dotnet_bot.scale-400.png
 green.scale-100.png
+greyfilter.scale-100.png
 injuredsoldier.scale-100.png
 ludomat.scale-100.png
 medipeasant.scale-100.png

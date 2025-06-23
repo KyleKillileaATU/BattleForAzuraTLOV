@@ -1,8 +1,11 @@
-﻿namespace BattleForAzuraTLOV
+﻿
+
+namespace BattleForAzuraTLOV
 {
     public partial class MainPage : ContentPage
     {
-        int CurrentPlayerPositionX = 0, CurrentPlayerPositionY = 0, BackgroundCurrentPositionX = 0, BackgroundCurrentPositionY = 0;
+        int CurrentPlayerPositionX = 0, CurrentPlayerPositionY = 0;
+        int BackgroundCurrentPositionX = 0, BackgroundCurrentPositionY = 0;
         int RandomPositionX = 0, RandomPositionY = 0, rtime, projectilecycle01 = 0, weaponequipped = 0;
         int ei1curposX, ei2curposX, ei3curposX, ei4curposX, ei5curposX, ei6curposX, ei7curposX, ei8curposX;
         int ei1curposY, ei2curposY, ei3curposY, ei4curposY, ei5curposY, ei6curposY, ei7curposY, ei8curposY;
@@ -18,6 +21,7 @@
         int activeprojectilepositioni10X, activeprojectilepositioni10Y;
         int activeprojectilepositioni11X, activeprojectilepositioni11Y;
         int ammunition01 = 0;
+        int gamelevelflag=0, gamestatus=0;
         Random RNGmove = new Random();
 
 
@@ -29,12 +33,11 @@
         {
             base.OnAppearing();
             await Task.Delay(200);
-            setupmainmenu();
-            setupnewgamemenu();
+            setupallgamemenu();
             hideallgamecontent();
             //testcontent1();
             //Infinite_RNG_Movement();
-            Update_All_Position_Constant();
+            //Update_All_Position_Constant(); // to be activated on or off game start and end 
             await PlayerHPbar.TranslateTo(-98, 0, 40);
             await PlayerStaminabar.TranslateTo(-93, 0, 40);
             await PlayerMagicbar.TranslateTo(-102, 0, 40);
@@ -42,10 +45,12 @@
         private void hideallgamecontent() // hides all content game assets (enemies, objects, etc )
         {
             hideplayer();
-            hideenemyinstances();
+            hideenemyinstances01();
             hideprojectileinstances();
             hideplayerui();
+            
         }
+        
         async void hideplayer()
         {
             await BackgroundIMG.FadeTo(0, 5);
@@ -53,16 +58,16 @@
             await PlayerHitBox.FadeTo(0, 5);
             await PlayerCameraBox.FadeTo(0, 5);
         }
-        async void hideenemyinstances()
+        async void hideenemyinstances01()
         {
-            await ei1.FadeTo(0, 5);
-            await ei2.FadeTo(0, 5);
-            await ei3.FadeTo(0, 5);
-            await ei4.FadeTo(0, 5);
-            await ei5.FadeTo(0, 5);
-            await ei6.FadeTo(0, 5);
-            await ei7.FadeTo(0, 5);
-            await ei8.FadeTo(0, 5);
+            await e001.FadeTo(0, 5);
+            await e002.FadeTo(0, 5);
+            await e003.FadeTo(0, 5);
+            await e004.FadeTo(0, 5);
+            await e005.FadeTo(0, 5);
+            await e006.FadeTo(0, 5);
+            await e007.FadeTo(0, 5);
+            await e008.FadeTo(0, 5);
         }
         async void hideprojectileinstances()
         {
@@ -90,6 +95,20 @@
             await attackbutton.FadeTo(0, 5);
         }
         // menu set ups ( positionings and states )
+        private void setupallgamemenu()
+        {
+            setupmainmenu();
+            setupnewgamemenu();
+            setupcontinuemenu();
+            setupTestAcceptmenu();
+            setupMissionsmenu();
+            setupsupershopmenu();
+            setupchallengesmenu();
+            setupmusicmenu();
+            setupsettingsmenu();
+            setuplevelstatsmenu01();
+            setuplevelstatsmenu02();
+        }
         async void setupmainmenu()
         {
             await NewGamebutton.TranslateTo(-375, 185, 5);
@@ -110,6 +129,15 @@
             await Brutalbutton.RotateTo(1, 5);
             await Challengebutton.RotateTo(1, 5);
             await BattleForAzuraTitle.RotateTo(-8, 5);
+            this.Resources["ColourOfNewGameBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfContinueBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfTrainingBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfMissionBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfSuperShopBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfBrutalBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfChallengeBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfMusicBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfSettingsBTNClicked"] = Colors.DarkSlateGrey;
         }
         async void setupnewgamemenu()
         {
@@ -117,8 +145,8 @@
             await normaldiffbutton.TranslateTo(-280, -1020, 5);
             await harddiffbutton.TranslateTo(-280, -1010, 5);
             await veryharddiffbutton.TranslateTo(-280, -1040, 5);
-            await accept01button.TranslateTo(125, -1195, 5);
-            await leavebutton.TranslateTo(250, -1195, 5);
+            await accept01button.TranslateTo(125, (195 - 1000), 5);
+            await leavebutton.TranslateTo(250, (195 - 1000), 5);
             await NewGameScreen01.TranslateTo(0, -1000, 5);
             await easydiffbutton.ScaleTo(0.6, 5);
             await normaldiffbutton.ScaleTo(0.6, 5);
@@ -126,97 +154,80 @@
             await veryharddiffbutton.ScaleTo(0.6, 5);
             await accept01button.ScaleTo(0.6, 5);
             await leavebutton.ScaleTo(0.6, 5);
+            this.Resources["ColourOfEasyBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfNormalBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfHardBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfVeryHardBTNClicked"] = Colors.DarkSlateGrey;
         }
         async void setupcontinuemenu()
         {
-            await NewGamebutton.TranslateTo(-375, 185, 5);
-            await Continuebutton.TranslateTo(-250, 187, 5);
-            await Trainingbutton.TranslateTo(-125, 189, 5);
-            await Missionbutton.TranslateTo(0, 191, 5);
-            await SuperShopbutton.TranslateTo(125, 193, 5);
-            await Brutalbutton.TranslateTo(250, 195, 5);
-            await Challengebutton.TranslateTo(375, 197, 5);
-            await Musicbutton.TranslateTo(400, -185, 5);
-            await NewGamebutton.RotateTo(1, 5);
-            await Continuebutton.RotateTo(1, 5);
-            await Trainingbutton.RotateTo(1, 5);
-            await Missionbutton.RotateTo(1, 5);
-            await SuperShopbutton.RotateTo(1, 5);
-            await Brutalbutton.RotateTo(1, 5);
-            await Challengebutton.RotateTo(1, 5);
+            await saveslot1button.TranslateTo(-325, -1050, 5);
+            await saveslot2button.TranslateTo(-325, -1000, 5);
+            await saveslot3button.TranslateTo(-325, -950, 5);
+            await deletesavebutton.TranslateTo(0, (195-1000), 5);
+            await accept02button.TranslateTo(125, (195 - 1000), 5);
+            await leave02button.TranslateTo(250, (195 - 1000), 5);
+            await ContinueScreen01.TranslateTo(0, -1000, 5); 
+            await saveslot1button.RotateTo(-15, 5);
+            await saveslot2button.RotateTo(-15, 5);
+            await saveslot3button.RotateTo(-15, 5);
+            await deletesavebutton.ScaleTo(0.6, 5);
+            await accept02button.ScaleTo(0.6, 5);
+            await leave02button.ScaleTo(0.6, 5);
+            this.Resources["ColourOfSave1BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfSave2BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfSave3BTNClicked"] = Colors.DarkSlateGrey;
+        }
+        async void setupTestAcceptmenu()
+        {
 
+            await accept03button.TranslateTo(-75, (40 - 1000), 5);
+            await leave03button.TranslateTo(75, (40 - 1000), 5);
+            await GrayFilterScreen01.TranslateTo(0, 0, 5);
+            await GrayFilterScreen01.FadeTo(0, 5);
+        }
+        async void setupMissionsmenu()
+        {
+            await previousmissionbutton.TranslateTo(-445, (30 - 1000), 5);
+            await nextmissionbutton.TranslateTo(445, (30 - 1000), 5);
+            await missionstatsbutton.TranslateTo(0, (195 - 1000), 5);
+            await accept04button.TranslateTo(125, (195 - 1000), 5);
+            await leave04button.TranslateTo(250, (195 - 1000), 5);
+            await MissionScreen01.TranslateTo(0, -1000, 5);
+            await missionstatsbutton.ScaleTo(0.6, 5);
+            await accept04button.ScaleTo(0.6, 5);
+            await leave04button.ScaleTo(0.6, 5);
         }
         async void setupsupershopmenu()
         {
-            await NewGamebutton.TranslateTo(-375, 185, 5);
-            await Continuebutton.TranslateTo(-250, 187, 5);
-            await Trainingbutton.TranslateTo(-125, 189, 5);
-            await Missionbutton.TranslateTo(0, 191, 5);
-            await SuperShopbutton.TranslateTo(125, 193, 5);
-            await Brutalbutton.TranslateTo(250, 195, 5);
-            await Challengebutton.TranslateTo(375, 197, 5);
-            await Musicbutton.TranslateTo(400, -185, 5);
-            await NewGamebutton.RotateTo(1, 5);
-            await Continuebutton.RotateTo(1, 5);
-            await Trainingbutton.RotateTo(1, 5);
-            await Missionbutton.RotateTo(1, 5);
-            await SuperShopbutton.RotateTo(1, 5);
-            await Brutalbutton.RotateTo(1, 5);
-            await Challengebutton.RotateTo(1, 5);
+
 
         }
         async void setupchallengesmenu()
         {
-            await NewGamebutton.TranslateTo(-375, 185, 5);
-            await Continuebutton.TranslateTo(-250, 187, 5);
-            await Trainingbutton.TranslateTo(-125, 189, 5);
-            await Missionbutton.TranslateTo(0, 191, 5);
-            await SuperShopbutton.TranslateTo(125, 193, 5);
-            await Brutalbutton.TranslateTo(250, 195, 5);
-            await Challengebutton.TranslateTo(375, 197, 5);
-            await Musicbutton.TranslateTo(400, -185, 5);
-            await NewGamebutton.RotateTo(1, 5);
-            await Continuebutton.RotateTo(1, 5);
-            await Trainingbutton.RotateTo(1, 5);
-            await Missionbutton.RotateTo(1, 5);
-            await SuperShopbutton.RotateTo(1, 5);
-            await Brutalbutton.RotateTo(1, 5);
-            await Challengebutton.RotateTo(1, 5);
-
+          
         }
         async void setupmusicmenu()
         {
-            await NewGamebutton.TranslateTo(-375, 185, 5);
-            await Continuebutton.TranslateTo(-250, 187, 5);
-            await Trainingbutton.TranslateTo(-125, 189, 5);
-            await Missionbutton.TranslateTo(0, 191, 5);
-            await SuperShopbutton.TranslateTo(125, 193, 5);
-            await Brutalbutton.TranslateTo(250, 195, 5);
-            await Challengebutton.TranslateTo(375, 197, 5);
-            await Musicbutton.TranslateTo(400, -185, 5);
-            await NewGamebutton.RotateTo(1, 5);
-            await Continuebutton.RotateTo(1, 5);
-            await Trainingbutton.RotateTo(1, 5);
-            await Missionbutton.RotateTo(1, 5);
-            await SuperShopbutton.RotateTo(1, 5);
-            await Brutalbutton.RotateTo(1, 5);
-            await Challengebutton.RotateTo(1, 5);
-
+           
         }
-
-        async void testcontent1()
+        async void setupsettingsmenu()
         {
-            await PlayerIMG.TranslateTo(500, 500, 1000); // set pos
-            await ei1.TranslateTo(500, 500, 1000);
-            await ei2.TranslateTo(100, 500, 1000);
-            await ei3.TranslateTo(-500, 500, 1000);
-            await ei4.TranslateTo(250, -500, 1000);
-            await ei5.TranslateTo(500, -100, 1000);
-            await ei6.TranslateTo(50, 50, 1000);
-            await ei7.TranslateTo(-500, -500, 1000);
-            await ei8.TranslateTo(-100, -200, 1000);
-            await ei1.TranslateTo(340, -350, 1000);
+            await GrayFilterScreen01.TranslateTo(0, -1000, 5);
         }
+        async void setuplevelstatsmenu01()
+        {
+
+            await LevelStatsScreen01.TranslateTo(0, -1000, 5);
+
+        }
+        async void setuplevelstatsmenu02()
+        {
+        
+
+        }
+
+        // button stuff
         private void Move_BindButton_Clicked(object sender, EventArgs e)
         {
             Move_player();
@@ -236,7 +247,8 @@
 
             else
             {
-                // moves world to simulate moving through expanded world
+                // updates the positions, to move the world to simulate moving through expanded world
+                if (gamelevelflag == 1)
                 BackgroundCurrentPositionY = BackgroundCurrentPositionY + 15;
                 ei1curposY = ei1curposY + 15;
                 ei2curposY = ei2curposY + 15;
@@ -275,7 +287,7 @@
                 ei1curposX = (ei1curposX + RNGmove.Next(-30, 30));
                 ei1curposY = (ei1curposY + RNGmove.Next(-30, 30));
                 rtime = RNGmove.Next(150, 750);
-                await ei1.TranslateTo(ei1curposX, ei1curposY, (uint)rtime);
+                await e001.TranslateTo(ei1curposX, ei1curposY, (uint)rtime);
                 await Task.Delay(2000);
             }
         }
@@ -314,6 +326,7 @@
                         await Projectile01.TranslateTo(activeprojectilepositioni1X, activeprojectilepositioni1Y, 1);
                     }
                     await Projectile01.FadeTo(0, 40);
+                    activeprojectilepositioni1X = activeprojectilepositioni1X + 1000;
                     break;
                 case 2:
                     await Projectile02.FadeTo(1, 1);
@@ -327,6 +340,7 @@
                         await Projectile02.TranslateTo(activeprojectilepositioni2X, activeprojectilepositioni2Y, 1);
                     }
                     await Projectile02.FadeTo(0, 40);
+                    activeprojectilepositioni2X = activeprojectilepositioni2X+1000;
                     break;
                 case 3:
                     await Projectile03.FadeTo(1, 1);
@@ -340,6 +354,7 @@
                         await Projectile03.TranslateTo(activeprojectilepositioni3X, activeprojectilepositioni3Y, 1);
                     }
                     await Projectile03.FadeTo(0, 40);
+                    activeprojectilepositioni3X = activeprojectilepositioni3X + 1000;
                     break;
                 case 4:
                     await Projectile04.FadeTo(1, 1);
@@ -353,6 +368,7 @@
                         await Projectile04.TranslateTo(activeprojectilepositioni4X, activeprojectilepositioni4Y, 1);
                     }
                     await Projectile04.FadeTo(0, 40);
+                    activeprojectilepositioni4X = activeprojectilepositioni4X + 1000;
                     break;
                 case 5:
                     await Projectile05.FadeTo(1, 1);
@@ -366,6 +382,7 @@
                         await Projectile05.TranslateTo(activeprojectilepositioni5X, activeprojectilepositioni5Y, 1);
                     }
                     await Projectile05.FadeTo(0, 40);
+                    activeprojectilepositioni5X = activeprojectilepositioni5X + 1000;
                     break;
                 case 6:
                     await Projectile06.FadeTo(1, 1);
@@ -379,6 +396,7 @@
                         await Projectile06.TranslateTo(activeprojectilepositioni6X, activeprojectilepositioni6Y, 1);
                     }
                     await Projectile06.FadeTo(0, 40);
+                    activeprojectilepositioni6X = activeprojectilepositioni6X + 1000;
                     break;
                 case 7:
                     await Projectile07.FadeTo(1, 1);
@@ -392,6 +410,7 @@
                         await Projectile07.TranslateTo(activeprojectilepositioni7X, activeprojectilepositioni7Y, 1);
                     }
                     await Projectile07.FadeTo(0, 40);
+                    activeprojectilepositioni7X = activeprojectilepositioni7X + 1000;
                     break;
                 case 8:
                     await Projectile08.FadeTo(1, 1);
@@ -405,6 +424,7 @@
                         await Projectile08.TranslateTo(activeprojectilepositioni8X, activeprojectilepositioni8Y, 1);
                     }
                     await Projectile08.FadeTo(0, 40);
+                    activeprojectilepositioni8X = activeprojectilepositioni8X + 1000;
                     break;
                 case 9:
                     await Projectile09.FadeTo(1, 1);
@@ -418,6 +438,7 @@
                         await Projectile09.TranslateTo(activeprojectilepositioni9X, activeprojectilepositioni9Y, 1);
                     }
                     await Projectile09.FadeTo(0, 40);
+                    activeprojectilepositioni9X = activeprojectilepositioni9X + 1000;
                     break;
                 case 10:
                     await Projectile10.FadeTo(1, 1);
@@ -431,6 +452,7 @@
                         await Projectile10.TranslateTo(activeprojectilepositioni10X, activeprojectilepositioni10Y, 1);
                     }
                     await Projectile10.FadeTo(0, 40);
+                    activeprojectilepositioni10X = activeprojectilepositioni10X + 1000;
                     break;
                 case 11:
                     await Projectile11.FadeTo(1, 1);
@@ -444,19 +466,21 @@
                         await Projectile11.TranslateTo(activeprojectilepositioni11X, activeprojectilepositioni11Y, 1);
                     }
                     await Projectile11.FadeTo(0, 40);
+                    activeprojectilepositioni11X = activeprojectilepositioni11X + 1000;
                     break;
             }
         }
+        // resets object positions
         async void Reset_All_Enemy_Position()
         {
-            await ei1.TranslateTo(0, 0, 40);
-            await ei2.TranslateTo(0, 0, 40);
-            await ei3.TranslateTo(0, 0, 40);
-            await ei4.TranslateTo(0, 0, 40);
-            await ei5.TranslateTo(0, 0, 40);
-            await ei6.TranslateTo(0, 0, 40);
-            await ei7.TranslateTo(0, 0, 40);
-            await ei8.TranslateTo(0, 0, 40);
+            await e001.TranslateTo(0, 0, 40);
+            await e002.TranslateTo(0, 0, 40);
+            await e003.TranslateTo(0, 0, 40);
+            await e004.TranslateTo(0, 0, 40);
+            await e005.TranslateTo(0, 0, 40);
+            await e006.TranslateTo(0, 0, 40);
+            await e007.TranslateTo(0, 0, 40);
+            await e008.TranslateTo(0, 0, 40);
         }
         // main menu buttons
         private void NGameBTN_Clicked(object sender, EventArgs e)
@@ -467,14 +491,18 @@
         private void ConBTN_Clicked(object sender, EventArgs e)
         {
             MainMenuRetreatAnim();
+            ContinueMenuReturnAnim();
         }
         private void TrainBTN_Clicked(object sender, EventArgs e)
         {
-            
+            Training_ClickedAnim();
+            TestingGMenuReturnAnim();
+            this.Resources["ColourOfTrainingBTNClicked"] = Colors.White;
         }
         private void MissionBTN_Clicked(object sender, EventArgs e)
         {
             MainMenuRetreatAnim();
+            MissionMenuReturnAnim();
         }
         private void SShopBTN_Clicked(object sender, EventArgs e)
         {
@@ -482,7 +510,7 @@
         }
         private void BrutaBTN_Clicked(object sender, EventArgs e)
         {
-
+            Brutal_ClickedAnim();
         }
         private void ChallBTN_Clicked(object sender, EventArgs e)
         {
@@ -499,25 +527,61 @@
         // new game menu buttons
         private void EasyDBTN_Clicked(object sender, EventArgs e)
         {
-            
+            Easy_ClickedAnim();
+            this.Resources["ColourOfEasyBTNClicked"] = Colors.White;
+            this.Resources["ColourOfNormalBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfHardBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfVeryHardBTNClicked"] = Colors.DarkSlateGrey;
         }
         private void NormDBTN_Clicked(object sender, EventArgs e)
         {
-            
+            Normal_ClickedAnim();
+            this.Resources["ColourOfEasyBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfNormalBTNClicked"] = Colors.White;
+            this.Resources["ColourOfHardBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfVeryHardBTNClicked"] = Colors.DarkSlateGrey;
         }
         private void HardDBTN_Clicked(object sender, EventArgs e)
         {
-            
+            Hard_ClickedAnim();
+            this.Resources["ColourOfEasyBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfNormalBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfHardBTNClicked"] = Colors.White;
+            this.Resources["ColourOfVeryHardBTNClicked"] = Colors.DarkSlateGrey;
         }
         private void VHardDBTN_Clicked(object sender, EventArgs e)
         {
-            
+            VeryHard_ClickedAnim();
+            this.Resources["ColourOfEasyBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfNormalBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfHardBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfVeryHardBTNClicked"] = Colors.White;
+        }
+        private void PrevMissBTN_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        private void NextMissBTN_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        private void MissStatsBTN_Clicked(object sender, EventArgs e)
+        {
+
         }
         private void Accept01BTN_Clicked(object sender, EventArgs e)
         {
-            
+
         }
         private void Accept02BTN_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+        private void Accept03BTN_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        private void Accept04BTN_Clicked(object sender, EventArgs e)
         {
 
         }
@@ -542,13 +606,89 @@
             MainMenuReturnAnim();
             newgameMenuRetreatAnim();
             ContinueMenuRetreatAnim();
+            TestingGMenuRetreatAnim();
             MissionMenuRetreatAnim();
             SuperShopMenuRetreatAnim();
             ChallengeMenuRetreatAnim();
             MusicMenuRetreatAnim();
             SettingsMenuRetreatAnim();
+            LevelStatisticsMenuRetreatAnim();
+            ResetButtonColours();
+            ResetAll_Button_States_Anim();
+        }
+        private void ResetButtonColours()
+        {
+            // main
+            this.Resources["ColourOfNewGameBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfContinueBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfTrainingBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfMissionBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfSuperShopBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfBrutalBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfChallengeBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfMusicBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfSettingsBTNClicked"] = Colors.DarkSlateGrey;
+            // new
+            this.Resources["ColourOfEasyBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfNormalBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfHardBTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfVeryHardBTNClicked"] = Colors.DarkSlateGrey;
+            // con
+            this.Resources["ColourOfSave1BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfSave2BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfSave3BTNClicked"] = Colors.DarkSlateGrey;
+            // miss
+
         }
         // menu animations
+        // button anims
+        async void Training_ClickedAnim()
+        {
+            await Trainingbutton.ScaleTo(1.3, 100);
+        }
+        async void Brutal_ClickedAnim()
+        {
+            await Brutalbutton.ScaleTo(1.3, 100);
+        }
+        async void Easy_ClickedAnim()
+        {
+            await easydiffbutton.ScaleTo(0.8, 100);
+            await normaldiffbutton.ScaleTo(0.6, 100);
+            await harddiffbutton.ScaleTo(0.6, 100);
+            await veryharddiffbutton.ScaleTo(0.6, 100);
+        }
+        async void Normal_ClickedAnim()
+        {
+            await normaldiffbutton.ScaleTo(0.8, 100);
+            await easydiffbutton.ScaleTo(0.6, 100);            
+            await harddiffbutton.ScaleTo(0.6, 100);
+            await veryharddiffbutton.ScaleTo(0.6, 100);
+        }
+        async void Hard_ClickedAnim()
+        {
+            await harddiffbutton.ScaleTo(0.8, 100);
+            await easydiffbutton.ScaleTo(0.6, 100);
+            await normaldiffbutton.ScaleTo(0.6, 100);
+            await veryharddiffbutton.ScaleTo(0.6, 100);
+        }
+        async void VeryHard_ClickedAnim()
+        {
+            await veryharddiffbutton.ScaleTo(0.8, 100);
+            await easydiffbutton.ScaleTo(0.6, 100);
+            await normaldiffbutton.ScaleTo(0.6, 100);
+            await harddiffbutton.ScaleTo(0.6, 100);
+            
+        }
+        async void ResetAll_Button_States_Anim()
+        {
+            await Trainingbutton.ScaleTo(1, 100);
+            await easydiffbutton.ScaleTo(0.6, 100);
+            await normaldiffbutton.ScaleTo(0.6, 100);
+            await harddiffbutton.ScaleTo(0.6, 100);
+            await veryharddiffbutton.ScaleTo(0.6, 100);
+
+        }
+        // page turning
         // main menu
         private void MainMenuRetreatAnim() // seperated between multiples to all move in sync at once
         {
@@ -756,19 +896,229 @@
         // continue menu
         private void ContinueMenuRetreatAnim()
         {
+            SeperatedMenuRereat19();
+            SeperatedMenuRereat20();
+            SeperatedMenuRereat21();
+            SeperatedMenuRereat22();
+            SeperatedMenuRereat23();
+            SeperatedMenuRereat24();
+            SeperatedMenuRereat25();
+        }
+        async void SeperatedMenuRereat19()
+        {
+            await saveslot1button.TranslateTo(-325, -1050, 500);
+            
 
+        }
+        async void SeperatedMenuRereat20()
+        {
+            await saveslot2button.TranslateTo(-325, -1000, 500);
+            
+        }
+        async void SeperatedMenuRereat21()
+        {
+            await saveslot3button.TranslateTo(-325, -950, 500);
+           
+        }
+        async void SeperatedMenuRereat22()
+        {
+            await deletesavebutton.TranslateTo(0, (195 - 1000), 500);
+            
+        }
+        async void SeperatedMenuRereat23()
+        {
+            await accept02button.TranslateTo(125, (195 - 1000), 500);
+            
+        }
+        async void SeperatedMenuRereat24()
+        {
+            await leave02button.TranslateTo(250, (195 - 1000), 500); 
+        }
+        async void SeperatedMenuRereat25()
+        {
+            await ContinueScreen01.TranslateTo(0, -1000, 500);
         }
         private void ContinueMenuReturnAnim()
         {
+            SeperatedMenuReturn19();
+            SeperatedMenuReturn20();
+            SeperatedMenuReturn21();
+            SeperatedMenuReturn22();
+            SeperatedMenuReturn23();
+            SeperatedMenuReturn24();
+            SeperatedMenuReturn25();
+        }
+        async void SeperatedMenuReturn19()
+        {
+            await saveslot1button.TranslateTo(-325, -50, 500);
+            
+        }
+        async void SeperatedMenuReturn20()
+        {
+            await saveslot2button.TranslateTo(-325, 0, 500);
+            
+        }
+        async void SeperatedMenuReturn21()
+        {
+            await saveslot3button.TranslateTo(-325, 50, 500);
+            
+        }
+        async void SeperatedMenuReturn22()
+        {
+            await deletesavebutton.TranslateTo(0, 195, 500);
+            
+        }
+        async void SeperatedMenuReturn23()
+        {
+            await accept02button.TranslateTo(125, 195, 500);
+            
+        }
+        async void SeperatedMenuReturn24()
+        {
+            await leave02button.TranslateTo(250, 195, 500); 
+        }
+        async void SeperatedMenuReturn25()
+        {
+            await ContinueScreen01.TranslateTo(0, 0, 500);
+        }
+        private void TestingGMenuRetreatAnim()
+        {
+            SeperatedMenuRetreat32();
+            SeperatedMenuRetreat33();
+            SeperatedMenuRetreat34();
+            SeperatedMenuRetreat35();
+            SeperatedMenuRetreat36();
+        }
+        async void SeperatedMenuRetreat32()
+        {
+            await GrayFilterScreen01.FadeTo(0, 5);
+        }
+        async void SeperatedMenuRetreat33()
+        {
+            await accept03button.TranslateTo(-75, (40 - 1000), 5);
 
+        }
+        async void SeperatedMenuRetreat34()
+        {
+            await leave03button.TranslateTo(75,(40-1000), 5);
+        }
+        async void SeperatedMenuRetreat35()
+        {
+
+            await accept03button.FadeTo(0, 5);
+        }
+        async void SeperatedMenuRetreat36()
+        {
+
+            await leave03button.FadeTo(0, 5);
+        }
+        private void TestingGMenuReturnAnim()
+        {
+            SeperatedMenuReturn32();
+            SeperatedMenuReturn33();
+            SeperatedMenuReturn34();
+            SeperatedMenuReturn35();
+            SeperatedMenuReturn36();
+        }
+        async void SeperatedMenuReturn32()
+        {
+            
+            await GrayFilterScreen01.FadeTo(0.5, 300);
+        }
+        async void SeperatedMenuReturn33()
+        {
+            await accept03button.TranslateTo(-75, 40, 5);
+            
+        }
+        async void SeperatedMenuReturn34()
+        {
+            await leave03button.TranslateTo(75, 40, 5);
+        }
+        async void SeperatedMenuReturn35()
+        {
+
+            await accept03button.FadeTo(1, 300);
+        }
+        async void SeperatedMenuReturn36()
+        {
+
+            await leave03button.FadeTo(1, 300);
         }
         private void MissionMenuRetreatAnim()
         {
+            SeperatedMenuRetreat26();
+            SeperatedMenuRetreat27();
+            SeperatedMenuRetreat28();
+            SeperatedMenuRetreat29();
+            SeperatedMenuRetreat30();
+            SeperatedMenuRetreat31();
+        }
+        async void SeperatedMenuRetreat26()
+        {
+            await previousmissionbutton.TranslateTo(-445, (30 - 1000), 500);
+            
+        }
+        async void SeperatedMenuRetreat27()
+        {
+            await nextmissionbutton.TranslateTo(445, (30 - 1000), 500);
+            
 
+        }
+        async void SeperatedMenuRetreat28()
+        {
+            await missionstatsbutton.TranslateTo(0, (195 - 1000), 500);
+            
+
+        }
+        async void SeperatedMenuRetreat29()
+        {
+            await accept04button.TranslateTo(125, (195 - 1000), 500);
+            
+        }
+        async void SeperatedMenuRetreat30()
+        {
+            await leave04button.TranslateTo(250, (195 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat31()
+        {
+            await MissionScreen01.TranslateTo(0, -1000, 500);
         }
         private void MissionMenuReturnAnim()
         {
+            SeperatedMenuReturn26();
+            SeperatedMenuReturn27();
+            SeperatedMenuReturn28();
+            SeperatedMenuReturn29();
+            SeperatedMenuReturn30();
+            SeperatedMenuReturn31();
+        }
+        async void SeperatedMenuReturn26()
+        {
+            await previousmissionbutton.TranslateTo(-445, 30, 500);
 
+        }
+        async void SeperatedMenuReturn27()
+        {
+            await nextmissionbutton.TranslateTo(445, 30, 500);
+
+
+        }
+        async void SeperatedMenuReturn28()
+        {
+            await missionstatsbutton.TranslateTo(0, 195, 500);
+        }
+        async void SeperatedMenuReturn29()
+        {
+            await accept04button.TranslateTo(125, 195, 500);
+
+        }
+        async void SeperatedMenuReturn30()
+        {
+            await leave04button.TranslateTo(250, 195 , 500);
+        }
+        async void SeperatedMenuReturn31()
+        {
+            await MissionScreen01.TranslateTo(0, 0, 500);
         }
         private void SuperShopMenuRetreatAnim()
         {
@@ -802,23 +1152,171 @@
         {
 
         }
-        // constantly updates the positions of every game object ( except for player )
-        async void Update_All_Position_Constant()
+        // stats screens
+        private void LevelStatisticsRetreatAnim()
         {
 
-            while (true)
+        }
+        private void LevelStatisticsReturnAnim()
+        {
+
+        }
+        private void LevelStatisticsMenuRetreatAnim()
+        {
+
+        }
+        private void LevelStatisticsMenuReturnAnim()
+        {
+
+        }
+        // death animations
+        // player
+        private void playerdeathanim()
+        {
+            playerdeathanim01();
+            playerdeathanim02();
+            playerdeathanim03();
+        }
+        async void playerdeathanim01()
+        {
+            await PlayerIMG.RotateTo(720, 500);
+        }
+        async void playerdeathanim02()
+        {
+            await PlayerIMG.FadeTo(0, 500);
+        }
+        async void playerdeathanim03()
+        {
+            await PlayerIMG.ScaleTo(1.4, 200);
+            await PlayerIMG.ScaleTo(0.6, 300);
+        }
+        // enemies
+        private void ei1deathanim()
+        {
+            e001deathanim01();
+            e001deathanim02();
+            e001deathanim03();
+        }
+        async void e001deathanim01()
+        {
+            await e001.RotateTo(720, 300);
+        }
+        async void e001deathanim02()
+        {
+            await e001.FadeTo(0, 300);
+        }
+        async void e001deathanim03()
+        {
+            await e001.ScaleTo(0.6, 300);
+        }
+        // destructables
+
+        // constantly updates the positions of every game object ( except for player )
+       async void Update_All_Position_Constant()
+        {
+            await Task.Delay(200);
+            if (gamestatus != 0)
+            {
+                while (gamestatus != 0) // some unknown problematic bug found concerning this
+                {
+                    Update_backgrounds();
+                    Update_enemys01();
+                    Update_enemys02();
+                    Update_enemys03();
+                    Update_enemys04();
+                    Update_enemys05();
+                    Update_enemys06();
+                    Update_enemys07();
+                    Update_enemys08();
+                    Update_enemys09();
+                    Update_enemys10();
+                }
+            }
+        }
+        async void Update_backgrounds()
+        {
+            if (gamelevelflag == 1)
             {
                 await BackgroundIMG.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
-                await ei1.TranslateTo(ei1curposX, ei1curposY, 40);
-                await ei2.TranslateTo(ei2curposX, ei2curposY, 40);
-                await ei3.TranslateTo(ei3curposX, ei3curposY, 40);
-                await ei4.TranslateTo(ei4curposX, ei4curposY, 40);
-                await ei5.TranslateTo(ei5curposX, ei5curposY, 40);
-                await ei6.TranslateTo(ei6curposX, ei6curposY, 40);
-                await ei7.TranslateTo(ei7curposX, ei7curposY, 40);
-                await ei8.TranslateTo(ei8curposX, ei8curposY, 40);
             }
-        }// end of update all Pc
+            else if(gamelevelflag == 2)
+            {
+                await BackgroundIMG.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
+            }
+            else if (gamelevelflag == 3)
+            {
+                await BackgroundIMG.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
+            }
+            else if (gamelevelflag == 4)
+            {
+                await BackgroundIMG.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
+            }
+            else if (gamelevelflag == 5)
+            {
+                await BackgroundIMG.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
+            }
+            else if (gamelevelflag == 6)
+            {
+                await BackgroundIMG.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
+            }
+            else if (gamelevelflag == 7)
+            {
+                await BackgroundIMG.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
+            }
+            else if (gamelevelflag == 8)
+            {
+                await BackgroundIMG.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
+            }
 
+        }
+        
+        async void Update_enemys01()
+        {
+                await e001.TranslateTo(ei1curposX, ei1curposY, 40);
+                await e002.TranslateTo(ei2curposX, ei2curposY, 40);
+                await e003.TranslateTo(ei3curposX, ei3curposY, 40);
+                await e004.TranslateTo(ei4curposX, ei4curposY, 40);
+                await e005.TranslateTo(ei5curposX, ei5curposY, 40);
+                await e006.TranslateTo(ei6curposX, ei6curposY, 40);
+                await e007.TranslateTo(ei7curposX, ei7curposY, 40);
+                await e008.TranslateTo(ei8curposX, ei8curposY, 40);
+        }
+        async void Update_enemys02()
+        {
+
+        }
+        async void Update_enemys03()
+        {
+
+        }
+        async void Update_enemys04()
+        {
+
+        }
+        async void Update_enemys05()
+        {
+
+        }
+        async void Update_enemys06()
+        {
+
+        }
+        async void Update_enemys07()
+        {
+
+        }
+        async void Update_enemys08()
+        {
+
+        }
+        async void Update_enemys09()
+        {
+
+        }
+        async void Update_enemys10()
+        {
+
+        }
+        
     }// end of all
 }// end of all
