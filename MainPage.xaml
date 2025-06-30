@@ -19,16 +19,98 @@
             Aspect="AspectFill"
     
             SemanticProperties.Description="BGTest" 
-            />  
+            />
+        <Image 
+            x:Name ="BackgroundLevel01"
+            Source="backgroundlevel01.png" 
+            WidthRequest="965"
+            
+            Aspect="AspectFit"
+    
+            SemanticProperties.Description="BG1" 
+            />
+        <Image 
+            x:Name ="BackgroundLevel02"
+            Source="backgroundlevel01.png" 
+            WidthRequest="965"
+            HeightRequest="2300"
+            Aspect="AspectFill"
+    
+            SemanticProperties.Description="BG2" 
+            />
+        <Image 
+            x:Name ="BackgroundLevel03"
+            Source="backgroundlevel01.png" 
+            WidthRequest="965"
+            Aspect="AspectFill"
+    
+            SemanticProperties.Description="BG3" 
+            />
+        <Image 
+            x:Name ="BackgroundLevel04"
+            Source="backgroundlevel01.png" 
+            WidthRequest="965"
+            Aspect="AspectFill"
+    
+            SemanticProperties.Description="BG4" 
+            />
+        <Image 
+            x:Name ="BackgroundLevel05"
+            Source="backgroundlevel01.png" 
+            WidthRequest="965"
+            Aspect="AspectFill"
+    
+            SemanticProperties.Description="BG5" 
+            />
+        <Image 
+            x:Name ="BackgroundLevel06"
+            Source="backgroundlevel01.png" 
+            WidthRequest="965"
+            Aspect="AspectFill"
+    
+            SemanticProperties.Description="BG6" 
+            />
+        <Image 
+            x:Name ="BackgroundLevel07"
+            Source="backgroundlevel01.png" 
+            WidthRequest="965"
+            Aspect="AspectFill"
+    
+            SemanticProperties.Description="BG7" 
+            />
+        <Image 
+            x:Name ="BackgroundLevel08"
+            Source="backgroundlevel01.png" 
+            WidthRequest="965"
+            Aspect="AspectFill"
+    
+            SemanticProperties.Description="BG8" 
+            />
         <BoxView x:Name ="PlayerCameraBox"
          Color ="DarkBlue"
          WidthRequest ="300"
          HeightRequest ="220"/>
-        <!-- projectiles  -->
         <BoxView x:Name ="PlayerHitBox"
          Color ="DarkGreen"
          WidthRequest ="90"
          HeightRequest ="90"/>
+        <BoxView x:Name ="PlayerHitBoxtopleft"
+         Color ="DarkOrange"
+         WidthRequest ="5"
+         HeightRequest ="5"/>
+        <BoxView x:Name ="PlayerHitBoxtopright"
+         Color ="DarkOrange"
+         WidthRequest ="5"
+         HeightRequest ="5"/>
+        <BoxView x:Name ="PlayerHitBoxbotleft"
+         Color ="DarkOrange"
+         WidthRequest ="5"
+         HeightRequest ="5"/>
+        <BoxView x:Name ="PlayerHitBoxbotright"
+         Color ="DarkOrange"
+         WidthRequest ="5"
+         HeightRequest ="5"/>
+        <!-- projectiles  -->
         <Ellipse x:Name ="Projectile01"
          WidthRequest="20"
          HeightRequest="30"
@@ -84,7 +166,62 @@
          HeightRequest="30"
          Fill="DarkGray"
          />
-        
+        <Ellipse x:Name ="Projectile12"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+         <Ellipse x:Name ="Projectile13"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+         <Ellipse x:Name ="Projectile14"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+         <Ellipse x:Name ="Projectile15"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+         <Ellipse x:Name ="Projectile16"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+         <Ellipse x:Name ="Projectile17"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+         <Ellipse x:Name ="Projectile18"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+         <Ellipse x:Name ="Projectile19"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+         <Ellipse x:Name ="Projectile20"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+         <Ellipse x:Name ="Projectile21"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+         <Ellipse x:Name ="Projectile22"
+         WidthRequest="20"
+         HeightRequest="30"
+         Fill="DarkGray"
+         />
+        <!-- player image -->
         <Image 
             x:Name ="PlayerIMG"
             Source="walter3.png" 
@@ -230,14 +367,49 @@
          />
         <!-- screen buttons go here  -->
         <Grid>
+            <Label 
+                x:Name ="testnumber"
+                Text="Test number: 0   "
+            />
             <!-- game  -->
             <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End" Padding="10,20" Spacing="5">
-                <Button x:Name="leftmovebutton"  Text="Move" Clicked="MoveBTN_Clicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="LightBlue"/>
+                <Button x:Name="backmovebutton"  Text="Back" Clicked="BackMoveBTN_Clicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfBackMoveBTNClicked }"/>
+                <Button x:Name="leftmovebutton"  Text="Left" Clicked="LeftMoveBTN_Clicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfLeftMoveBTNClicked }"/>
+                <Button x:Name="rightmovebutton"  Text="Right" Clicked="RightMoveBTN_Clicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfRightMoveBTNClicked }"/>
+                <Button x:Name="forwardmovebutton"  Text="Forwards" Clicked="MoveBTN_Clicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfForwardMoveBTNClicked }"/>
             </VerticalStackLayout>
             <VerticalStackLayout HorizontalOptions="End" VerticalOptions="End" Padding="10,20,10,20" Spacing="5">
-                <Button x:Name="attackbutton"  Text="Shoot" Clicked="AttackBTN_Clicked" WidthRequest="80" TextColor="blue" BackgroundColor="Red"/>
+                <Button x:Name="attackbutton"  Text="Shoot" Clicked="AttackBTN_Clicked" WidthRequest="80" TextColor="blue" BackgroundColor="{ DynamicResource ColourOfAttackBTNClicked }"/>
             </VerticalStackLayout>
-            <!-- title  -->
+            <VerticalStackLayout HorizontalOptions="End" VerticalOptions="Start" Padding="10,20,10,20" Spacing="5">
+                <Button x:Name="gamemenubutton"  Text="Menu" Clicked="GameMenuBTN_Clicked" WidthRequest="80" TextColor="blue" BackgroundColor="{ DynamicResource ColourOfGameMenuBTNClicked }"/>
+                <Button x:Name="weaponswitchbutton"  Text="Weapon" Clicked="WeaponBTN_Clicked" WidthRequest="90" TextColor="blue" BackgroundColor="{ DynamicResource ColourOfWeaponSwitchBTNClicked }"/>
+                <Button x:Name="backgroundammotext"  Text="placeholder" WidthRequest="100" TextColor="Yellow" BackgroundColor="Yellow"/>
+                <Label 
+                    x:Name ="ammoqtext"
+                    BackgroundColor="Yellow"
+                    Text="Current Ammo: 0   "
+                />
+                
+            </VerticalStackLayout>
+            
+                <Button x:Name="backgroundweaponmenu01"  Text="placeholder" WidthRequest="80" HeightRequest="80" TextColor="#393939" BackgroundColor="#393939"/>
+                <Button x:Name="backgroundweaponmenu02"  Text="placeholder" WidthRequest="300" HeightRequest="80" TextColor="LightGray" BackgroundColor="LightGray"/>
+                <Button x:Name="backgroundweaponmenu03"  Text="placeholder" WidthRequest="140" HeightRequest="80" TextColor="DarkGray" BackgroundColor="DarkGray"/>
+                <Button x:Name="backgroundweaponmenu04"  Text="placeholder" WidthRequest="140" HeightRequest="80" TextColor="DarkGray" BackgroundColor="DarkGray"/>
+                <Button x:Name="backgroundweaponmenu05"  Text="placeholder" WidthRequest="140" HeightRequest="80" TextColor="DarkGray" BackgroundColor="DarkGray"/>
+                <Button x:Name="backgroundweaponmenu06"  Text="placeholder" WidthRequest="140" HeightRequest="80" TextColor="DarkGray" BackgroundColor="DarkGray"/>
+                <Button x:Name="backgroundweaponmenu07"  Text="placeholder" WidthRequest="140" HeightRequest="80" TextColor="DarkGray" BackgroundColor="DarkGray"/>
+                <Button x:Name="backgroundweaponmenu08"  Text="placeholder" WidthRequest="140" HeightRequest="80" TextColor="DarkGray" BackgroundColor="DarkGray"/>
+
+                <Button x:Name="weaponmenu01"  Text="gun 1" Clicked="Weapon1BTN_Clicked" WidthRequest="70" HeightRequest="80" TextColor="LightGray" BackgroundColor="{ DynamicResource ColourOfWeapon1BTNClicked }"/>
+                <Button x:Name="weaponmenu02"  Text="gun 2" Clicked="Weapon2BTN_Clicked"  WidthRequest="70" HeightRequest="80" TextColor="LightGray" BackgroundColor="{ DynamicResource ColourOfWeapon2BTNClicked }"/>
+                <Button x:Name="weaponmenu03"  Text="gun 3" Clicked="Weapon3BTN_Clicked"  WidthRequest="70" HeightRequest="80" TextColor="LightGray" BackgroundColor="{ DynamicResource ColourOfWeapon3BTNClicked }"/>
+                <Button x:Name="weaponmenu04"  Text="gun 4" Clicked="Weapon4BTN_Clicked"  WidthRequest="70" HeightRequest="80" TextColor="LightGray" BackgroundColor="{ DynamicResource ColourOfWeapon4BTNClicked }"/>
+                <Button x:Name="weaponmenu05"  Text="gun 5" Clicked="Weapon5BTN_Clicked"  WidthRequest="70" HeightRequest="80" TextColor="LightGray" BackgroundColor="{ DynamicResource ColourOfWeapon5BTNClicked }"/>
+                <Button x:Name="weaponmenu06"  Text="gun 6" Clicked="Weapon6BTN_Clicked"  WidthRequest="70" HeightRequest="80" TextColor="LightGray" BackgroundColor="{ DynamicResource ColourOfWeapon6BTNClicked }"/>
+
+            <!-- main  -->
             <Button x:Name="NewGamebutton"  Text="New Game" Clicked="NGameBTN_Clicked" WidthRequest="120" HeightRequest ="30" TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfNewGameBTNClicked }"/>
             <Button x:Name="Continuebutton"  Text="Continue" Clicked="ConBTN_Clicked" WidthRequest="120" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfContinueBTNClicked }"/>
             <Button x:Name="Trainingbutton"  Text="Testing Area" Clicked="TrainBTN_Clicked" WidthRequest="120" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfTrainingBTNClicked }"/>
@@ -273,8 +445,24 @@
             <Button x:Name="missionstatsbutton"  Text="Stats" Clicked="MissStatsBTN_Clicked" WidthRequest="80" HeightRequest ="15"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
             <Button x:Name="accept04button"  Text="Accept" Clicked="Accept04BTN_Clicked" WidthRequest="80" HeightRequest ="10"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
             <Button x:Name="leave04button"  Text="Exit" Clicked="EscapeBTN_Clicked" WidthRequest="80" HeightRequest ="10"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
-
-
+            
+            <!-- Title Screen  -->
+            <Image 
+             x:Name ="BigTitleScreen01"
+             Source="greyfilter.png" 
+             HeightRequest="550"
+             Aspect="AspectFit"
+             SemanticProperties.Description="Title Screen Here" 
+             />
+            <Image 
+             x:Name ="TitleScreen02"
+             Source="battleforazuratitleimg.png" 
+             HeightRequest="150"
+             Aspect="AspectFit"
+             SemanticProperties.Description="title screen" 
+             />
+            <Button x:Name="EnterGamebutton"  Text="Enter" Clicked="StartBTN_Clicked" WidthRequest="280" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfStartGameBTNClicked }"/>
+            
         </Grid>
         <!-- archived
         <Button x:Name="NewTutorialbutton"  Text="Tutorial" Clicked="NTutorBTN_Clicked" WidthRequest="120" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="#393939"/>

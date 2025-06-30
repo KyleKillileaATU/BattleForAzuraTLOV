@@ -151,7 +151,6 @@ C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.1904
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\green.scale-100.png
-C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ludomat.scale-100.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\red.scale-100.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\yellow.scale-100.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\mauiimage.stamp

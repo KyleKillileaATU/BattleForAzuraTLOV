@@ -265,9 +265,6 @@
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\injuredsoldier.scale-100.png">
       <PackagePath>injuredsoldier.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ludomat.scale-100.png">
-      <PackagePath>ludomat.scale-100.png</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\medipeasant.scale-100.png">
       <PackagePath>medipeasant.scale-100.png</PackagePath>
     </AppxPackagedFile>
