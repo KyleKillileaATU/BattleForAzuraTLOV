@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 
 namespace BattleForAzuraTLOV
@@ -8,38 +9,37 @@ namespace BattleForAzuraTLOV
         int CurrentPlayerPositionX = 0, CurrentPlayerPositionY = 0;
         int BackgroundCurrentPositionX = 0, BackgroundCurrentPositionY = 0;
         int RandomPositionX = 0, RandomPositionY = 0, rtime, weaponequipped = 0;
-        int ei1curposX, ei2curposX, ei3curposX, ei4curposX, ei5curposX, ei6curposX, ei7curposX, ei8curposX;
-        int ei1curposY, ei2curposY, ei3curposY, ei4curposY, ei5curposY, ei6curposY, ei7curposY, ei8curposY;
+        // enemys slug
+        int[] enemyinstancecurpos01x = { 0, 0, 0, 0, 0, 0, 0, 0 }; // ei 1 - 8
+        int[] enemyinstancecurpos02x = { 0, 0, 0, 0, 0, 0, 0, 0 }; // ei 9 - 16
+        int[] enemyinstancecurpos01y = { 0, 0, 0, 0, 0, 0, 0, 0 }; // ei 1 - 8
+        int[] enemyinstancecurpos02y = { 0, 0, 0, 0, 0, 0, 0, 0 }; // ei 9 - 16
+        // collissions slug
+        // 0 = botleft, 1 = botright ei1 x's / same for y's (there is no need for top-down collissions) 
+        int[] enemyinstancehitbox01x = { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8 }; // ei 1 - 8
+        int[] enemyinstancehitbox02x = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // ei 9 - 16
+        int[] enemyinstancehitbox01y = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // ei 1 - 8
+        int[] enemyinstancehitbox02y = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // ei 9 - 16
         int playercollisiontopleftX, playercollisiontoprightX, playercollisionbotleftX, playercollisionbotrightX;
         int playercollisiontopleftY, playercollisiontoprightY, playercollisionbotleftY, playercollisionbotrightY;
-        // projectile positions slog
-        int activeprojectilepositioni1X, activeprojectilepositioni1Y;
-        int activeprojectilepositioni2X, activeprojectilepositioni2Y;
-        int activeprojectilepositioni3X, activeprojectilepositioni3Y;
-        int activeprojectilepositioni4X, activeprojectilepositioni4Y;
-        int activeprojectilepositioni5X, activeprojectilepositioni5Y;
-        int activeprojectilepositioni6X, activeprojectilepositioni6Y;
-        int activeprojectilepositioni7X, activeprojectilepositioni7Y;
-        int activeprojectilepositioni8X, activeprojectilepositioni8Y;
-        int activeprojectilepositioni9X, activeprojectilepositioni9Y;
-        int activeprojectilepositioni10X, activeprojectilepositioni10Y;
-        int activeprojectilepositioni11X, activeprojectilepositioni11Y;
-        int activeprojectilepositioni12X, activeprojectilepositioni12Y;
-        int activeprojectilepositioni13X, activeprojectilepositioni13Y;
-        int activeprojectilepositioni14X, activeprojectilepositioni14Y;
-        int activeprojectilepositioni15X, activeprojectilepositioni15Y;
-        int activeprojectilepositioni16X, activeprojectilepositioni16Y;
-        int activeprojectilepositioni17X, activeprojectilepositioni17Y;
-        int activeprojectilepositioni18X, activeprojectilepositioni18Y;
-        int activeprojectilepositioni19X, activeprojectilepositioni19Y;
-        int activeprojectilepositioni20X, activeprojectilepositioni20Y;
-        int activeprojectilepositioni21X, activeprojectilepositioni21Y;
-        int activeprojectilepositioni22X, activeprojectilepositioni22Y;
+        // projectile positions slug
+        int[] activeprojectileposition01x = { 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 0, 0, 0, 0, 15, 0, 0, 0, 0, 20, 0, 0 }; // gun 1
+        int[] activeprojectileposition02x = { 0, 0, 0, 0 }; // gun 2
+        int[] activeprojectileposition03x = { 0, 0, 0, 0 }; // gun 3
+        int[] activeprojectileposition04x = { 0, 0, 0, 0 }; // gun 4
+        int[] activeprojectileposition05x = { 0, 0, 0, 0 }; // gun 5
+        int[] activeprojectileposition06x = { 0, 0, 0, 0 }; // gun 6
+        int[] activeprojectileposition01y = { 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 0, 0, 0, 0, 15, 0, 0, 0, 0, 20, 0, 0 }; // gun 1
+        int[] activeprojectileposition02y = { 0, 0, 0, 0 }; // gun 2
+        int[] activeprojectileposition03y = { 0, 0, 0, 0 }; // gun 3
+        int[] activeprojectileposition04y = { 0, 0, 0, 0 }; // gun 4
+        int[] activeprojectileposition05y = { 0, 0, 0, 0 }; // gun 5
+        int[] activeprojectileposition06y = { 0, 0, 0, 0 }; // gun 6
 
         int ammunition01 = 0, ammunition02 = 0, ammunition03 = 0, ammunition04 = 0, ammunition05 = 0, ammunition06 = 0, ammunitioncurrent=0;
         int projectilecycle01 = 0, projectilecycle02 = 0, projectilecycle03 = 0, projectilecycle04 = 0, projectilecycle05 = 0, projectilecycle06 = 0;
         int gamelevelflag=0, gamestatus=0, areascreenlock=0;
-        int newgamedifficulty=0, difficultysetting=0;
+        int newgamedifficulty=0, difficultysetting=0, saveselected = 0, save01exist = 0, save02exist = 0, save03exist = 0;
         int playermoveamount = 0;
         int weaponmenuedswitch = 0, weaponowned01 = 1, weaponowned02 = 0, weaponowned03 = 0, weaponowned04 = 0, weaponowned05 = 0, weaponowned06 = 0;
         Random RNGmove = new Random();
@@ -47,6 +47,7 @@ namespace BattleForAzuraTLOV
 
         public MainPage()
         {
+            new KeyboardAccelerator { Key = "X" };
             InitializeComponent();
         }
         protected override async void OnAppearing()
@@ -58,6 +59,8 @@ namespace BattleForAzuraTLOV
             setupallgameobjects();
             setupallgameui();
             hideallgamecontent();
+            tutorialsetup();
+            setupallenemyoffsets();
             //testcontent1();
             //Infinite_RNG_Movement();
             //Update_All_Position_Constant(); // to be activated on or off game start and end 
@@ -73,14 +76,14 @@ namespace BattleForAzuraTLOV
             await BackgroundLevel06.TranslateTo(-4000, 0, 4);
             await BackgroundLevel07.TranslateTo(-4000, 0, 4);
             await BackgroundLevel08.TranslateTo(-4000, 0, 4);
-            await BackgroundLevel01.ScaleTo(4.4, 4);
-            await BackgroundLevel02.ScaleTo(4.4, 4);
-            await BackgroundLevel03.ScaleTo(4.4, 4);
-            await BackgroundLevel04.ScaleTo(4.4, 4);
-            await BackgroundLevel05.ScaleTo(4.4, 4);
-            await BackgroundLevel06.ScaleTo(4.4, 4);
-            await BackgroundLevel07.ScaleTo(4.4, 4);
-            await BackgroundLevel08.ScaleTo(4.4, 4);
+            await BackgroundLevel01.ScaleTo(8, 4);
+            await BackgroundLevel02.ScaleTo(8, 4);
+            await BackgroundLevel03.ScaleTo(8, 4);
+            await BackgroundLevel04.ScaleTo(8, 4);
+            await BackgroundLevel05.ScaleTo(8, 4);
+            await BackgroundLevel06.ScaleTo(8, 4);
+            await BackgroundLevel07.ScaleTo(8, 4);
+            await BackgroundLevel08.ScaleTo(8, 4);
         }
         async void setupallgameui()
         {
@@ -92,9 +95,6 @@ namespace BattleForAzuraTLOV
             await rightmovebutton.TranslateTo(105, 0, 4);
             await forwardmovebutton.TranslateTo(50, -95, 4);
             await attackbutton.TranslateTo(-40, -10, 4);
-            await gamemenubutton.TranslateTo(0, 0, 4);
-            await weaponswitchbutton.TranslateTo(0, 0, 4);
-            await backgroundammotext.TranslateTo(-110, -95, 4);
             await backgroundweaponmenu01.TranslateTo(1475, 0, 4);
             await backgroundweaponmenu02.TranslateTo(1475, -125, 4);
             await backgroundweaponmenu03.TranslateTo(1395, -40, 4);
@@ -103,18 +103,24 @@ namespace BattleForAzuraTLOV
             await backgroundweaponmenu06.TranslateTo(1555, -40, 4);
             await backgroundweaponmenu07.TranslateTo(1555, 45, 4);
             await backgroundweaponmenu08.TranslateTo(1555, 130, 4);
-            await weaponmenu01.TranslateTo(1395, -40, 4);
-            await weaponmenu02.TranslateTo(1395, 45, 4);
-            await weaponmenu03.TranslateTo(1395, 130, 4);
-            await weaponmenu04.TranslateTo(1555, -40, 4);
-            await weaponmenu05.TranslateTo(1555, 45, 4);
-            await weaponmenu06.TranslateTo(1555, 130, 4);
+            await weaponmenu01.TranslateTo(1355, -40, 4);
+            await weaponmenu02.TranslateTo(1355, 45, 4);
+            await weaponmenu03.TranslateTo(1355, 130, 4);
+            await weaponmenu04.TranslateTo(1515, -40, 4);
+            await weaponmenu05.TranslateTo(1515, 45, 4);
+            await weaponmenu06.TranslateTo(1515, 130, 4);
+            await gamemenubutton.TranslateTo(0, 0, 4);
+            await weaponswitchbutton.TranslateTo(0, 0, 4);
+            await backgroundammotext.TranslateTo(-110, -95, 4);
             await ammoqtext.TranslateTo(-113, -135, 4);
             await attackbutton.ScaleTo(1.7, 4);
             await weaponswitchbutton.ScaleTo(0.8, 4);
             await backgroundammotext.ScaleTo(1.3, 4);
             await backgroundweaponmenu01.ScaleTo(4.5, 4);
 
+            this.Resources["MagicBarValue"] = 140;
+            this.Resources["HealthBarValue"] = 140;
+            this.Resources["StaminaBarValue"] = 140;
             this.Resources["ColourOfForwardMoveBTNClicked"] = Colors.LightBlue;
             this.Resources["ColourOfRightMoveBTNClicked"] = Colors.LightBlue;
             this.Resources["ColourOfLeftMoveBTNClicked"] = Colors.LightBlue;
@@ -206,6 +212,10 @@ namespace BattleForAzuraTLOV
             await rightmovebutton.FadeTo(0, 5);
             await backmovebutton.FadeTo(0, 5);
             await attackbutton.FadeTo(0, 5);
+            await gamemenubutton.FadeTo(0, 4);
+            await weaponswitchbutton.FadeTo(0, 4);
+            await backgroundammotext.FadeTo(0, 4);
+            await ammoqtext.FadeTo(0, 4);
         }
         private void showallgamecontent() // shows all content game assets (enemies, objects, etc )
         {
@@ -218,7 +228,7 @@ namespace BattleForAzuraTLOV
         }
         async void showplayer()
         {
-            await PlayerIMG.FadeTo(1, 5);
+            //await PlayerIMG.FadeTo(1, 5);
             await PlayerHitBox.FadeTo(1, 5);
             //await PlayerCameraBox.FadeTo(1, 5);
         }
@@ -276,6 +286,10 @@ namespace BattleForAzuraTLOV
             await rightmovebutton.FadeTo(1, 5);
             await backmovebutton.FadeTo(1, 5);
             await attackbutton.FadeTo(1, 5);
+            await gamemenubutton.FadeTo(1, 4);
+            await weaponswitchbutton.FadeTo(1, 4);
+            await backgroundammotext.FadeTo(1, 4);
+            await ammoqtext.FadeTo(1, 4);
         }
         // menu set ups ( positionings and states )
         private void setupallgamemenu()
@@ -419,68 +433,67 @@ namespace BattleForAzuraTLOV
         }
         private void setupallgameprojectiles()
         {
-            setupprojectiles01();
-            setupprojectiles02();
+            Reset_All_Projectile_Position();  
         }
-        async void setupprojectiles01()
+        private void setupallenemyoffsets()
         {
-            await Projectile01.TranslateTo(-1000, 0, 4);
-            await Projectile02.TranslateTo(-1000, 0, 4);
-            await Projectile03.TranslateTo(-1000, 0, 4);
-            await Projectile04.TranslateTo(-1000, 0, 4);
-            await Projectile05.TranslateTo(-1000, 0, 4);
-            await Projectile06.TranslateTo(-1000, 0, 4);
-            await Projectile07.TranslateTo(-1000, 0, 4);
-            await Projectile08.TranslateTo(-1000, 0, 4);
-            await Projectile09.TranslateTo(-1000, 0, 4);
-            await Projectile10.TranslateTo(-1000, 0, 4);
-            await Projectile11.TranslateTo(-1000, 0, 4);
-            await Projectile12.TranslateTo(-1000, 0, 4);
-            await Projectile13.TranslateTo(-1000, 0, 4);
-            await Projectile14.TranslateTo(-1000, 0, 4);
-            await Projectile15.TranslateTo(-1000, 0, 4);
-            await Projectile16.TranslateTo(-1000, 0, 4);
-            await Projectile17.TranslateTo(-1000, 0, 4);
-            await Projectile18.TranslateTo(-1000, 0, 4);
-            await Projectile19.TranslateTo(-1000, 0, 4);
-            await Projectile20.TranslateTo(-1000, 0, 4);
-            await Projectile21.TranslateTo(-1000, 0, 4);
-            await Projectile22.TranslateTo(-1000, 0, 4);
+            for (int ex= 0; ex < (enemyinstancecurpos01x.Length); ex++)
+            {
+                enemyinstancecurpos01x[ex] = enemyinstancecurpos01x[ex] + 1000;
+            }
+            for (int ex = 0; ex < (enemyinstancecurpos02x.Length); ex++)
+            {
+                enemyinstancecurpos02x[ex] = enemyinstancecurpos02x[ex] + 1000;
+            }
+
         }
-        async void setupprojectiles02()
+        private void tutorialsetup()
         {
-
-
+            tutorialsetup_01();
+            tutorialdynamictext.Text = $"PlaceHolder Text";
+        }
+        async void tutorialsetup_01()
+        {
+            await TutorialBox01.TranslateTo(0, -1000, 5);
+            await tutorialdynamictext.TranslateTo(0, -1000, 5);
+        }
+        private  void Mainpage_Keydown()
+        {
+            
         }
         // button stuff
         private void Move_BindButton_Clicked(object sender, EventArgs e)
         {
-            Move_player();
-            Move_player_Hit_Box();
-            Move_player_Camera_Box();
+            if (gamestatus != 0)
+            {
+                Move_player();
+                Move_player_Hit_Box();
+                Move_player_Camera_Box();
+            }
         }
 
         private void MoveBTN_Clicked(object sender, EventArgs e)
         {
-            this.Resources["ColourOfForwardMoveBTNClicked"] = Colors.Navy;
-            Move_player();
-            Move_player_Hit_Box();
-            Move_player_Camera_Box();  
+            if (gamestatus != 0)
+            {
+                this.Resources["ColourOfForwardMoveBTNClicked"] = Colors.Navy;
+                Move_player();
+                Move_player_Hit_Box();
+                Move_player_Camera_Box();
+            }
         }
         private void Moveobjects_level01()
         {
-            ei1curposY = ei1curposY + playermoveamount;
-            ei2curposY = ei2curposY + playermoveamount;
-            ei3curposY = ei3curposY + playermoveamount;
-            ei4curposY = ei4curposY + playermoveamount;
-            ei5curposY = ei5curposY + playermoveamount;
-            ei6curposY = ei6curposY + playermoveamount;
-            ei7curposY = ei7curposY + playermoveamount;
-            ei8curposY = ei8curposY + playermoveamount;
+            // for area level 1
+            for (int change = 0; change < 8; change++)
+            {
+                enemyinstancecurpos01y[change] += playermoveamount;
+                enemyinstancecurpos02y[change] += playermoveamount;
+            }
         }
         private void Moveobjects_level02()
         {
-
+            // for area level 2
         }
         async void Move_player()// split the 3 moving seperately so they all move at once together
         {
@@ -554,56 +567,68 @@ namespace BattleForAzuraTLOV
         }
         private void LeftMoveBTN_Clicked(object sender, EventArgs e)
         {
-            this.Resources["ColourOfLeftMoveBTNClicked"] = Colors.Navy;
-            Move_playerLeft();
-            Move_player_Hit_Box();
-            Move_player_Camera_Box();
+            if (gamestatus != 0)
+            {
+                this.Resources["ColourOfLeftMoveBTNClicked"] = Colors.Navy;
+                Move_playerLeft();
+                Move_player_Hit_Box();
+                Move_player_Camera_Box();
+            }
         }
         private void RightMoveBTN_Clicked(object sender, EventArgs e)
         {
-            this.Resources["ColourOfRightMoveBTNClicked"] = Colors.Navy;
-            Move_playerRight();
-            Move_player_Hit_Box();
-            Move_player_Camera_Box();            
+            if (gamestatus != 0)
+            {
+                this.Resources["ColourOfRightMoveBTNClicked"] = Colors.Navy;
+                Move_playerRight();
+                Move_player_Hit_Box();
+                Move_player_Camera_Box();
+            }
         }
         private void BackMoveBTN_Clicked(object sender, EventArgs e)
         {
-            this.Resources["ColourOfBackMoveBTNClicked"] = Colors.Navy;
-            Move_playerBack();
-            Move_player_Hit_Box();
-            Move_player_Camera_Box();
+            if (gamestatus != 0)
+            {
+                this.Resources["ColourOfBackMoveBTNClicked"] = Colors.Navy;
+                Move_playerBack();
+                Move_player_Hit_Box();
+                Move_player_Camera_Box();
+            }
         }
-        async void Infinite_RNG_Movement()
+        async void Infinite_RNG_Movement() // testing purposes of enemy ai
         {
             while (true)
             {
-                ei1curposX = (ei1curposX + RNGmove.Next(-30, 30));
-                ei1curposY = (ei1curposY + RNGmove.Next(-30, 30));
+                enemyinstancecurpos01x[0] = (enemyinstancecurpos01x[0] + RNGmove.Next(-30, 30));
+                enemyinstancecurpos01y[0] = (enemyinstancecurpos01y[0] + RNGmove.Next(-30, 30));
                 rtime = RNGmove.Next(150, 750);
-                if (ei1curposX >=445) 
+                if (enemyinstancecurpos01x[0] >=445) 
                 {
-                    ei1curposX = 445;
+                    enemyinstancecurpos01x[0] = 445;
                 }
-                if (ei1curposX <= -445)
+                if (enemyinstancecurpos01x[0] <= -445)
                 {
-                    ei1curposX = -445;
+                    enemyinstancecurpos01x[0] = -445;
                 }
-                await e001.TranslateTo(ei1curposX, ei1curposY, (uint)rtime);
+                await e001.TranslateTo(enemyinstancecurpos01x[0], enemyinstancecurpos01x[0], (uint)rtime);
                 await Task.Delay(2000);
             }
         }
         private void AttackBTN_Clicked(object sender, EventArgs e)
         {
-            if (ammunition01 != 0)
+            if (gamestatus != 0)
             {
-                this.Resources["ColourOfAttackBTNClicked"] = Colors.DarkRed;
+                if (ammunition01 != 0)
+                {
+                    this.Resources["ColourOfAttackBTNClicked"] = Colors.DarkRed;
+                }
+                else if (ammunition01 == 0)
+                {
+                    this.Resources["ColourOfAttackBTNClicked"] = Colors.Black;
+                }
+                Attacking();
+                AttackButtonDisplay();
             }
-            else if (ammunition01 == 0)
-            {
-                this.Resources["ColourOfAttackBTNClicked"] = Colors.Black;
-            }
-            Attacking();
-            AttackButtonDisplay();
         }
         async void AttackButtonDisplay()
         {
@@ -625,7 +650,7 @@ namespace BattleForAzuraTLOV
                     {
                         projectilecycle01 = 1;
                     }
-                    bullet_animation01();
+                    bullet_lifecycle01();
 
                 }
             }
@@ -641,7 +666,7 @@ namespace BattleForAzuraTLOV
                     {
                         projectilecycle02 = 1;
                     }
-                    bullet_animation02();
+                    bullet_lifecycle02();
 
                 }
             }
@@ -657,7 +682,7 @@ namespace BattleForAzuraTLOV
                     {
                         projectilecycle03 = 1;
                     }
-                    bullet_animation03();
+                    bullet_lifecycle03();
 
                 }
             }
@@ -673,7 +698,7 @@ namespace BattleForAzuraTLOV
                     {
                         projectilecycle04 = 1;
                     }
-                    bullet_animation04();
+                    bullet_lifecycle04();
 
                 }
             }
@@ -689,7 +714,7 @@ namespace BattleForAzuraTLOV
                     {
                         projectilecycle05 = 1;
                     }
-                    bullet_animation05();
+                    bullet_lifecycle05();
 
                 }
             }
@@ -705,30 +730,31 @@ namespace BattleForAzuraTLOV
                     {
                         projectilecycle06 = 1;
                     }
-                    bullet_animation06();
+                    bullet_lifecycle06();
 
                 }
             }
         }
         // animations for each gun ( cycling the bullet instances )
-        async void bullet_animation01()
+        async void bullet_lifecycle01()
         {
             switch (projectilecycle01)// projectile cylcle == the gun equipped, 1 is for gunequipped ' 0 ' and so on
             {
                 case 1:
                     --ammunition01;
-                    
-                    activeprojectilepositioni1X = CurrentPlayerPositionX;
-                    activeprojectilepositioni1Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[0] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[0] = CurrentPlayerPositionY;
                     await Projectile01.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile01.FadeTo(1, 1);
                     for (int i = 0; i < 100; i++)
                     {
-                        if(activeprojectilepositioni1Y >= -390)
+                        Projectile_collision(0);
+                        if (activeprojectileposition01y[0] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni1Y = activeprojectilepositioni1Y - 8;
-                            await Projectile01.TranslateTo(activeprojectilepositioni1X, activeprojectilepositioni1Y, 1);
+                            activeprojectileposition01y[0] = activeprojectileposition01y[0] - 8;
+                            await Projectile01.TranslateTo(activeprojectileposition01x[0], activeprojectileposition01y[0], 1);
                         }
                         else
                         {
@@ -738,23 +764,24 @@ namespace BattleForAzuraTLOV
                         
                     }
                     await Projectile01.FadeTo(0, 40);
-                    activeprojectilepositioni1X = activeprojectilepositioni1X + 1000;
-                    await Projectile01.TranslateTo(activeprojectilepositioni1X, activeprojectilepositioni1Y, 1);
+                    activeprojectileposition01x[0] = activeprojectileposition01x[0] + 1000;
+                    await Projectile01.TranslateTo(activeprojectileposition01x[0], activeprojectileposition01y[0], 1);
                     break;
                 case 2:
                     --ammunition01;
-                    
-                    activeprojectilepositioni2X = CurrentPlayerPositionX;
-                    activeprojectilepositioni2Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[1] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[1] = CurrentPlayerPositionY;
                     await Projectile02.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile02.FadeTo(1, 1);
                     for (int h = 0; h < 100; h++)
                     {
-                        if (activeprojectilepositioni2Y >= -390)
+                        Projectile_collision(1);
+                        if (activeprojectileposition01y[1] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni2Y = activeprojectilepositioni2Y - 8;
-                            await Projectile02.TranslateTo(activeprojectilepositioni2X, activeprojectilepositioni2Y, 1);
+                            activeprojectileposition01y[1] = activeprojectileposition01y[1] - 8;
+                            await Projectile02.TranslateTo(activeprojectileposition01x[1], activeprojectileposition01y[1], 1);
                         }
                         else
                         {
@@ -763,23 +790,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile02.FadeTo(0, 40);
-                    activeprojectilepositioni2X = activeprojectilepositioni2X+1000;
-                    await Projectile02.TranslateTo(activeprojectilepositioni2X, activeprojectilepositioni2Y, 1);
+                    activeprojectileposition01x[1] = activeprojectileposition01x[1] + 1000;
+                    await Projectile02.TranslateTo(activeprojectileposition01x[1], activeprojectileposition01y[1], 1);
                     break;
                 case 3:
                     --ammunition01;
-                    
-                    activeprojectilepositioni3X = CurrentPlayerPositionX;
-                    activeprojectilepositioni3Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[2] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[2] = CurrentPlayerPositionY;
                     await Projectile03.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile03.FadeTo(1, 1);
                     for (int g = 0; g < 100; g++)
                     {
-                        if (activeprojectilepositioni3Y >= -390)
+                        Projectile_collision(2);
+                        if (activeprojectileposition01y[2] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni3Y = activeprojectilepositioni3Y - 8;
-                            await Projectile03.TranslateTo(activeprojectilepositioni3X, activeprojectilepositioni3Y, 1);
+                            activeprojectileposition01y[2] = activeprojectileposition01y[2] - 8;
+                            await Projectile03.TranslateTo(activeprojectileposition01x[2], activeprojectileposition01y[2], 1);
                         }
                         else
                         {
@@ -788,23 +816,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile03.FadeTo(0, 40);
-                    activeprojectilepositioni3X = activeprojectilepositioni3X + 1000;
-                    await Projectile03.TranslateTo(activeprojectilepositioni3X, activeprojectilepositioni3Y, 1);
+                    activeprojectileposition01x[2] = activeprojectileposition01x[2] + 1000;
+                    await Projectile03.TranslateTo(activeprojectileposition01x[2], activeprojectileposition01y[2], 1);
                     break;
                 case 4:
                     --ammunition01;
-                    
-                    activeprojectilepositioni4X = CurrentPlayerPositionX;
-                    activeprojectilepositioni4Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[3] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[3] = CurrentPlayerPositionY;
                     await Projectile04.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile04.FadeTo(1, 1);
                     for (int b = 0; b < 100; b++)
                     {
-                        if (activeprojectilepositioni4Y >= -390)
+                        Projectile_collision(3);
+                        if (activeprojectileposition01y[3] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni4Y = activeprojectilepositioni4Y - 8;
-                            await Projectile04.TranslateTo(activeprojectilepositioni4X, activeprojectilepositioni4Y, 1);
+                            activeprojectileposition01y[3] = activeprojectileposition01y[3] - 8;
+                            await Projectile04.TranslateTo(activeprojectileposition01x[3], activeprojectileposition01y[3], 1);
                         }
                         else
                         {
@@ -813,23 +842,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile04.FadeTo(0, 40);
-                    activeprojectilepositioni4X = activeprojectilepositioni4X + 1000;
-                    await Projectile04.TranslateTo(activeprojectilepositioni4X, activeprojectilepositioni4Y, 1);
+                    activeprojectileposition01x[3] = activeprojectileposition01x[3] + 1000;
+                    await Projectile04.TranslateTo(activeprojectileposition01x[3], activeprojectileposition01y[3], 1);
                     break;
                 case 5:
                     --ammunition01;
-                    
-                    activeprojectilepositioni5X = CurrentPlayerPositionX;
-                    activeprojectilepositioni5Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[4] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[4] = CurrentPlayerPositionY;
                     await Projectile05.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile05.FadeTo(1, 1);
                     for (int z = 0; z < 100; z++)
                     {
-                        if (activeprojectilepositioni5Y >= -390)
+                        Projectile_collision(4);
+                        if (activeprojectileposition01y[4] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni5Y = activeprojectilepositioni5Y - 8;
-                            await Projectile05.TranslateTo(activeprojectilepositioni5X, activeprojectilepositioni5Y, 1);
+                            activeprojectileposition01y[4] = activeprojectileposition01y[4] - 8;
+                            await Projectile05.TranslateTo(activeprojectileposition01x[4], activeprojectileposition01y[4], 1);
                         }
                         else
                         {
@@ -838,23 +868,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile05.FadeTo(0, 40);
-                    activeprojectilepositioni5X = activeprojectilepositioni5X + 1000;
-                    await Projectile05.TranslateTo(activeprojectilepositioni5X, activeprojectilepositioni5Y, 1);
+                    activeprojectileposition01x[4] = activeprojectileposition01x[4] + 1000;
+                    await Projectile05.TranslateTo(activeprojectileposition01x[4], activeprojectileposition01y[4], 1);
                     break;
                 case 6:
                     --ammunition01;
-                    
-                    activeprojectilepositioni6X = CurrentPlayerPositionX;
-                    activeprojectilepositioni6Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[5] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[5] = CurrentPlayerPositionY;
                     await Projectile06.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile06.FadeTo(1, 1);
                     for (int x = 0; x < 100; x++)
                     {
-                        if (activeprojectilepositioni6Y >= -390)
+                        Projectile_collision(5);
+                        if (activeprojectileposition01y[5] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni6Y = activeprojectilepositioni6Y - 8;
-                            await Projectile06.TranslateTo(activeprojectilepositioni6X, activeprojectilepositioni6Y, 1);
+                            activeprojectileposition01y[5] = activeprojectileposition01y[5] - 8;
+                            await Projectile06.TranslateTo(activeprojectileposition01x[5], activeprojectileposition01y[5], 1);
                         }
                         else
                         {
@@ -863,23 +894,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile06.FadeTo(0, 40);
-                    activeprojectilepositioni6X = activeprojectilepositioni6X + 1000;
-                    await Projectile06.TranslateTo(activeprojectilepositioni6X, activeprojectilepositioni6Y, 1);
+                    activeprojectileposition01x[5] = activeprojectileposition01x[5] + 1000;
+                    await Projectile06.TranslateTo(activeprojectileposition01x[5], activeprojectileposition01y[5], 1);
                     break;
                 case 7:
                     --ammunition01;
-                    
-                    activeprojectilepositioni7X = CurrentPlayerPositionX;
-                    activeprojectilepositioni7Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[6] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[6] = CurrentPlayerPositionY;
                     await Projectile07.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile07.FadeTo(1, 1);
                     for (int v = 0; v < 100; v++)
                     {
-                        if (activeprojectilepositioni7Y >= -390)
+                        Projectile_collision(6);
+                        if (activeprojectileposition01y[6] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni7Y = activeprojectilepositioni7Y - 8;
-                            await Projectile07.TranslateTo(activeprojectilepositioni7X, activeprojectilepositioni7Y, 1);
+                            activeprojectileposition01y[6] = activeprojectileposition01y[6] - 8;
+                            await Projectile07.TranslateTo(activeprojectileposition01x[6], activeprojectileposition01y[6], 1);
                         }
                         else
                         {
@@ -887,23 +919,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile07.FadeTo(0, 40);
-                    activeprojectilepositioni7X = activeprojectilepositioni7X + 1000;
-                    await Projectile07.TranslateTo(activeprojectilepositioni7X, activeprojectilepositioni7Y, 1);
+                    activeprojectileposition01x[6] = activeprojectileposition01x[6] + 1000;
+                    await Projectile07.TranslateTo(activeprojectileposition01x[6], activeprojectileposition01y[6], 1);
                     break;
                 case 8:
                     --ammunition01;
-                    
-                    activeprojectilepositioni8X = CurrentPlayerPositionX;
-                    activeprojectilepositioni8Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[7] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[7] = CurrentPlayerPositionY;
                     await Projectile08.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile08.FadeTo(1, 1);
                     for (int q = 0; q < 100; q++)
                     {
-                        if (activeprojectilepositioni8Y >= -390)
+                        Projectile_collision(7);
+                        if (activeprojectileposition01y[7] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni8Y = activeprojectilepositioni8Y - 8;
-                            await Projectile08.TranslateTo(activeprojectilepositioni8X, activeprojectilepositioni8Y, 1);
+                            activeprojectileposition01y[7] = activeprojectileposition01y[7] - 8;
+                            await Projectile08.TranslateTo(activeprojectileposition01x[7], activeprojectileposition01y[7], 1);
                         }
                         else
                         {
@@ -911,23 +944,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile08.FadeTo(0, 40);
-                    activeprojectilepositioni8X = activeprojectilepositioni8X + 1000;
-                    await Projectile08.TranslateTo(activeprojectilepositioni8X, activeprojectilepositioni8Y, 1);
+                    activeprojectileposition01x[7] = activeprojectileposition01x[7] + 1000;
+                    await Projectile08.TranslateTo(activeprojectileposition01x[7], activeprojectileposition01y[7], 1);
                     break;
                 case 9:
                     --ammunition01;
-                    
-                    activeprojectilepositioni9X = CurrentPlayerPositionX;
-                    activeprojectilepositioni9Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[8] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[8] = CurrentPlayerPositionY;
                     await Projectile09.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile09.FadeTo(1, 1);
                     for (int t = 0; t < 100; t++)
                     {
-                        if (activeprojectilepositioni9Y >= -390)
+                        Projectile_collision(8);
+                        if (activeprojectileposition01y[8] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni9Y = activeprojectilepositioni9Y - 8;
-                            await Projectile09.TranslateTo(activeprojectilepositioni9X, activeprojectilepositioni9Y, 1);
+                            activeprojectileposition01y[8] = activeprojectileposition01y[8] - 8;
+                            await Projectile09.TranslateTo(activeprojectileposition01x[8], activeprojectileposition01y[8], 1);
                         }
                         else
                         {
@@ -935,23 +969,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile09.FadeTo(0, 40);
-                    activeprojectilepositioni9X = activeprojectilepositioni9X + 1000;
-                    await Projectile09.TranslateTo(activeprojectilepositioni9X, activeprojectilepositioni9Y, 1);
+                    activeprojectileposition01x[8] = activeprojectileposition01x[8] + 1000;
+                    await Projectile09.TranslateTo(activeprojectileposition01x[8], activeprojectileposition01y[8], 1);
                     break;
                 case 10:
                     --ammunition01;
-                    
-                    activeprojectilepositioni10X = CurrentPlayerPositionX;
-                    activeprojectilepositioni10Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[9] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[9] = CurrentPlayerPositionY;
                     await Projectile10.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile10.FadeTo(1, 1);
                     for (int j = 0; j < 100; j++)
                     {
-                        if (activeprojectilepositioni10Y >= -390)
+                        Projectile_collision(9);
+                        if (activeprojectileposition01y[9] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni10Y = activeprojectilepositioni10Y - 8;
-                            await Projectile10.TranslateTo(activeprojectilepositioni10X, activeprojectilepositioni10Y, 1);
+                            activeprojectileposition01y[9] = activeprojectileposition01y[9] - 8;
+                            await Projectile10.TranslateTo(activeprojectileposition01x[9], activeprojectileposition01y[9], 1);
                         }
                         else
                         {
@@ -959,23 +994,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile10.FadeTo(0, 40);
-                    activeprojectilepositioni10X = activeprojectilepositioni10X + 1000;
-                    await Projectile10.TranslateTo(activeprojectilepositioni10X, activeprojectilepositioni10Y, 1);
+                    activeprojectileposition01x[9] = activeprojectileposition01x[9] + 1000;
+                    await Projectile10.TranslateTo(activeprojectileposition01x[9], activeprojectileposition01y[9], 1);
                     break;
                 case 11:
                     --ammunition01;
-                    
-                    activeprojectilepositioni11X = CurrentPlayerPositionX;
-                    activeprojectilepositioni11Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[10] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[10] = CurrentPlayerPositionY;
                     await Projectile11.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile11.FadeTo(1, 1);
                     for (int k = 0; k < 100; k++)
                     {
-                        if (activeprojectilepositioni11Y >= -390)
+                        Projectile_collision(10);
+                        if (activeprojectileposition01y[10] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni11Y = activeprojectilepositioni11Y - 8;
-                            await Projectile11.TranslateTo(activeprojectilepositioni11X, activeprojectilepositioni11Y, 1);
+                            activeprojectileposition01y[10] = activeprojectileposition01y[10] - 8;
+                            await Projectile11.TranslateTo(activeprojectileposition01x[10], activeprojectileposition01y[10], 1);
                         }
                         else
                         {
@@ -983,23 +1019,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile11.FadeTo(0, 40);
-                    activeprojectilepositioni11X = activeprojectilepositioni11X + 1000;
-                    await Projectile11.TranslateTo(activeprojectilepositioni11X, activeprojectilepositioni11Y, 1);
+                    activeprojectileposition01x[10] = activeprojectileposition01x[10] + 1000;
+                    await Projectile11.TranslateTo(activeprojectileposition01x[10], activeprojectileposition01y[10], 1);
                     break;
                 case 12:
                     --ammunition01;
-                    
-                    activeprojectilepositioni12X = CurrentPlayerPositionX;
-                    activeprojectilepositioni12Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[11] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[11] = CurrentPlayerPositionY;
                     await Projectile12.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile12.FadeTo(1, 1);
                     for (int ha = 0; ha < 100; ha++)
                     {
-                        if (activeprojectilepositioni12Y >= -390)
+                        Projectile_collision(11);
+                        if (activeprojectileposition01y[11] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni12Y = activeprojectilepositioni12Y - 8;
-                            await Projectile02.TranslateTo(activeprojectilepositioni12X, activeprojectilepositioni12Y, 1);
+                            activeprojectileposition01y[11] = activeprojectileposition01y[11] - 8;
+                            await Projectile02.TranslateTo(activeprojectileposition01x[11], activeprojectileposition01y[11], 1);
                         }
                         else
                         {
@@ -1007,23 +1044,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile12.FadeTo(0, 40);
-                    activeprojectilepositioni12X = activeprojectilepositioni2X + 1000;
-                    await Projectile02.TranslateTo(activeprojectilepositioni12X, activeprojectilepositioni12Y, 1);
+                    activeprojectileposition01x[11] = activeprojectileposition01x[11] + 1000;
+                    await Projectile02.TranslateTo(activeprojectileposition01x[11], activeprojectileposition01y[11], 1);
                     break;
                 case 13:
                     --ammunition01;
-                    
-                    activeprojectilepositioni13X = CurrentPlayerPositionX;
-                    activeprojectilepositioni13Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[12] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[12] = CurrentPlayerPositionY;
                     await Projectile13.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile13.FadeTo(1, 1);
                     for (int ga = 0; ga < 100; ga++)
                     {
-                        if (activeprojectilepositioni13Y >= -390)
+                        Projectile_collision(12);
+                        if (activeprojectileposition01y[12] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni13Y = activeprojectilepositioni13Y - 8;
-                            await Projectile13.TranslateTo(activeprojectilepositioni13X, activeprojectilepositioni13Y, 1);
+                            activeprojectileposition01y[12] = activeprojectileposition01y[12] - 8;
+                            await Projectile13.TranslateTo(activeprojectileposition01x[12], activeprojectileposition01y[12], 1);
                         }
                         else
                         {
@@ -1031,23 +1069,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile13.FadeTo(0, 40);
-                    activeprojectilepositioni13X = activeprojectilepositioni13X + 1000;
-                    await Projectile13.TranslateTo(activeprojectilepositioni13X, activeprojectilepositioni13Y, 1);
+                    activeprojectileposition01x[12] = activeprojectileposition01x[12] + 1000;
+                    await Projectile13.TranslateTo(activeprojectileposition01x[12], activeprojectileposition01y[12], 1);
                     break;
                 case 14:
                     --ammunition01;
-                    
-                    activeprojectilepositioni14X = CurrentPlayerPositionX;
-                    activeprojectilepositioni14Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[13] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[13] = CurrentPlayerPositionY;
                     await Projectile14.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile14.FadeTo(1, 1);
                     for (int ba = 0; ba < 100; ba++)
                     {
-                        if (activeprojectilepositioni14Y >= -390)
+                        Projectile_collision(13);
+                        if (activeprojectileposition01y[13] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni14Y = activeprojectilepositioni14Y - 8;
-                            await Projectile14.TranslateTo(activeprojectilepositioni14X, activeprojectilepositioni14Y, 1);
+                            activeprojectileposition01y[13] = activeprojectileposition01y[13] - 8;
+                            await Projectile14.TranslateTo(activeprojectileposition01x[13], activeprojectileposition01y[13], 1);
                         }
                         else
                         {
@@ -1055,23 +1094,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile14.FadeTo(0, 40);
-                    activeprojectilepositioni14X = activeprojectilepositioni14X + 1000;
-                    await Projectile14.TranslateTo(activeprojectilepositioni14X, activeprojectilepositioni14Y, 1);
+                    activeprojectileposition01x[13] = activeprojectileposition01x[13] + 1000;
+                    await Projectile14.TranslateTo(activeprojectileposition01x[13], activeprojectileposition01y[13], 1);
                     break;
                 case 15:
                     --ammunition01;
-                    
-                    activeprojectilepositioni15X = CurrentPlayerPositionX;
-                    activeprojectilepositioni15Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[14] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[14] = CurrentPlayerPositionY;
                     await Projectile15.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile15.FadeTo(1, 1);
                     for (int za = 0; za < 100; za++)
                     {
-                        if (activeprojectilepositioni15Y >= -390)
+                        Projectile_collision(14);
+                        if (activeprojectileposition01y[14] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni15Y = activeprojectilepositioni15Y - 8;
-                            await Projectile15.TranslateTo(activeprojectilepositioni15X, activeprojectilepositioni15Y, 1);
+                            activeprojectileposition01y[14] = activeprojectileposition01y[14] - 8;
+                            await Projectile15.TranslateTo(activeprojectileposition01x[14], activeprojectileposition01y[14], 1);
                         }
                         else
                         {
@@ -1079,23 +1119,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile15.FadeTo(0, 40);
-                    activeprojectilepositioni15X = activeprojectilepositioni15X + 1000;
-                    await Projectile15.TranslateTo(activeprojectilepositioni15X, activeprojectilepositioni15Y, 1);
+                    activeprojectileposition01x[14] = activeprojectileposition01x[14] + 1000;
+                    await Projectile15.TranslateTo(activeprojectileposition01x[14], activeprojectileposition01y[14], 1);
                     break;
                 case 16:
                     --ammunition01;
-                    
-                    activeprojectilepositioni16X = CurrentPlayerPositionX;
-                    activeprojectilepositioni16Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[15] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[15] = CurrentPlayerPositionY;
                     await Projectile16.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile16.FadeTo(1, 1);
                     for (int x = 0; x < 100; x++)
                     {
-                        if (activeprojectilepositioni16Y >= -390)
+                        Projectile_collision(15);
+                        if (activeprojectileposition01y[15] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni16Y = activeprojectilepositioni16Y - 8;
-                            await Projectile16.TranslateTo(activeprojectilepositioni16X, activeprojectilepositioni16Y, 1);
+                            activeprojectileposition01y[15] = activeprojectileposition01y[15] - 8;
+                            await Projectile16.TranslateTo(activeprojectileposition01x[15], activeprojectileposition01y[15], 1);
                         }
                         else
                         {
@@ -1103,23 +1144,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile16.FadeTo(0, 40);
-                    activeprojectilepositioni16X = activeprojectilepositioni16X + 1000;
-                    await Projectile16.TranslateTo(activeprojectilepositioni16X, activeprojectilepositioni16Y, 1);
+                    activeprojectileposition01x[15] = activeprojectileposition01x[15] + 1000;
+                    await Projectile16.TranslateTo(activeprojectileposition01x[15], activeprojectileposition01y[15], 1);
                     break;
                 case 17:
                     --ammunition01;
-                    
-                    activeprojectilepositioni17X = CurrentPlayerPositionX;
-                    activeprojectilepositioni17Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[16] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[16] = CurrentPlayerPositionY;
                     await Projectile17.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile17.FadeTo(1, 1);
                     for (int v = 0; v < 100; v++)
                     {
-                        if (activeprojectilepositioni17Y >= -390)
+                        Projectile_collision(16);
+                        if (activeprojectileposition01y[16] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni17Y = activeprojectilepositioni17Y - 8;
-                            await Projectile17.TranslateTo(activeprojectilepositioni17X, activeprojectilepositioni17Y, 1);
+                            activeprojectileposition01y[16] = activeprojectileposition01y[16] - 8;
+                            await Projectile17.TranslateTo(activeprojectileposition01x[16], activeprojectileposition01y[16], 1);
                         }
                         else
                         {
@@ -1127,23 +1169,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile17.FadeTo(0, 40);
-                    activeprojectilepositioni17X = activeprojectilepositioni17X + 1000;
-                    await Projectile17.TranslateTo(activeprojectilepositioni17X, activeprojectilepositioni17Y, 1);
+                    activeprojectileposition01x[16] = activeprojectileposition01x[16] + 1000;
+                    await Projectile17.TranslateTo(activeprojectileposition01x[16], activeprojectileposition01y[16], 1);
                     break;
                 case 18:
                     --ammunition01;
-                    
-                    activeprojectilepositioni18X = CurrentPlayerPositionX;
-                    activeprojectilepositioni18Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[17] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[17] = CurrentPlayerPositionY;
                     await Projectile18.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile18.FadeTo(1, 1);
                     for (int q = 0; q < 100; q++)
                     {
-                        if (activeprojectilepositioni18Y >= -390)
+                        Projectile_collision(17);
+                        if (activeprojectileposition01y[17] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni18Y = activeprojectilepositioni18Y - 8;
-                            await Projectile18.TranslateTo(activeprojectilepositioni18X, activeprojectilepositioni18Y, 1);
+                            activeprojectileposition01y[17] = activeprojectileposition01y[17] - 8;
+                            await Projectile18.TranslateTo(activeprojectileposition01x[17], activeprojectileposition01y[17], 1);
                         }
                         else
                         {
@@ -1151,23 +1194,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile18.FadeTo(0, 40);
-                    activeprojectilepositioni18X = activeprojectilepositioni18X + 1000;
-                    await Projectile18.TranslateTo(activeprojectilepositioni18X, activeprojectilepositioni18Y, 1);
+                    activeprojectileposition01x[17] = activeprojectileposition01x[17] + 1000;
+                    await Projectile18.TranslateTo(activeprojectileposition01x[17], activeprojectileposition01y[17], 1);
                     break;
                 case 19:
                     --ammunition01;
-                    
-                    activeprojectilepositioni19X = CurrentPlayerPositionX;
-                    activeprojectilepositioni19Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[18] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[18] = CurrentPlayerPositionY;
                     await Projectile19.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile19.FadeTo(1, 1);
                     for (int t = 0; t < 100; t++)
                     {
-                        if (activeprojectilepositioni19Y >= -390)
+                        Projectile_collision(18);
+                        if (activeprojectileposition01y[18] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni19Y = activeprojectilepositioni19Y - 8;
-                            await Projectile19.TranslateTo(activeprojectilepositioni19X, activeprojectilepositioni19Y, 1);
+                            activeprojectileposition01y[18] = activeprojectileposition01y[18] - 8;
+                            await Projectile19.TranslateTo(activeprojectileposition01x[18], activeprojectileposition01y[18], 1);
                         }
                         else
                         {
@@ -1175,23 +1219,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile19.FadeTo(0, 40);
-                    activeprojectilepositioni19X = activeprojectilepositioni19X + 1000;
-                    await Projectile19.TranslateTo(activeprojectilepositioni19X, activeprojectilepositioni19Y, 1);
+                    activeprojectileposition01x[18] = activeprojectileposition01x[18] + 1000;
+                    await Projectile19.TranslateTo(activeprojectileposition01x[18], activeprojectileposition01y[18], 1);
                     break;
                 case 20:
                     --ammunition01;
-                    
-                    activeprojectilepositioni20X = CurrentPlayerPositionX;
-                    activeprojectilepositioni20Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[19] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[19] = CurrentPlayerPositionY;
                     await Projectile20.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile20.FadeTo(1, 1);
                     for (int j = 0; j < 100; j++)
                     {
-                        if (activeprojectilepositioni20Y >= -390)
+                        Projectile_collision(19);
+                        if (activeprojectileposition01y[19] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni20Y = activeprojectilepositioni20Y - 8;
-                            await Projectile20.TranslateTo(activeprojectilepositioni20X, activeprojectilepositioni20Y, 1);
+                            activeprojectileposition01y[19] = activeprojectileposition01y[19] - 8;
+                            await Projectile20.TranslateTo(activeprojectileposition01x[19], activeprojectileposition01y[19], 1);
                         }
                         else
                         {
@@ -1199,23 +1244,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile20.FadeTo(0, 40);
-                    activeprojectilepositioni20X = activeprojectilepositioni20X + 1000;
-                    await Projectile20.TranslateTo(activeprojectilepositioni20X, activeprojectilepositioni20Y, 1);
+                    activeprojectileposition01x[19] = activeprojectileposition01x[19] + 1000;
+                    await Projectile20.TranslateTo(activeprojectileposition01x[19], activeprojectileposition01y[19], 1);
                     break;
                 case 21:
                     --ammunition01;
-                    
-                    activeprojectilepositioni21X = CurrentPlayerPositionX;
-                    activeprojectilepositioni21Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[20] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[20] = CurrentPlayerPositionY;
                     await Projectile21.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile21.FadeTo(1, 1);
                     for (int k = 0; k < 100; k++)
                     {
-                        if (activeprojectilepositioni21Y >= -390)
+                        Projectile_collision(20);
+                        if (activeprojectileposition01y[20] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni21Y = activeprojectilepositioni21Y - 8;
-                            await Projectile21.TranslateTo(activeprojectilepositioni21X, activeprojectilepositioni21Y, 1);
+                            activeprojectileposition01y[20] = activeprojectileposition01y[20] - 8;
+                            await Projectile21.TranslateTo(activeprojectileposition01x[20], activeprojectileposition01y[20], 1);
                         }
                         else
                         {
@@ -1223,23 +1269,24 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile21.FadeTo(0, 40);
-                    activeprojectilepositioni21X = activeprojectilepositioni21X + 1000;
-                    await Projectile21.TranslateTo(activeprojectilepositioni21X, activeprojectilepositioni21Y, 1);
+                    activeprojectileposition01x[20] = activeprojectileposition01x[20] + 1000;
+                    await Projectile21.TranslateTo(activeprojectileposition01x[20], activeprojectileposition01y[20], 1);
                     break;
                 case 22:
                     --ammunition01;
-                   
-                    activeprojectilepositioni22X = CurrentPlayerPositionX;
-                    activeprojectilepositioni22Y = CurrentPlayerPositionY;
+
+                    activeprojectileposition01x[21] = CurrentPlayerPositionX;
+                    activeprojectileposition01y[21] = CurrentPlayerPositionY;
                     await Projectile22.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
                     await Projectile22.FadeTo(1, 1);
                     for (int k = 0; k < 100; k++)
                     {
-                        if (activeprojectilepositioni22Y >= -390)
+                        Projectile_collision(21);
+                        if (activeprojectileposition01y[21] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
-                            activeprojectilepositioni22Y = activeprojectilepositioni22Y - 8;
-                            await Projectile22.TranslateTo(activeprojectilepositioni22X, activeprojectilepositioni22Y, 1);
+                            activeprojectileposition01y[21] = activeprojectileposition01y[21] - 8;
+                            await Projectile22.TranslateTo(activeprojectileposition01x[21], activeprojectileposition01y[21], 1);
                         }
                         else
                         {
@@ -1247,12 +1294,12 @@ namespace BattleForAzuraTLOV
                         }
                     }
                     await Projectile22.FadeTo(0, 40);
-                    activeprojectilepositioni22X = activeprojectilepositioni22X + 1000;
-                    await Projectile22.TranslateTo(activeprojectilepositioni22X, activeprojectilepositioni22Y, 1);
+                    activeprojectileposition01x[21] = activeprojectileposition01x[21] + 1000;
+                    await Projectile22.TranslateTo(activeprojectileposition01x[21], activeprojectileposition01y[21], 1);
                     break;
             }
         }
-        async void bullet_animation02()
+        async void bullet_lifecycle02()
         {
             switch (projectilecycle02)
             {
@@ -1262,7 +1309,7 @@ namespace BattleForAzuraTLOV
                 break;
             }
         }
-        async void bullet_animation03()
+        async void bullet_lifecycle03()
         {
             switch (projectilecycle03)
             {
@@ -1272,7 +1319,7 @@ namespace BattleForAzuraTLOV
                 break;
             }
         }
-        async void bullet_animation04()
+        async void bullet_lifecycle04()
         {
             switch (projectilecycle04)
             {
@@ -1282,7 +1329,7 @@ namespace BattleForAzuraTLOV
                 break;
             }
         }
-        async void bullet_animation05()
+        async void bullet_lifecycle05()
         {
             switch (projectilecycle05)
             {
@@ -1292,7 +1339,7 @@ namespace BattleForAzuraTLOV
                 break;
             }
         }
-        async void bullet_animation06()
+        async void bullet_lifecycle06()
         {
             switch (projectilecycle06)
             {
@@ -1304,22 +1351,28 @@ namespace BattleForAzuraTLOV
         }
         private void GameMenuBTN_Clicked(object sender, EventArgs e)
         {
+            if (gamestatus != 0)
+            {
 
+            }
         }
         private void WeaponBTN_Clicked(object sender, EventArgs e)
         {
             //Weapon_menu_Open();
-            if (weaponmenuedswitch == 0)
+            if (gamestatus != 0)
             {
-                Weapon_menu_Open();
-                weaponmenuedswitch = 1;
-                this.Resources["ColourOfWeaponSwitchBTNClicked"] = Colors.DarkGoldenrod;
-            }
-            else if (weaponmenuedswitch == 1)
-            {
-                Weapon_menu_Close();
-                weaponmenuedswitch = 0;
-                this.Resources["ColourOfWeaponSwitchBTNClicked"] = Colors.Yellow;
+                if (weaponmenuedswitch == 0)
+                {
+                    Weapon_menu_Open();
+                    weaponmenuedswitch = 1;
+                    this.Resources["ColourOfWeaponSwitchBTNClicked"] = Colors.DarkGoldenrod;
+                }
+                else if (weaponmenuedswitch == 1)
+                {
+                    Weapon_menu_Close();
+                    weaponmenuedswitch = 0;
+                    this.Resources["ColourOfWeaponSwitchBTNClicked"] = Colors.Yellow;
+                }
             }
 
         }
@@ -1422,14 +1475,15 @@ namespace BattleForAzuraTLOV
         // player to object collision
         private void Player_collision()
         {
-            playercollisiontopleftX = (CurrentPlayerPositionX -10);
-            playercollisiontoprightX = (CurrentPlayerPositionX + 10);
-            playercollisionbotleftX = (CurrentPlayerPositionX - 10);
-            playercollisionbotrightX = (CurrentPlayerPositionX + 10);
-            playercollisiontopleftY = (CurrentPlayerPositionY - 10);
-            playercollisiontoprightY = (CurrentPlayerPositionY + 10);
-            playercollisionbotleftY = (CurrentPlayerPositionY - 10);
-            playercollisionbotrightY = (CurrentPlayerPositionY + 10);
+            playercollisiontopleftX = (CurrentPlayerPositionX -35);
+            playercollisiontoprightX = (CurrentPlayerPositionX + 35);
+            playercollisionbotleftX = (CurrentPlayerPositionX - 35);
+            playercollisionbotrightX = (CurrentPlayerPositionX + 35);
+
+            playercollisiontopleftY = (CurrentPlayerPositionY - 35);
+            playercollisiontoprightY = (CurrentPlayerPositionY - 35);
+            playercollisionbotleftY = (CurrentPlayerPositionY + 35);
+            playercollisionbotrightY = (CurrentPlayerPositionY + 35);
 
             if (true)
             {
@@ -1438,8 +1492,103 @@ namespace BattleForAzuraTLOV
         }
         // player to enemy collision
 
-        // projectile collision
+        // enemy collission pos constant
+        async void enemyinstance_collision01() // ei 1 - 8
+        {
+            while (gamestatus !=0)
+            {
+                await Task.Delay(50);
+                int changel0 = 0, changer1 = 1, changepos = 0;
+                // 0 = botleft, 1 = botright ei1 x's / same for y's (there is no need for top-down collissions) 
+                for (int i = 0; i < 8; i++)
+                {
+                    enemyinstancehitbox01x[changel0] = (enemyinstancecurpos01x[changepos] - 20);
+                    enemyinstancehitbox01x[changer1] = (enemyinstancecurpos01x[changepos] + 20);
 
+                    enemyinstancehitbox01y[changel0] = (enemyinstancecurpos01y[changepos] + 20);
+                    enemyinstancehitbox01y[changer1] = (enemyinstancecurpos01y[changepos] + 20);
+
+                    changel0 = changel0 + 2;
+                    changer1 = changer1 + 2;
+                    changepos++;
+
+                }
+            }
+            
+        }
+       
+        // projectile collision
+        async void Projectile_collision(int imputprojectile)
+        {
+            int enemyright=1,enemyleft=0,projectile=0,enemyy=0;
+            // x within xleft collide parametre corner / x within xright collide parametre corner / the y within y parametre
+
+
+            // up to ei 1-8
+            for (int ti = 0; ti < 8; ti++) // cycle through enemy
+            {
+                if (activeprojectileposition01y[imputprojectile] == enemyinstancehitbox01y[enemyy])
+                {
+
+                    if (activeprojectileposition01x[imputprojectile] >= enemyinstancehitbox01x[enemyleft] && activeprojectileposition01x[imputprojectile] <= enemyinstancehitbox01x[enemyright])
+                    {
+                        // difficulty dependant  
+                        //--> easy / normal
+                        if (enemyleft == 0)
+                        {
+                            ei1deathanim();
+                            Remove_Projectile_cur(imputprojectile);
+                        }
+                        if (enemyleft == 2)
+                        {
+                            ei2deathanim();
+                            Remove_Projectile_cur(imputprojectile);
+                        }
+                        if (enemyleft == 4)
+                        {
+                            ei3deathanim();
+                            Remove_Projectile_cur(imputprojectile);
+                        }
+                        if (enemyleft == 6)
+                        {
+                            ei4deathanim();
+                            Remove_Projectile_cur(imputprojectile);
+                        }
+                        if (enemyleft == 8)
+                        {
+                            ei5deathanim();
+                            Remove_Projectile_cur(imputprojectile);
+                        }
+                        if (enemyleft == 10)
+                        {
+                            ei6deathanim();
+                            Remove_Projectile_cur(imputprojectile);
+                        }
+                        if (enemyleft == 12)
+                        {
+                            ei7deathanim();
+                            Remove_Projectile_cur(imputprojectile);
+                        }
+                        if (enemyleft == 14)
+                        {
+                            ei8deathanim();
+                            Remove_Projectile_cur(imputprojectile);
+                        }
+                        // up to ei 9-16
+                        if (activeprojectileposition01x[projectile] >= enemyinstancehitbox02x[enemyleft] && activeprojectileposition01x[projectile] <= enemyinstancehitbox02x[enemyright] && activeprojectileposition01x[projectile] == enemyinstancehitbox02y[enemyy])
+                        {
+                            // ei 9 - 16 not added yet
+                        }
+
+                        //--> hard / very hard diff
+
+                        enemyright += 2;
+                        enemyleft += 2;
+                        enemyy++;
+                    }// x
+                }// y
+            }// for
+        }// end pcm
         // resets object positions
         async void Reset_All_Enemy_Position()
         {
@@ -1451,6 +1600,167 @@ namespace BattleForAzuraTLOV
             await e006.TranslateTo(0, 0, 4);
             await e007.TranslateTo(0, 0, 4);
             await e008.TranslateTo(0, 0, 4);
+        }
+        async void Remove_Projectile_cur(int imputprojectile)
+        {
+            activeprojectileposition01x[imputprojectile] = activeprojectileposition01x[imputprojectile] + 1000;
+            await Projectile01.TranslateTo(activeprojectileposition01x[imputprojectile], 0, 4);
+        }
+        async void Reset_All_Projectile_Position()
+        {
+            Reset_PPos_01(); // split to be done all at once equally
+            Reset_PPos_02();
+            Reset_PPos_03();
+            Reset_PPos_04();
+            Reset_PPos_05();
+            Reset_PPos_06();
+            Reset_PPos_07();
+            Reset_PPos_08();
+            Reset_PPos_09();
+            Reset_PPos_10();
+            Reset_PPos_11();
+            Reset_PPos_12();
+            Reset_PPos_13();
+            Reset_PPos_14();
+            Reset_PPos_15();
+            Reset_PPos_16();
+            Reset_PPos_17();
+            Reset_PPos_18();
+            Reset_PPos_19();
+            Reset_PPos_20();
+            Reset_PPos_21();
+            Reset_PPos_22();
+        }
+        async void Reset_PPos_01()
+        {
+            activeprojectileposition01x[0] = activeprojectileposition01x[0] + 1000;
+            await Projectile01.TranslateTo(activeprojectileposition01x[0], 0, 4);
+            
+        }
+        async void Reset_PPos_02()
+        {
+            activeprojectileposition01x[1] = activeprojectileposition01x[1] + 1000;
+            await Projectile02.TranslateTo(activeprojectileposition01x[1], 0, 4);
+            
+        }
+        async void Reset_PPos_03()
+        {
+            activeprojectileposition01x[2] = activeprojectileposition01x[2] + 1000;
+            await Projectile03.TranslateTo(activeprojectileposition01x[2], 0, 4);
+            
+        }
+        async void Reset_PPos_04()
+        {
+            activeprojectileposition01x[3] = activeprojectileposition01x[3] + 1000;
+            await Projectile04.TranslateTo(activeprojectileposition01x[3], 0, 4);
+            
+        }
+        async void Reset_PPos_05()
+        {
+            activeprojectileposition01x[4] = activeprojectileposition01x[4] + 1000;
+            await Projectile05.TranslateTo(activeprojectileposition01x[4], 0, 4);
+            
+        }
+        async void Reset_PPos_06()
+            {
+                activeprojectileposition01x[5] = activeprojectileposition01x[5] + 1000;
+            await Projectile06.TranslateTo(activeprojectileposition01x[5], 0, 4);
+            
+        }
+        async void Reset_PPos_07()
+        {
+            activeprojectileposition01x[6] = activeprojectileposition01x[6] + 1000;
+            await Projectile07.TranslateTo(activeprojectileposition01x[6], 0, 4);
+            
+        }
+        async void Reset_PPos_08()
+        {
+            activeprojectileposition01x[7] = activeprojectileposition01x[7] + 1000;
+            await Projectile08.TranslateTo(activeprojectileposition01x[7], 0, 4);
+            
+        }
+        async void Reset_PPos_09()
+        {
+            activeprojectileposition01x[8] = activeprojectileposition01x[8] + 1000;
+            await Projectile09.TranslateTo(activeprojectileposition01x[8], 0, 4);
+            
+        }
+        async void Reset_PPos_10()
+        {
+            activeprojectileposition01x[9] = activeprojectileposition01x[9] + 1000;
+            await Projectile10.TranslateTo(activeprojectileposition01x[9], 0, 4);
+            
+        }
+        async void Reset_PPos_11()
+        {
+            activeprojectileposition01x[10] = activeprojectileposition01x[10] + 1000;
+            await Projectile11.TranslateTo(activeprojectileposition01x[10], 0, 4);
+            
+        }
+        async void Reset_PPos_12()
+        {
+            activeprojectileposition01x[11] = activeprojectileposition01x[11] + 1000;
+            await Projectile12.TranslateTo(activeprojectileposition01x[11], 0, 4);
+            
+        }
+        async void Reset_PPos_13()
+        {
+            activeprojectileposition01x[12] = activeprojectileposition01x[12] + 1000;
+            await Projectile13.TranslateTo(activeprojectileposition01x[12], 0, 4);
+            
+        }
+        async void Reset_PPos_14()
+        {
+            activeprojectileposition01x[13] = activeprojectileposition01x[13] + 1000;
+            await Projectile14.TranslateTo(activeprojectileposition01x[13], 0, 4);
+            
+        }
+        async void Reset_PPos_15()
+        {
+            activeprojectileposition01x[14] = activeprojectileposition01x[14] + 1000;
+            await Projectile15.TranslateTo(activeprojectileposition01x[14], 0, 4);
+            
+        }
+        async void Reset_PPos_16()
+        {
+            activeprojectileposition01x[15] = activeprojectileposition01x[15] + 1000;
+            await Projectile16.TranslateTo(activeprojectileposition01x[15], 0, 4);
+            
+        }
+        async void Reset_PPos_17()
+        {
+            activeprojectileposition01x[16] = activeprojectileposition01x[16] + 1000;
+            await Projectile17.TranslateTo(activeprojectileposition01x[16], 0, 4);
+            
+        }
+        async void Reset_PPos_18()
+        {
+            activeprojectileposition01x[17] = activeprojectileposition01x[17] + 1000;
+            await Projectile18.TranslateTo(activeprojectileposition01x[17], 0, 4);
+            
+        }
+        async void Reset_PPos_19()
+        {
+            activeprojectileposition01x[18] = activeprojectileposition01x[18] + 1000;
+            await Projectile19.TranslateTo(activeprojectileposition01x[18], 0, 4);
+            
+        }
+        async void Reset_PPos_20()
+        {
+            activeprojectileposition01x[19] = activeprojectileposition01x[19] + 1000;
+            await Projectile20.TranslateTo(activeprojectileposition01x[19], 0, 4);
+           
+        }
+        async void Reset_PPos_21()
+        {
+            activeprojectileposition01x[20] = activeprojectileposition01x[20] + 1000;
+            await Projectile21.TranslateTo(activeprojectileposition01x[20], 0, 4);
+            
+        }
+        async void Reset_PPos_22()
+        {
+            activeprojectileposition01x[21] = activeprojectileposition01x[21] + 1000;
+            await Projectile22.TranslateTo(activeprojectileposition01x[21], 0, 4);
         }
         // main menu buttons
         private void StartBTN_Clicked(object sender, EventArgs e)
@@ -1550,50 +1860,58 @@ namespace BattleForAzuraTLOV
         {
 
         }
-        private void Accept01BTN_Clicked(object sender, EventArgs e)// n ew game accept
+        private void Accept01BTN_Clicked(object sender, EventArgs e)// new game accept
         {
             if (newgamedifficulty == 1) // easy
             {
                 gamestatus = 1;
                 BackgroundCurrentPositionX = 0;
-                BackgroundCurrentPositionY = -1150;
+                BackgroundCurrentPositionY = -2350;
                 ammunition01 = 50;
                 ammunitioncurrent = ammunition01;
                 MainMenu_Exit();
                 showallgamecontent();
+                Level_Activate_01();
+                Tutorial_activate();
                 Update_All_Position_Constant();
             }
             else if (newgamedifficulty == 2) // normal
             {
                 gamestatus = 1;
                 BackgroundCurrentPositionX = 0;
-                BackgroundCurrentPositionY = -1150;
+                BackgroundCurrentPositionY = -2350;
                 ammunition01 = 30;
                 ammunitioncurrent = ammunition01;
                 MainMenu_Exit();
                 showallgamecontent();
+                Level_Activate_01();
+                Tutorial_activate();
                 Update_All_Position_Constant();
             }
             else if (newgamedifficulty == 3) // hard
             {
                 gamestatus = 1;
                 BackgroundCurrentPositionX = 0;
-                BackgroundCurrentPositionY = -1150;
+                BackgroundCurrentPositionY = -2350;
                 ammunition01 = 20;
                 ammunitioncurrent = ammunition01;
                 MainMenu_Exit();
                 showallgamecontent();
+                Level_Activate_01();
+                Tutorial_activate();
                 Update_All_Position_Constant();
             }
             else if (newgamedifficulty == 4) // very hard
             {
                 gamestatus = 1;
                 BackgroundCurrentPositionX = 0;
-                BackgroundCurrentPositionY = -1150;
+                BackgroundCurrentPositionY = -2350;
                 ammunition01 = 10;
                 ammunitioncurrent = ammunition01;
                 MainMenu_Exit();
                 showallgamecontent();
+                Level_Activate_01();
+                Tutorial_activate();
                 Update_All_Position_Constant();
             }
             difficultysetting = newgamedifficulty;
@@ -1618,7 +1936,18 @@ namespace BattleForAzuraTLOV
         }
         private void Accept02BTN_Clicked(object sender, EventArgs e)
         {
-            
+            if (saveselected == 1) // 1
+            {
+                MainMenu_Exit();
+            }
+            else if (saveselected == 2) // 2
+            {
+                MainMenu_Exit();
+            }
+            else if (saveselected == 3) // 3
+            {
+                MainMenu_Exit();
+            }
         }
         private void Accept03BTN_Clicked(object sender, EventArgs e)
         {
@@ -1630,19 +1959,51 @@ namespace BattleForAzuraTLOV
         }
         private void Save1BTN_Clicked(object sender, EventArgs e)
         {
-
+            Save1_ClickedAnim();
+            this.Resources["ColourOfSave1BTNClicked"] = Colors.White;
+            this.Resources["ColourOfSave2BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfSave3BTNClicked"] = Colors.DarkSlateGrey;
+            saveselected = 1;
         }
         private void Save2BTN_Clicked(object sender, EventArgs e)
         {
-
+            Save2_ClickedAnim();
+            this.Resources["ColourOfSave1BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfSave2BTNClicked"] = Colors.White;
+            this.Resources["ColourOfSave3BTNClicked"] = Colors.DarkSlateGrey;
+            saveselected = 2;
         }
         private void Save3BTN_Clicked(object sender, EventArgs e)
         {
-
+            Save3_ClickedAnim();
+            this.Resources["ColourOfSave1BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfSave2BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfSave3BTNClicked"] = Colors.White;
+            saveselected = 3;
         }
         private void DelSaveBTN_Clicked(object sender, EventArgs e)
         {
-
+            if (saveselected == 1) // 1
+            {
+                if (save01exist == 1) 
+                {
+                    MainMenu_Exit();
+                }
+            }
+            else if (saveselected == 2) // 2
+            {
+                if (save02exist == 1)
+                {
+                    MainMenu_Exit();
+                }
+            }
+            else if (saveselected == 3) // 3
+            {
+                if (save03exist == 1)
+                {
+                    MainMenu_Exit();
+                }
+            }
         }
         private void EscapeBTN_Clicked(object sender, EventArgs e)
         {
@@ -1684,7 +2045,15 @@ namespace BattleForAzuraTLOV
             // miss
 
         }
+
         // menu animations
+        // tutorial stuff
+        async void Tutorial_activate()
+        {
+            await TutorialBox01.TranslateTo(200, 100, 5);
+            await tutorialdynamictext.TranslateTo(200, 100, 5);
+            tutorialdynamictext.Text = $"PlaceHolder Text 2";
+        }
         // game menus
         private void Weapon_menu_Open()
         {
@@ -1751,32 +2120,32 @@ namespace BattleForAzuraTLOV
         }
         async void Weaponmenuanim17()
         {
-            await weaponmenu01.TranslateTo(395, -40, 400);
+            await weaponmenu01.TranslateTo(355, -40, 400);
             
         }
         async void Weaponmenuanim18()
         {
-            await weaponmenu02.TranslateTo(395, 45, 400);
+            await weaponmenu02.TranslateTo(355, 45, 400);
             
         }
         async void Weaponmenuanim19()
         {
-            await weaponmenu03.TranslateTo(395, 130, 400);
+            await weaponmenu03.TranslateTo(355, 130, 400);
             
         }
         async void Weaponmenuanim20()
         {
-            await weaponmenu04.TranslateTo(555, -40, 400);
+            await weaponmenu04.TranslateTo(515, -40, 400);
             
         }
         async void Weaponmenuanim21()
         {
-            await weaponmenu05.TranslateTo(555, 45, 400);
+            await weaponmenu05.TranslateTo(515, 45, 400);
             
         }
         async void Weaponmenuanim22()
         {
-            await weaponmenu06.TranslateTo(555, 130, 400);
+            await weaponmenu06.TranslateTo(515, 130, 400);
         }
 
         private void Weapon_menu_Close()
@@ -1844,32 +2213,32 @@ namespace BattleForAzuraTLOV
         }
         async void Weaponmenuanim23()
         {
-            await weaponmenu01.TranslateTo(1395, -40, 400);
+            await weaponmenu01.TranslateTo(1355, -40, 400);
 
         }
         async void Weaponmenuanim24()
         {
-            await weaponmenu02.TranslateTo(1395, 45, 400);
+            await weaponmenu02.TranslateTo(1355, 45, 400);
 
         }
         async void Weaponmenuanim25()
         {
-            await weaponmenu03.TranslateTo(1395, 130, 400);
+            await weaponmenu03.TranslateTo(1355, 130, 400);
 
         }
         async void Weaponmenuanim26()
         {
-            await weaponmenu04.TranslateTo(1555, -40, 400);
+            await weaponmenu04.TranslateTo(1515, -40, 400);
 
         }
         async void Weaponmenuanim27()
         {
-            await weaponmenu05.TranslateTo(1555, 45, 400);
+            await weaponmenu05.TranslateTo(1515, 45, 400);
 
         }
         async void Weaponmenuanim28()
         {
-            await weaponmenu06.TranslateTo(1555, 130, 400);
+            await weaponmenu06.TranslateTo(1515, 130, 400);
         }
 
         // button anims
@@ -1910,6 +2279,24 @@ namespace BattleForAzuraTLOV
             await harddiffbutton.ScaleTo(0.6, 100);
             
         }
+        async void Save1_ClickedAnim()
+        {
+            await saveslot1button.ScaleTo(1.2, 100);
+            await saveslot2button.ScaleTo(1, 100);
+            await saveslot3button.ScaleTo(1, 100);
+        }
+        async void Save2_ClickedAnim()
+        {
+            await saveslot1button.ScaleTo(1, 100);
+            await saveslot2button.ScaleTo(1.2, 100);
+            await saveslot3button.ScaleTo(1, 100);
+        }
+        async void Save3_ClickedAnim()
+        {
+            await saveslot1button.ScaleTo(1, 100);
+            await saveslot2button.ScaleTo(1, 100);
+            await saveslot3button.ScaleTo(1.2, 100);
+        }
         async void ResetAll_Button_States_Anim()
         {
             await Trainingbutton.ScaleTo(1, 100);
@@ -1918,7 +2305,9 @@ namespace BattleForAzuraTLOV
             await normaldiffbutton.ScaleTo(0.6, 100);
             await harddiffbutton.ScaleTo(0.6, 100);
             await veryharddiffbutton.ScaleTo(0.6, 100);
-
+            await saveslot1button.ScaleTo(1, 100);
+            await saveslot2button.ScaleTo(1, 100);
+            await saveslot3button.ScaleTo(1, 100);
         }
         // page turning
         // title screen
@@ -2461,6 +2850,7 @@ namespace BattleForAzuraTLOV
         async void e001deathanim01()
         {
             await e001.RotateTo(720, 300);
+            enemyinstancecurpos01x[0] = enemyinstancecurpos01x[0] + 1000;
         }
         async void e001deathanim02()
         {
@@ -2470,8 +2860,209 @@ namespace BattleForAzuraTLOV
         {
             await e001.ScaleTo(0.6, 300);
         }
+        private void ei2deathanim()
+        {
+            e002deathanim01();
+            e002deathanim02();
+            e002deathanim03();
+        }
+        async void e002deathanim01()
+        {
+            await e002.RotateTo(720, 300);
+            enemyinstancecurpos01x[1] = enemyinstancecurpos01x[1] + 1000;
+        }
+        async void e002deathanim02()
+        {
+            await e002.FadeTo(0, 300);
+        }
+        async void e002deathanim03()
+        {
+            await e002.ScaleTo(0.6, 300);
+        }
+        private void ei3deathanim()
+        {
+            e003deathanim01();
+            e003deathanim02();
+            e003deathanim03();
+        }
+        async void e003deathanim01()
+        {
+            await e003.RotateTo(720, 300);
+            enemyinstancecurpos01x[2] = enemyinstancecurpos01x[2] + 1000;
+        }
+        async void e003deathanim02()
+        {
+            await e003.FadeTo(0, 300);
+        }
+        async void e003deathanim03()
+        {
+            await e003.ScaleTo(0.6, 300);
+        }
+        private void ei4deathanim()
+        {
+            e004deathanim01();
+            e004deathanim02();
+            e004deathanim03();
+        }
+        async void e004deathanim01()
+        {
+            await e004.RotateTo(720, 300);
+            enemyinstancecurpos01x[3] = enemyinstancecurpos01x[3] + 1000;
+        }
+        async void e004deathanim02()
+        {
+            await e004.FadeTo(0, 300);
+        }
+        async void e004deathanim03()
+        {
+            await e004.ScaleTo(0.6, 300);
+        }
+        private void ei5deathanim()
+        {
+            e005deathanim01();
+            e005deathanim02();
+            e005deathanim03();
+        }
+        async void e005deathanim01()
+        {
+            await e005.RotateTo(720, 300);
+            enemyinstancecurpos01x[4] = enemyinstancecurpos01x[4] + 1000;
+        }
+        async void e005deathanim02()
+        {
+            await e005.FadeTo(0, 300);
+        }
+        async void e005deathanim03()
+        {
+            await e005.ScaleTo(0.6, 300);
+        }
+        private void ei6deathanim()
+        {
+            e006deathanim01();
+            e006deathanim02();
+            e006deathanim03();
+        }
+        async void e006deathanim01()
+        {
+            await e006.RotateTo(720, 300);
+            enemyinstancecurpos01x[5] = enemyinstancecurpos01x[5] + 1000;
+        }
+        async void e006deathanim02()
+        {
+            await e006.FadeTo(0, 300);
+        }
+        async void e006deathanim03()
+        {
+            await e006.ScaleTo(0.6, 300);
+        }
+        private void ei7deathanim()
+        {
+            e007deathanim01();
+            e007deathanim02();
+            e007deathanim03();
+        }
+        async void e007deathanim01()
+        {
+            await e007.RotateTo(720, 300);
+            enemyinstancecurpos01x[6] = enemyinstancecurpos01x[6] + 1000;
+        }
+        async void e007deathanim02()
+        {
+            await e007.FadeTo(0, 300);
+        }
+        async void e007deathanim03()
+        {
+            await e007.ScaleTo(0.6, 300);
+        }
+        private void ei8deathanim()
+        {
+            e008deathanim01();
+            e008deathanim02();
+            e008deathanim03();
+        }
+        async void e008deathanim01()
+        {
+            await e008.RotateTo(720, 300);
+            enemyinstancecurpos01x[7] = enemyinstancecurpos01x[7] + 1000;
+        }
+        async void e008deathanim02()
+        {
+            await e008.FadeTo(0, 300);
+        }
+        async void e008deathanim03()
+        {
+            await e008.ScaleTo(0.6, 300);
+        }
         // destructables
+        // enemy focus section --------------------/
+        // starting positions
+        private void enemy_instance_openpos01()
+        {
+            e001startpos();
+            e002startpos();
+            e003startpos();
+            e004startpos();
+            e005startpos();
+            e006startpos();
+            e007startpos();
+            e008startpos();
 
+        }
+        async void e001startpos()
+        {
+            enemyinstancecurpos01x[0] =  RNGmove.Next(-30, 80);
+            enemyinstancecurpos01y[0] =  RNGmove.Next(-600, -400);
+            await e001.TranslateTo(enemyinstancecurpos01x[0], enemyinstancecurpos01y[0], 4);
+        }
+        async void e002startpos()
+        {
+            enemyinstancecurpos01x[1] =  RNGmove.Next(300, 450);
+            enemyinstancecurpos01y[1] =  RNGmove.Next(-1200, -1100);
+            await e002.TranslateTo(enemyinstancecurpos01x[1], enemyinstancecurpos01y[1], 4);
+        }
+        async void e003startpos()
+        {
+            enemyinstancecurpos01x[2] =  RNGmove.Next(-30, 80);
+            enemyinstancecurpos01y[2] =  RNGmove.Next(-600, -400);
+            enemyinstancecurpos01x[2] = -25;
+            enemyinstancecurpos01y[2] = -400;
+            await e003.TranslateTo(enemyinstancecurpos01x[2], enemyinstancecurpos01y[2], 4);
+        }
+        async void e004startpos()
+        {
+            enemyinstancecurpos01x[3] =  RNGmove.Next(100, 380);
+            enemyinstancecurpos01y[3] =  RNGmove.Next(-840, -400);
+            await e004.TranslateTo(enemyinstancecurpos01x[3], enemyinstancecurpos01y[3], 4);
+        }
+        async void e005startpos()
+        {
+            enemyinstancecurpos01x[4] =  RNGmove.Next(100, 280);
+            enemyinstancecurpos01y[4] =  RNGmove.Next(-140, -80);
+            await e002.TranslateTo(enemyinstancecurpos01x[4], enemyinstancecurpos01y[4], 4);
+        }
+        async void e006startpos()
+        {
+            enemyinstancecurpos01x[5] =  RNGmove.Next(10, 120);
+            enemyinstancecurpos01y[5] =  RNGmove.Next(-300, -100);
+            await e006.TranslateTo(enemyinstancecurpos01x[5], enemyinstancecurpos01y[5], 4);
+        }
+        async void e007startpos()
+        {
+            enemyinstancecurpos01x[6] =  RNGmove.Next(270, 480);
+            enemyinstancecurpos01y[6] =  RNGmove.Next(-800, -600);
+            await e007.TranslateTo(enemyinstancecurpos01x[6], enemyinstancecurpos01y[6], 4);
+        }
+        async void e008startpos()
+        {
+            enemyinstancecurpos01x[7] =  RNGmove.Next(40, 130);
+            enemyinstancecurpos01y[7] =  RNGmove.Next(-700, -500);
+            await e008.TranslateTo(enemyinstancecurpos01x[7], enemyinstancecurpos01y[7], 4);
+        }
+        // level set ups / --------------------------------- 1 ---------------------------------/
+        private void Level_Activate_01()
+        {
+            enemy_instance_openpos01();
+        }
         // constantly updates the positions of every game object ( except for player )
         async void Update_All_Position_Constant()
         {
@@ -2491,6 +3082,8 @@ namespace BattleForAzuraTLOV
             Update_enemys08();
             Update_enemys09();
             Update_enemys10();
+            enemyinstance_collision01();
+            testtext();
             while (gamestatus != 0)
             {
                 await Task.Delay(200);
@@ -2519,8 +3112,26 @@ namespace BattleForAzuraTLOV
                     ammunitioncurrent = ammunition06;
                 }
                 ammoqtext.Text = $"Current Ammo: {ammunitioncurrent}   ";
-                testnumber.Text = $"test number: {projectilecycle01}   ";
-            }
+                
+            }// while 
+        }// end of updatermain
+        async void testtext()
+        {
+            while (gamestatus != 0)
+            {
+                await Task.Delay(50);
+                int changel0 = 0, changer1 = 1, changepos = 0;
+                // 0 = botleft, 1 = botright ei1 x's / same for y's (there is no need for top-down collissions) 
+                for (int i = 0; i < 8; i++)
+                {
+                    testnumber.Text = $"test number: left = {enemyinstancehitbox01x[changel0]} right = {enemyinstancehitbox01x[changer1]} eix = {enemyinstancecurpos01x[changepos]} bot = {enemyinstancehitbox01y[changel0]} eiy = {enemyinstancecurpos01y[changepos]} enemynumber = {(changepos+1)}";
+                    await Task.Delay(2000);
+                    changel0 = changel0 + 2;
+                    changer1 = changer1 + 2;
+                    changepos++;
+
+                }
+            }// while 2
         }
         async void Player_collision_updater()
         {
@@ -2528,14 +3139,7 @@ namespace BattleForAzuraTLOV
             while (gamestatus != 0) // split the update loop to stop crashing
             {
                 await Task.Delay(20);
-                playercollisiontopleftX = (CurrentPlayerPositionX - 10);
-                playercollisiontoprightX = (CurrentPlayerPositionX + 10);
-                playercollisionbotleftX = (CurrentPlayerPositionX - 10);
-                playercollisionbotrightX = (CurrentPlayerPositionX + 10);
-                playercollisiontopleftY = (CurrentPlayerPositionY - 10);
-                playercollisiontoprightY = (CurrentPlayerPositionY + 10);
-                playercollisionbotleftY = (CurrentPlayerPositionY - 10);
-                playercollisionbotrightY = (CurrentPlayerPositionY + 10);
+                Player_collision();
             }
         }
         async void Player_collision_object_updater()
@@ -2648,16 +3252,19 @@ namespace BattleForAzuraTLOV
         {
             while (gamestatus != 0) // split the update loop to stop crashing
             {
-                await e001.TranslateTo(ei1curposX, ei1curposY, 40);
-                await e002.TranslateTo(ei2curposX, ei2curposY, 40);
-                await e003.TranslateTo(ei3curposX, ei3curposY, 40);
-                await e004.TranslateTo(ei4curposX, ei4curposY, 40);
-                await e005.TranslateTo(ei5curposX, ei5curposY, 40);
-                await e006.TranslateTo(ei6curposX, ei6curposY, 40);
-                await e007.TranslateTo(ei7curposX, ei7curposY, 40);
-                await e008.TranslateTo(ei8curposX, ei8curposY, 40);
+                
+                await e001.TranslateTo(enemyinstancecurpos01x[0], enemyinstancecurpos01y[0], 40);
+                await e002.TranslateTo(enemyinstancecurpos01x[1], enemyinstancecurpos01y[1], 40);
+                await e003.TranslateTo(enemyinstancecurpos01x[2], enemyinstancecurpos01y[2], 40);
+                await e004.TranslateTo(enemyinstancecurpos01x[3], enemyinstancecurpos01y[3], 40);
+                await e005.TranslateTo(enemyinstancecurpos01x[4], enemyinstancecurpos01y[4], 40);
+                await e006.TranslateTo(enemyinstancecurpos01x[5], enemyinstancecurpos01y[5], 40);
+                await e007.TranslateTo(enemyinstancecurpos01x[6], enemyinstancecurpos01y[6], 40);
+                await e008.TranslateTo(enemyinstancecurpos01x[7], enemyinstancecurpos01y[7], 40);
+
             }
         }
+        
         async void Update_enemys02()
         {
 
@@ -2694,6 +3301,6 @@ namespace BattleForAzuraTLOV
         {
 
         }
-        
+
     }// end of all
 }// end of all

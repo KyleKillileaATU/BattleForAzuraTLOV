@@ -222,6 +222,7 @@
          Fill="DarkGray"
          />
         <!-- player image -->
+
         <Image 
             x:Name ="PlayerIMG"
             Source="walter3.png" 
@@ -305,15 +306,15 @@
             <BoxView x:Name ="PlayerMagicbar"
               Color="#af0039"
               WidthRequest ="25"
-              HeightRequest ="140"/>
+              HeightRequest ="{ DynamicResource MagicBarValue }"/>
             <BoxView x:Name ="PlayerHPbar"
               Color="#39cf3a"
               WidthRequest ="25"
-              HeightRequest ="140"/>
+              HeightRequest ="{ DynamicResource HealthBarValue }"/>
             <BoxView x:Name ="PlayerStaminabar"
               Color="#ffff39"
               WidthRequest ="25"
-              HeightRequest ="140"/>
+              HeightRequest ="{ DynamicResource StaminaBarValue }"/>
         </HorizontalStackLayout>
         <!-- menu screens go here  -->
         <Image 
@@ -359,6 +360,13 @@
          SemanticProperties.Description="level stats screen" 
          />
         <Image 
+         x:Name ="TutorialBox01"
+         Source="tutorialbox1.png" 
+         HeightRequest="150"
+         Aspect="AspectFit"
+         SemanticProperties.Description="tutorial screen" 
+         />
+        <Image 
          x:Name ="GrayFilterScreen01"
          Source="greyfilter.png" 
          HeightRequest="550"
@@ -370,6 +378,13 @@
             <Label 
                 x:Name ="testnumber"
                 Text="Test number: 0   "
+            />
+            <!-- Tutorial  -->
+            <Label 
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                x:Name ="tutorialdynamictext"
+                Text="PlaceHolder Text"
             />
             <!-- game  -->
             <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End" Padding="10,20" Spacing="5">
