@@ -345,12 +345,64 @@
          Aspect="AspectFit"
          SemanticProperties.Description="continue screen" 
          />
+        <!-- == extended == mission images -->
         <Image 
          x:Name ="MissionScreen01"
          Source="dishonouredmissionscreen.png" 
          HeightRequest="550"
          Aspect="AspectFit"
          SemanticProperties.Description="missions screen" 
+         />
+
+        <Image 
+         x:Name ="levelportrait04"
+         Source="level04portrait.png" 
+         HeightRequest="250"
+         Aspect="AspectFit"
+         SemanticProperties.Description="level screen" 
+         />
+        <Image 
+         x:Name ="levelportrait03"
+         Source="level03portrait.png" 
+         HeightRequest="250"
+         Aspect="AspectFit"
+         SemanticProperties.Description="level screen" 
+         />
+        <Image 
+         x:Name ="levelportrait02"
+         Source="level02portrait.png" 
+         HeightRequest="250"
+         Aspect="AspectFit"
+         SemanticProperties.Description="level screen" 
+         />
+        <Image 
+         x:Name ="levelportrait01"
+         Source="level01portrait.png" 
+         HeightRequest="250"
+         Aspect="AspectFit"
+         SemanticProperties.Description="level screen" 
+         />
+        
+        <Image 
+         x:Name ="blockadescreen01"
+         Source="phasedxscreen01.png" 
+         HeightRequest="250"
+         Aspect="AspectFit"
+         SemanticProperties.Description="blocked screen" 
+         />
+        <Image 
+         x:Name ="blockadescreen02"
+         Source="phasedxscreen01.png" 
+         HeightRequest="250"
+         Aspect="AspectFit"
+         SemanticProperties.Description="blocked screen" 
+         />
+        <Image 
+         x:Name ="blockadescreen03"
+         Source="phasedxscreen01.png" 
+         HeightRequest="250"
+         Aspect="AspectFit"
+         SemanticProperties.Description="blocked screen" 
          />
         <Image 
          x:Name ="LevelStatsScreen01"
@@ -360,12 +412,27 @@
          SemanticProperties.Description="level stats screen" 
          />
         <Image 
+         x:Name ="OutOfOrderscreen"
+         Source="outoforder.png" 
+         HeightRequest="550"
+         Aspect="AspectFit"
+         SemanticProperties.Description="out of order" 
+         />
+        <Image 
+         x:Name ="TutorialBox02"
+         Source="tutorialbox02.png" 
+         HeightRequest="325"
+         Aspect="AspectFit"
+         SemanticProperties.Description="tutorial screen" 
+         />
+        <Image 
          x:Name ="TutorialBox01"
          Source="tutorialbox1.png" 
          HeightRequest="150"
          Aspect="AspectFit"
          SemanticProperties.Description="tutorial screen" 
          />
+        
         <Image 
          x:Name ="GrayFilterScreen01"
          Source="greyfilter.png" 
@@ -388,10 +455,10 @@
             />
             <!-- game  -->
             <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End" Padding="10,20" Spacing="5">
-                <Button x:Name="backmovebutton"  Text="Back" Clicked="BackMoveBTN_Clicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfBackMoveBTNClicked }"/>
-                <Button x:Name="leftmovebutton"  Text="Left" Clicked="LeftMoveBTN_Clicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfLeftMoveBTNClicked }"/>
-                <Button x:Name="rightmovebutton"  Text="Right" Clicked="RightMoveBTN_Clicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfRightMoveBTNClicked }"/>
-                <Button x:Name="forwardmovebutton"  Text="Forwards" Clicked="MoveBTN_Clicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfForwardMoveBTNClicked }"/>
+                <Button x:Name="backmovebutton"  Text="Back" Pressed="BackMoveBTN_Clicked" Released="BackMoveBTN_UnClicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfBackMoveBTNClicked }"/>
+                <Button x:Name="leftmovebutton"  Text="Left" Pressed="LeftMoveBTN_Clicked" Released="LeftMoveBTN_UnClicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfLeftMoveBTNClicked }"/>
+                <Button x:Name="rightmovebutton"  Text="Right" Pressed="RightMoveBTN_Clicked" Released="RightMoveBTN_UnClicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfRightMoveBTNClicked }"/>
+                <Button x:Name="forwardmovebutton"  Text="Forwards" Pressed="MoveBTN_Clicked" Released="MoveBTN_UnClicked"  WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfForwardMoveBTNClicked }"/>
             </VerticalStackLayout>
             <VerticalStackLayout HorizontalOptions="End" VerticalOptions="End" Padding="10,20,10,20" Spacing="5">
                 <Button x:Name="attackbutton"  Text="Shoot" Clicked="AttackBTN_Clicked" WidthRequest="80" TextColor="blue" BackgroundColor="{ DynamicResource ColourOfAttackBTNClicked }"/>
@@ -460,7 +527,10 @@
             <Button x:Name="missionstatsbutton"  Text="Stats" Clicked="MissStatsBTN_Clicked" WidthRequest="80" HeightRequest ="15"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
             <Button x:Name="accept04button"  Text="Accept" Clicked="Accept04BTN_Clicked" WidthRequest="80" HeightRequest ="10"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
             <Button x:Name="leave04button"  Text="Exit" Clicked="EscapeBTN_Clicked" WidthRequest="80" HeightRequest ="10"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
-            
+
+            <!-- Tutorial  -->
+            <Button x:Name="Tutorialbutton"  Text="Exit" Clicked="TutorialBTN_Clicked" WidthRequest="80" HeightRequest ="10"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
+
             <!-- Title Screen  -->
             <Image 
              x:Name ="BigTitleScreen01"

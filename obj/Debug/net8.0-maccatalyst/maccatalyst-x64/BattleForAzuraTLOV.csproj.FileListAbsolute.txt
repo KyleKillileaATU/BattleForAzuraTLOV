@@ -317,3 +317,17 @@ C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\macc
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\ref\BattleForAzuraTLOV.dll
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\dishonourednewgamescreen.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\dishonouredtitlescreen.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\level01portrait.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\dishonouredmissionscreen.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\level03portrait.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\level02portrait.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\dishonouredlevelstatsscreen.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\level04portrait.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\greyfilter.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\permasupershopscreen.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\phasedxscreen01.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\dishonouredcontinuescreen.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\battleforazuratitleimg.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\tutorialbox1.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\eziarfinalbossroom.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\backgroundlevel01.png

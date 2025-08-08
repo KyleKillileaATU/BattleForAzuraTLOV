@@ -1090,3 +1090,17 @@ C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\stamp\_G
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\stamp\_ResolveLibraryProjectImports.stamp
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\dishonourednewgamescreen.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\dishonouredtitlescreen.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\backgroundlevel01.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\battleforazuratitleimg.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\dishonouredcontinuescreen.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\dishonouredlevelstatsscreen.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\dishonouredmissionscreen.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\eziarfinalbossroom.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\greyfilter.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\level01portrait.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\level02portrait.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\level03portrait.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\level04portrait.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\permasupershopscreen.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\phasedxscreen01.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\tutorialbox1.png

@@ -1,14 +1,21 @@
 ﻿
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Channels;
+using System.Xml.Linq;
 
 namespace BattleForAzuraTLOV
 {
+
+    
     public partial class MainPage : ContentPage
     {
+        
         int CurrentPlayerPositionX = 0, CurrentPlayerPositionY = 0;
         int BackgroundCurrentPositionX = 0, BackgroundCurrentPositionY = 0;
-        int RandomPositionX = 0, RandomPositionY = 0, rtime, weaponequipped = 0;
+        int RandomPositionX = 0, RandomPositionY = 0, rtime, weaponEquipped = 0;
         // enemys slug
         int[] enemyinstancecurpos01x = { 0, 0, 0, 0, 0, 0, 0, 0 }; // ei 1 - 8
         int[] enemyinstancecurpos02x = { 0, 0, 0, 0, 0, 0, 0, 0 }; // ei 9 - 16
@@ -35,21 +42,27 @@ namespace BattleForAzuraTLOV
         int[] activeprojectileposition04y = { 0, 0, 0, 0 }; // gun 4
         int[] activeprojectileposition05y = { 0, 0, 0, 0 }; // gun 5
         int[] activeprojectileposition06y = { 0, 0, 0, 0 }; // gun 6
+        int[] enemytier = { 0, 1, 2, 3 };
+        int[] isMoving = { 0, 0, 0, 0 };
 
         int ammunition01 = 0, ammunition02 = 0, ammunition03 = 0, ammunition04 = 0, ammunition05 = 0, ammunition06 = 0, ammunitioncurrent=0;
         int projectilecycle01 = 0, projectilecycle02 = 0, projectilecycle03 = 0, projectilecycle04 = 0, projectilecycle05 = 0, projectilecycle06 = 0;
-        int gamelevelflag=0, gamestatus=0, areascreenlock=0;
-        int newgamedifficulty=0, difficultysetting=0, saveselected = 0, save01exist = 0, save02exist = 0, save03exist = 0;
-        int playermoveamount = 0;
-        int weaponmenuedswitch = 0, weaponowned01 = 1, weaponowned02 = 0, weaponowned03 = 0, weaponowned04 = 0, weaponowned05 = 0, weaponowned06 = 0;
+        int gamelevelflag=0, gamestatus=0, areascreenlock=0, tutorialbclicked=0;
+        int newgamedifficulty=0, difficultysetting=0, saveselected = 0, save01exist = 0, save02exist = 0, save03exist = 0, missionselected = 1;
+        int playerMoveamount = 0, playerDamageValue = 5,killCounter=0;
+        int weaponMenuedSwitch = 0, weaponowned01 = 1, weaponowned02 = 0, weaponowned03 = 0, weaponowned04 = 0, weaponowned05 = 0, weaponowned06 = 0;
+ 
         Random RNGmove = new Random();
 
+        // creating array of enemy objects
+        EnemyObject[] enemyinstance = new EnemyObject[200];
 
-        public MainPage()
+    public MainPage()
         {
-            new KeyboardAccelerator { Key = "X" };
+            //new KeyboardAccelerator { Key = "X" };
             InitializeComponent();
         }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -64,7 +77,12 @@ namespace BattleForAzuraTLOV
             //testcontent1();
             //Infinite_RNG_Movement();
             //Update_All_Position_Constant(); // to be activated on or off game start and end 
-            playermoveamount = 20;
+            playerMoveamount = 1;
+
+            for (int i = 0; i < enemyinstance.Length; i++)
+            {
+                enemyinstance[i] = new EnemyObject(0, 0, 10, 5, false);
+            }
         }
         async void setupallgameobjects()
         {
@@ -150,7 +168,7 @@ namespace BattleForAzuraTLOV
             await PlayerIMG.FadeTo(0, 5);
             await PlayerHitBox.FadeTo(0, 5);
             await PlayerCameraBox.FadeTo(0, 5);
-        }
+        } 
         async void hidebackground()
         {
             await BackgroundIMG.FadeTo(0, 5);
@@ -228,7 +246,7 @@ namespace BattleForAzuraTLOV
         }
         async void showplayer()
         {
-            //await PlayerIMG.FadeTo(1, 5);
+            await PlayerIMG.FadeTo(1, 5);
             await PlayerHitBox.FadeTo(1, 5);
             //await PlayerCameraBox.FadeTo(1, 5);
         }
@@ -326,6 +344,7 @@ namespace BattleForAzuraTLOV
             await Musicbutton.TranslateTo(400, -185, 5);
             await Settingsbutton.TranslateTo(400, -140, 5);
             await BattleForAzuraTitle.TranslateTo(-50, 0, 5);
+            await OutOfOrderscreen.TranslateTo(0, -1000, 5);
             await NewGamebutton.RotateTo(1, 5);
             await Continuebutton.RotateTo(1, 5);
             await Trainingbutton.RotateTo(1, 5);
@@ -402,6 +421,23 @@ namespace BattleForAzuraTLOV
             await missionstatsbutton.ScaleTo(0.6, 5);
             await accept04button.ScaleTo(0.6, 5);
             await leave04button.ScaleTo(0.6, 5);
+            await blockadescreen01.TranslateTo(55, (55 - 1000), 5);
+            await blockadescreen02.TranslateTo(290, (55 - 1000), 5);
+            await blockadescreen03.TranslateTo(-255, (55 - 1000), 5);
+            await levelportrait01.TranslateTo(-225, (35 - 1000), 5);
+            await levelportrait02.TranslateTo(55, (55 - 1000), 5);
+            await levelportrait03.TranslateTo(290, (55 - 1000), 5);
+            await levelportrait04.TranslateTo(290, -1055, 5);
+            await blockadescreen01.ScaleTo(0.8, 5);
+            await blockadescreen02.ScaleTo(0.8, 5);
+            await blockadescreen03.ScaleTo(1.1, 5);
+            await levelportrait01.ScaleTo(0.7, 5);
+            await levelportrait02.ScaleTo(0.7, 5);
+            await levelportrait03.ScaleTo(0.7, 5);
+            await levelportrait04.ScaleTo(0.7, 5);
+            await blockadescreen01.FadeTo(0.5, 5);
+            await blockadescreen02.FadeTo(0.5, 5);
+            await blockadescreen03.FadeTo(0, 5);
         }
         async void setupsupershopmenu()
         {
@@ -455,12 +491,11 @@ namespace BattleForAzuraTLOV
         async void tutorialsetup_01()
         {
             await TutorialBox01.TranslateTo(0, -1000, 5);
+            await TutorialBox02.TranslateTo(0, -1000, 5);
             await tutorialdynamictext.TranslateTo(0, -1000, 5);
+            await Tutorialbutton.TranslateTo(0, -1000, 5);
         }
-        private  void Mainpage_Keydown()
-        {
-            
-        }
+
         // button stuff
         private void Move_BindButton_Clicked(object sender, EventArgs e)
         {
@@ -472,8 +507,10 @@ namespace BattleForAzuraTLOV
             }
         }
 
-        private void MoveBTN_Clicked(object sender, EventArgs e)
+        private void MoveBTN_Clicked(object sender, EventArgs e) // while pressed
         {
+            isMoving[0] = 1;
+
             if (gamestatus != 0)
             {
                 this.Resources["ColourOfForwardMoveBTNClicked"] = Colors.Navy;
@@ -481,92 +518,88 @@ namespace BattleForAzuraTLOV
                 Move_player_Hit_Box();
                 Move_player_Camera_Box();
             }
-        }
-        private void Moveobjects_level01()
-        {
-            // for area level 1
-            for (int change = 0; change < 8; change++)
-            {
-                enemyinstancecurpos01y[change] += playermoveamount;
-                enemyinstancecurpos02y[change] += playermoveamount;
-            }
-        }
-        private void Moveobjects_level02()
-        {
-            // for area level 2
-        }
-        async void Move_player()// split the 3 moving seperately so they all move at once together
-        {
-            CurrentPlayerPositionY = CurrentPlayerPositionY - playermoveamount;
 
-            if (CurrentPlayerPositionY <= -220)
+        }
+        private void MoveBTN_UnClicked(object sender, EventArgs e) 
+        {
+            isMoving[0] = 0;
+        }
+        async void Move_player()
+        {
+            while (isMoving[0] == 1)
             {
-                CurrentPlayerPositionY = -219;
+                CurrentPlayerPositionY = CurrentPlayerPositionY - playerMoveamount;
 
-                if (areascreenlock == 0)
+                if (CurrentPlayerPositionY <= -220)
                 {
-                    // updates the positions, to move the world to simulate moving through expanded world
-                    if (gamelevelflag == 1) // the level
-                    {
-                        BackgroundCurrentPositionY = BackgroundCurrentPositionY + playermoveamount;
-                        Moveobjects_level01();
-                    }
-                    else if (gamelevelflag == 2) // the level
-                    {
-                        BackgroundCurrentPositionY = BackgroundCurrentPositionY + playermoveamount;
-                        Moveobjects_level02();
-                    }
+                    CurrentPlayerPositionY = -219;
+
                 }
+                await PlayerIMG.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
             }
-            await PlayerIMG.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 40);
             this.Resources["ColourOfForwardMoveBTNClicked"] = Colors.LightBlue;
         }
-        async void Move_playerLeft()// split the 3 moving seperately so they all move at once together
+        async void Move_playerLeft()
         {
-            CurrentPlayerPositionX = CurrentPlayerPositionX - playermoveamount;
-
-            if (CurrentPlayerPositionX <= -440)
+            while (isMoving[1] == 1)
             {
-                CurrentPlayerPositionX = -439;
+                CurrentPlayerPositionX = CurrentPlayerPositionX - playerMoveamount;
+
+                if (CurrentPlayerPositionX <= -440)
+                {
+                    CurrentPlayerPositionX = -439;
+                }
+                await PlayerIMG.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
             }
-            await PlayerIMG.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 40);
             this.Resources["ColourOfLeftMoveBTNClicked"] = Colors.LightBlue;
         }
-        async void Move_playerRight()// split the 3 moving seperately so they all move at once together
+        async void Move_playerRight()
         {
-            
-            CurrentPlayerPositionX = CurrentPlayerPositionX + playermoveamount;
-
-            if (CurrentPlayerPositionX >= 440)
+            while (isMoving[2] == 1)
             {
-                CurrentPlayerPositionX = 439;
+                CurrentPlayerPositionX = CurrentPlayerPositionX + playerMoveamount;
+
+                if (CurrentPlayerPositionX >= 440)
+                {
+                    CurrentPlayerPositionX = 439;
+                }
+                await PlayerIMG.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
             }
-            await PlayerIMG.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 40);
             this.Resources["ColourOfRightMoveBTNClicked"] = Colors.LightBlue;
         }
-        async void Move_playerBack()// split the 3 moving seperately so they all move at once together
+        async void Move_playerBack()// split the 3 player parts moving seperately so they all move at once together
         {
-            CurrentPlayerPositionY = CurrentPlayerPositionY + playermoveamount;
-
-            if (CurrentPlayerPositionY >= 220)
+            while (isMoving[3] == 1)
             {
-                CurrentPlayerPositionY = 219;
+                CurrentPlayerPositionY = CurrentPlayerPositionY + playerMoveamount;
+
+                if (CurrentPlayerPositionY >= 220)
+                {
+                    CurrentPlayerPositionY = 219;
+                }
+                await PlayerIMG.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
             }
-            await PlayerIMG.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 40);
             this.Resources["ColourOfBackMoveBTNClicked"] = Colors.LightBlue;
         }
         async void Move_player_Hit_Box()
         {
-            //CurrentPlayerPositionY = CurrentPlayerPositionY - 15;
-            await PlayerHitBox.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 40);
+            while (isMoving[0] == 1 || isMoving[1] == 1 || isMoving[2] == 1 || isMoving[3] == 1 )
+            {
+                //CurrentPlayerPositionY = CurrentPlayerPositionY - 15;
+                await PlayerHitBox.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
+            }
         }
         async void Move_player_Camera_Box()
         {
-            //CurrentPlayerPositionY = CurrentPlayerPositionY - 15;
-            await PlayerCameraBox.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 40);
+            while (isMoving[0] == 1 || isMoving[1] == 1 || isMoving[2] == 1 || isMoving[3] == 1)
+            {
+                //CurrentPlayerPositionY = CurrentPlayerPositionY - 15;
+                await PlayerCameraBox.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
+            }
         }
         private void LeftMoveBTN_Clicked(object sender, EventArgs e)
         {
+            isMoving[1] = 1;
             if (gamestatus != 0)
             {
                 this.Resources["ColourOfLeftMoveBTNClicked"] = Colors.Navy;
@@ -575,8 +608,13 @@ namespace BattleForAzuraTLOV
                 Move_player_Camera_Box();
             }
         }
+        private void LeftMoveBTN_UnClicked(object sender, EventArgs e) 
+        {
+            isMoving[1] = 0;
+        }
         private void RightMoveBTN_Clicked(object sender, EventArgs e)
         {
+            isMoving[2] = 1;
             if (gamestatus != 0)
             {
                 this.Resources["ColourOfRightMoveBTNClicked"] = Colors.Navy;
@@ -585,8 +623,13 @@ namespace BattleForAzuraTLOV
                 Move_player_Camera_Box();
             }
         }
+        private void RightMoveBTN_UnClicked(object sender, EventArgs e)
+        {
+            isMoving[2] = 0;
+        }
         private void BackMoveBTN_Clicked(object sender, EventArgs e)
         {
+            isMoving[3] = 1;
             if (gamestatus != 0)
             {
                 this.Resources["ColourOfBackMoveBTNClicked"] = Colors.Navy;
@@ -594,6 +637,10 @@ namespace BattleForAzuraTLOV
                 Move_player_Hit_Box();
                 Move_player_Camera_Box();
             }
+        }
+        private void BackMoveBTN_UnClicked(object sender, EventArgs e)
+        {
+            isMoving[3] = 0;
         }
         async void Infinite_RNG_Movement() // testing purposes of enemy ai
         {
@@ -638,7 +685,7 @@ namespace BattleForAzuraTLOV
         // player attacking
         private void Attacking()
         {
-            if (weaponequipped == 0) // gun 1
+            if (weaponEquipped == 0) // gun 1
             {
                 if (ammunition01 != 0)
                 {
@@ -654,7 +701,7 @@ namespace BattleForAzuraTLOV
 
                 }
             }
-            if (weaponequipped == 1) // gun 2
+            if (weaponEquipped == 1) // gun 2
             {
                 if (ammunition02 != 0)
                 {
@@ -670,7 +717,7 @@ namespace BattleForAzuraTLOV
 
                 }
             }
-            if (weaponequipped == 2) // gun 3
+            if (weaponEquipped == 2) // gun 3
             {
                 if (ammunition03 != 0)
                 {
@@ -686,7 +733,7 @@ namespace BattleForAzuraTLOV
 
                 }
             }
-            if (weaponequipped == 3) // gun 4
+            if (weaponEquipped == 3) // gun 4
             {
                 if (ammunition04 != 0)
                 {
@@ -702,7 +749,7 @@ namespace BattleForAzuraTLOV
 
                 }
             }
-            if (weaponequipped == 4) // gun 5
+            if (weaponEquipped == 4) // gun 5
             {
                 if (ammunition05 != 0)
                 {
@@ -718,7 +765,7 @@ namespace BattleForAzuraTLOV
 
                 }
             }
-            if (weaponequipped == 5) // gun 6
+            if (weaponEquipped == 5) // gun 6
             {
                 if (ammunition06 != 0)
                 {
@@ -741,6 +788,7 @@ namespace BattleForAzuraTLOV
             switch (projectilecycle01)// projectile cylcle == the gun equipped, 1 is for gunequipped ' 0 ' and so on
             {
                 case 1:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[0] = CurrentPlayerPositionX;
@@ -749,8 +797,25 @@ namespace BattleForAzuraTLOV
                     await Projectile01.FadeTo(1, 1);
                     for (int i = 0; i < 100; i++)
                     {
-                        Projectile_collision(0);
-                        if (activeprojectileposition01y[0] >= -390)
+                        for(int j = 0; j < enemyinstance.Length; j++)// hit tracking
+                        {
+                            bool hit1 = enemyinstance[j].ProjectileCollide(activeprojectileposition01x[0], activeprojectileposition01y[0]);
+
+                            if (hit1 == true)
+                            {
+                                int alive1 = enemyinstance[j].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(0);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(j);
+                                }
+                                break;
+                            }
+                        }
+
+                        
+
+                        if (activeprojectileposition01y[0] >= -390)// movement tracking
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
                             activeprojectileposition01y[0] = activeprojectileposition01y[0] - 8;
@@ -768,6 +833,7 @@ namespace BattleForAzuraTLOV
                     await Projectile01.TranslateTo(activeprojectileposition01x[0], activeprojectileposition01y[0], 1);
                     break;
                 case 2:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[1] = CurrentPlayerPositionX;
@@ -776,7 +842,21 @@ namespace BattleForAzuraTLOV
                     await Projectile02.FadeTo(1, 1);
                     for (int h = 0; h < 100; h++)
                     {
-                        Projectile_collision(1);
+                        for (int js = 0; js < enemyinstance.Length; js++)// hit tracking
+                        {
+                            bool hit2 = enemyinstance[js].ProjectileCollide(activeprojectileposition01x[1], activeprojectileposition01y[1]);
+                            if (hit2 == true)
+                            {
+                                int alive1 = enemyinstance[js].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(1);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(js);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[1] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -794,6 +874,7 @@ namespace BattleForAzuraTLOV
                     await Projectile02.TranslateTo(activeprojectileposition01x[1], activeprojectileposition01y[1], 1);
                     break;
                 case 3:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[2] = CurrentPlayerPositionX;
@@ -802,7 +883,21 @@ namespace BattleForAzuraTLOV
                     await Projectile03.FadeTo(1, 1);
                     for (int g = 0; g < 100; g++)
                     {
-                        Projectile_collision(2);
+                        for (int jm = 0; jm < enemyinstance.Length; jm++)// hit tracking
+                        {
+                            bool hit3 = enemyinstance[jm].ProjectileCollide(activeprojectileposition01x[2], activeprojectileposition01y[2]);
+                            if (hit3 == true)
+                            {
+                                int alive1 = enemyinstance[jm].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(2);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jm);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[2] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -814,12 +909,13 @@ namespace BattleForAzuraTLOV
                             
                             break;
                         }
-                    }
+                    }// end move loop
                     await Projectile03.FadeTo(0, 40);
                     activeprojectileposition01x[2] = activeprojectileposition01x[2] + 1000;
                     await Projectile03.TranslateTo(activeprojectileposition01x[2], activeprojectileposition01y[2], 1);
                     break;
                 case 4:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[3] = CurrentPlayerPositionX;
@@ -828,7 +924,22 @@ namespace BattleForAzuraTLOV
                     await Projectile04.FadeTo(1, 1);
                     for (int b = 0; b < 100; b++)
                     {
-                        Projectile_collision(3);
+                        for (int jgh = 0; jgh < enemyinstance.Length; jgh++)// hit tracking
+                        {
+                            bool hit4 = enemyinstance[jgh].ProjectileCollide(activeprojectileposition01x[3], activeprojectileposition01y[3]);
+                            if (hit4 == true)
+                            {
+                                int alive1 = enemyinstance[jgh].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(3);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jgh);
+                                }
+                                break;
+                            }
+
+                        }
+                        
                         if (activeprojectileposition01y[3] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -846,6 +957,7 @@ namespace BattleForAzuraTLOV
                     await Projectile04.TranslateTo(activeprojectileposition01x[3], activeprojectileposition01y[3], 1);
                     break;
                 case 5:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[4] = CurrentPlayerPositionX;
@@ -854,7 +966,21 @@ namespace BattleForAzuraTLOV
                     await Projectile05.FadeTo(1, 1);
                     for (int z = 0; z < 100; z++)
                     {
-                        Projectile_collision(4);
+                        for (int j2 = 0; j2 < enemyinstance.Length; j2++)// hit tracking
+                        {
+                            bool hit5 = enemyinstance[j2].ProjectileCollide(activeprojectileposition01x[4], activeprojectileposition01y[4]);
+                            if (hit5 == true)
+                            {
+                                int alive1 = enemyinstance[j2].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(4);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(j2);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[4] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -872,6 +998,7 @@ namespace BattleForAzuraTLOV
                     await Projectile05.TranslateTo(activeprojectileposition01x[4], activeprojectileposition01y[4], 1);
                     break;
                 case 6:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[5] = CurrentPlayerPositionX;
@@ -880,7 +1007,21 @@ namespace BattleForAzuraTLOV
                     await Projectile06.FadeTo(1, 1);
                     for (int x = 0; x < 100; x++)
                     {
-                        Projectile_collision(5);
+                        for (int jy = 0; jy < enemyinstance.Length; jy++)
+                        {
+                            bool hit6 = enemyinstance[jy].ProjectileCollide(activeprojectileposition01x[5], activeprojectileposition01y[5]);
+                            if (hit6 == true)
+                            {
+                                int alive1 = enemyinstance[jy].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(5);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jy);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[5] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -898,6 +1039,7 @@ namespace BattleForAzuraTLOV
                     await Projectile06.TranslateTo(activeprojectileposition01x[5], activeprojectileposition01y[5], 1);
                     break;
                 case 7:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[6] = CurrentPlayerPositionX;
@@ -906,7 +1048,21 @@ namespace BattleForAzuraTLOV
                     await Projectile07.FadeTo(1, 1);
                     for (int v = 0; v < 100; v++)
                     {
-                        Projectile_collision(6);
+                        for (int jf = 0; jf < enemyinstance.Length; jf++)
+                        {
+                            bool hit7 = enemyinstance[jf].ProjectileCollide(activeprojectileposition01x[6], activeprojectileposition01y[6]);
+                            if (hit7 == true)
+                            {
+                                int alive1 = enemyinstance[jf].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(6);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jf);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[6] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -923,6 +1079,7 @@ namespace BattleForAzuraTLOV
                     await Projectile07.TranslateTo(activeprojectileposition01x[6], activeprojectileposition01y[6], 1);
                     break;
                 case 8:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[7] = CurrentPlayerPositionX;
@@ -931,7 +1088,21 @@ namespace BattleForAzuraTLOV
                     await Projectile08.FadeTo(1, 1);
                     for (int q = 0; q < 100; q++)
                     {
-                        Projectile_collision(7);
+                        for (int jv = 0; jv < enemyinstance.Length; jv++)
+                        {
+                            bool hit8 = enemyinstance[jv].ProjectileCollide(activeprojectileposition01x[7], activeprojectileposition01y[7]);
+                            if (hit8 == true)
+                            {
+                                int alive1 = enemyinstance[jv].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(7);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jv);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[7] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -948,6 +1119,7 @@ namespace BattleForAzuraTLOV
                     await Projectile08.TranslateTo(activeprojectileposition01x[7], activeprojectileposition01y[7], 1);
                     break;
                 case 9:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[8] = CurrentPlayerPositionX;
@@ -956,7 +1128,21 @@ namespace BattleForAzuraTLOV
                     await Projectile09.FadeTo(1, 1);
                     for (int t = 0; t < 100; t++)
                     {
-                        Projectile_collision(8);
+                        for (int jt = 0; jt < enemyinstance.Length; jt++)
+                        {
+                            bool hit9 = enemyinstance[jt].ProjectileCollide(activeprojectileposition01x[8], activeprojectileposition01y[8]);
+                            if (hit9 == true)
+                            {
+                                int alive1 = enemyinstance[jt].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(8);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jt);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[8] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -973,6 +1159,7 @@ namespace BattleForAzuraTLOV
                     await Projectile09.TranslateTo(activeprojectileposition01x[8], activeprojectileposition01y[8], 1);
                     break;
                 case 10:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[9] = CurrentPlayerPositionX;
@@ -981,7 +1168,21 @@ namespace BattleForAzuraTLOV
                     await Projectile10.FadeTo(1, 1);
                     for (int j = 0; j < 100; j++)
                     {
-                        Projectile_collision(9);
+                        for (int jk = 0; jk < enemyinstance.Length; jk++)
+                        {
+                            bool hit10 = enemyinstance[jk].ProjectileCollide(activeprojectileposition01x[9], activeprojectileposition01y[9]);
+                            if (hit10 == true)
+                            {
+                                int alive1 = enemyinstance[jk].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(9);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jk);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[9] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -998,6 +1199,7 @@ namespace BattleForAzuraTLOV
                     await Projectile10.TranslateTo(activeprojectileposition01x[9], activeprojectileposition01y[9], 1);
                     break;
                 case 11:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[10] = CurrentPlayerPositionX;
@@ -1006,7 +1208,21 @@ namespace BattleForAzuraTLOV
                     await Projectile11.FadeTo(1, 1);
                     for (int k = 0; k < 100; k++)
                     {
-                        Projectile_collision(10);
+                        for (int jl = 0; jl < enemyinstance.Length; jl++)
+                        {
+                            bool hit11 = enemyinstance[jl].ProjectileCollide(activeprojectileposition01x[10], activeprojectileposition01y[10]);
+                            if (hit11 == true)
+                            {
+                                int alive1 = enemyinstance[jl].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(10);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jl);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[10] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -1023,6 +1239,7 @@ namespace BattleForAzuraTLOV
                     await Projectile11.TranslateTo(activeprojectileposition01x[10], activeprojectileposition01y[10], 1);
                     break;
                 case 12:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[11] = CurrentPlayerPositionX;
@@ -1031,7 +1248,21 @@ namespace BattleForAzuraTLOV
                     await Projectile12.FadeTo(1, 1);
                     for (int ha = 0; ha < 100; ha++)
                     {
-                        Projectile_collision(11);
+                        for (int jp = 0; jp < enemyinstance.Length; jp++)
+                        {
+                            bool hit12 = enemyinstance[jp].ProjectileCollide(activeprojectileposition01x[11], activeprojectileposition01y[11]);
+                            if (hit12 == true)
+                            {
+                                int alive1 = enemyinstance[jp].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(11);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jp);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[11] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -1048,6 +1279,7 @@ namespace BattleForAzuraTLOV
                     await Projectile02.TranslateTo(activeprojectileposition01x[11], activeprojectileposition01y[11], 1);
                     break;
                 case 13:
+                   
                     --ammunition01;
 
                     activeprojectileposition01x[12] = CurrentPlayerPositionX;
@@ -1056,7 +1288,21 @@ namespace BattleForAzuraTLOV
                     await Projectile13.FadeTo(1, 1);
                     for (int ga = 0; ga < 100; ga++)
                     {
-                        Projectile_collision(12);
+                        for (int jq = 0; jq < enemyinstance.Length; jq++)
+                        {
+                            bool hit13 = enemyinstance[jq].ProjectileCollide(activeprojectileposition01x[12], activeprojectileposition01y[12]);
+                            if (hit13 == true)
+                            {
+                                int alive1 = enemyinstance[jq].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(12);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jq);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[12] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -1073,6 +1319,7 @@ namespace BattleForAzuraTLOV
                     await Projectile13.TranslateTo(activeprojectileposition01x[12], activeprojectileposition01y[12], 1);
                     break;
                 case 14:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[13] = CurrentPlayerPositionX;
@@ -1081,7 +1328,21 @@ namespace BattleForAzuraTLOV
                     await Projectile14.FadeTo(1, 1);
                     for (int ba = 0; ba < 100; ba++)
                     {
-                        Projectile_collision(13);
+                        for (int jr = 0; jr < enemyinstance.Length; jr++)
+                        {
+                            bool hit14 = enemyinstance[jr].ProjectileCollide(activeprojectileposition01x[13], activeprojectileposition01y[13]);
+                            if (hit14 == true)
+                            {
+                                int alive1 = enemyinstance[jr].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(13);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jr);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[13] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -1098,6 +1359,7 @@ namespace BattleForAzuraTLOV
                     await Projectile14.TranslateTo(activeprojectileposition01x[13], activeprojectileposition01y[13], 1);
                     break;
                 case 15:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[14] = CurrentPlayerPositionX;
@@ -1106,7 +1368,21 @@ namespace BattleForAzuraTLOV
                     await Projectile15.FadeTo(1, 1);
                     for (int za = 0; za < 100; za++)
                     {
-                        Projectile_collision(14);
+                        for (int ju = 0; ju < enemyinstance.Length; ju++)
+                        {
+                            bool hit15 = enemyinstance[ju].ProjectileCollide(activeprojectileposition01x[14], activeprojectileposition01y[14]);
+                            if (hit15 == true)
+                            {
+                                int alive1 = enemyinstance[ju].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(14);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(ju);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[14] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -1123,6 +1399,7 @@ namespace BattleForAzuraTLOV
                     await Projectile15.TranslateTo(activeprojectileposition01x[14], activeprojectileposition01y[14], 1);
                     break;
                 case 16:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[15] = CurrentPlayerPositionX;
@@ -1131,7 +1408,21 @@ namespace BattleForAzuraTLOV
                     await Projectile16.FadeTo(1, 1);
                     for (int x = 0; x < 100; x++)
                     {
-                        Projectile_collision(15);
+                        for (int zj = 0; zj < enemyinstance.Length; zj++)
+                        {
+                            bool hit16 = enemyinstance[zj].ProjectileCollide(activeprojectileposition01x[15], activeprojectileposition01y[15]);
+                            if (hit16 == true)
+                            {
+                                int alive1 = enemyinstance[zj].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(15);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(zj);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[15] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -1148,6 +1439,7 @@ namespace BattleForAzuraTLOV
                     await Projectile16.TranslateTo(activeprojectileposition01x[15], activeprojectileposition01y[15], 1);
                     break;
                 case 17:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[16] = CurrentPlayerPositionX;
@@ -1156,7 +1448,21 @@ namespace BattleForAzuraTLOV
                     await Projectile17.FadeTo(1, 1);
                     for (int v = 0; v < 100; v++)
                     {
-                        Projectile_collision(16);
+                        for (int nj = 0; nj < enemyinstance.Length; nj++)
+                        {
+                            bool hit17 = enemyinstance[nj].ProjectileCollide(activeprojectileposition01x[16], activeprojectileposition01y[16]);
+                            if (hit17 == true)
+                            {
+                                int alive1 = enemyinstance[nj].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(16);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(nj);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[16] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -1173,6 +1479,7 @@ namespace BattleForAzuraTLOV
                     await Projectile17.TranslateTo(activeprojectileposition01x[16], activeprojectileposition01y[16], 1);
                     break;
                 case 18:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[17] = CurrentPlayerPositionX;
@@ -1181,7 +1488,21 @@ namespace BattleForAzuraTLOV
                     await Projectile18.FadeTo(1, 1);
                     for (int q = 0; q < 100; q++)
                     {
-                        Projectile_collision(17);
+                        for (int mj = 0; mj < enemyinstance.Length; mj++)
+                        {
+                            bool hit18 = enemyinstance[mj].ProjectileCollide(activeprojectileposition01x[17], activeprojectileposition01y[17]);
+                            if (hit18 == true)
+                            {
+                                int alive1 = enemyinstance[mj].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(17);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(mj);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[17] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -1198,6 +1519,7 @@ namespace BattleForAzuraTLOV
                     await Projectile18.TranslateTo(activeprojectileposition01x[17], activeprojectileposition01y[17], 1);
                     break;
                 case 19:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[18] = CurrentPlayerPositionX;
@@ -1206,7 +1528,21 @@ namespace BattleForAzuraTLOV
                     await Projectile19.FadeTo(1, 1);
                     for (int t = 0; t < 100; t++)
                     {
-                        Projectile_collision(18);
+                        for (int jw = 0; jw < enemyinstance.Length; jw++)
+                        {
+                            bool hit19 = enemyinstance[jw].ProjectileCollide(activeprojectileposition01x[18], activeprojectileposition01y[18]);
+                            if (hit19 == true)
+                            {
+                                int alive1 = enemyinstance[jw].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(18);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jw);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[18] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -1223,6 +1559,7 @@ namespace BattleForAzuraTLOV
                     await Projectile19.TranslateTo(activeprojectileposition01x[18], activeprojectileposition01y[18], 1);
                     break;
                 case 20:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[19] = CurrentPlayerPositionX;
@@ -1231,7 +1568,21 @@ namespace BattleForAzuraTLOV
                     await Projectile20.FadeTo(1, 1);
                     for (int j = 0; j < 100; j++)
                     {
-                        Projectile_collision(19);
+                        for (int jj = 0; jj < enemyinstance.Length; jj++)
+                        {
+                            bool hit20 = enemyinstance[jj].ProjectileCollide(activeprojectileposition01x[19], activeprojectileposition01y[19]);
+                            if (hit20 == true)
+                            {
+                                int alive1 = enemyinstance[jj].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(19);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jj);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[19] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -1248,6 +1599,7 @@ namespace BattleForAzuraTLOV
                     await Projectile20.TranslateTo(activeprojectileposition01x[19], activeprojectileposition01y[19], 1);
                     break;
                 case 21:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[20] = CurrentPlayerPositionX;
@@ -1256,7 +1608,21 @@ namespace BattleForAzuraTLOV
                     await Projectile21.FadeTo(1, 1);
                     for (int k = 0; k < 100; k++)
                     {
-                        Projectile_collision(20);
+                        for (int jb = 0; jb < enemyinstance.Length; jb++)
+                        {
+                            bool hit21 = enemyinstance[jb].ProjectileCollide(activeprojectileposition01x[20], activeprojectileposition01y[20]);
+                            if (hit21 == true)
+                            {
+                                int alive1 = enemyinstance[jb].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(20);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jb);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[20] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -1273,6 +1639,7 @@ namespace BattleForAzuraTLOV
                     await Projectile21.TranslateTo(activeprojectileposition01x[20], activeprojectileposition01y[20], 1);
                     break;
                 case 22:
+                    
                     --ammunition01;
 
                     activeprojectileposition01x[21] = CurrentPlayerPositionX;
@@ -1281,7 +1648,21 @@ namespace BattleForAzuraTLOV
                     await Projectile22.FadeTo(1, 1);
                     for (int k = 0; k < 100; k++)
                     {
-                        Projectile_collision(21);
+                        for (int jg = 0; jg < enemyinstance.Length; jg++)
+                        {
+                            bool hit22 = enemyinstance[jg].ProjectileCollide(activeprojectileposition01x[21], activeprojectileposition01y[21]);
+                            if (hit22 == true)
+                            {
+                                int alive1 = enemyinstance[jg].TakeDamage(playerDamageValue);
+                                Remove_Projectile_cur(21);
+                                if (alive1 == 0)
+                                {
+                                    EnemyDying(jg);
+                                }
+                                break;
+                            }
+                        }
+                        
                         if (activeprojectileposition01y[21] >= -390)
                         {
                             //activeprojectilepositionX= activeprojectilepositionX + 5;
@@ -1349,7 +1730,7 @@ namespace BattleForAzuraTLOV
                 break;
             }
         }
-        private void GameMenuBTN_Clicked(object sender, EventArgs e)
+        private void GameMenuBTN_Clicked(object sender, EventArgs e)// ( does not pause the game )
         {
             if (gamestatus != 0)
             {
@@ -1361,16 +1742,16 @@ namespace BattleForAzuraTLOV
             //Weapon_menu_Open();
             if (gamestatus != 0)
             {
-                if (weaponmenuedswitch == 0)
+                if (weaponMenuedSwitch == 0)
                 {
                     Weapon_menu_Open();
-                    weaponmenuedswitch = 1;
+                    weaponMenuedSwitch = 1;
                     this.Resources["ColourOfWeaponSwitchBTNClicked"] = Colors.DarkGoldenrod;
                 }
-                else if (weaponmenuedswitch == 1)
+                else if (weaponMenuedSwitch == 1)
                 {
                     Weapon_menu_Close();
-                    weaponmenuedswitch = 0;
+                    weaponMenuedSwitch = 0;
                     this.Resources["ColourOfWeaponSwitchBTNClicked"] = Colors.Yellow;
                 }
             }
@@ -1378,15 +1759,15 @@ namespace BattleForAzuraTLOV
         }
         private void Weapon1BTN_Clicked(object sender, EventArgs e)
         {
-            if (weaponequipped != 0)
+            if (weaponEquipped != 0)
             {
                 if(weaponowned01 == 1)
                 {
-                    weaponequipped = 0;
+                    weaponEquipped = 0;
                 }
                 this.Resources["ColourOfWeapon1BTNClicked"] = Colors.DarkSlateGrey;
             }
-            else if (weaponequipped == 0)
+            else if (weaponEquipped == 0)
             {
                 this.Resources["ColourOfWeapon1BTNClicked"] = Colors.DarkSlateBlue;
             }
@@ -1394,15 +1775,15 @@ namespace BattleForAzuraTLOV
         }
         private void Weapon2BTN_Clicked(object sender, EventArgs e)
         {
-            if (weaponequipped != 1)
+            if (weaponEquipped != 1)
             {
                 if (weaponowned02 == 1)
                 {
-                    weaponequipped = 1;
+                    weaponEquipped = 1;
                 }
                 this.Resources["ColourOfWeapon2BTNClicked"] = Colors.DarkSlateGrey;
             }
-            else if (weaponequipped == 1)
+            else if (weaponEquipped == 1)
             {
                 this.Resources["ColourOfWeapon2BTNClicked"] = Colors.DarkSlateBlue;
             }
@@ -1410,15 +1791,15 @@ namespace BattleForAzuraTLOV
         }
         private void Weapon3BTN_Clicked(object sender, EventArgs e)
         {
-            if (weaponequipped != 2)
+            if (weaponEquipped != 2)
             {
                 if (weaponowned03 == 1)
                 {
-                    weaponequipped = 2;
+                    weaponEquipped = 2;
                 }
                 this.Resources["ColourOfWeapon3BTNClicked"] = Colors.DarkSlateGrey;
             }
-            else if (weaponequipped == 2)
+            else if (weaponEquipped == 2)
             {
                 this.Resources["ColourOfWeapon3BTNClicked"] = Colors.DarkSlateBlue;
             }
@@ -1426,15 +1807,15 @@ namespace BattleForAzuraTLOV
         }
         private void Weapon4BTN_Clicked(object sender, EventArgs e)
         {
-            if (weaponequipped != 3)
+            if (weaponEquipped != 3)
             {
                 if (weaponowned04 == 1)
                 {
-                    weaponequipped = 3;
+                    weaponEquipped = 3;
                 }
                 this.Resources["ColourOfWeapon4BTNClicked"] = Colors.DarkSlateGrey;
             }
-            else if (weaponequipped == 3)
+            else if (weaponEquipped == 3)
             {
                 this.Resources["ColourOfWeapon4BTNClicked"] = Colors.DarkSlateBlue;
             }
@@ -1442,15 +1823,15 @@ namespace BattleForAzuraTLOV
         }
         private void Weapon5BTN_Clicked(object sender, EventArgs e)
         {
-            if (weaponequipped != 4)
+            if (weaponEquipped != 4)
             {
                 if (weaponowned05 == 1)
                 {
-                    weaponequipped = 4;
+                    weaponEquipped = 4;
                 }
                 this.Resources["ColourOfWeapon5BTNClicked"] = Colors.DarkSlateGrey;
             }
-            else if (weaponequipped == 4)
+            else if (weaponEquipped == 4)
             {
                 this.Resources["ColourOfWeapon5BTNClicked"] = Colors.DarkSlateBlue;
             }
@@ -1458,15 +1839,15 @@ namespace BattleForAzuraTLOV
         }
         private void Weapon6BTN_Clicked(object sender, EventArgs e)
         {
-            if (weaponequipped != 5)
+            if (weaponEquipped != 5)
             {
                 if (weaponowned06 == 1)
                 {
-                    weaponequipped = 5;
+                    weaponEquipped = 5;
                 }
                 this.Resources["ColourOfWeapon6BTNClicked"] = Colors.DarkSlateGrey;
             }
-            else if (weaponequipped == 5)
+            else if (weaponEquipped == 5)
             {
                 this.Resources["ColourOfWeapon6BTNClicked"] = Colors.DarkSlateBlue;
             }
@@ -1492,103 +1873,9 @@ namespace BattleForAzuraTLOV
         }
         // player to enemy collision
 
-        // enemy collission pos constant
-        async void enemyinstance_collision01() // ei 1 - 8
-        {
-            while (gamestatus !=0)
-            {
-                await Task.Delay(50);
-                int changel0 = 0, changer1 = 1, changepos = 0;
-                // 0 = botleft, 1 = botright ei1 x's / same for y's (there is no need for top-down collissions) 
-                for (int i = 0; i < 8; i++)
-                {
-                    enemyinstancehitbox01x[changel0] = (enemyinstancecurpos01x[changepos] - 20);
-                    enemyinstancehitbox01x[changer1] = (enemyinstancecurpos01x[changepos] + 20);
+        // enemy + projectile collission will be maintained by enemy object class
 
-                    enemyinstancehitbox01y[changel0] = (enemyinstancecurpos01y[changepos] + 20);
-                    enemyinstancehitbox01y[changer1] = (enemyinstancecurpos01y[changepos] + 20);
-
-                    changel0 = changel0 + 2;
-                    changer1 = changer1 + 2;
-                    changepos++;
-
-                }
-            }
-            
-        }
-       
-        // projectile collision
-        async void Projectile_collision(int imputprojectile)
-        {
-            int enemyright=1,enemyleft=0,projectile=0,enemyy=0;
-            // x within xleft collide parametre corner / x within xright collide parametre corner / the y within y parametre
-
-
-            // up to ei 1-8
-            for (int ti = 0; ti < 8; ti++) // cycle through enemy
-            {
-                if (activeprojectileposition01y[imputprojectile] == enemyinstancehitbox01y[enemyy])
-                {
-
-                    if (activeprojectileposition01x[imputprojectile] >= enemyinstancehitbox01x[enemyleft] && activeprojectileposition01x[imputprojectile] <= enemyinstancehitbox01x[enemyright])
-                    {
-                        // difficulty dependant  
-                        //--> easy / normal
-                        if (enemyleft == 0)
-                        {
-                            ei1deathanim();
-                            Remove_Projectile_cur(imputprojectile);
-                        }
-                        if (enemyleft == 2)
-                        {
-                            ei2deathanim();
-                            Remove_Projectile_cur(imputprojectile);
-                        }
-                        if (enemyleft == 4)
-                        {
-                            ei3deathanim();
-                            Remove_Projectile_cur(imputprojectile);
-                        }
-                        if (enemyleft == 6)
-                        {
-                            ei4deathanim();
-                            Remove_Projectile_cur(imputprojectile);
-                        }
-                        if (enemyleft == 8)
-                        {
-                            ei5deathanim();
-                            Remove_Projectile_cur(imputprojectile);
-                        }
-                        if (enemyleft == 10)
-                        {
-                            ei6deathanim();
-                            Remove_Projectile_cur(imputprojectile);
-                        }
-                        if (enemyleft == 12)
-                        {
-                            ei7deathanim();
-                            Remove_Projectile_cur(imputprojectile);
-                        }
-                        if (enemyleft == 14)
-                        {
-                            ei8deathanim();
-                            Remove_Projectile_cur(imputprojectile);
-                        }
-                        // up to ei 9-16
-                        if (activeprojectileposition01x[projectile] >= enemyinstancehitbox02x[enemyleft] && activeprojectileposition01x[projectile] <= enemyinstancehitbox02x[enemyright] && activeprojectileposition01x[projectile] == enemyinstancehitbox02y[enemyy])
-                        {
-                            // ei 9 - 16 not added yet
-                        }
-
-                        //--> hard / very hard diff
-
-                        enemyright += 2;
-                        enemyleft += 2;
-                        enemyy++;
-                    }// x
-                }// y
-            }// for
-        }// end pcm
+        
         // resets object positions
         async void Reset_All_Enemy_Position()
         {
@@ -1848,14 +2135,314 @@ namespace BattleForAzuraTLOV
             this.Resources["ColourOfVeryHardBTNClicked"] = Colors.White;
             newgamedifficulty = 4;
         }
-        private void PrevMissBTN_Clicked(object sender, EventArgs e)
+        private void PrevMissBTN_Clicked(object sender, EventArgs e)// pos 0: (-450, 35), pos 1: (-225, 35),pos 2: (50, 55),pos 3: (290, 55), scale pos 1: (1.2), pos 2: (0.7)
         {
+            if (missionselected == 1) 
+            {
+                // do nothing
+                missionselected = 1;
+            }
+            else if (missionselected == 2) 
+            {
+                Previousmission1();
+                missionselected = 1;
+                Hideblock03();
+            }
+            else if (missionselected == 3) 
+            {
+                Previousmission2();
+                missionselected = 2;
+            }
+            else if (missionselected == 4) 
+            {
+                Previousmission3();
+                missionselected = 3;
+            }
+        }
+        async void Hideblock03()
+        {
+            await blockadescreen03.FadeTo(0, 200);
 
+        }
+        private void Previousmission1()
+        {
+            Previous01();
+            Previous02();
+            Previous03();
+            Previous04();
+            Previous05();
+            Previous06();
+            Previous07();
+        }
+        async void Previous01()
+        {
+            await levelportrait01.TranslateTo(-225, 35, 200);
+
+        }
+        async void Previous02()
+        {
+            await levelportrait02.TranslateTo(50, 55, 200);
+
+        }
+        async void Previous03()
+        {
+            await levelportrait03.TranslateTo(290, 55, 200);
+
+        }
+        async void Previous04()
+        {
+            await levelportrait04.TranslateTo(290, 55, 200);
+        }
+        async void Previous05()
+        {
+            await levelportrait01.ScaleTo(1.2, 200);
+        }
+        async void Previous06()
+        {
+            await levelportrait01.FadeTo(1, 200);
+        }
+        async void Previous07()
+        {
+            await levelportrait02.ScaleTo(0.7, 200);
+        }
+        private void Previousmission2()
+        {
+            Previous08();
+            Previous09();
+            Previous10();
+            Previous11();
+            Previous12();
+            Previous13();
+            Previous14();
+        }
+        async void Previous08()
+        {
+            await levelportrait01.TranslateTo(-450, 55, 200);
+
+        }
+        async void Previous09()
+        {
+            await levelportrait02.TranslateTo(-225, 35, 200);
+
+        }
+        async void Previous10()
+        {
+            await levelportrait03.TranslateTo(50, 55, 200);
+
+        }
+        async void Previous11()
+        {
+            await levelportrait04.TranslateTo(290, 55, 200);
+        }
+        async void Previous12()
+        {
+            await levelportrait02.ScaleTo(1.2, 200);
+        }
+        async void Previous13()
+        {
+            await levelportrait02.FadeTo(1, 200);
+        }
+        async void Previous14()
+        {
+            await levelportrait03.ScaleTo(0.7, 200);
+        }
+        private void Previousmission3()
+        {
+            Previous15();
+            Previous16();
+            Previous17();
+            Previous18();
+            Previous19();
+            Previous20();
+            Previous21();
+        }
+        async void Previous15()
+        {
+            await levelportrait01.TranslateTo(-450, 55, 200);
+
+        }
+        async void Previous16()
+        {
+            await levelportrait02.TranslateTo(-450, 55, 200);
+
+        }
+        async void Previous17()
+        {
+            await levelportrait03.TranslateTo(-225, 35, 200);
+
+        }
+        async void Previous18()
+        {
+            await levelportrait04.TranslateTo(50, 55, 200);
+        }
+        async void Previous19()
+        {
+            await levelportrait03.ScaleTo(1.2, 200);
+        }
+        async void Previous20()
+        {
+            await levelportrait03.FadeTo(1, 200);
+        }
+        async void Previous21()
+        {
+            await levelportrait04.ScaleTo(0.7, 200);
         }
         private void NextMissBTN_Clicked(object sender, EventArgs e)
         {
+            if (missionselected == 1)
+            {
+                NextMission1();
+                missionselected = 2;
+                Showblock03();
+            }
+            else if (missionselected == 2)
+            {
+                NextMission2();
+                missionselected = 3;
+                Showblock03();
+            }
+            else if (missionselected == 3)
+            {
+                NextMission3();
+                missionselected = 4;
+                Showblock03();
+            }
+            else if (missionselected == 4)
+            {
+                // do nothing
+                missionselected = 4;
+            }
+        }
+        async void Showblock03()
+        {
+            await blockadescreen03.FadeTo(0.5, 200);
 
         }
+        private void NextMission1()
+        {
+            Next01();
+            Next02();
+            Next03();
+            Next04();
+            Next05();
+            Next06();
+            Next07();
+        }
+
+        async void Next01()
+        {
+            await levelportrait01.TranslateTo(-450, 55, 200);
+           
+        }
+        async void Next02()
+        {
+            await levelportrait02.TranslateTo(-225, 35, 200);
+           
+        }
+        async void Next03()
+        {
+            await levelportrait03.TranslateTo(50, 55, 200);
+            
+        }
+        async void Next04()
+        {
+            await levelportrait04.TranslateTo(290, 55, 200);
+        }
+        async void Next05()
+        {
+            await levelportrait01.ScaleTo(0.2, 200);
+        }
+        async void Next06()
+        {
+            await levelportrait01.FadeTo(0, 200);
+        }
+        async void Next07()
+        {
+            await levelportrait02.ScaleTo(1.2, 200);
+        }
+        private void NextMission2()
+        {
+            Next08();
+            Next09();
+            Next10();
+            Next11();
+            Next12();
+            Next13();
+            Next14();
+        }
+        async void Next08()
+        {
+            await levelportrait01.TranslateTo(-450, 55, 200);
+
+        }
+        async void Next09()
+        {
+            await levelportrait02.TranslateTo(-450, 55, 200);
+
+        }
+        async void Next10()
+        {
+            await levelportrait03.TranslateTo(-225, 35, 200);
+
+        }
+        async void Next11()
+        {
+            await levelportrait04.TranslateTo(50, 55, 200);
+        }
+        async void Next12()
+        {
+            await levelportrait02.ScaleTo(0.2, 200);
+        }
+        async void Next13()
+        {
+            await levelportrait02.FadeTo(0, 200);
+        }
+        async void Next14()
+        {
+            await levelportrait03.ScaleTo(1.2, 200);
+        }
+        private void NextMission3()
+        {
+            Next15();
+            Next16();
+            Next17();
+            Next18();
+            Next19();
+            Next20();
+            Next21();
+        }
+        async void Next15()
+        {
+            await levelportrait01.TranslateTo(-450, 55, 200);
+
+        }
+        async void Next16()
+        {
+            await levelportrait02.TranslateTo(-450, 55, 200);
+
+        }
+        async void Next17()
+        {
+            await levelportrait03.TranslateTo(-450, 55, 200);
+
+        }
+        async void Next18()
+        {
+            await levelportrait04.TranslateTo(-225, 35, 200);
+        }
+        async void Next19()
+        {
+            await levelportrait03.ScaleTo(0.2, 200);
+        }
+        async void Next20()
+        {
+            await levelportrait03.FadeTo(0, 200);
+        }
+        async void Next21()
+        {
+            await levelportrait04.ScaleTo(1.2, 200);
+        }
+
         private void MissStatsBTN_Clicked(object sender, EventArgs e)
         {
 
@@ -1916,7 +2503,7 @@ namespace BattleForAzuraTLOV
             }
             difficultysetting = newgamedifficulty;
             gamelevelflag = 1;
-            weaponequipped = 0;
+            weaponEquipped = 0;
             
         }
         private void MainMenu_Exit()
@@ -1933,6 +2520,7 @@ namespace BattleForAzuraTLOV
             LevelStatisticsMenuRetreatAnim();
             ResetButtonColours();
             ResetAll_Button_States_Anim();
+            Reset_missions_states();
         }
         private void Accept02BTN_Clicked(object sender, EventArgs e)
         {
@@ -2019,6 +2607,7 @@ namespace BattleForAzuraTLOV
             LevelStatisticsMenuRetreatAnim();
             ResetButtonColours();
             ResetAll_Button_States_Anim();
+            Reset_missions_states();
             newgamedifficulty = 0;
         }
         private void ResetButtonColours()
@@ -2045,14 +2634,93 @@ namespace BattleForAzuraTLOV
             // miss
 
         }
-
+        private void Reset_missions_states()
+        {
+            Resetmission01();
+            missionselected = 1;
+        }
+        async void Resetmission01()
+        {
+            await blockadescreen01.ScaleTo(0.8, 5);
+            await blockadescreen02.ScaleTo(0.8, 5);
+            await blockadescreen03.FadeTo(0, 5);
+            await levelportrait01.ScaleTo(0.7, 5);
+            await levelportrait02.ScaleTo(0.7, 5);
+            await levelportrait03.ScaleTo(0.7, 5);
+            await levelportrait04.ScaleTo(0.7, 5);
+            await blockadescreen01.FadeTo(0.5, 5);
+            await blockadescreen02.FadeTo(0.5, 5);
+            await levelportrait01.FadeTo(1, 5);
+            await levelportrait02.FadeTo(1, 5);
+            await levelportrait03.FadeTo(1, 5);
+            await levelportrait04.FadeTo(1, 5);
+        }
         // menu animations
         // tutorial stuff
+        private void TutorialBTN_Clicked(object sender, EventArgs e)
+        {
+            tutorialbclicked++;
+            if (tutorialbclicked == 1) 
+            {
+                tutorialdynamictext.Text = $"Your Goal is to get to \nthe end of the map. ";
+            }
+            if (tutorialbclicked == 2)
+            {
+                tutorialdynamictext.Text = $"Kill the area boss \nat the end of the map. ";
+            }
+            if (tutorialbclicked == 3)
+            {
+                tutorialdynamictext.Text = $"The map will move by itself \n\nGood Luck, Walter. ";
+            }
+            if (tutorialbclicked == 4)
+            {
+                Tutorial_dectivate05();
+                Tutorial_dectivate06();
+            }
+            if (tutorialbclicked == 5) 
+            {
+                Tutorial_dectivate01();
+                Tutorial_dectivate02();
+                Tutorial_dectivate03();
+                Tutorial_dectivate04();
+            }
+           
+        }
+        async void Tutorial_dectivate01()
+        {
+            await TutorialBox01.TranslateTo(1200, 100, 500);
+            
+        }
+        async void Tutorial_dectivate02()
+        {
+            await TutorialBox02.TranslateTo(1000, 0, 500);
+            
+        }
+        async void Tutorial_dectivate03()
+        {
+            await tutorialdynamictext.TranslateTo(1200, 100, 500);
+            
+        }
+        async void Tutorial_dectivate04()
+        {
+            await Tutorialbutton.TranslateTo(1000, 160, 500);
+        }
+        async void Tutorial_dectivate05()
+        {
+            await TutorialBox01.FadeTo(0, 200);
+        }
+        async void Tutorial_dectivate06()
+        {
+            await tutorialdynamictext.FadeTo(0, 200);
+        }
         async void Tutorial_activate()
         {
+            tutorialbclicked = 0;
             await TutorialBox01.TranslateTo(200, 100, 5);
+            await TutorialBox02.TranslateTo(0, 0, 5);
             await tutorialdynamictext.TranslateTo(200, 100, 5);
-            tutorialdynamictext.Text = $"PlaceHolder Text 2";
+            await Tutorialbutton.TranslateTo(0, 160, 5);
+            tutorialdynamictext.Text = $"Welcome to Battle For Azura. ";
         }
         // game menus
         private void Weapon_menu_Open()
@@ -2702,6 +3370,13 @@ namespace BattleForAzuraTLOV
             SeperatedMenuRetreat29();
             SeperatedMenuRetreat30();
             SeperatedMenuRetreat31();
+            SeperatedMenuRetreat37();
+            SeperatedMenuRetreat38();
+            SeperatedMenuRetreat39();
+            SeperatedMenuRetreat40();
+            SeperatedMenuRetreat41();
+            SeperatedMenuRetreat42();
+            SeperatedMenuRetreat43();
         }
         async void SeperatedMenuRetreat26()
         {
@@ -2732,6 +3407,40 @@ namespace BattleForAzuraTLOV
         async void SeperatedMenuRetreat31()
         {
             await MissionScreen01.TranslateTo(0, -1000, 500);
+            
+        }
+        async void SeperatedMenuRetreat37()
+        {
+            await blockadescreen01.TranslateTo(50, (55 - 1000), 500);
+            
+        }
+        async void SeperatedMenuRetreat38()
+        {
+            await blockadescreen02.TranslateTo(290, (55 - 1000), 500);
+            
+        }
+        async void SeperatedMenuRetreat39()
+        {
+            await levelportrait01.TranslateTo(-225, (35 - 1000), 500);
+            
+        }
+        async void SeperatedMenuRetreat40()
+        {
+            await levelportrait02.TranslateTo(55, (55 - 1000), 500);
+            
+        }
+        async void SeperatedMenuRetreat41()
+        {
+            await levelportrait03.TranslateTo(290, (55 - 1000), 500);
+            
+        }
+        async void SeperatedMenuRetreat42()
+        {
+            await levelportrait04.TranslateTo(290, -1055, 500);
+        }
+        async void SeperatedMenuRetreat43()
+        {
+            await blockadescreen03.TranslateTo(-225, -1035, 500);
         }
         private void MissionMenuReturnAnim()
         {
@@ -2741,6 +3450,14 @@ namespace BattleForAzuraTLOV
             SeperatedMenuReturn29();
             SeperatedMenuReturn30();
             SeperatedMenuReturn31();
+            SeperatedMenuReturn37();
+            SeperatedMenuReturn38();
+            SeperatedMenuReturn39();
+            SeperatedMenuReturn40();
+            SeperatedMenuReturn41();
+            SeperatedMenuReturn42();
+            SeperatedMenuReturn42_1();
+            SeperatedMenuReturn43();
         }
         async void SeperatedMenuReturn26()
         {
@@ -2769,6 +3486,42 @@ namespace BattleForAzuraTLOV
         async void SeperatedMenuReturn31()
         {
             await MissionScreen01.TranslateTo(0, 0, 500);
+        }
+        async void SeperatedMenuReturn37()
+        {
+            await blockadescreen01.TranslateTo(50, 55, 500);
+        }
+        async void SeperatedMenuReturn38()
+        {
+            await blockadescreen02.TranslateTo(290, 55, 500);
+
+        }
+        async void SeperatedMenuReturn39()// pos 1: (-225, 35),pos 2: (50, 55),pos 3: (290, 55)
+        {
+            await levelportrait01.TranslateTo(-225, 35, 500);
+
+        }
+        async void SeperatedMenuReturn40()
+        {
+            await levelportrait02.TranslateTo(50, 55, 500);
+
+        }
+        async void SeperatedMenuReturn41()
+        {
+            await levelportrait03.TranslateTo(290, 55, 500);
+
+        }
+        async void SeperatedMenuReturn42()
+        {
+            await levelportrait04.TranslateTo(290, 55, 500);
+        }
+        async void SeperatedMenuReturn42_1()
+        {
+            await levelportrait01.ScaleTo(1.2, 1);
+        }
+        async void SeperatedMenuReturn43()
+        {
+            await blockadescreen03.TranslateTo(-225, 35, 500);
         }
         private void SuperShopMenuRetreatAnim()
         {
@@ -2841,7 +3594,48 @@ namespace BattleForAzuraTLOV
             await PlayerIMG.ScaleTo(0.6, 300);
         }
         // enemies
-        private void ei1deathanim()
+        // enemy death ctrl
+        private void EnemyDying(int enemyN)
+        {
+            switch (enemyN) // input enemyN decides which enemy dies
+            {
+                case 1:
+
+                    ei1death();
+                    break;
+                case 2:
+
+                    ei2death();
+                    break;
+                case 3:
+
+                    ei3death();
+                    break;
+                case 4:
+
+                    ei4death();
+                    break;
+                case 5:
+
+                    ei5death();
+                    break;
+                case 6:
+
+                    ei6death();
+                    break;
+                case 7:
+
+                    ei7death();
+                    break;
+                case 8:
+
+                    ei8death();
+                    break;
+
+
+            }
+        }
+        private void ei1death()
         {
             e001deathanim01();
             e001deathanim02();
@@ -2850,7 +3644,8 @@ namespace BattleForAzuraTLOV
         async void e001deathanim01()
         {
             await e001.RotateTo(720, 300);
-            enemyinstancecurpos01x[0] = enemyinstancecurpos01x[0] + 1000;
+            enemyinstance[0].xposition += 1000;
+            killCounter++;
         }
         async void e001deathanim02()
         {
@@ -2860,7 +3655,7 @@ namespace BattleForAzuraTLOV
         {
             await e001.ScaleTo(0.6, 300);
         }
-        private void ei2deathanim()
+        private void ei2death()
         {
             e002deathanim01();
             e002deathanim02();
@@ -2869,7 +3664,8 @@ namespace BattleForAzuraTLOV
         async void e002deathanim01()
         {
             await e002.RotateTo(720, 300);
-            enemyinstancecurpos01x[1] = enemyinstancecurpos01x[1] + 1000;
+            enemyinstance[1].xposition += 1000;
+            killCounter++;
         }
         async void e002deathanim02()
         {
@@ -2879,7 +3675,7 @@ namespace BattleForAzuraTLOV
         {
             await e002.ScaleTo(0.6, 300);
         }
-        private void ei3deathanim()
+        private void ei3death()
         {
             e003deathanim01();
             e003deathanim02();
@@ -2888,7 +3684,8 @@ namespace BattleForAzuraTLOV
         async void e003deathanim01()
         {
             await e003.RotateTo(720, 300);
-            enemyinstancecurpos01x[2] = enemyinstancecurpos01x[2] + 1000;
+            enemyinstance[2].xposition += 1000;
+            killCounter++;
         }
         async void e003deathanim02()
         {
@@ -2898,7 +3695,7 @@ namespace BattleForAzuraTLOV
         {
             await e003.ScaleTo(0.6, 300);
         }
-        private void ei4deathanim()
+        private void ei4death()
         {
             e004deathanim01();
             e004deathanim02();
@@ -2907,7 +3704,8 @@ namespace BattleForAzuraTLOV
         async void e004deathanim01()
         {
             await e004.RotateTo(720, 300);
-            enemyinstancecurpos01x[3] = enemyinstancecurpos01x[3] + 1000;
+            enemyinstance[3].xposition += 1000;
+            killCounter++;
         }
         async void e004deathanim02()
         {
@@ -2917,7 +3715,7 @@ namespace BattleForAzuraTLOV
         {
             await e004.ScaleTo(0.6, 300);
         }
-        private void ei5deathanim()
+        private void ei5death()
         {
             e005deathanim01();
             e005deathanim02();
@@ -2926,7 +3724,8 @@ namespace BattleForAzuraTLOV
         async void e005deathanim01()
         {
             await e005.RotateTo(720, 300);
-            enemyinstancecurpos01x[4] = enemyinstancecurpos01x[4] + 1000;
+            enemyinstance[4].xposition += 1000;
+            killCounter++;
         }
         async void e005deathanim02()
         {
@@ -2936,7 +3735,7 @@ namespace BattleForAzuraTLOV
         {
             await e005.ScaleTo(0.6, 300);
         }
-        private void ei6deathanim()
+        private void ei6death()
         {
             e006deathanim01();
             e006deathanim02();
@@ -2945,7 +3744,8 @@ namespace BattleForAzuraTLOV
         async void e006deathanim01()
         {
             await e006.RotateTo(720, 300);
-            enemyinstancecurpos01x[5] = enemyinstancecurpos01x[5] + 1000;
+            enemyinstance[5].xposition += 1000;
+            killCounter++;
         }
         async void e006deathanim02()
         {
@@ -2955,7 +3755,7 @@ namespace BattleForAzuraTLOV
         {
             await e006.ScaleTo(0.6, 300);
         }
-        private void ei7deathanim()
+        private void ei7death()
         {
             e007deathanim01();
             e007deathanim02();
@@ -2964,7 +3764,8 @@ namespace BattleForAzuraTLOV
         async void e007deathanim01()
         {
             await e007.RotateTo(720, 300);
-            enemyinstancecurpos01x[6] = enemyinstancecurpos01x[6] + 1000;
+            enemyinstance[6].xposition += 1000;
+            killCounter++;
         }
         async void e007deathanim02()
         {
@@ -2974,7 +3775,7 @@ namespace BattleForAzuraTLOV
         {
             await e007.ScaleTo(0.6, 300);
         }
-        private void ei8deathanim()
+        private void ei8death()
         {
             e008deathanim01();
             e008deathanim02();
@@ -2983,7 +3784,8 @@ namespace BattleForAzuraTLOV
         async void e008deathanim01()
         {
             await e008.RotateTo(720, 300);
-            enemyinstancecurpos01x[7] = enemyinstancecurpos01x[7] + 1000;
+            enemyinstance[7].xposition += 1000;
+            killCounter++;
         }
         async void e008deathanim02()
         {
@@ -2998,65 +3800,30 @@ namespace BattleForAzuraTLOV
         // starting positions
         private void enemy_instance_openpos01()
         {
-            e001startpos();
-            e002startpos();
-            e003startpos();
-            e004startpos();
-            e005startpos();
-            e006startpos();
-            e007startpos();
-            e008startpos();
 
+            for (int i = 0; i < enemyinstance.Length; i++) 
+            {
+              enemyinstance[i].xposition = RNGmove.Next(-170, 170);
+              enemyinstance[i].xleftposition = enemyinstance[i].xposition - 25;
+              enemyinstance[i].xrightposition = enemyinstance[i].xposition + 25;
+              enemyinstance[i].yposition = RNGmove.Next(-2000, -400);
+            }
+            e001startpos();
         }
-        async void e001startpos()
+        async void e001startpos()// batches of 8
         {
-            enemyinstancecurpos01x[0] =  RNGmove.Next(-30, 80);
-            enemyinstancecurpos01y[0] =  RNGmove.Next(-600, -400);
-            await e001.TranslateTo(enemyinstancecurpos01x[0], enemyinstancecurpos01y[0], 4);
+            await e001.TranslateTo(enemyinstance[0].xposition, enemyinstance[0].yposition, 4);
+            await e002.TranslateTo(enemyinstance[1].xposition, enemyinstance[1].yposition, 4);
+            await e003.TranslateTo(enemyinstance[2].xposition, enemyinstance[2].yposition, 4);
+            await e004.TranslateTo(enemyinstance[3].xposition, enemyinstance[3].yposition, 4);
+            await e005.TranslateTo(enemyinstance[4].xposition, enemyinstance[4].yposition, 4);
+            await e006.TranslateTo(enemyinstance[5].xposition, enemyinstance[5].yposition, 4);
+            await e007.TranslateTo(enemyinstance[6].xposition, enemyinstance[6].yposition, 4);
+            await e008.TranslateTo(enemyinstance[7].xposition, enemyinstance[7].yposition, 4);
         }
         async void e002startpos()
         {
-            enemyinstancecurpos01x[1] =  RNGmove.Next(300, 450);
-            enemyinstancecurpos01y[1] =  RNGmove.Next(-1200, -1100);
-            await e002.TranslateTo(enemyinstancecurpos01x[1], enemyinstancecurpos01y[1], 4);
-        }
-        async void e003startpos()
-        {
-            enemyinstancecurpos01x[2] =  RNGmove.Next(-30, 80);
-            enemyinstancecurpos01y[2] =  RNGmove.Next(-600, -400);
-            enemyinstancecurpos01x[2] = -25;
-            enemyinstancecurpos01y[2] = -400;
-            await e003.TranslateTo(enemyinstancecurpos01x[2], enemyinstancecurpos01y[2], 4);
-        }
-        async void e004startpos()
-        {
-            enemyinstancecurpos01x[3] =  RNGmove.Next(100, 380);
-            enemyinstancecurpos01y[3] =  RNGmove.Next(-840, -400);
-            await e004.TranslateTo(enemyinstancecurpos01x[3], enemyinstancecurpos01y[3], 4);
-        }
-        async void e005startpos()
-        {
-            enemyinstancecurpos01x[4] =  RNGmove.Next(100, 280);
-            enemyinstancecurpos01y[4] =  RNGmove.Next(-140, -80);
-            await e002.TranslateTo(enemyinstancecurpos01x[4], enemyinstancecurpos01y[4], 4);
-        }
-        async void e006startpos()
-        {
-            enemyinstancecurpos01x[5] =  RNGmove.Next(10, 120);
-            enemyinstancecurpos01y[5] =  RNGmove.Next(-300, -100);
-            await e006.TranslateTo(enemyinstancecurpos01x[5], enemyinstancecurpos01y[5], 4);
-        }
-        async void e007startpos()
-        {
-            enemyinstancecurpos01x[6] =  RNGmove.Next(270, 480);
-            enemyinstancecurpos01y[6] =  RNGmove.Next(-800, -600);
-            await e007.TranslateTo(enemyinstancecurpos01x[6], enemyinstancecurpos01y[6], 4);
-        }
-        async void e008startpos()
-        {
-            enemyinstancecurpos01x[7] =  RNGmove.Next(40, 130);
-            enemyinstancecurpos01y[7] =  RNGmove.Next(-700, -500);
-            await e008.TranslateTo(enemyinstancecurpos01x[7], enemyinstancecurpos01y[7], 4);
+            // empty rn
         }
         // level set ups / --------------------------------- 1 ---------------------------------/
         private void Level_Activate_01()
@@ -3067,71 +3834,134 @@ namespace BattleForAzuraTLOV
         async void Update_All_Position_Constant()
         {
             await Task.Delay(200);
-
+            GameUniversalTimer();
             Player_collision_updater();
             Player_collision_object_updater();
             Player_weapon_updater();
             Update_backgrounds();
-            Update_enemys01();
-            Update_enemys02();
-            Update_enemys03();
-            Update_enemys04();
-            Update_enemys05();
-            Update_enemys06();
-            Update_enemys07();
-            Update_enemys08();
-            Update_enemys09();
-            Update_enemys10();
-            enemyinstance_collision01();
             testtext();
             while (gamestatus != 0)
             {
                 await Task.Delay(200);
-                if (weaponequipped == 0)
+                if (weaponEquipped == 0)
                 {
                     ammunitioncurrent = ammunition01;
                 }
-                else if (weaponequipped == 1)
+                else if (weaponEquipped == 1)
                 {
                     ammunitioncurrent = ammunition02;
                 }
-                else if (weaponequipped == 2)
+                else if (weaponEquipped == 2)
                 {
                     ammunitioncurrent = ammunition03;
                 }
-                else if (weaponequipped == 3)
+                else if (weaponEquipped == 3)
                 {
                     ammunitioncurrent = ammunition04;
                 }
-                else if (weaponequipped == 4)
+                else if (weaponEquipped == 4)
                 {
                     ammunitioncurrent = ammunition05;
                 }
-                else if (weaponequipped == 5)
+                else if (weaponEquipped == 5)
                 {
                     ammunitioncurrent = ammunition06;
                 }
+         
                 ammoqtext.Text = $"Current Ammo: {ammunitioncurrent}   ";
-                
+                testnumber.Text = $"enemy1 x left= {enemyinstance[0].xleftposition}, x right={enemyinstance[0].xrightposition}, y={enemyinstance[0].yposition}";
+
             }// while 
         }// end of updatermain
-        async void testtext()
+        async void testtext()// used for testing purposes only
         {
-            while (gamestatus != 0)
+                  // empty rn
+        }
+        async void GameUniversalTimer()
+        {
+            await Task.Delay(3000);
+            while (true) 
+            { 
+                await Task.Delay(15000);
+                PushGameObjects();
+            }
+        }
+        async void PushGameObjects()
+        {
+            for (int k = 0; k < 100; k++)
             {
-                await Task.Delay(50);
-                int changel0 = 0, changer1 = 1, changepos = 0;
-                // 0 = botleft, 1 = botright ei1 x's / same for y's (there is no need for top-down collissions) 
-                for (int i = 0; i < 8; i++)
+                BackgroundCurrentPositionY += 2;
+                for (int i = 0; i < enemyinstance.Length; i++)
                 {
-                    testnumber.Text = $"test number: left = {enemyinstancehitbox01x[changel0]} right = {enemyinstancehitbox01x[changer1]} eix = {enemyinstancecurpos01x[changepos]} bot = {enemyinstancehitbox01y[changel0]} eiy = {enemyinstancecurpos01y[changepos]} enemynumber = {(changepos+1)}";
-                    await Task.Delay(2000);
-                    changel0 = changel0 + 2;
-                    changer1 = changer1 + 2;
-                    changepos++;
+                    enemyinstance[i].yposition += 2;
 
                 }
-            }// while 2
+                Pushgamei01();
+                //pushgamei02();
+                Update_backgrounds();
+                await Task.Delay(25);
+            }
+        }
+        async void Pushgamei01()// 1- 8
+        {
+            ei01split();
+            ei02split();
+            ei03split();
+            ei04split();
+            ei05split();
+            ei06split();
+            ei07split();
+            ei08split();
+        }
+        async void ei01split()// split to move in sync
+        {
+            await e001.TranslateTo(enemyinstance[0].xposition, enemyinstance[0].yposition, 1);
+            
+        }
+        async void ei02split()
+        {
+            await e002.TranslateTo(enemyinstance[1].xposition, enemyinstance[1].yposition, 1);
+            
+        }
+        async void ei03split()
+        {
+            await e003.TranslateTo(enemyinstance[2].xposition, enemyinstance[2].yposition, 1);
+            
+        }
+        async void ei04split()
+        {
+            await e004.TranslateTo(enemyinstance[3].xposition, enemyinstance[3].yposition, 1);
+            
+        }
+        async void ei05split()
+        {
+            await e005.TranslateTo(enemyinstance[4].xposition, enemyinstance[4].yposition, 1);
+            
+        }
+        async void ei06split()
+        {
+            await e006.TranslateTo(enemyinstance[5].xposition, enemyinstance[5].yposition, 1);
+            
+        }
+        async void ei07split()
+        {
+            await e007.TranslateTo(enemyinstance[6].xposition, enemyinstance[6].yposition, 1);
+           
+        }
+        async void ei08split()
+        {
+            await e008.TranslateTo(enemyinstance[7].xposition, enemyinstance[7].yposition, 1);
+        }
+        async void pushgamei02()// 9 - 16
+        {
+            ei01split();
+            ei02split();
+            ei03split();
+            ei04split();
+            ei05split();
+            ei06split();
+            ei07split();
+            ei08split();
         }
         async void Player_collision_updater()
         {
@@ -3146,10 +3976,10 @@ namespace BattleForAzuraTLOV
         {
             while (gamestatus != 0) // split the update loop to stop crashing
             {
-                await PlayerHitBoxtopleft.TranslateTo(playercollisiontopleftX, playercollisiontopleftY, 5);
-                await PlayerHitBoxtopright.TranslateTo(playercollisiontoprightX, playercollisiontoprightY, 5);
-                await PlayerHitBoxbotleft.TranslateTo(playercollisionbotleftX, playercollisionbotleftY, 5);
-                await PlayerHitBoxbotright.TranslateTo(playercollisionbotrightX, playercollisionbotrightY, 5);
+                await PlayerHitBoxtopleft.TranslateTo(playercollisiontopleftX, playercollisiontopleftY, 1);
+                await PlayerHitBoxtopright.TranslateTo(playercollisiontoprightX, playercollisiontoprightY, 1);
+                await PlayerHitBoxbotleft.TranslateTo(playercollisionbotleftX, playercollisionbotleftY, 1);
+                await PlayerHitBoxbotright.TranslateTo(playercollisionbotrightX, playercollisionbotrightY, 1);
             }
         }
         async void Player_weapon_updater()
@@ -3157,51 +3987,51 @@ namespace BattleForAzuraTLOV
             while (gamestatus != 0) // split the update loop to stop crashing
             {
                 await Task.Delay(200);
-                if (weaponequipped != 0)
+                if (weaponEquipped != 0)
                 {
                     this.Resources["ColourOfWeapon1BTNClicked"] = Colors.DarkSlateGrey;
                 }
-                else if (weaponequipped == 0)
+                else if (weaponEquipped == 0)
                 {
                     this.Resources["ColourOfWeapon1BTNClicked"] = Colors.DarkSlateBlue;
                 }
-                if (weaponequipped != 1)
+                if (weaponEquipped != 1)
                 {
                     this.Resources["ColourOfWeapon2BTNClicked"] = Colors.DarkSlateGrey;
                 }
-                else if (weaponequipped == 1)
+                else if (weaponEquipped == 1)
                 {
                     this.Resources["ColourOfWeapon2BTNClicked"] = Colors.DarkSlateBlue;
                 }
-                if (weaponequipped != 2)
+                if (weaponEquipped != 2)
                 {
                     this.Resources["ColourOfWeapon3BTNClicked"] = Colors.DarkSlateGrey;
                 }
-                else if (weaponequipped == 2)
+                else if (weaponEquipped == 2)
                 {
                     this.Resources["ColourOfWeapon3BTNClicked"] = Colors.DarkSlateBlue;
                 }
-                if (weaponequipped != 3)
+                if (weaponEquipped != 3)
                 {
                     this.Resources["ColourOfWeapon4BTNClicked"] = Colors.DarkSlateGrey;
                 }
-                else if (weaponequipped == 3)
+                else if (weaponEquipped == 3)
                 {
                     this.Resources["ColourOfWeapon4BTNClicked"] = Colors.DarkSlateBlue;
                 }
-                if (weaponequipped != 4)
+                if (weaponEquipped != 4)
                 {
                     this.Resources["ColourOfWeapon5BTNClicked"] = Colors.DarkSlateGrey;
                 }
-                else if (weaponequipped == 4)
+                else if (weaponEquipped == 4)
                 {
                     this.Resources["ColourOfWeapon5BTNClicked"] = Colors.DarkSlateBlue;
                 }
-                if (weaponequipped != 5)
+                if (weaponEquipped != 5)
                 {
                     this.Resources["ColourOfWeapon6BTNClicked"] = Colors.DarkSlateGrey;
                 }
-                else if (weaponequipped == 5)
+                else if (weaponEquipped == 5)
                 {
                     this.Resources["ColourOfWeapon6BTNClicked"] = Colors.DarkSlateBlue;
                 }
@@ -3209,98 +4039,41 @@ namespace BattleForAzuraTLOV
         }
         async void Update_backgrounds()
         {
-            while (gamestatus != 0) // split the update loop to stop crashing
+            if (gamelevelflag == 1)
             {
-                if (gamelevelflag == 1)
-                {
-                    await BackgroundLevel01.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
-                }
-                else if (gamelevelflag == 2)
-                {
-                    await BackgroundLevel02.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
-                }
-                else if (gamelevelflag == 3)
-                {
-                    await BackgroundLevel03.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
-                }
-                else if (gamelevelflag == 4)
-                {
-                    await BackgroundLevel04.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
-                }
-                else if (gamelevelflag == 5)
-                {
-                    await BackgroundLevel05.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
-                }
-                else if (gamelevelflag == 6)
-                {
-                    await BackgroundLevel06.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
-                }
-                else if (gamelevelflag == 7)
-                {
-                    await BackgroundLevel07.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
-                }
-                else if (gamelevelflag == 8)
-                {
-                    await BackgroundLevel08.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 40);
-                }
-                
+                await BackgroundLevel01.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 1);
+            }
+            else if (gamelevelflag == 2)
+            {
+                await BackgroundLevel02.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 1);
+            }
+            else if (gamelevelflag == 3)
+            {
+                await BackgroundLevel03.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 1);
+            }
+            else if (gamelevelflag == 4)
+            {
+                await BackgroundLevel04.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 1);
+            }
+            else if (gamelevelflag == 5)
+            {
+                await BackgroundLevel05.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 1);
+            }
+            else if (gamelevelflag == 6)
+            {
+                await BackgroundLevel06.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 1);
+            }
+            else if (gamelevelflag == 7)
+            {
+                await BackgroundLevel07.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 1);
+            }
+            else if (gamelevelflag == 8)
+            {
+                await BackgroundLevel08.TranslateTo(BackgroundCurrentPositionX, BackgroundCurrentPositionY, 1);
             }
 
         }
-        
-        async void Update_enemys01()
-        {
-            while (gamestatus != 0) // split the update loop to stop crashing
-            {
-                
-                await e001.TranslateTo(enemyinstancecurpos01x[0], enemyinstancecurpos01y[0], 40);
-                await e002.TranslateTo(enemyinstancecurpos01x[1], enemyinstancecurpos01y[1], 40);
-                await e003.TranslateTo(enemyinstancecurpos01x[2], enemyinstancecurpos01y[2], 40);
-                await e004.TranslateTo(enemyinstancecurpos01x[3], enemyinstancecurpos01y[3], 40);
-                await e005.TranslateTo(enemyinstancecurpos01x[4], enemyinstancecurpos01y[4], 40);
-                await e006.TranslateTo(enemyinstancecurpos01x[5], enemyinstancecurpos01y[5], 40);
-                await e007.TranslateTo(enemyinstancecurpos01x[6], enemyinstancecurpos01y[6], 40);
-                await e008.TranslateTo(enemyinstancecurpos01x[7], enemyinstancecurpos01y[7], 40);
 
-            }
-        }
-        
-        async void Update_enemys02()
-        {
-
-        }
-        async void Update_enemys03()
-        {
-
-        }
-        async void Update_enemys04()
-        {
-
-        }
-        async void Update_enemys05()
-        {
-
-        }
-        async void Update_enemys06()
-        {
-
-        }
-        async void Update_enemys07()
-        {
-
-        }
-        async void Update_enemys08()
-        {
-
-        }
-        async void Update_enemys09()
-        {
-
-        }
-        async void Update_enemys10()
-        {
-
-        }
 
     }// end of all
 }// end of all
