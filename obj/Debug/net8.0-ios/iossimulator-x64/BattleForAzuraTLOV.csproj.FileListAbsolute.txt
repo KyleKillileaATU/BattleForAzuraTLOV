@@ -274,7 +274,6 @@ C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\injuredsoldier.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\commonsoldier.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\blue.png
-C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\ludomat.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\childadventuerer.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\angryfarmer.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\red.png
@@ -343,3 +342,5 @@ C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\level01portrait.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\level02portrait.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\backgroundlevel01.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\tutorialbox02.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\outoforder.png

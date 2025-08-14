@@ -40,7 +40,6 @@ C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizeti
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\commonsoldier.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\green.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\injuredsoldier.png
-C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\ludomat.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\medipeasant.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\red.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\sadman.png
@@ -1104,3 +1103,5 @@ C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizeti
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\permasupershopscreen.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\phasedxscreen01.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\tutorialbox1.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\outoforder.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-android\resizetizer\r\drawable\tutorialbox02.png

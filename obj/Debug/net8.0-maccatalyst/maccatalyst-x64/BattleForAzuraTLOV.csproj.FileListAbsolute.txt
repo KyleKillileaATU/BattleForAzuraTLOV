@@ -268,7 +268,6 @@ C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\macc
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\yellow.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\injuredsoldier.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\british.png
-C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\ludomat.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\medipeasant.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\sadman.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\green.png
@@ -331,3 +330,5 @@ C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\macc
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\tutorialbox1.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\eziarfinalbossroom.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\backgroundlevel01.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\outoforder.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\tutorialbox02.png

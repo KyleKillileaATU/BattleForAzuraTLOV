@@ -21,10 +21,12 @@ obj\Debug\net8.0-android\resizetizer\r\drawable\level02portrait.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\level03portrait.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\level04portrait.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\medipeasant.png
+obj\Debug\net8.0-android\resizetizer\r\drawable\outoforder.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\permasupershopscreen.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\phasedxscreen01.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\red.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\sadman.png
+obj\Debug\net8.0-android\resizetizer\r\drawable\tutorialbox02.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\tutorialbox1.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\walter3.png
 obj\Debug\net8.0-android\resizetizer\r\drawable\yellow.png

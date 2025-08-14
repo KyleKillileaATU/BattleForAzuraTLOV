@@ -18,11 +18,11 @@ namespace BattleForAzuraTLOV
             this.damagevar = damagevar;
             this.contact = contact;
         }
-        public bool PlayerCollide(int playerxleft, int playerxright, int playery)
+        public bool PlayerCollide(int playerx, int playery)
         {
-            if (playery <= this.yposition && playery >= this.yposition-50) 
+            if ((this.yposition+25) > (playery-35) && (this.yposition - 25) < (playery+35))
             {
-                if (playerxleft >= this.xleftposition && playerxright <= this.xrightposition)
+                if (playerx >= (this.xleftposition-20) && playerx <= (this.xrightposition+20))
                 {
                     this.contact = true;
                 }
@@ -33,17 +33,28 @@ namespace BattleForAzuraTLOV
             }
             return this.contact;
         }
+        public int EnemyDealDamage()
+        {
+            return damagevar;
+        }
         public bool ProjectileCollide( int projx, int projy)
         {
-            
-            if (this.yposition >= projy && this.yposition - 25 <= projy)
+            // -300 < / -325 >
+            if (this.healthpoints > 0)
             {
-                if (this.xleftposition >= projx && this.xrightposition <= projx)
+                if (this.yposition > projy && (this.yposition - 25) < projy)
                 {
-                    this.takedamage = true;
+                    if (projx >= this.xleftposition && projx <= this.xrightposition)
+                    {
+                        this.takedamage = true;
+                    }
+                }
+                else
+                {
+                    this.takedamage = false;
                 }
             }
-            else
+            else if (this.healthpoints <= 0) 
             {
                 this.takedamage = false;
             }
@@ -51,7 +62,7 @@ namespace BattleForAzuraTLOV
         }
         public int TakeDamage(int playerdamagevalue)
         {
-            this.healthpoints = this.healthpoints - playerdamagevalue;
+            this.healthpoints  += -(playerdamagevalue);
 
             if (this.healthpoints >= 0)
             {

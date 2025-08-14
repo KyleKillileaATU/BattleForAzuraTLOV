@@ -64,6 +64,24 @@
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ahomeless.scale-100.png">
       <PackagePath>ahomeless.scale-100.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon01.scale-100.png">
+      <PackagePath>ammunitionlooticon01.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon02.scale-100.png">
+      <PackagePath>ammunitionlooticon02.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon03.scale-100.png">
+      <PackagePath>ammunitionlooticon03.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon04.scale-100.png">
+      <PackagePath>ammunitionlooticon04.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon05.scale-100.png">
+      <PackagePath>ammunitionlooticon05.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon06.scale-100.png">
+      <PackagePath>ammunitionlooticon06.scale-100.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\angryfarmer.scale-100.png">
       <PackagePath>angryfarmer.scale-100.png</PackagePath>
     </AppxPackagedFile>
@@ -204,6 +222,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\arossianizen.scale-100.png">
+      <PackagePath>arossianizen.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\backgroundlevel01.scale-100.png">
       <PackagePath>backgroundlevel01.scale-100.png</PackagePath>

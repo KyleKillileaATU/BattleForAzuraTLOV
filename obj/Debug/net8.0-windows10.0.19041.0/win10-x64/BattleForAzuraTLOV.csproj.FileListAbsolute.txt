@@ -210,3 +210,10 @@ C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.1904
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\permasupershopscreen.scale-100.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\tutorialbox02.scale-100.png
 C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\outoforder.scale-100.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\arossianizen.scale-100.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon01.scale-100.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon02.scale-100.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon03.scale-100.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon04.scale-100.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon05.scale-100.png
+C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon06.scale-100.png
