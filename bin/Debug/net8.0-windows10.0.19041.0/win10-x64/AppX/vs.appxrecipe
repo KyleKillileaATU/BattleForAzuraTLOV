@@ -29,29 +29,189 @@
     <AppXManifest Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-08-13T16:21:36.978</Modified>
+      <Modified>2025-08-17T19:45:37.097</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-08-13T09:37:31.358</Modified>
+      <Modified>2025-08-17T13:26:55.444</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\BattleForAzuraTLOV.runtimeconfig.json">
       <PackagePath>BattleForAzuraTLOV.runtimeconfig.json</PackagePath>
-      <Modified>2025-06-17T10:55:25.536</Modified>
+      <Modified>2025-08-16T12:34:44.532</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\BattleForAzuraTLOV.dll">
       <PackagePath>BattleForAzuraTLOV.dll</PackagePath>
-      <Modified>2025-08-13T16:21:36.428</Modified>
+      <Modified>2025-08-17T19:45:35.847</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>BattleForAzuraTLOV.exe</PackagePath>
-      <Modified>2025-08-13T16:21:36.458</Modified>
+      <Modified>2025-08-17T19:45:35.884</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\01 Frank Zappa &amp; The Mothers of Invention - I’m the Slime.mp3">
+      <PackagePath>01 Frank Zappa &amp; The Mothers of Invention - I’m the Slime.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:14.583</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\01introflakes.mp3">
+      <PackagePath>01introflakes.mp3</PackagePath>
+      <Modified>2025-08-14T22:01:15.074</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\02 Frank Zappa - Dirty Love.mp3">
+      <PackagePath>02 Frank Zappa - Dirty Love.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:14.345</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\02sanberdino.mp3">
+      <PackagePath>02sanberdino.mp3</PackagePath>
+      <Modified>2025-08-14T22:01:15.221</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\03 Frank Zappa - Dancin’ Fool.mp3">
+      <PackagePath>03 Frank Zappa - Dancin’ Fool.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:14.103</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\03tryintogrowachin.mp3">
+      <PackagePath>03tryintogrowachin.mp3</PackagePath>
+      <Modified>2025-08-14T22:01:14.957</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\04 Frank Zappa &amp; The Mothers of Invention - Trouble Every Day.mp3">
+      <PackagePath>04 Frank Zappa &amp; The Mothers of Invention - Trouble Every Day.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:14.461</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\04cityoftinylites.mp3">
+      <PackagePath>04cityoftinylites.mp3</PackagePath>
+      <Modified>2025-08-14T22:01:14.897</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\05 Frank Zappa - Peaches en Regalia.mp3">
+      <PackagePath>05 Frank Zappa - Peaches en Regalia.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:14.507</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\05thesquirm.mp3">
+      <PackagePath>05thesquirm.mp3</PackagePath>
+      <Modified>2025-08-14T22:01:15.126</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\06 Frank Zappa - Tell Me You Love Me.mp3">
+      <PackagePath>06 Frank Zappa - Tell Me You Love Me.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:14.539</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\06biglegemma.mp3">
+      <PackagePath>06biglegemma.mp3</PackagePath>
+      <Modified>2025-08-14T22:01:14.845</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\07 Frank Zappa - Bobby Brown Goes Down.mp3">
+      <PackagePath>07 Frank Zappa - Bobby Brown Goes Down.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:14.192</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\07audienceparticipation.mp3">
+      <PackagePath>07audienceparticipation.mp3</PackagePath>
+      <Modified>2025-08-14T22:01:15.181</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\08 Frank Zappa - You Are What You Is.mp3">
+      <PackagePath>08 Frank Zappa - You Are What You Is.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:14.155</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\08theblackpage2.mp3">
+      <PackagePath>08theblackpage2.mp3</PackagePath>
+      <Modified>2025-08-14T22:01:15.262</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\09 Frank Zappa &amp; Moon Zappa - Valley Girl.mp3">
+      <PackagePath>09 Frank Zappa &amp; Moon Zappa - Valley Girl.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:13.790</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\09jonescrusher.mp3">
+      <PackagePath>09jonescrusher.mp3</PackagePath>
+      <Modified>2025-08-14T22:01:15.050</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\10 Frank Zappa - Joe’s Garage.mp3">
+      <PackagePath>10 Frank Zappa - Joe’s Garage.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:14.057</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\10camarillobrillo.mp3">
+      <PackagePath>10camarillobrillo.mp3</PackagePath>
+      <Modified>2025-08-14T22:01:14.927</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\11 Frank Zappa - Cosmik Debris.mp3">
+      <PackagePath>11 Frank Zappa - Cosmik Debris.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:13.844</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\11blacknapkins.mp3">
+      <PackagePath>11blacknapkins.mp3</PackagePath>
+      <Modified>2025-08-14T22:01:15.012</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\12 Frank Zappa &amp; The Mothers of Invention - Sofa No. 1.mp3">
+      <PackagePath>12 Frank Zappa &amp; The Mothers of Invention - Sofa No. 1.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:14.226</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\13 Frank Zappa - Don’t Eat the Yellow Snow %28Single Version%29.mp3">
+      <PackagePath>13 Frank Zappa - Don’t Eat the Yellow Snow %28Single Version%29.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:13.986</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\15 Frank Zappa - G‐Spot Tornado.mp3">
+      <PackagePath>15 Frank Zappa - G‐Spot Tornado.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:13.941</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\16 Frank Zappa - Cocaine Decisions.mp3">
+      <PackagePath>16 Frank Zappa - Cocaine Decisions.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:14.393</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\17 Frank Zappa - Zoot Allures.mp3">
+      <PackagePath>17 Frank Zappa - Zoot Allures.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:13.894</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\18 Frank Zappa &amp; London Symphony Orchestra - Strictly Genteel.mp3">
+      <PackagePath>18 Frank Zappa &amp; London Symphony Orchestra - Strictly Genteel.mp3</PackagePath>
+      <Modified>2025-08-14T22:04:14.306</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
       <Modified>2025-06-17T09:53:54.929</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\bossfightm01.mp3">
+      <PackagePath>bossfightm01.mp3</PackagePath>
+      <Modified>2025-08-14T21:48:54.794</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\clicksfx.wav">
+      <PackagePath>clicksfx.wav</PackagePath>
+      <Modified>2025-08-16T14:12:16.716</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\clicksfxx.wav">
+      <PackagePath>clicksfxx.wav</PackagePath>
+      <Modified>2025-08-15T09:21:00.129</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\drumssoundeffect.wav">
+      <PackagePath>drumssoundeffect.wav</PackagePath>
+      <Modified>2025-08-14T21:59:14.281</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\explosionsoundeffect.wav">
+      <PackagePath>explosionsoundeffect.wav</PackagePath>
+      <Modified>2025-08-14T21:59:31.941</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\gunfiresoundeffect.wav">
+      <PackagePath>gunfiresoundeffect.wav</PackagePath>
+      <Modified>2025-08-14T21:59:56.512</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\Inon Zur - Northern Lights.mp3">
+      <PackagePath>Inon Zur - Northern Lights.mp3</PackagePath>
+      <Modified>2025-08-16T10:45:05.824</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\itempickupsound.wav">
+      <PackagePath>itempickupsound.wav</PackagePath>
+      <Modified>2025-08-14T21:59:41.238</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\mainmenu.mp3">
+      <PackagePath>mainmenu.mp3</PackagePath>
+      <Modified>2025-08-14T21:46:47.585</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\oof01.mp3">
+      <PackagePath>oof01.mp3</PackagePath>
+      <Modified>2025-08-15T09:07:26.759</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\oof02.mp3">
+      <PackagePath>oof02.mp3</PackagePath>
+      <Modified>2025-08-15T09:07:40.124</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\strongpunchsfx.mp3">
+      <PackagePath>strongpunchsfx.mp3</PackagePath>
+      <Modified>2025-08-15T09:00:04.327</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
       <PackagePath>splashSplashScreen.scale-100.png</PackagePath>
@@ -83,367 +243,419 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ahomeless.scale-100.png">
       <PackagePath>ahomeless.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.263</Modified>
+      <Modified>2025-08-17T18:08:55.513</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammoupitemimage.scale-100.png">
+      <PackagePath>ammoupitemimage.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.512</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon01.scale-100.png">
       <PackagePath>ammunitionlooticon01.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.264</Modified>
+      <Modified>2025-08-17T18:08:55.500</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon02.scale-100.png">
       <PackagePath>ammunitionlooticon02.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.265</Modified>
+      <Modified>2025-08-17T18:08:55.514</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon03.scale-100.png">
       <PackagePath>ammunitionlooticon03.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.275</Modified>
+      <Modified>2025-08-17T18:08:55.511</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon04.scale-100.png">
       <PackagePath>ammunitionlooticon04.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.275</Modified>
+      <Modified>2025-08-17T18:08:55.514</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon05.scale-100.png">
       <PackagePath>ammunitionlooticon05.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.266</Modified>
+      <Modified>2025-08-17T18:08:55.502</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon06.scale-100.png">
       <PackagePath>ammunitionlooticon06.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.276</Modified>
+      <Modified>2025-08-17T18:08:55.510</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\angryfarmer.scale-100.png">
       <PackagePath>angryfarmer.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.276</Modified>
+      <Modified>2025-08-17T18:08:55.515</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appicon.ico">
       <PackagePath>appicon.ico</PackagePath>
-      <Modified>2025-08-13T09:33:05.275</Modified>
+      <Modified>2025-08-17T18:08:55.510</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-100.png">
       <PackagePath>appiconLargeTile.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.267</Modified>
+      <Modified>2025-08-17T18:08:55.504</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-125.png">
       <PackagePath>appiconLargeTile.scale-125.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.267</Modified>
+      <Modified>2025-08-17T18:08:55.503</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-150.png">
       <PackagePath>appiconLargeTile.scale-150.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.266</Modified>
+      <Modified>2025-08-17T18:08:55.503</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-200.png">
       <PackagePath>appiconLargeTile.scale-200.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.266</Modified>
+      <Modified>2025-08-17T18:08:55.503</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-400.png">
       <PackagePath>appiconLargeTile.scale-400.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.266</Modified>
+      <Modified>2025-08-17T18:08:55.503</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.272</Modified>
+      <Modified>2025-08-17T18:08:55.507</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.271</Modified>
+      <Modified>2025-08-17T18:08:55.507</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.271</Modified>
+      <Modified>2025-08-17T18:08:55.507</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.271</Modified>
+      <Modified>2025-08-17T18:08:55.507</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.271</Modified>
+      <Modified>2025-08-17T18:08:55.507</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-16.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.273</Modified>
+      <Modified>2025-08-17T18:08:55.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-24.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.272</Modified>
+      <Modified>2025-08-17T18:08:55.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-256.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.272</Modified>
+      <Modified>2025-08-17T18:08:55.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-32.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.272</Modified>
+      <Modified>2025-08-17T18:08:55.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-48.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.272</Modified>
+      <Modified>2025-08-17T18:08:55.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-100.png">
       <PackagePath>appiconLogo.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.274</Modified>
+      <Modified>2025-08-17T18:08:55.510</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-125.png">
       <PackagePath>appiconLogo.scale-125.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.274</Modified>
+      <Modified>2025-08-17T18:08:55.510</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-150.png">
       <PackagePath>appiconLogo.scale-150.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.274</Modified>
+      <Modified>2025-08-17T18:08:55.509</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-200.png">
       <PackagePath>appiconLogo.scale-200.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.274</Modified>
+      <Modified>2025-08-17T18:08:55.509</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-400.png">
       <PackagePath>appiconLogo.scale-400.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.274</Modified>
+      <Modified>2025-08-17T18:08:55.509</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-16.png">
       <PackagePath>appiconLogo.targetsize-16.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.274</Modified>
+      <Modified>2025-08-17T18:08:55.509</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-24.png">
       <PackagePath>appiconLogo.targetsize-24.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.273</Modified>
+      <Modified>2025-08-17T18:08:55.509</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-256.png">
       <PackagePath>appiconLogo.targetsize-256.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.273</Modified>
+      <Modified>2025-08-17T18:08:55.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-32.png">
       <PackagePath>appiconLogo.targetsize-32.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.273</Modified>
+      <Modified>2025-08-17T18:08:55.509</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-48.png">
       <PackagePath>appiconLogo.targetsize-48.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.273</Modified>
+      <Modified>2025-08-17T18:08:55.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-100.png">
       <PackagePath>appiconMediumTile.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.269</Modified>
+      <Modified>2025-08-17T18:08:55.505</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-125.png">
       <PackagePath>appiconMediumTile.scale-125.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.269</Modified>
+      <Modified>2025-08-17T18:08:55.505</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-150.png">
       <PackagePath>appiconMediumTile.scale-150.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.268</Modified>
+      <Modified>2025-08-17T18:08:55.505</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-200.png">
       <PackagePath>appiconMediumTile.scale-200.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.268</Modified>
+      <Modified>2025-08-17T18:08:55.505</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-400.png">
       <PackagePath>appiconMediumTile.scale-400.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.268</Modified>
+      <Modified>2025-08-17T18:08:55.504</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-100.png">
       <PackagePath>appiconSmallTile.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.270</Modified>
+      <Modified>2025-08-17T18:08:55.506</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-125.png">
       <PackagePath>appiconSmallTile.scale-125.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.270</Modified>
+      <Modified>2025-08-17T18:08:55.506</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-150.png">
       <PackagePath>appiconSmallTile.scale-150.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.269</Modified>
+      <Modified>2025-08-17T18:08:55.506</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-200.png">
       <PackagePath>appiconSmallTile.scale-200.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.269</Modified>
+      <Modified>2025-08-17T18:08:55.505</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-400.png">
       <PackagePath>appiconSmallTile.scale-400.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.269</Modified>
+      <Modified>2025-08-17T18:08:55.505</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-100.png">
       <PackagePath>appiconStoreLogo.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.271</Modified>
+      <Modified>2025-08-17T18:08:55.507</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-125.png">
       <PackagePath>appiconStoreLogo.scale-125.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.270</Modified>
+      <Modified>2025-08-17T18:08:55.506</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-150.png">
       <PackagePath>appiconStoreLogo.scale-150.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.270</Modified>
+      <Modified>2025-08-17T18:08:55.506</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-200.png">
       <PackagePath>appiconStoreLogo.scale-200.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.270</Modified>
+      <Modified>2025-08-17T18:08:55.506</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-400.png">
       <PackagePath>appiconStoreLogo.scale-400.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.270</Modified>
+      <Modified>2025-08-17T18:08:55.506</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-100.png">
       <PackagePath>appiconWideTile.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.268</Modified>
+      <Modified>2025-08-17T18:08:55.504</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-125.png">
       <PackagePath>appiconWideTile.scale-125.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.268</Modified>
+      <Modified>2025-08-17T18:08:55.504</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png">
       <PackagePath>appiconWideTile.scale-150.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.267</Modified>
+      <Modified>2025-08-17T18:08:55.504</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png">
       <PackagePath>appiconWideTile.scale-200.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.267</Modified>
+      <Modified>2025-08-17T18:08:55.504</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.267</Modified>
+      <Modified>2025-08-17T18:08:55.504</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\arossianizen.scale-100.png">
       <PackagePath>arossianizen.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.277</Modified>
+      <Modified>2025-08-17T18:08:55.516</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\attackitem.scale-100.png">
+      <PackagePath>attackitem.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.512</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\attackupimage.scale-100.png">
+      <PackagePath>attackupimage.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.513</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\backgroundlevel01.scale-100.png">
       <PackagePath>backgroundlevel01.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.280</Modified>
+      <Modified>2025-08-17T18:08:55.510</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\backgroundlevel02.scale-100.png">
+      <PackagePath>backgroundlevel02.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.515</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\battleforazuratitleimg.scale-100.png">
       <PackagePath>battleforazuratitleimg.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.277</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\blue.scale-100.png">
-      <PackagePath>blue.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.279</Modified>
+      <Modified>2025-08-17T18:08:55.501</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\british.scale-100.png">
       <PackagePath>british.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.277</Modified>
+      <Modified>2025-08-17T18:08:55.501</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\childadventuerer.scale-100.png">
       <PackagePath>childadventuerer.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.278</Modified>
+      <Modified>2025-08-17T18:08:55.511</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\cityview.scale-100.png">
       <PackagePath>cityview.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.280</Modified>
+      <Modified>2025-08-17T18:08:55.503</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\commonsoldier.scale-100.png">
       <PackagePath>commonsoldier.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.278</Modified>
+      <Modified>2025-08-17T18:08:55.515</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dishonouredcontinuescreen.scale-100.png">
       <PackagePath>dishonouredcontinuescreen.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.279</Modified>
+      <Modified>2025-08-17T18:08:55.514</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dishonouredlevelstatsscreen.scale-100.png">
       <PackagePath>dishonouredlevelstatsscreen.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.279</Modified>
+      <Modified>2025-08-17T18:08:55.500</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dishonouredmissionscreen.scale-100.png">
       <PackagePath>dishonouredmissionscreen.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.278</Modified>
+      <Modified>2025-08-17T18:08:55.501</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dishonourednewgamescreen.scale-100.png">
       <PackagePath>dishonourednewgamescreen.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.263</Modified>
+      <Modified>2025-08-17T18:08:55.501</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dishonouredtitlescreen.scale-100.png">
       <PackagePath>dishonouredtitlescreen.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.263</Modified>
+      <Modified>2025-08-17T18:08:55.502</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png">
       <PackagePath>dotnet_bot.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.265</Modified>
+      <Modified>2025-08-17T18:08:55.503</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png">
       <PackagePath>dotnet_bot.scale-125.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.265</Modified>
+      <Modified>2025-08-17T18:08:55.502</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png">
       <PackagePath>dotnet_bot.scale-150.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.264</Modified>
+      <Modified>2025-08-17T18:08:55.502</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png">
       <PackagePath>dotnet_bot.scale-200.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.264</Modified>
+      <Modified>2025-08-17T18:08:55.502</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
       <PackagePath>dotnet_bot.scale-400.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.264</Modified>
+      <Modified>2025-08-17T18:08:55.502</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\eziarfinalbossroom.scale-100.png">
       <PackagePath>eziarfinalbossroom.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.266</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\green.scale-100.png">
-      <PackagePath>green.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.275</Modified>
+      <Modified>2025-08-17T18:08:55.510</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\greyfilter.scale-100.png">
       <PackagePath>greyfilter.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.275</Modified>
+      <Modified>2025-08-17T18:08:55.510</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gun1image.scale-100.png">
+      <PackagePath>gun1image.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.511</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gun2image.scale-100.png">
+      <PackagePath>gun2image.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.511</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gun3image.scale-100.png">
+      <PackagePath>gun3image.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.512</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gun4image.scale-100.png">
+      <PackagePath>gun4image.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.513</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gun5image.scale-100.png">
+      <PackagePath>gun5image.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.513</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gun6image.scale-100.png">
+      <PackagePath>gun6image.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.513</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\healthpackimage.scale-100.png">
+      <PackagePath>healthpackimage.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.512</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\injuredsoldier.scale-100.png">
       <PackagePath>injuredsoldier.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.276</Modified>
+      <Modified>2025-08-17T18:08:55.514</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\level01portrait.scale-100.png">
       <PackagePath>level01portrait.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.276</Modified>
+      <Modified>2025-08-17T18:08:55.514</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\level02portrait.scale-100.png">
       <PackagePath>level02portrait.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.276</Modified>
+      <Modified>2025-08-17T18:08:55.515</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\level03portrait.scale-100.png">
       <PackagePath>level03portrait.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.277</Modified>
+      <Modified>2025-08-17T18:08:55.515</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\level04portrait.scale-100.png">
       <PackagePath>level04portrait.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.277</Modified>
+      <Modified>2025-08-17T18:08:55.500</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\medipeasant.scale-100.png">
       <PackagePath>medipeasant.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.277</Modified>
+      <Modified>2025-08-17T18:08:55.501</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\outoforder.scale-100.png">
       <PackagePath>outoforder.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.278</Modified>
+      <Modified>2025-08-17T18:08:55.501</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\pdeathscreen01.scale-100.png">
+      <PackagePath>pdeathscreen01.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.501</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\pdeathscreen02.scale-100.png">
+      <PackagePath>pdeathscreen02.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.512</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\permaorbimage.scale-100.png">
+      <PackagePath>permaorbimage.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.512</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\permashopsignimage.scale-100.png">
+      <PackagePath>permashopsignimage.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.511</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\permasupershopscreen.scale-100.png">
       <PackagePath>permasupershopscreen.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.278</Modified>
+      <Modified>2025-08-17T18:08:55.515</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\phasedxscreen01.scale-100.png">
       <PackagePath>phasedxscreen01.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.279</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\red.scale-100.png">
-      <PackagePath>red.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.279</Modified>
+      <Modified>2025-08-17T18:08:55.516</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\sadman.scale-100.png">
       <PackagePath>sadman.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.279</Modified>
+      <Modified>2025-08-17T18:08:55.511</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\settingmusicscreen_du.scale-100.png">
+      <PackagePath>settingmusicscreen_du.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.513</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\speedupimage.scale-100.png">
+      <PackagePath>speedupimage.scale-100.png</PackagePath>
+      <Modified>2025-08-17T18:08:55.513</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\tutorialbox02.scale-100.png">
       <PackagePath>tutorialbox02.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.280</Modified>
+      <Modified>2025-08-17T18:08:55.514</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\tutorialbox1.scale-100.png">
       <PackagePath>tutorialbox1.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.263</Modified>
+      <Modified>2025-08-17T18:08:55.515</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\walter3.scale-100.png">
       <PackagePath>walter3.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.263</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\yellow.scale-100.png">
-      <PackagePath>yellow.scale-100.png</PackagePath>
-      <Modified>2025-08-13T09:33:05.265</Modified>
+      <Modified>2025-08-17T18:08:55.511</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\BattleForAzuraTLOV.deps.json">
       <PackagePath>BattleForAzuraTLOV.deps.json</PackagePath>
-      <Modified>2025-08-06T11:32:24.670</Modified>
+      <Modified>2025-08-16T12:34:44.413</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.34\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>
@@ -584,6 +796,10 @@
     <AppxPackagedFile Include="C:\Users\KyleK\.nuget\packages\microsoft.windowsappsdk\1.5.240627000\lib\net6.0-windows10.0.18362.0\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.Net.dll</PackagePath>
       <Modified>2024-06-26T19:15:16.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\.nuget\packages\plugin.maui.audio\3.0.0\lib\net8.0-windows10.0.19041\Plugin.Maui.Audio.dll">
+      <PackagePath>Plugin.Maui.Audio.dll</PackagePath>
+      <Modified>2024-06-03T11:20:24.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\.nuget\packages\microsoft.maui.controls.core\8.0.82\lib\net8.0-windows10.0.19041\ar\Microsoft.Maui.Controls.resources.dll">
       <PackagePath>ar\Microsoft.Maui.Controls.resources.dll</PackagePath>

@@ -37,8 +37,128 @@
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>BattleForAzuraTLOV.exe</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\01 Frank Zappa &amp; The Mothers of Invention - I’m the Slime.mp3">
+      <PackagePath>01 Frank Zappa &amp; The Mothers of Invention - I’m the Slime.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\01introflakes.mp3">
+      <PackagePath>01introflakes.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\02 Frank Zappa - Dirty Love.mp3">
+      <PackagePath>02 Frank Zappa - Dirty Love.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\02sanberdino.mp3">
+      <PackagePath>02sanberdino.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\03 Frank Zappa - Dancin’ Fool.mp3">
+      <PackagePath>03 Frank Zappa - Dancin’ Fool.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\03tryintogrowachin.mp3">
+      <PackagePath>03tryintogrowachin.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\04 Frank Zappa &amp; The Mothers of Invention - Trouble Every Day.mp3">
+      <PackagePath>04 Frank Zappa &amp; The Mothers of Invention - Trouble Every Day.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\04cityoftinylites.mp3">
+      <PackagePath>04cityoftinylites.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\05 Frank Zappa - Peaches en Regalia.mp3">
+      <PackagePath>05 Frank Zappa - Peaches en Regalia.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\05thesquirm.mp3">
+      <PackagePath>05thesquirm.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\06 Frank Zappa - Tell Me You Love Me.mp3">
+      <PackagePath>06 Frank Zappa - Tell Me You Love Me.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\06biglegemma.mp3">
+      <PackagePath>06biglegemma.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\07 Frank Zappa - Bobby Brown Goes Down.mp3">
+      <PackagePath>07 Frank Zappa - Bobby Brown Goes Down.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\07audienceparticipation.mp3">
+      <PackagePath>07audienceparticipation.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\08 Frank Zappa - You Are What You Is.mp3">
+      <PackagePath>08 Frank Zappa - You Are What You Is.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\08theblackpage2.mp3">
+      <PackagePath>08theblackpage2.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\09 Frank Zappa &amp; Moon Zappa - Valley Girl.mp3">
+      <PackagePath>09 Frank Zappa &amp; Moon Zappa - Valley Girl.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\09jonescrusher.mp3">
+      <PackagePath>09jonescrusher.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\10 Frank Zappa - Joe’s Garage.mp3">
+      <PackagePath>10 Frank Zappa - Joe’s Garage.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\10camarillobrillo.mp3">
+      <PackagePath>10camarillobrillo.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\11 Frank Zappa - Cosmik Debris.mp3">
+      <PackagePath>11 Frank Zappa - Cosmik Debris.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\11blacknapkins.mp3">
+      <PackagePath>11blacknapkins.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\12 Frank Zappa &amp; The Mothers of Invention - Sofa No. 1.mp3">
+      <PackagePath>12 Frank Zappa &amp; The Mothers of Invention - Sofa No. 1.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\13 Frank Zappa - Don’t Eat the Yellow Snow %28Single Version%29.mp3">
+      <PackagePath>13 Frank Zappa - Don’t Eat the Yellow Snow %28Single Version%29.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\15 Frank Zappa - G‐Spot Tornado.mp3">
+      <PackagePath>15 Frank Zappa - G‐Spot Tornado.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\16 Frank Zappa - Cocaine Decisions.mp3">
+      <PackagePath>16 Frank Zappa - Cocaine Decisions.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\17 Frank Zappa - Zoot Allures.mp3">
+      <PackagePath>17 Frank Zappa - Zoot Allures.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\18 Frank Zappa &amp; London Symphony Orchestra - Strictly Genteel.mp3">
+      <PackagePath>18 Frank Zappa &amp; London Symphony Orchestra - Strictly Genteel.mp3</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\bossfightm01.mp3">
+      <PackagePath>bossfightm01.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\clicksfx.wav">
+      <PackagePath>clicksfx.wav</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\clicksfxx.wav">
+      <PackagePath>clicksfxx.wav</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\drumssoundeffect.wav">
+      <PackagePath>drumssoundeffect.wav</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\explosionsoundeffect.wav">
+      <PackagePath>explosionsoundeffect.wav</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\gunfiresoundeffect.wav">
+      <PackagePath>gunfiresoundeffect.wav</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\Inon Zur - Northern Lights.mp3">
+      <PackagePath>Inon Zur - Northern Lights.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\itempickupsound.wav">
+      <PackagePath>itempickupsound.wav</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\mainmenu.mp3">
+      <PackagePath>mainmenu.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\oof01.mp3">
+      <PackagePath>oof01.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\oof02.mp3">
+      <PackagePath>oof02.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\strongpunchsfx.mp3">
+      <PackagePath>strongpunchsfx.mp3</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
       <PackagePath>splashSplashScreen.scale-100.png</PackagePath>
@@ -63,6 +183,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ahomeless.scale-100.png">
       <PackagePath>ahomeless.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammoupitemimage.scale-100.png">
+      <PackagePath>ammoupitemimage.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\ammunitionlooticon01.scale-100.png">
       <PackagePath>ammunitionlooticon01.scale-100.png</PackagePath>
@@ -226,14 +349,20 @@
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\arossianizen.scale-100.png">
       <PackagePath>arossianizen.scale-100.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\attackitem.scale-100.png">
+      <PackagePath>attackitem.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\attackupimage.scale-100.png">
+      <PackagePath>attackupimage.scale-100.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\backgroundlevel01.scale-100.png">
       <PackagePath>backgroundlevel01.scale-100.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\backgroundlevel02.scale-100.png">
+      <PackagePath>backgroundlevel02.scale-100.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\battleforazuratitleimg.scale-100.png">
       <PackagePath>battleforazuratitleimg.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\blue.scale-100.png">
-      <PackagePath>blue.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\british.scale-100.png">
       <PackagePath>british.scale-100.png</PackagePath>
@@ -280,11 +409,29 @@
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\eziarfinalbossroom.scale-100.png">
       <PackagePath>eziarfinalbossroom.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\green.scale-100.png">
-      <PackagePath>green.scale-100.png</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\greyfilter.scale-100.png">
       <PackagePath>greyfilter.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gun1image.scale-100.png">
+      <PackagePath>gun1image.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gun2image.scale-100.png">
+      <PackagePath>gun2image.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gun3image.scale-100.png">
+      <PackagePath>gun3image.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gun4image.scale-100.png">
+      <PackagePath>gun4image.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gun5image.scale-100.png">
+      <PackagePath>gun5image.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gun6image.scale-100.png">
+      <PackagePath>gun6image.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\healthpackimage.scale-100.png">
+      <PackagePath>healthpackimage.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\injuredsoldier.scale-100.png">
       <PackagePath>injuredsoldier.scale-100.png</PackagePath>
@@ -307,17 +454,32 @@
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\outoforder.scale-100.png">
       <PackagePath>outoforder.scale-100.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\pdeathscreen01.scale-100.png">
+      <PackagePath>pdeathscreen01.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\pdeathscreen02.scale-100.png">
+      <PackagePath>pdeathscreen02.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\permaorbimage.scale-100.png">
+      <PackagePath>permaorbimage.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\permashopsignimage.scale-100.png">
+      <PackagePath>permashopsignimage.scale-100.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\permasupershopscreen.scale-100.png">
       <PackagePath>permasupershopscreen.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\phasedxscreen01.scale-100.png">
       <PackagePath>phasedxscreen01.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\red.scale-100.png">
-      <PackagePath>red.scale-100.png</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\sadman.scale-100.png">
       <PackagePath>sadman.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\settingmusicscreen_du.scale-100.png">
+      <PackagePath>settingmusicscreen_du.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\speedupimage.scale-100.png">
+      <PackagePath>speedupimage.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\tutorialbox02.scale-100.png">
       <PackagePath>tutorialbox02.scale-100.png</PackagePath>
@@ -327,9 +489,6 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\walter3.scale-100.png">
       <PackagePath>walter3.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\yellow.scale-100.png">
-      <PackagePath>yellow.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\BattleForAzuraTLOV.deps.json">
       <PackagePath>BattleForAzuraTLOV.deps.json</PackagePath>
@@ -438,6 +597,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\.nuget\packages\microsoft.windowsappsdk\1.5.240627000\lib\net6.0-windows10.0.18362.0\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.Net.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\.nuget\packages\plugin.maui.audio\3.0.0\lib\net8.0-windows10.0.19041\Plugin.Maui.Audio.dll">
+      <PackagePath>Plugin.Maui.Audio.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\.nuget\packages\microsoft.maui.controls.core\8.0.82\lib\net8.0-windows10.0.19041\ar\Microsoft.Maui.Controls.resources.dll">
       <PackagePath>ar\Microsoft.Maui.Controls.resources.dll</PackagePath>

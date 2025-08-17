@@ -1,4 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Plugin.Maui.Audio;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using System.Runtime.InteropServices;
@@ -6,58 +11,76 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Channels;
 using System.Xml.Linq;
 
+
+
 namespace BattleForAzuraTLOV
 {
 
-    
+
     public partial class MainPage : ContentPage
     {
 
         int CurrentPlayerPositionX = 0, CurrentPlayerPositionY = 0;
-        int BackgroundCurrentPositionX = 0, BackgroundCurrentPositionY = 0;
+        int BackgroundCurrentPositionX = 0, BackgroundCurrentPositionY = 0, playermovelock = 0;
         int RandomPositionX = 0, RandomPositionY = 0, rtime, weaponEquipped = 0;
-
+        int PlayerDamagePerma = 5, PermaShopToken = 0, PermaPlayerSpeed = 1, PermaDiscount=0, PlayerATKSpeedPerma=1500, PermaAtKUpg=0;
+        int PermaATKSUpg = 0, PermaSPDUpg=0, PermaGun1Upg=0, PermaGun2Upg=0, PermaGun3Upg=0, PermaGun4Upg=0, PermaGun5Upg=0, PermaGun6Upg=0, PermaAmmoUpg=0;
         int playercollisiontopleftX, playercollisiontoprightX, playercollisionbotleftX, playercollisionbotrightX;
         int playercollisiontopY;
         // projectile positions slug
         int[] canHit = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        int[] activeprojectileposition01x = { 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 0, 0, 0, 0, 15, 0, 0, 0, 0, 20, 0, 0 }; // gun 1
-        int[] activeprojectileposition02x = { 0, 0, 0, 0 }; // gun 2
-        int[] activeprojectileposition03x = { 0, 0, 0, 0 }; // gun 3
-        int[] activeprojectileposition04x = { 0, 0, 0, 0 }; // gun 4
-        int[] activeprojectileposition05x = { 0, 0, 0, 0 }; // gun 5
-        int[] activeprojectileposition06x = { 0, 0, 0, 0 }; // gun 6
-        int[] activeprojectileposition01y = { 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 0, 0, 0, 0, 15, 0, 0, 0, 0, 20, 0, 0 }; // gun 1
-        int[] activeprojectileposition02y = { 0, 0, 0, 0 }; // gun 2
-        int[] activeprojectileposition03y = { 0, 0, 0, 0 }; // gun 3
-        int[] activeprojectileposition04y = { 0, 0, 0, 0 }; // gun 4
-        int[] activeprojectileposition05y = { 0, 0, 0, 0 }; // gun 5
-        int[] activeprojectileposition06y = { 0, 0, 0, 0 }; // gun 6
-        int[] enemytier = { 0, 1, 2, 3 };
+        int[] activeprojectileposition01x = { 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 0, 0, 0, 0, 15, 0, 0, 0, 0, 20, 0, 0 };
+        int[] activeprojectileposition01y = { 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 0, 0, 0, 0, 15, 0, 0, 0, 0, 20, 0, 0 };
         int[] isMoving = { 0, 0, 0, 0 };
         int[] canDrop = { 0, 0, 0, 0, 0, 0, 0, 0 };
+        int[] levelCompleted = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        int[] levelStatistics01 = { 63, 3, 1, 5, 3, 0, 0, 5, 0, 1, 2, 7 };
+        int[] levelStatistics02 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        int[] levelStatistics03 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        int[] levelStatistics04 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        int[] purchaseAmount = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        int[] purchaseAmount2 = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        int[] purchaseConfirmed = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        //int[] levelStatistics05 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        //int[] levelStatistics06 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        //int[] levelStatistics07 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        //int[] levelStatistics08 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        //int[] levelStatistics09 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        //int[] levelStatistics10 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        //int[] levelStatistics11 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        //int[] levelStatistics12 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
+        int levelsCompleted = 0;
         int ammunition01 = 0, ammunition02 = 0, ammunition03 = 0, ammunition04 = 0, ammunition05 = 0, ammunition06 = 0, ammunitioncurrent = 0;
         int projectilecycle01 = 0, projectilecycle02 = 0, projectilecycle03 = 0, projectilecycle04 = 0, projectilecycle05 = 0, projectilecycle06 = 0;
-        int gamelevelflag = 0, gamestatus = 0, areascreenlock = 0, tutorialbclicked = 0;
+        int gamelevelflag = 0, gamestatus = 0, areascreenlock = 0, tutorialbclicked = 0, SFXVolumeN = 1, cartTotal;
         int newgamedifficulty = 0, difficultysetting = 0, saveselected = 0, save01exist = 0, save02exist = 0, save03exist = 0, missionselected = 1;
-        int playerMoveamount = 0, playerDamageValue = 5, killCounter = 0, eCanMove = 0;
+        int playerMoveamount = 0, playerDamageValue = 5, killCounter = 0, eCanMove = 0, killcounter2 =0, killcounter3 = 0, musicLockKL = 0;
         int weaponMenuedSwitch = 0, weaponowned01 = 1, weaponowned02 = 0, weaponowned03 = 0, weaponowned04 = 0, weaponowned05 = 0, weaponowned06 = 0;
-        int enemytype1hp = 8, enemytype2hp = 12, enemytype1dmg = 3, enemytype2dmg = 5, boss1hp = 100, boss1dmg = 10, testnumberT= 0, dropSwitch=0;
-        float playerHealthPoints = 140, playerStaminaPoints = 140, playerMagicPoints = 140, sprintSwitch=0, delay = 0, bossactive = 0;
+        int enemytype1hp = 8, enemytype2hp = 12, enemytype1dmg = 3, enemytype2dmg = 5, boss1hp = 100, boss1dmg = 10, testnumberT = 0, dropSwitch = 0, startSwitch = 0, gameMenuSwitch = 0, currentMTrack = 0, tracklock =0;
+        int settingsVolume = 0, settingsVolume2 = 0, settingsEnhancedGamePlay = 1, settingsItalienVoiceActing = 1, settingsQuitgame = 1, settingsGameOs = 1, settingsEnhancedAI = 1, settingsGraphics = 0, settingsSpiderMode = 1;
+        int item1cost = 1, item2cost = 1, item3cost = 1, item4cost = 1, item5cost = 1, item6cost = 1, item7cost = 1, item8cost = 1, item9cost = 1;
+        float playerHealthPoints = 140, playerStaminaPoints = 140, playerMagicPoints = 140, sprintSwitch = 0, delay = 0, bossactive = 0;
+        double musicVolume = 0.50;
+
         Random RNGmove = new Random();
 
-
+        private IAudioManager audioManager;
+        private readonly Dictionary<int, IAudioPlayer> _players = new();
+        private IAudioPlayer _currentPlayer;
+        private IAudioPlayer _currentSFX;
+        private readonly SemaphoreSlim _gate = new(1, 1);
         // creating arrays of game objects
         EnemyObject[] enemyInstance = new EnemyObject[16];
         EnemyObject[] eliteEnemyInstance = new EnemyObject[4];
         EnemyObject[] bossInstance = new EnemyObject[1];
         ItemObject[] itemInstance = new ItemObject[8];
 
-        public MainPage()
+        public MainPage(IAudioManager audioManager)
         {
             //new KeyboardAccelerator { Key = "X" };
             InitializeComponent();
+            this.audioManager = audioManager;
         }
 
         protected override async void OnAppearing()
@@ -71,10 +94,12 @@ namespace BattleForAzuraTLOV
             hideallgamecontent();
             tutorialsetup();
             ItemOffSet();
+            Setting_updater();
+            // set up perma
 
-
-            playerMoveamount = 1;
-
+            playerDamageValue = PlayerDamagePerma;
+            playerDamageValue += PermaAtKUpg;
+            // setup objects
             for (int i = 0; i < enemyInstance.Length; i++)
             {
                 enemyInstance[i] = new EnemyObject(0, 0, enemytype1hp, enemytype1dmg, false);
@@ -91,6 +116,7 @@ namespace BattleForAzuraTLOV
             {
                 itemInstance[c] = new ItemObject(-1000, 0, 0, false);
             }
+            playerMoveamount = PermaPlayerSpeed;
         }
         async void setupallgameobjects()
         {
@@ -127,8 +153,8 @@ namespace BattleForAzuraTLOV
             await backmovebutton.TranslateTo(50, 145, 4);
             await leftmovebutton.TranslateTo(0, 50, 4);
             await rightmovebutton.TranslateTo(105, 0, 4);
-            await forwardmovebutton.TranslateTo(50, -95, 4);    
-            await sprintbutton.TranslateTo(-10, 50,4);
+            await forwardmovebutton.TranslateTo(50, -95, 4);
+            await sprintbutton.TranslateTo(-10, 50, 4);
             await attackbutton.TranslateTo(-40, -10, 4);
             await backgroundweaponmenu01.TranslateTo(1475, 0, 4);
             await backgroundweaponmenu02.TranslateTo(1475, -125, 4);
@@ -144,6 +170,13 @@ namespace BattleForAzuraTLOV
             await weaponmenu04.TranslateTo(1515, -40, 4);
             await weaponmenu05.TranslateTo(1515, 45, 4);
             await weaponmenu06.TranslateTo(1515, 130, 4);
+            await backgroundmenumenu01.TranslateTo(280, 0, 4);
+            await menumenubutton01.TranslateTo(280, -200, 4);
+            await menumenubutton02.TranslateTo(280, -100, 4);
+            await menumenubutton03.TranslateTo(280, 0, 4);
+            await menumenubutton04.TranslateTo(280, 100, 4);
+            await menumenubutton05.TranslateTo(280, 200, 4);
+            await deathscreenbutton.TranslateTo(0, 140, 4);
             await gamemenubutton.TranslateTo(0, 0, 4);
             await weaponswitchbutton.TranslateTo(0, 0, 4);
             await backgroundammotext.TranslateTo(-110, -95, 4);
@@ -153,8 +186,24 @@ namespace BattleForAzuraTLOV
             await weaponswitchbutton.ScaleTo(0.8, 4);
             await backgroundammotext.ScaleTo(1.3, 4);
             await backgroundweaponmenu01.ScaleTo(4.5, 4);
+            await deathscreenbutton.FadeTo(0, 4);
+            await backgroundmenumenu01.FadeTo(0, 4);
+            await menumenubutton01.FadeTo(0, 4);
+            await menumenubutton02.FadeTo(0, 4);
+            await menumenubutton03.FadeTo(0, 4);
+            await menumenubutton04.FadeTo(0, 4);
+            await menumenubutton05.FadeTo(0, 4);
 
 
+            this.Resources["Settings1BTNText"] = " -> Music Volume (On) <- ";
+            this.Resources["Settings2BTNText"] = " -> SFX Volume (On) <- ";
+            this.Resources["Settings3BTNText"] = " -> Enhanced Gameplay (Off) <- ";
+            this.Resources["Settings4BTNText"] = " -> Italian Voice Acting (Off) <- ";
+            this.Resources["Settings5BTNText"] = " -> Quit Game <- ";
+            this.Resources["Settings6BTNText"] = " -> Game Osmosis (Off) <- ";
+            this.Resources["Settings7BTNText"] = " -> Enhanced AI Features (Off) <- ";
+            this.Resources["Settings8BTNText"] = " -> Graphics (On) <- ";
+            this.Resources["Settings9BTNText"] = " -> Spider-phobia Mode (Off) <- ";
             this.Resources["ItemImageR01"] = "ammunitionlooticon01.png";
             this.Resources["MagicBarValue"] = 140;
             this.Resources["HealthBarValue"] = 140;
@@ -165,7 +214,7 @@ namespace BattleForAzuraTLOV
             this.Resources["ColourOfLeftMoveBTNClicked"] = Colors.LightBlue;
             this.Resources["ColourOfBackMoveBTNClicked"] = Colors.LightBlue;
             this.Resources["ColourOfAttackBTNClicked"] = Colors.Red;
-            this.Resources["ColourOfGameMenuBTNClicked"] = Colors.Purple;
+            this.Resources["ColourOfGameMenuBTNClicked"] = Colors.DarkViolet;
             this.Resources["ColourOfWeaponSwitchBTNClicked"] = Colors.Yellow;
             this.Resources["ColourOfWeapon1BTNClicked"] = Colors.DarkSlateGray;
             this.Resources["ColourOfWeapon2BTNClicked"] = Colors.DarkSlateGray;
@@ -173,6 +222,11 @@ namespace BattleForAzuraTLOV
             this.Resources["ColourOfWeapon4BTNClicked"] = Colors.DarkSlateGray;
             this.Resources["ColourOfWeapon5BTNClicked"] = Colors.DarkSlateGray;
             this.Resources["ColourOfWeapon6BTNClicked"] = Colors.DarkSlateGray;
+            this.Resources["ColourOfSetting1BTNClicked"] = Colors.Ivory;
+            this.Resources["ColourOfSetting2BTNClicked"] = Colors.Ivory;
+            this.Resources["ColourOfSetting3BTNClicked"] = Colors.Ivory;
+            this.Resources["ColourOfSetting4BTNClicked"] = Colors.Ivory;
+            this.Resources["ColourOfSetting5BTNClicked"] = Colors.Ivory;
         }
         private void hideallgamecontent() // hides all content game assets (enemies, objects, etc )
         {
@@ -182,9 +236,9 @@ namespace BattleForAzuraTLOV
             hideiteminstances01();
             hideprojectileinstances();
             hideplayerui();
-            
+
         }
-        
+
         async void hideplayer()
         {
             await PlayerIMG.FadeTo(0, 5);
@@ -194,7 +248,7 @@ namespace BattleForAzuraTLOV
             await PlayerHitBoxtopright.FadeTo(0, 5);
             await PlayerHitBoxbotleft.FadeTo(0, 5);
             await PlayerHitBoxbotright.FadeTo(0, 5);
-        } 
+        }
         async void hidebackground()
         {
             await BackgroundIMG.FadeTo(0, 5);
@@ -206,6 +260,8 @@ namespace BattleForAzuraTLOV
             await BackgroundLevel06.FadeTo(0, 5);
             await BackgroundLevel07.FadeTo(0, 5);
             await BackgroundLevel08.FadeTo(0, 5);
+            await Pdeathscreen01.FadeTo(0, 5);
+            await Pdeathscreen02.FadeTo(0, 5);
         }
         async void hideenemyinstances01()
         {
@@ -225,7 +281,7 @@ namespace BattleForAzuraTLOV
             await e014.FadeTo(0, 5);
             await e015.FadeTo(0, 5);
             await e016.FadeTo(0, 5);
-            await b01.FadeTo(0, 5); 
+            await b01.FadeTo(0, 5);
         }
         async void hideiteminstances01()
         {
@@ -282,6 +338,107 @@ namespace BattleForAzuraTLOV
             await backgroundammotext.FadeTo(0, 4);
             await ammoqtext.FadeTo(0, 4);
         }
+        private void hideplayerui02()
+        {
+            hideplayerui_winscre_01();
+            hideplayerui_winscre_02();
+            hideplayerui_winscre_03();
+            hideplayerui_winscre_04();
+            hideplayerui_winscre_05();
+            hideplayerui_winscre_06();
+            hideplayerui_winscre_07();
+            hideplayerui_winscre_08();
+            hideplayerui_winscre_09();
+            hideplayerui_winscre_10();
+            hideplayerui_winscre_11();
+            hideplayerui_winscre_12();
+            hideplayerui_winscre_13();
+            hideplayerui_winscre_14();
+            hideplayerui_winscre_15();
+            hideplayerui_winscre_16();
+        }
+        async void hideplayerui_winscre_01()
+        {
+            await PlayerMagicbase.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_02()
+        {
+            await PlayerMagicbar.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_03()
+        {
+            await PlayerHPbase.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_04()
+        {
+            await PlayerHPbar.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_05()
+        {
+            await PlayerStaminabase.FadeTo(0, 500);
+            
+
+        }
+        async void hideplayerui_winscre_06()
+        {
+            await PlayerStaminabar.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_07()
+        {
+            await leftmovebutton.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_08()
+        {
+            await forwardmovebutton.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_09()
+        {
+            await rightmovebutton.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_10()
+        {
+            await backmovebutton.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_11()
+        {
+            await sprintbutton.FadeTo(0, 500);
+
+        }
+        async void hideplayerui_winscre_12()
+        {
+            await attackbutton.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_13()
+        {
+            await gamemenubutton.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_14()
+        {
+            await weaponswitchbutton.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_15()
+        {
+            await backgroundammotext.FadeTo(0, 500);
+            
+        }
+        async void hideplayerui_winscre_16()
+        {
+            await ammoqtext.FadeTo(0, 500);
+        }
+
+
         private void showallgamecontent() // shows all content game assets (enemies, objects, etc )
         {
             showplayer();
@@ -457,10 +614,10 @@ namespace BattleForAzuraTLOV
             await saveslot1button.TranslateTo(-325, -1050, 5);
             await saveslot2button.TranslateTo(-325, -1000, 5);
             await saveslot3button.TranslateTo(-325, -950, 5);
-            await deletesavebutton.TranslateTo(0, (195-1000), 5);
+            await deletesavebutton.TranslateTo(0, (195 - 1000), 5);
             await accept02button.TranslateTo(125, (195 - 1000), 5);
             await leave02button.TranslateTo(250, (195 - 1000), 5);
-            await ContinueScreen01.TranslateTo(0, -1000, 5); 
+            await ContinueScreen01.TranslateTo(0, -1000, 5);
             await saveslot1button.RotateTo(-15, 5);
             await saveslot2button.RotateTo(-15, 5);
             await saveslot3button.RotateTo(-15, 5);
@@ -510,20 +667,99 @@ namespace BattleForAzuraTLOV
         }
         async void setupsupershopmenu()
         {
+            await Permasupershopscreen.TranslateTo(0, -1000, 5);
+            await Attackupimage.TranslateTo(-260, (-150 - 1000), 5);
+            await Speedupimage.TranslateTo(-140, (-150 - 1000), 5);
+            await gun1image.TranslateTo(70, (-175 - 1000), 5);
+            await gun2image.TranslateTo(70, (-110 - 1000), 5);
+            await gun3image.TranslateTo(70, (-45 - 1000), 5);
+            await gun4image.TranslateTo(70, (20 - 1000), 5);
+            await gun5image.TranslateTo(70, (85 - 1000), 5);
+            await gun6image.TranslateTo(70, (150 - 1000), 5);
+            await Ammoupitemimage.TranslateTo(-380, (-150 - 1000), 5);
+            await permastoretextbutton.TranslateTo(-400, (-210 - 1000), 5);
+            await buyitem01button.TranslateTo(-380, (-60 - 1000), 5);
+            await buyitem02button.TranslateTo(-260, (-60 - 1000), 5);
+            await buyitem03button.TranslateTo(-140, (-60 - 1000), 5);
+            await buyitem04button.TranslateTo(270, (-175 - 1000), 5);
+            await buyitem05button.TranslateTo(270, (-110 - 1000), 5);
+            await buyitem06button.TranslateTo(270, (-45 - 1000), 5);
+            await buyitem07button.TranslateTo(270, (20 - 1000), 5);
+            await buyitem08button.TranslateTo(270, (85 - 1000), 5);
+            await buyitem09button.TranslateTo(270, (150 - 1000), 5);
+            await buyconfirmbutton.TranslateTo(390, (-200 - 1000), 5);
+            await leave05button.TranslateTo(390, (-200 - 1000), 5);
 
+
+            this.Resources["itembuy1BTNText"] = "Upgrade";
+            this.Resources["itembuy2BTNText"] = "Upgrade";
+            this.Resources["itembuy3BTNText"] = "Upgrade";
+            this.Resources["itembuy4BTNText"] = "Buy Gun 1";
+            this.Resources["itembuy5BTNText"] = "Buy Gun 2";
+            this.Resources["itembuy6BTNText"] = "Buy Gun 3";
+            this.Resources["itembuy7BTNText"] = "Buy Gun 4";
+            this.Resources["itembuy8BTNText"] = "Buy Gun 5";
+            this.Resources["itembuy9BTNText"] = "Buy Gun 6";
+            this.Resources["permatokensBTNText"] = "Orbs: 0";
+            this.Resources["ColourOfItemBuy01BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy02BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy03BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy04BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy05BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy06BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy07BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy08BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy09BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfBuyConfirmBTNClicked"] = Colors.White;
 
         }
         async void setupchallengesmenu()
         {
-          
+            // none needed
         }
         async void setupmusicmenu()
         {
-           
+            await Settingmusicscreen.TranslateTo(0, -1000, 5);
+            await musicbutton01.TranslateTo(-250, (-150 - 1000), 5);
+            await musicbutton02.TranslateTo(-250, (-50 - 1000), 5);
+            await musicbutton03.TranslateTo(-250, (50 - 1000), 5);
+            await musicbutton04.TranslateTo(-250, (150 - 1000), 5);
+            await musicbutton05.TranslateTo(250, (-150 - 1000), 5);
+            await musicbutton06.TranslateTo(250, (-50 - 1000), 5);
+            await musicbutton07.TranslateTo(250, (50 - 1000), 5);
+            await musictextbutton.TranslateTo(0, (-220 - 1000), 5);
+            await leave07button.TranslateTo(350, (220 - 1000), 5);
+
+            this.Resources["Music1BTNText"] = "Track 1";
+            this.Resources["Music2BTNText"] = "Track 2";
+            this.Resources["Music3BTNText"] = "Track 3";
+            this.Resources["Music4BTNText"] = "Track 4";
+            this.Resources["Music5BTNText"] = "Track 5";
+            this.Resources["Music6BTNText"] = "Track 6";
+            this.Resources["Music7BTNText"] = "Track 7";
+            this.Resources["ColourOfMusic1BTNClicked"] = Colors.LightGray;
+            this.Resources["ColourOfMusic2BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfMusic3BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfMusic4BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
+            this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
         }
         async void setupsettingsmenu()
         {
-            await GrayFilterScreen01.TranslateTo(0, -1000, 5);
+            //await Settingmusicscreen.TranslateTo(0, -1000, 5);
+            await mainmenubutton01.TranslateTo(-260, (-150 - 1000), 5);
+            await mainmenubutton02.TranslateTo(-260, (-50 - 1000), 5);
+            await mainmenubutton03.TranslateTo(-260, (50 - 1000), 5);
+            await mainmenubutton04.TranslateTo(-260, (150 - 1000), 5);
+            await mainmenubutton05.TranslateTo(0, (220 - 1000), 5);
+            await mainmenubutton06.TranslateTo(260, (-150 - 1000), 5);
+            await mainmenubutton07.TranslateTo(260, (-50 - 1000), 5);
+            await mainmenubutton08.TranslateTo(260, (50 - 1000), 5);
+            await mainmenubutton09.TranslateTo(260, (150 - 1000), 5);
+            await mainmenutextbutton.TranslateTo(0, (-220 - 1000), 5);
+            await leave06button.TranslateTo(350, (220 - 1000), 5);
+
         }
         async void setuplevelstatsmenu01()
         {
@@ -533,12 +769,12 @@ namespace BattleForAzuraTLOV
         }
         async void setuplevelstatsmenu02()
         {
-        
+
 
         }
         private void setupallgameprojectiles()
         {
-            Reset_All_Projectile_Position();  
+            Reset_All_Projectile_Position();
         }
 
         private void tutorialsetup()
@@ -567,18 +803,20 @@ namespace BattleForAzuraTLOV
         // button stuff
         private void SprintBTN_Clicked(object sender, EventArgs e) // while pressed
         {
+            //SoundBoard(8);
             if (gamestatus != 0)
             {
                 if (sprintSwitch == 0 && playerStaminaPoints >= 1 && delay == 0)
                 {
                     this.Resources["ColourOfSprintBTNClicked"] = Colors.Navy;
-                    playerMoveamount = 3;
+                    playerMoveamount += 2;
                     sprintSwitch = 1;
+
                 }
                 else if (sprintSwitch == 1)
                 {
                     this.Resources["ColourOfSprintBTNClicked"] = Colors.LightBlue;
-                    playerMoveamount = 1;
+                    playerMoveamount += -2;
                     sprintSwitch = 0;
                 }
             }
@@ -586,7 +824,7 @@ namespace BattleForAzuraTLOV
         private void MoveBTN_Clicked(object sender, EventArgs e) // while pressed
         {
             isMoving[0] = 1;
-
+            //SoundBoard(8);
             if (gamestatus != 0)
             {
                 this.Resources["ColourOfForwardMoveBTNClicked"] = Colors.Navy;
@@ -596,13 +834,13 @@ namespace BattleForAzuraTLOV
             }
 
         }
-        private void MoveBTN_UnClicked(object sender, EventArgs e) 
+        private void MoveBTN_UnClicked(object sender, EventArgs e)
         {
             isMoving[0] = 0;
         }
         async void Move_player()
         {
-            while (isMoving[0] == 1)
+            while (isMoving[0] == 1 && gamestatus != 0)
             {
                 CurrentPlayerPositionY = CurrentPlayerPositionY - playerMoveamount;
 
@@ -611,7 +849,7 @@ namespace BattleForAzuraTLOV
                     CurrentPlayerPositionY = -219;
 
                 }
-                if (sprintSwitch == 1 && playerStaminaPoints >=1)
+                if (sprintSwitch == 1 && playerStaminaPoints >= 1)
                 {
                     playerStaminaPoints = (playerStaminaPoints - 2);
                 }
@@ -621,7 +859,7 @@ namespace BattleForAzuraTLOV
         }
         async void Move_playerLeft()
         {
-            while (isMoving[1] == 1)
+            while (isMoving[1] == 1 && gamestatus != 0)
             {
                 CurrentPlayerPositionX = CurrentPlayerPositionX - playerMoveamount;
 
@@ -639,7 +877,7 @@ namespace BattleForAzuraTLOV
         }
         async void Move_playerRight()
         {
-            while (isMoving[2] == 1)
+            while (isMoving[2] == 1 && gamestatus != 0)
             {
                 CurrentPlayerPositionX = CurrentPlayerPositionX + playerMoveamount;
 
@@ -657,7 +895,7 @@ namespace BattleForAzuraTLOV
         }
         async void Move_playerBack()// split the 3 player parts moving seperately so they all move at once together
         {
-            while (isMoving[3] == 1)
+            while (isMoving[3] == 1 && gamestatus != 0)
             {
                 CurrentPlayerPositionY = CurrentPlayerPositionY + playerMoveamount;
 
@@ -675,7 +913,7 @@ namespace BattleForAzuraTLOV
         }
         async void Move_player_Hit_Box()
         {
-            while (isMoving[0] == 1 || isMoving[1] == 1 || isMoving[2] == 1 || isMoving[3] == 1 )
+            while (isMoving[0] == 1 || isMoving[1] == 1 || isMoving[2] == 1 || isMoving[3] == 1 && gamestatus != 0)
             {
                 //CurrentPlayerPositionY = CurrentPlayerPositionY - 15;
                 await PlayerHitBox.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
@@ -683,7 +921,7 @@ namespace BattleForAzuraTLOV
         }
         async void Move_player_Camera_Box()
         {
-            while (isMoving[0] == 1 || isMoving[1] == 1 || isMoving[2] == 1 || isMoving[3] == 1)
+            while (isMoving[0] == 1 || isMoving[1] == 1 || isMoving[2] == 1 || isMoving[3] == 1 && gamestatus != 0)
             {
                 //CurrentPlayerPositionY = CurrentPlayerPositionY - 15;
                 await PlayerCameraBox.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
@@ -692,6 +930,7 @@ namespace BattleForAzuraTLOV
         private void LeftMoveBTN_Clicked(object sender, EventArgs e)
         {
             isMoving[1] = 1;
+            //SoundBoard(8);
             if (gamestatus != 0)
             {
                 this.Resources["ColourOfLeftMoveBTNClicked"] = Colors.Navy;
@@ -700,13 +939,14 @@ namespace BattleForAzuraTLOV
                 Move_player_Camera_Box();
             }
         }
-        private void LeftMoveBTN_UnClicked(object sender, EventArgs e) 
+        private void LeftMoveBTN_UnClicked(object sender, EventArgs e)
         {
             isMoving[1] = 0;
         }
         private void RightMoveBTN_Clicked(object sender, EventArgs e)
         {
             isMoving[2] = 1;
+            //SoundBoard(8);
             if (gamestatus != 0)
             {
                 this.Resources["ColourOfRightMoveBTNClicked"] = Colors.Navy;
@@ -722,6 +962,7 @@ namespace BattleForAzuraTLOV
         private void BackMoveBTN_Clicked(object sender, EventArgs e)
         {
             isMoving[3] = 1;
+            //SoundBoard(8);
             if (gamestatus != 0)
             {
                 this.Resources["ColourOfBackMoveBTNClicked"] = Colors.Navy;
@@ -734,9 +975,10 @@ namespace BattleForAzuraTLOV
         {
             isMoving[3] = 0;
         }
-        
+
         private void AttackBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(3);
             if (gamestatus != 0)
             {
                 if (ammunition01 != 0)
@@ -871,7 +1113,7 @@ namespace BattleForAzuraTLOV
                     await Projectile01.FadeTo(1, 1);
                     for (int i = 0; i < 100; i++)
                     {
-                        for(int j = 0; j < enemyInstance.Length; j++)// hit tracking
+                        for (int j = 0; j < enemyInstance.Length; j++)// hit tracking
                         {
                             bool hit1 = enemyInstance[j].ProjectileCollide(activeprojectileposition01x[0], activeprojectileposition01y[0]);
                             if (hit1 == true && canHit[0] == 1)
@@ -881,7 +1123,7 @@ namespace BattleForAzuraTLOV
                                 Remove_Projectile_cur(0);
                                 if (alive1 == 0)
                                 {
-                                    
+
                                     EnemyDying(j);
                                     break;
                                 }
@@ -898,7 +1140,8 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+
+                                bi01death();
                                 break;
                             }
                             break;
@@ -913,10 +1156,10 @@ namespace BattleForAzuraTLOV
                         }
                         else
                         {
-                            
+
                             break;
                         }
-                        
+
                     }
                     await Projectile01.FadeTo(0, 40);
                     activeprojectileposition01x[0] = activeprojectileposition01x[0] + 1000;
@@ -959,7 +1202,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -972,7 +1215,7 @@ namespace BattleForAzuraTLOV
                         }
                         else
                         {
-                            
+
                             break;
                         }
                     }
@@ -1016,7 +1259,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1030,7 +1273,7 @@ namespace BattleForAzuraTLOV
                         }
                         else
                         {
-                            
+
                             break;
                         }
                     }// end move loop
@@ -1075,7 +1318,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1089,7 +1332,7 @@ namespace BattleForAzuraTLOV
                         }
                         else
                         {
-                            
+
                             break;
                         }
                     }
@@ -1133,7 +1376,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1147,7 +1390,7 @@ namespace BattleForAzuraTLOV
                         }
                         else
                         {
-                            
+
                             break;
                         }
                     }
@@ -1191,7 +1434,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1205,7 +1448,7 @@ namespace BattleForAzuraTLOV
                         }
                         else
                         {
-                            
+
                             break;
                         }
                     }
@@ -1249,7 +1492,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1306,7 +1549,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1363,7 +1606,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1420,7 +1663,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1477,7 +1720,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1534,7 +1777,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1591,7 +1834,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1648,7 +1891,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1705,7 +1948,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1762,7 +2005,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1820,7 +2063,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1877,7 +2120,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1934,7 +2177,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -1991,7 +2234,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -2048,7 +2291,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -2105,7 +2348,7 @@ namespace BattleForAzuraTLOV
                             if (alive1 == 0)
                             {
 
-                                EnemyDying(101);
+                                bi01death();
                                 break;
                             }
                             break;
@@ -2135,7 +2378,7 @@ namespace BattleForAzuraTLOV
                 case 1:
 
 
-                break;
+                    break;
             }
         }
         async void bullet_lifecycle03()
@@ -2145,7 +2388,7 @@ namespace BattleForAzuraTLOV
                 case 1:
 
 
-                break;
+                    break;
             }
         }
         async void bullet_lifecycle04()
@@ -2155,7 +2398,7 @@ namespace BattleForAzuraTLOV
                 case 1:
 
 
-                break;
+                    break;
             }
         }
         async void bullet_lifecycle05()
@@ -2165,7 +2408,7 @@ namespace BattleForAzuraTLOV
                 case 1:
 
 
-                break;
+                    break;
             }
         }
         async void bullet_lifecycle06()
@@ -2175,19 +2418,272 @@ namespace BattleForAzuraTLOV
                 case 1:
 
 
-                break;
+                    break;
             }
         }
         private void GameMenuBTN_Clicked(object sender, EventArgs e)// ( does not pause the game )
         {
+
             if (gamestatus != 0)
             {
+                SoundBoard(8);
+                if (gameMenuSwitch == 0)
+                {
+                    GameMenuAct();
+                    gameMenuSwitch = 1;
+                    this.Resources["ColourOfGameMenuBTNClicked"] = Colors.Purple;
+                }
+                else if (gameMenuSwitch == 1)
+                {
+                    GameMenuBck();
+                    gameMenuSwitch = 0;
+                    this.Resources["ColourOfGameMenuBTNClicked"] = Colors.DarkViolet;
+                }
+            }
+        }
+        async void GameMenuAct()
+        {
+            GameMenuA01();
+            GameMenuA02();
+            GameMenuA03();
+            GameMenuA04();
+            GameMenuA05();
+            GameMenuA06();
+
+        }
+        async void GameMenuA01()
+        {
+            await backgroundmenumenu01.FadeTo(1, 200);
+            
+        }
+        async void GameMenuA02()
+        {
+            await menumenubutton01.FadeTo(1, 200);
+            
+        }
+        async void GameMenuA03()
+        {
+            await menumenubutton02.FadeTo(1, 200);
+            
+        }
+        async void GameMenuA04()
+        {
+            await menumenubutton03.FadeTo(1, 200);
+            
+        }
+        async void GameMenuA05()
+        {
+            await menumenubutton04.FadeTo(1, 200);
+            
+        }
+        async void GameMenuA06()
+        {
+            await menumenubutton05.FadeTo(1, 200);
+        }
+        async void GameMenuBck()
+        {
+            GameMenuB01();
+            GameMenuB02();
+            GameMenuB03();
+            GameMenuB04();
+            GameMenuB05();
+            GameMenuB06();  
+
+        }
+        async void GameMenuB01()
+        {
+            await backgroundmenumenu01.FadeTo(0, 200);
+
+        }
+        async void GameMenuB02()
+        {
+            await menumenubutton01.FadeTo(0, 200);
+
+        }
+        async void GameMenuB03()
+        {
+            await menumenubutton02.FadeTo(0, 200);
+
+        }
+        async void GameMenuB04()
+        {
+            await menumenubutton03.FadeTo(0, 200);
+
+        }
+        async void GameMenuB05()
+        {
+            await menumenubutton04.FadeTo(0, 200);
+
+        }
+        async void GameMenuB06()
+        {
+            await menumenubutton05.FadeTo(0, 200);
+        }
+        private void Setting1BTN_Clicked(object sender, EventArgs e)
+        {
+
+            if (settingsVolume == 0)
+            {
+                MusicPlayer01(0, 0, 0);
+                settingsVolume = 1;
+                musicVolume = 0;
+                //musicLockKL = 1;
+                
+            }
+            else if (settingsVolume == 1)
+            {
+                MusicPlayer01(0, 0, musicVolume);
+                settingsVolume = 0;
+                musicVolume = 0.50;
+                //musicLockKL = 0;
+
+                /*
+                if (gamestatus != 0)
+                {
+                    if (tracklock == 0)
+                    {
+                        musicVolume = 0.50;
+                        MusicPlayer01(currentMTrack, 0, musicVolume);
+                        settingsVolume = 0;
+                        //musicLockKL = 0;
+                        tracklock++;
+                    }
+
+                }
+                */
 
             }
+            SoundBoard(8);
+            //music
+
+        }
+        private void Setting2BTN_Clicked(object sender, EventArgs e)
+        {
+
+            if (settingsVolume2 == 0)
+            {
+                SFXVolumeN = 0;
+                settingsVolume2 = 1;
+            }
+            else if (settingsVolume2 == 1)
+            {
+                SFXVolumeN = 1;
+                settingsVolume2 = 0;
+            }
+            SoundBoard(8);
+            //audio
+
+        }
+        private void Setting3BTN_Clicked(object sender, EventArgs e)
+        {
+
+            if (settingsEnhancedGamePlay == 0)
+            {
+                settingsEnhancedGamePlay = 1;
+            }
+            else if (settingsEnhancedGamePlay == 1)
+            {
+                settingsEnhancedGamePlay = 0;
+            }
+            SoundBoard(8);
+            //enhancedgameplay
+
+        }
+        private void Setting4BTN_Clicked(object sender, EventArgs e)
+        {
+
+            if (settingsItalienVoiceActing == 0)
+            {
+                settingsItalienVoiceActing = 1;
+            }
+            else if (settingsItalienVoiceActing == 1)
+            {
+                settingsItalienVoiceActing = 0;
+            }
+            SoundBoard(8);
+            //italianVoiceActing
+
+        }
+        private void Setting5BTN_Clicked(object sender, EventArgs e)
+        {
+            SoundBoard(8);
+            if (settingsQuitgame == 0)
+            {
+                settingsQuitgame = 1;
+                Application.Current.Quit();
+            }
+            else if (settingsQuitgame == 1)
+            {
+                settingsQuitgame = 0;
+                Application.Current.Quit();
+            }
+            //quitgame
+
+        }
+        private void Setting6BTN_Clicked(object sender, EventArgs e)
+        {
+
+            if (settingsGameOs == 0)
+            {
+                settingsGameOs = 1;
+            }
+            else if (settingsGameOs == 1)
+            {
+                settingsGameOs = 0;
+            }
+            SoundBoard(8);
+            // game osmosis
+
+        }
+        private void Setting7BTN_Clicked(object sender, EventArgs e)
+        {
+
+            if (settingsEnhancedAI == 0)
+            {
+                settingsEnhancedAI = 1;
+            }
+            else if (settingsEnhancedAI == 1)
+            {
+                settingsEnhancedAI = 0;
+            }
+            SoundBoard(8);
+            // increase ais
+
+        }
+        private void Setting8BTN_Clicked(object sender, EventArgs e)
+        {
+
+            if (settingsGraphics == 0)
+            {
+                settingsGraphics = 1;
+            }
+            else if (settingsGraphics == 1)
+            {
+                settingsGraphics = 0;
+            }
+            SoundBoard(8);
+            // increase graphics
+
+        }
+        private void Setting9BTN_Clicked(object sender, EventArgs e)
+        {
+
+            if (settingsSpiderMode == 0)
+            {
+                settingsSpiderMode = 1;
+            }
+            else if (settingsSpiderMode == 1)
+            {
+                settingsSpiderMode = 0;
+            }
+            SoundBoard(8);
+            // spider mode
+
         }
         private void WeaponBTN_Clicked(object sender, EventArgs e)
         {
             //Weapon_menu_Open();
+            SoundBoard(8);
             if (gamestatus != 0)
             {
                 if (weaponMenuedSwitch == 0)
@@ -2207,9 +2703,10 @@ namespace BattleForAzuraTLOV
         }
         private void Weapon1BTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             if (weaponEquipped != 0)
             {
-                if(weaponowned01 == 1)
+                if (weaponowned01 == 1)
                 {
                     weaponEquipped = 0;
                 }
@@ -2219,10 +2716,11 @@ namespace BattleForAzuraTLOV
             {
                 this.Resources["ColourOfWeapon1BTNClicked"] = Colors.DarkSlateBlue;
             }
-            
+
         }
         private void Weapon2BTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             if (weaponEquipped != 1)
             {
                 if (weaponowned02 == 1)
@@ -2235,10 +2733,11 @@ namespace BattleForAzuraTLOV
             {
                 this.Resources["ColourOfWeapon2BTNClicked"] = Colors.DarkSlateBlue;
             }
-            
+
         }
         private void Weapon3BTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             if (weaponEquipped != 2)
             {
                 if (weaponowned03 == 1)
@@ -2251,10 +2750,11 @@ namespace BattleForAzuraTLOV
             {
                 this.Resources["ColourOfWeapon3BTNClicked"] = Colors.DarkSlateBlue;
             }
-            
+
         }
         private void Weapon4BTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             if (weaponEquipped != 3)
             {
                 if (weaponowned04 == 1)
@@ -2267,10 +2767,11 @@ namespace BattleForAzuraTLOV
             {
                 this.Resources["ColourOfWeapon4BTNClicked"] = Colors.DarkSlateBlue;
             }
-            
+
         }
         private void Weapon5BTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             if (weaponEquipped != 4)
             {
                 if (weaponowned05 == 1)
@@ -2283,10 +2784,11 @@ namespace BattleForAzuraTLOV
             {
                 this.Resources["ColourOfWeapon5BTNClicked"] = Colors.DarkSlateBlue;
             }
-            
+
         }
         private void Weapon6BTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             if (weaponEquipped != 5)
             {
                 if (weaponowned06 == 1)
@@ -2304,7 +2806,7 @@ namespace BattleForAzuraTLOV
         // player to object collision
         private void Player_collision()
         {
-            playercollisiontopleftX = (CurrentPlayerPositionX -35);
+            playercollisiontopleftX = (CurrentPlayerPositionX - 35);
             playercollisiontoprightX = (CurrentPlayerPositionX + 35);
             playercollisionbotleftX = (CurrentPlayerPositionX - 35);
             playercollisionbotrightX = (CurrentPlayerPositionX + 35);
@@ -2315,7 +2817,7 @@ namespace BattleForAzuraTLOV
                 CheckEnemyColl01(i);
                 //testnumberT++;
             }
-            for (int j = 0;j < itemInstance.Length; j++)
+            for (int j = 0; j < itemInstance.Length; j++)
             {
                 CheckItemColl01(j);
             }
@@ -2325,8 +2827,8 @@ namespace BattleForAzuraTLOV
         async void CheckEnemyColl01(int enemyN)
         {
             //testnumberT++;
-            int canAtt = 1;
-            float enemyDamage = 0;
+            int canAtt = 1, canAtt2 = 1;
+            float enemyDamage = 0, enemyDamage2 = 0;
             bool contact = false;
             contact = enemyInstance[enemyN].PlayerCollide(CurrentPlayerPositionX, CurrentPlayerPositionY);
             if (contact == true)
@@ -2335,11 +2837,30 @@ namespace BattleForAzuraTLOV
                 enemyDamage = enemyInstance[enemyN].EnemyDealDamage();
                 if (canAtt == 1)
                 {
+                    //SoundBoard(7);
                     playerHealthPoints += (-enemyDamage);
                     canAtt = 0;
+
                 }
 
             }
+
+            bool contact02 = false;
+            contact02 = bossInstance[0].PlayerCollide(CurrentPlayerPositionX, CurrentPlayerPositionY);
+            if (contact02 == true)
+            {
+                //testnumberT++;
+                enemyDamage2 = bossInstance[0].EnemyDealDamage();
+                if (canAtt2 == 1)
+                {
+                    //SoundBoard(7);
+                    playerHealthPoints += (-enemyDamage);
+                    canAtt2 = 0;
+
+                }
+
+            }
+
         }
         async void CheckItemColl01(int itemN)
         {
@@ -2353,47 +2874,79 @@ namespace BattleForAzuraTLOV
                 itemD = itemInstance[itemN].DroppedType();
                 if (canTouch == 1)
                 {
+                    if (itemD != 0)
+                    {
+                        SoundBoard(4);
+                    }
                     if (itemD == 2)
                     {
                         ammunition01 += 20;
+
                     }
                     else if (itemD == 3)
                     {
                         ammunition02 += 20;
+                        if (weaponowned02 == 0)
+                        {
+                            ammunition01 += 10;
+                        }
                     }
                     else if (itemD == 4)
                     {
                         ammunition03 += 20;
+                        if (weaponowned03 == 0)
+                        {
+                            ammunition01 += 10;
+                        }
                     }
                     else if (itemD == 5)
                     {
                         ammunition04 += 20;
+                        if (weaponowned04 == 0)
+                        {
+                            ammunition01 += 10;
+                        }
                     }
                     else if (itemD == 6)
                     {
                         ammunition05 += 20;
+                        if (weaponowned05 == 0)
+                        {
+                            ammunition01 += 10;
+                        }
                     }
                     else if (itemD == 7)
                     {
                         ammunition06 += 20;
+                        if (weaponowned06 == 0)
+                        {
+                            ammunition01 += 10;
+                        }
                     }
                     else if (itemD == 8)
                     {
-                        // non - ammo drop
+                        playerHealthPoints += 75;
+                        if (playerHealthPoints >= 140)
+                        {
+                            playerHealthPoints = 140;
+                        }
+                        // hp
                     }
                     else if (itemD == 9)
                     {
-                        // non - ammo drop
+                        playerDamageValue += 10;
+                        // temp atk
                     }
                     else if (itemD == 1)
                     {
-                        // non - ammo drop
+                        PermaShopToken++;
+                        // perma
                     }
                     canTouch = 0;
                     itemInstance[itemN].xposition += -1000;
                     itemInstance[itemN].yposition += -1000;
-                    itemInstance[itemN].xleftposition = itemInstance[itemN].xposition-25;
-                    itemInstance[itemN].xrightposition = itemInstance[itemN].xposition+25;
+                    itemInstance[itemN].xleftposition = itemInstance[itemN].xposition - 25;
+                    itemInstance[itemN].xrightposition = itemInstance[itemN].xposition + 25;
                 }
 
             }
@@ -2498,131 +3051,143 @@ namespace BattleForAzuraTLOV
             Reset_PPos_21();
             Reset_PPos_22();
         }
+        private void ResetAll_EIP()
+        {
+            for (int i = 0; i < enemyInstance.Length; i++)
+            {
+                enemyInstance[i].xposition = -2000;
+                enemyInstance[i].xleftposition = enemyInstance[i].xposition - 25;
+                enemyInstance[i].xrightposition = enemyInstance[i].xposition + 25;
+                enemyInstance[i].yposition = 0;
+            }
+            Pushgamei01();
+            Pushgamei02();
+        }
         async void Reset_PPos_01()
         {
             activeprojectileposition01x[0] = activeprojectileposition01x[0] + 1000;
             await Projectile01.TranslateTo(activeprojectileposition01x[0], 0, 4);
-            
+
         }
         async void Reset_PPos_02()
         {
             activeprojectileposition01x[1] = activeprojectileposition01x[1] + 1000;
             await Projectile02.TranslateTo(activeprojectileposition01x[1], 0, 4);
-            
+
         }
         async void Reset_PPos_03()
         {
             activeprojectileposition01x[2] = activeprojectileposition01x[2] + 1000;
             await Projectile03.TranslateTo(activeprojectileposition01x[2], 0, 4);
-            
+
         }
         async void Reset_PPos_04()
         {
             activeprojectileposition01x[3] = activeprojectileposition01x[3] + 1000;
             await Projectile04.TranslateTo(activeprojectileposition01x[3], 0, 4);
-            
+
         }
         async void Reset_PPos_05()
         {
             activeprojectileposition01x[4] = activeprojectileposition01x[4] + 1000;
             await Projectile05.TranslateTo(activeprojectileposition01x[4], 0, 4);
-            
+
         }
         async void Reset_PPos_06()
-            {
-                activeprojectileposition01x[5] = activeprojectileposition01x[5] + 1000;
+        {
+            activeprojectileposition01x[5] = activeprojectileposition01x[5] + 1000;
             await Projectile06.TranslateTo(activeprojectileposition01x[5], 0, 4);
-            
+
         }
         async void Reset_PPos_07()
         {
             activeprojectileposition01x[6] = activeprojectileposition01x[6] + 1000;
             await Projectile07.TranslateTo(activeprojectileposition01x[6], 0, 4);
-            
+
         }
         async void Reset_PPos_08()
         {
             activeprojectileposition01x[7] = activeprojectileposition01x[7] + 1000;
             await Projectile08.TranslateTo(activeprojectileposition01x[7], 0, 4);
-            
+
         }
         async void Reset_PPos_09()
         {
             activeprojectileposition01x[8] = activeprojectileposition01x[8] + 1000;
             await Projectile09.TranslateTo(activeprojectileposition01x[8], 0, 4);
-            
+
         }
         async void Reset_PPos_10()
         {
             activeprojectileposition01x[9] = activeprojectileposition01x[9] + 1000;
             await Projectile10.TranslateTo(activeprojectileposition01x[9], 0, 4);
-            
+
         }
         async void Reset_PPos_11()
         {
             activeprojectileposition01x[10] = activeprojectileposition01x[10] + 1000;
             await Projectile11.TranslateTo(activeprojectileposition01x[10], 0, 4);
-            
+
         }
         async void Reset_PPos_12()
         {
             activeprojectileposition01x[11] = activeprojectileposition01x[11] + 1000;
             await Projectile12.TranslateTo(activeprojectileposition01x[11], 0, 4);
-            
+
         }
         async void Reset_PPos_13()
         {
             activeprojectileposition01x[12] = activeprojectileposition01x[12] + 1000;
             await Projectile13.TranslateTo(activeprojectileposition01x[12], 0, 4);
-            
+
         }
         async void Reset_PPos_14()
         {
             activeprojectileposition01x[13] = activeprojectileposition01x[13] + 1000;
             await Projectile14.TranslateTo(activeprojectileposition01x[13], 0, 4);
-            
+
         }
         async void Reset_PPos_15()
         {
             activeprojectileposition01x[14] = activeprojectileposition01x[14] + 1000;
             await Projectile15.TranslateTo(activeprojectileposition01x[14], 0, 4);
-            
+
         }
         async void Reset_PPos_16()
         {
             activeprojectileposition01x[15] = activeprojectileposition01x[15] + 1000;
             await Projectile16.TranslateTo(activeprojectileposition01x[15], 0, 4);
-            
+
         }
         async void Reset_PPos_17()
         {
             activeprojectileposition01x[16] = activeprojectileposition01x[16] + 1000;
             await Projectile17.TranslateTo(activeprojectileposition01x[16], 0, 4);
-            
+
         }
         async void Reset_PPos_18()
         {
             activeprojectileposition01x[17] = activeprojectileposition01x[17] + 1000;
             await Projectile18.TranslateTo(activeprojectileposition01x[17], 0, 4);
-            
+
         }
         async void Reset_PPos_19()
         {
             activeprojectileposition01x[18] = activeprojectileposition01x[18] + 1000;
             await Projectile19.TranslateTo(activeprojectileposition01x[18], 0, 4);
-            
+
         }
         async void Reset_PPos_20()
         {
             activeprojectileposition01x[19] = activeprojectileposition01x[19] + 1000;
             await Projectile20.TranslateTo(activeprojectileposition01x[19], 0, 4);
-           
+
         }
         async void Reset_PPos_21()
         {
             activeprojectileposition01x[20] = activeprojectileposition01x[20] + 1000;
             await Projectile21.TranslateTo(activeprojectileposition01x[20], 0, 4);
-            
+
         }
         async void Reset_PPos_22()
         {
@@ -2632,55 +3197,499 @@ namespace BattleForAzuraTLOV
         // main menu buttons
         private void StartBTN_Clicked(object sender, EventArgs e)
         {
-            TitleScreenRetreatAnim();
-            MainMenuReturnAnim();
-            this.Resources["ColourOfStartGameBTNClicked"] = Colors.White;
+            if (startSwitch == 0)
+            {
+                startSwitch++;
+                currentMTrack = 1;
+                SoundBoard(8);
+                TitleScreenRetreatAnim();
+                MainMenuReturnAnim();
+                MusicPlayer01(currentMTrack, 1, musicVolume);
+                this.Resources["ColourOfStartGameBTNClicked"] = Colors.White;
+                //LoadGame();
+            }
+
+        }
+        // load perma data on start ( then save perma data when closing game ) { doesn't have any functionality }
+        // format = { 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 5 1000 1 0 0 0 0 0 0 0 0 0 0 } all int's
+        public void LoadGame()
+        {
+            StreamReader loader = new StreamReader("permasave.txt");
+            int i = 0;
+            int[] temp = { 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 5, 1000, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            while ((temp[i] = loader.Read()) != null)
+            {
+                temp[i] = loader.Read();
+                ++i;
+            }
+            int tempfield = 0, tempfield2=0;
+            PermaShopToken = temp[tempfield];
+            tempfield++;
+            PermaDiscount = temp[tempfield];
+            tempfield++;
+            settingsVolume = temp[tempfield];
+            tempfield++;
+            settingsVolume2 = temp[tempfield];
+            tempfield++;
+            settingsEnhancedGamePlay = temp[tempfield];
+            tempfield++;
+            settingsItalienVoiceActing = temp[tempfield];
+            tempfield++;
+            settingsGameOs = temp[tempfield];
+            tempfield++;
+            settingsEnhancedAI = temp[tempfield];
+            tempfield++;
+            settingsGraphics = temp[tempfield];
+            tempfield++;
+            settingsSpiderMode = temp[tempfield];
+            tempfield++;
+            tempfield2 = tempfield;
+            for (int hj = 10; hj < (levelCompleted.Length+ tempfield2); ++hj)
+            {
+                levelCompleted[hj] = temp[hj+ tempfield2];
+                tempfield++;
+            }
+            weaponowned01 = temp[tempfield];
+            tempfield++;
+            weaponowned02 = temp[tempfield];
+            tempfield++;
+            weaponowned03 = temp[tempfield];
+            tempfield++;
+            weaponowned04 = temp[tempfield];
+            tempfield++;
+            weaponowned05 = temp[tempfield];
+            tempfield++;
+            weaponowned06 = temp[tempfield];
+            tempfield++;
+            PlayerDamagePerma = temp[tempfield];
+            tempfield++;
+            PlayerATKSpeedPerma = temp[tempfield];
+            tempfield++;
+            PermaPlayerSpeed = temp[tempfield];
+            tempfield++;
+            PermaAtKUpg = temp[tempfield];
+            tempfield++;
+            PermaATKSUpg = temp[tempfield];
+            tempfield++;
+            PermaSPDUpg = temp[tempfield];
+            tempfield++;
+            PermaGun1Upg = temp[tempfield];
+            tempfield++;
+            PermaGun2Upg = temp[tempfield];
+            tempfield++;
+            PermaGun3Upg = temp[tempfield];
+            tempfield++;
+            PermaGun4Upg = temp[tempfield];
+            tempfield++;
+            PermaGun5Upg = temp[tempfield];
+            tempfield++;
+            PermaGun6Upg = temp[tempfield];
+            tempfield++;
+            PermaAmmoUpg = temp[tempfield];
+
+            loader.Dispose();
+        }
+        public void SaveGame()
+        {
+           StreamWriter saver = new StreamWriter("permasave.txt");
+
+            int[] temp = { 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 5, 1000, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            PlayerDamagePerma = PermaShopToken;
+
+            saver.Dispose();
         }
         private void NGameBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             MainMenuRetreatAnim();
             newgameMenuReturnAnim();
         }
         private void ConBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             MainMenuRetreatAnim();
             ContinueMenuReturnAnim();
         }
         private void TrainBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             Training_ClickedAnim();
             TestingGMenuReturnAnim();
             this.Resources["ColourOfTrainingBTNClicked"] = Colors.White;
         }
         private void MissionBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             MainMenuRetreatAnim();
             MissionMenuReturnAnim();
         }
+        // shop buttons
         private void SShopBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
+            SuperShopMenuReturnAnim();
             MainMenuRetreatAnim();
+        }
+        private void ItemBuy01BTN_Clicked(object sender, EventArgs e)
+        {
+            this.Resources["ColourOfItemBuy01BTNClicked"] = Colors.Orange;
+            for (int i = 0; i < 10; ++i)
+            {
+                if (purchaseAmount2[0] != 0)
+                {
+                    item1cost = item1cost * 2;
+                }
+                purchaseAmount2[0]--;
+            }
+            purchaseConfirmed[0]++;
+            cartTotal += item1cost;
+            SoundBoard(8);
+        }
+        private void ItemBuy02BTN_Clicked(object sender, EventArgs e)
+        {
+            this.Resources["ColourOfItemBuy02BTNClicked"] = Colors.Orange;
+            for (int i = 0; i < 10; ++i)
+            {
+                if (purchaseAmount2[1] != 0)
+                {
+                    item2cost = item2cost * 2;
+                }
+                purchaseAmount2[1]--;
+            }
+            purchaseConfirmed[1]++;
+            cartTotal += item2cost;
+            SoundBoard(8);
+        }
+        private void ItemBuy03BTN_Clicked(object sender, EventArgs e)
+        {
+            this.Resources["ColourOfItemBuy03BTNClicked"] = Colors.Orange;
+            for (int i = 0; i < 10; ++i)
+            {
+                if (purchaseAmount2[2] != 0)
+                {
+                    item3cost = item3cost * 2;
+                }
+                purchaseAmount2[2]--;
+            }
+            purchaseConfirmed[2]++;
+            cartTotal += item3cost;
+            SoundBoard(8);
+        }
+        private void ItemBuy04BTN_Clicked(object sender, EventArgs e)
+        {
+            this.Resources["ColourOfItemBuy04BTNClicked"] = Colors.Orange;
+            for (int i = 0; i < 10; ++i)
+            {
+                if (purchaseAmount2[3] != 0)
+                {
+                    item4cost = item4cost * 2;
+                }
+                purchaseAmount2[3]--;
+            }
+            purchaseConfirmed[3]++;
+            cartTotal += item4cost;
+            SoundBoard(8);
+        }
+        private void ItemBuy05BTN_Clicked(object sender, EventArgs e)
+        {
+            this.Resources["ColourOfItemBuy05BTNClicked"] = Colors.Orange;
+            for (int i = 0; i < 10; ++i)
+            {
+                if (purchaseAmount2[4] != 0)
+                {
+                    item5cost = item5cost * 2;
+                }
+                purchaseAmount2[4]--;
+            }
+            purchaseConfirmed[4]++;
+            cartTotal += item5cost;
+            SoundBoard(8);
+        }
+        private void ItemBuy06BTN_Clicked(object sender, EventArgs e)
+        {
+            this.Resources["ColourOfItemBuy06BTNClicked"] = Colors.Orange;
+            for (int i = 0; i < 10; ++i)
+            {
+                if (purchaseAmount2[5] != 0)
+                {
+                    item6cost = item6cost * 2;
+                }
+                purchaseAmount2[5]--;
+            }
+            purchaseConfirmed[5]++;
+            cartTotal += item6cost;
+            SoundBoard(8);
+        }
+        private void ItemBuy07BTN_Clicked(object sender, EventArgs e)
+        {
+            this.Resources["ColourOfItemBuy07BTNClicked"] = Colors.Orange;
+            for (int i = 0; i < 10; ++i)
+            {
+                if (purchaseAmount2[6] != 0)
+                {
+                    item7cost = item7cost * 2;
+                }
+                purchaseAmount2[6]--;
+            }
+            purchaseConfirmed[6]++;
+            cartTotal += item7cost;
+            SoundBoard(8);
+        }
+        private void ItemBuy08BTN_Clicked(object sender, EventArgs e)
+        {
+            this.Resources["ColourOfItemBuy08BTNClicked"] = Colors.Orange;
+            for (int i = 0; i < 10; ++i)
+            {
+                if (purchaseAmount2[7] != 0)
+                {
+                    item1cost = item8cost * 2;
+                }
+                purchaseAmount2[7]--;
+            }
+            purchaseConfirmed[7]++;
+            cartTotal += item8cost;
+            SoundBoard(8);
+        }
+        private void ItemBuy09BTN_Clicked(object sender, EventArgs e)
+        {
+            this.Resources["ColourOfItemBuy09BTNClicked"] = Colors.Orange;
+            for (int i = 0; i < 10; ++i)
+            {
+                if (purchaseAmount2[8] != 0)
+                {
+                    item9cost = item9cost * 2;
+                }
+                purchaseAmount2[8]--;
+            }
+            purchaseConfirmed[8]++;
+            cartTotal += item9cost;
+            SoundBoard(8);
+        }
+        private void BuyConfirmBTN_Clicked(object sender, EventArgs e)
+        {
+            int[] tempunit = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            this.Resources["ColourOfBuyConfirm9BTNClicked"] = Colors.Blue;
+            SoundBoard(8);
+            if (PermaShopToken >= cartTotal)
+            {
+                for (int i = 0; i < 10; ++i)
+                {
+                    if (purchaseConfirmed[0] != 0)
+                    {
+                        PermaAmmoUpg +=20;
+                        
+                        purchaseConfirmed[0]--;
+                    }
+
+                }
+                for (int i = 0; i < 10; ++i)
+                {
+                    if (purchaseConfirmed[1] != 0)
+                    {
+                        PermaAtKUpg += 3;
+
+                        purchaseConfirmed[2]--;
+                    }
+
+                }
+                for (int i = 0; i < 10; ++i)
+                {
+                    if (purchaseConfirmed[2] != 0)
+                    {
+                        if (PermaATKSUpg >= 200)
+                        {
+                            PermaATKSUpg += (-100);
+                        }
+
+                        purchaseConfirmed[2]--;
+                    }
+
+                }
+                for (int i = 0; i < 10; ++i)
+                {
+                    if (purchaseConfirmed[3] != 0)
+                    {
+                        PermaGun1Upg += 1;
+
+                        purchaseConfirmed[3]--;
+                    }
+
+                }
+                for (int i = 0; i < 10; ++i)
+                {
+                    if (purchaseConfirmed[4] != 0)
+                    {
+                        PermaGun2Upg += 1;
+
+                        purchaseConfirmed[4]--;
+                    }
+
+                }
+                for (int i = 0; i < 10; ++i)
+                {
+                    if (purchaseConfirmed[5] != 0)
+                    {
+                        PermaGun3Upg += 1;
+
+                        purchaseConfirmed[5]--;
+                    }
+
+                }
+                for (int i = 0; i < 10; ++i)
+                {
+                    if (purchaseConfirmed[6] != 0)
+                    {
+                        PermaGun4Upg += 1;
+
+                        purchaseConfirmed[6]--;
+                    }
+
+                }
+                for (int i = 0; i < 10; ++i)
+                {
+                    if (purchaseConfirmed[7] != 0)
+                    {
+                        PermaGun5Upg += 1;
+
+                        purchaseConfirmed[7]--;
+                    }
+
+                }
+                for (int i = 0; i < 10; ++i)
+                {
+                    if (purchaseConfirmed[8] != 0)
+                    {
+                        PermaGun6Upg += 1;
+
+                        purchaseConfirmed[8]--;
+                    }
+
+                }
+
+            }
+            delayC();
+        }
+        async void delayC()
+        {
+            await Task.Delay(250);
+            this.Resources["ColourOfItemBuy01BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy02BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy03BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy04BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy05BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy06BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy07BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy08BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfItemBuy09BTNClicked"] = Colors.Grey;
+            this.Resources["ColourOfBuyConfirmBTNClicked"] = Colors.White;
         }
         private void BrutaBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
+            BrutalDiff();
             Brutal_ClickedAnim();
+            MainMenu_Exit();
             this.Resources["ColourOfBrutalBTNClicked"] = Colors.White;
         }
         private void ChallBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
+            ChallengeMenuReturnAnim();
             MainMenuRetreatAnim();
+        }
+        private void usesave()
+        {
+
+            gamestatus = 1;
+            BackgroundCurrentPositionX = 0;
+            BackgroundCurrentPositionY = -2350;
+            ammunition01 += 50;
+            ammunition01 += PermaAmmoUpg;
+            ammunitioncurrent = ammunition01;
+            MainMenu_Exit();
+            showallgamecontent();
+            Level_Activate_01();
+            Tutorial_activate();
+            Update_All_Position_Constant();
+            Enemy_AI_01();
+            Enemy_AI_02();
+
+            difficultysetting = 1;
+            newgamedifficulty = 1;
+            gamelevelflag = 1;
+            weaponEquipped = 0;
+            DifficultyChanger();
         }
         private void MusicBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
+            MusicMenuReturnAnim();
             MainMenuRetreatAnim();
         }
+        private void Music1BTN_Clicked(object sender, EventArgs e)
+        {
+
+            MusicPlayer01(currentMTrack, 0, musicVolume);
+            currentMTrack = 1;
+            MusicPlayer01(currentMTrack, 1, musicVolume);
+            musicLockKL = 1;
+
+        }
+        private void Music2BTN_Clicked(object sender, EventArgs e)
+        {
+            MusicPlayer01(currentMTrack, 0, musicVolume);
+            currentMTrack = 2;
+            MusicPlayer01(currentMTrack, 1, musicVolume);
+            musicLockKL = 1;
+        }
+        private void Music3BTN_Clicked(object sender, EventArgs e)
+        {
+            MusicPlayer01(currentMTrack, 0, musicVolume);
+            currentMTrack = 3;
+            MusicPlayer01(currentMTrack, 1, musicVolume);
+            musicLockKL = 1;
+        }
+        private void Music4BTN_Clicked(object sender, EventArgs e)
+        {
+            MusicPlayer01(currentMTrack, 0, musicVolume);
+            currentMTrack = 4;
+            MusicPlayer01(currentMTrack, 1, musicVolume);
+            musicLockKL = 1;
+        }
+        private void Music5BTN_Clicked(object sender, EventArgs e)
+        {
+            MusicPlayer01(currentMTrack, 0, musicVolume);
+            currentMTrack = 5;
+            MusicPlayer01(currentMTrack, 1, musicVolume);
+            musicLockKL = 1;
+        }
+        private void Music6BTN_Clicked(object sender, EventArgs e)
+        {
+            MusicPlayer01(currentMTrack, 0, musicVolume);
+            currentMTrack = 6;
+            MusicPlayer01(currentMTrack, 1, musicVolume);
+            musicLockKL = 1;
+        }
+        private void Music7BTN_Clicked(object sender, EventArgs e)
+        {
+            MusicPlayer01(currentMTrack, 0, musicVolume);
+            currentMTrack = 7;
+            MusicPlayer01(currentMTrack, 1, musicVolume);
+            musicLockKL = 1;
+        }
+
         private void SettingsBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
+            SettingsMenuReturnAnim();
             MainMenuRetreatAnim();
         }
         // new game menu buttons
         private void EasyDBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             Easy_ClickedAnim();
             this.Resources["ColourOfEasyBTNClicked"] = Colors.White;
             this.Resources["ColourOfNormalBTNClicked"] = Colors.DarkSlateGrey;
@@ -2690,6 +3699,7 @@ namespace BattleForAzuraTLOV
         }
         private void NormDBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             Normal_ClickedAnim();
             this.Resources["ColourOfEasyBTNClicked"] = Colors.DarkSlateGrey;
             this.Resources["ColourOfNormalBTNClicked"] = Colors.White;
@@ -2699,6 +3709,7 @@ namespace BattleForAzuraTLOV
         }
         private void HardDBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             Hard_ClickedAnim();
             this.Resources["ColourOfEasyBTNClicked"] = Colors.DarkSlateGrey;
             this.Resources["ColourOfNormalBTNClicked"] = Colors.DarkSlateGrey;
@@ -2708,6 +3719,7 @@ namespace BattleForAzuraTLOV
         }
         private void VHardDBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             VeryHard_ClickedAnim();
             this.Resources["ColourOfEasyBTNClicked"] = Colors.DarkSlateGrey;
             this.Resources["ColourOfNormalBTNClicked"] = Colors.DarkSlateGrey;
@@ -2738,7 +3750,7 @@ namespace BattleForAzuraTLOV
             {
                 for (int i = 0; i < enemyInstance.Length; i++)
                 {
-                    enemyInstance[i].healthpoints = enemytype1hp*2;
+                    enemyInstance[i].healthpoints = enemytype1hp * 2;
                 }
                 for (int i = 0; i < eliteEnemyInstance.Length; i++)
                 {
@@ -2746,7 +3758,7 @@ namespace BattleForAzuraTLOV
                 }
                 for (int i = 0; i < bossInstance.Length; i++)
                 {
-                    bossInstance[i].healthpoints = boss1hp+ (boss1hp/2);
+                    bossInstance[i].healthpoints = boss1hp + (boss1hp / 2);
                 }
             }
             else if (difficultysetting == 3)
@@ -2775,12 +3787,12 @@ namespace BattleForAzuraTLOV
                 for (int i = 0; i < eliteEnemyInstance.Length; i++)
                 {
                     eliteEnemyInstance[i].healthpoints = enemytype2hp * 3;
-                    eliteEnemyInstance[i].damagevar = enemytype2dmg *2;
+                    eliteEnemyInstance[i].damagevar = enemytype2dmg * 2;
                 }
                 for (int i = 0; i < bossInstance.Length; i++)
                 {
-                    bossInstance[i].healthpoints = boss1hp*2;
-                    bossInstance[i].damagevar = boss1dmg*2;
+                    bossInstance[i].healthpoints = boss1hp * 2;
+                    bossInstance[i].damagevar = boss1dmg * 2;
                 }
             }
             else if (difficultysetting == 5) // difficulty 5 == brutal mode (hardest)
@@ -2806,23 +3818,24 @@ namespace BattleForAzuraTLOV
         }
         private void PrevMissBTN_Clicked(object sender, EventArgs e)// pos 0: (-450, 35), pos 1: (-225, 35),pos 2: (50, 55),pos 3: (290, 55), scale pos 1: (1.2), pos 2: (0.7)
         {
-            if (missionselected == 1) 
+            SoundBoard(8);
+            if (missionselected == 1)
             {
                 // do nothing
                 missionselected = 1;
             }
-            else if (missionselected == 2) 
+            else if (missionselected == 2)
             {
                 Previousmission1();
                 missionselected = 1;
                 Hideblock03();
             }
-            else if (missionselected == 3) 
+            else if (missionselected == 3)
             {
                 Previousmission2();
                 missionselected = 2;
             }
-            else if (missionselected == 4) 
+            else if (missionselected == 4)
             {
                 Previousmission3();
                 missionselected = 3;
@@ -2958,6 +3971,7 @@ namespace BattleForAzuraTLOV
         }
         private void NextMissBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             if (missionselected == 1)
             {
                 NextMission1();
@@ -3001,17 +4015,17 @@ namespace BattleForAzuraTLOV
         async void Next01()
         {
             await levelportrait01.TranslateTo(-450, 55, 200);
-           
+
         }
         async void Next02()
         {
             await levelportrait02.TranslateTo(-225, 35, 200);
-           
+
         }
         async void Next03()
         {
             await levelportrait03.TranslateTo(50, 55, 200);
-            
+
         }
         async void Next04()
         {
@@ -3114,16 +4128,19 @@ namespace BattleForAzuraTLOV
 
         private void MissStatsBTN_Clicked(object sender, EventArgs e)
         {
-
+            SoundBoard(8);
+            // -------------------------------------------------------------------------------------
         }
         private void Accept01BTN_Clicked(object sender, EventArgs e)// new game accept
         {
+            SoundBoard(8);
             if (newgamedifficulty == 1) // easy
             {
                 gamestatus = 1;
                 BackgroundCurrentPositionX = 0;
                 BackgroundCurrentPositionY = -2350;
-                ammunition01 = 50;
+                ammunition01 += 50;
+                ammunition01 += PermaAmmoUpg;
                 ammunitioncurrent = ammunition01;
                 MainMenu_Exit();
                 showallgamecontent();
@@ -3138,7 +4155,8 @@ namespace BattleForAzuraTLOV
                 gamestatus = 1;
                 BackgroundCurrentPositionX = 0;
                 BackgroundCurrentPositionY = -2350;
-                ammunition01 = 30;
+                ammunition01 += 30;
+                ammunition01 += PermaAmmoUpg;
                 ammunitioncurrent = ammunition01;
                 MainMenu_Exit();
                 showallgamecontent();
@@ -3153,7 +4171,8 @@ namespace BattleForAzuraTLOV
                 gamestatus = 1;
                 BackgroundCurrentPositionX = 0;
                 BackgroundCurrentPositionY = -2350;
-                ammunition01 = 20;
+                ammunition01 += 20;
+                ammunition01 += PermaAmmoUpg;
                 ammunitioncurrent = ammunition01;
                 MainMenu_Exit();
                 showallgamecontent();
@@ -3168,7 +4187,8 @@ namespace BattleForAzuraTLOV
                 gamestatus = 1;
                 BackgroundCurrentPositionX = 0;
                 BackgroundCurrentPositionY = -2350;
-                ammunition01 = 10;
+                ammunition01 += 10;
+                ammunition01 += PermaAmmoUpg;
                 ammunitioncurrent = ammunition01;
                 MainMenu_Exit();
                 showallgamecontent();
@@ -3178,6 +4198,12 @@ namespace BattleForAzuraTLOV
                 Enemy_AI_01();
                 Enemy_AI_02();
 
+            }
+            if (newgamedifficulty != 0 && musicLockKL == 0)
+            {
+                MusicPlayer01(currentMTrack, 0, musicVolume);
+                currentMTrack = (newgamedifficulty + 1);
+                MusicPlayer01(currentMTrack, 1, musicVolume);
             }
             difficultysetting = newgamedifficulty;
             gamelevelflag = 1;
@@ -3202,29 +4228,142 @@ namespace BattleForAzuraTLOV
         }
         private void Accept02BTN_Clicked(object sender, EventArgs e)
         {
+            // -------------------------------------------------------------------------------------
+            SoundBoard(8);
             if (saveselected == 1) // 1
             {
+                //LoadGameInfo();
+                usesave();
                 MainMenu_Exit();
             }
             else if (saveselected == 2) // 2
             {
+
+                //LoadGameInfo();
+                usesave();
                 MainMenu_Exit();
             }
             else if (saveselected == 3) // 3
             {
+                //LoadGameInfo();
+                usesave();
                 MainMenu_Exit();
             }
         }
+        
+        public void LoadGameInfo()
+        {
+
+            if (saveselected == 1)
+            {
+                StreamReader saver = new StreamReader("saveslot1.txt");
+            }
+            else if (saveselected == 1)
+            {
+                StreamReader saver = new StreamReader("saveslot2.txt");
+            }
+            else if (saveselected == 1)
+            {
+                StreamReader saver = new StreamReader("saveslot3.txt");
+            }
+
+
+
+
+        }
         private void Accept03BTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
+
+            gamestatus = 1;
+            BackgroundCurrentPositionX = 0;
+            BackgroundCurrentPositionY = -2350;
+            ammunition01 += 50;
+            ammunition01 += PermaAmmoUpg;
+            ammunitioncurrent = ammunition01;
+            MainMenu_Exit();
+            showallgamecontent();
+            Level_Activate_01();
+            Tutorial_activate();
+            Update_All_Position_Constant();
+            Enemy_AI_01();
+            Enemy_AI_02();
+
+            difficultysetting = 1;
+            newgamedifficulty = 1;
+            gamelevelflag = 1;
+            weaponEquipped = 0;
+            DifficultyChanger();
+
+        }
+        private void BrutalDiff()
+        {
+            SoundBoard(8);
+
+            gamestatus = 1;
+            BackgroundCurrentPositionX = 0;
+            BackgroundCurrentPositionY = -2350;
+            ammunition01 += 10;
+            ammunition01 += PermaAmmoUpg;
+            ammunitioncurrent = ammunition01;
+            MainMenu_Exit();
+            showallgamecontent();
+            Level_Activate_01();
+            Tutorial_activate();
+            Update_All_Position_Constant();
+            Enemy_AI_01();
+            Enemy_AI_02();
+
+            difficultysetting = 5;
+            newgamedifficulty = 5;
+            gamelevelflag = 1;
+            weaponEquipped = 0;
+            DifficultyChanger();
 
         }
         private void Accept04BTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
+
+            if (missionselected == 1)
+            {
+                gamestatus = 1;
+                BackgroundCurrentPositionX = 0;
+                BackgroundCurrentPositionY = -2350;
+                ammunition01 += 30;
+                ammunition01 += PermaAmmoUpg;
+                ammunitioncurrent = ammunition01;
+                MainMenu_Exit();
+                showallgamecontent();
+                Level_Activate_01();
+                Tutorial_activate();
+                Update_All_Position_Constant();
+                Enemy_AI_01();
+                Enemy_AI_02();
+
+                difficultysetting = 2;
+                newgamedifficulty = 2;
+                gamelevelflag = 1;
+                weaponEquipped = 0;
+                DifficultyChanger();
+            }
+            else if (missionselected == 2)
+            {
+                // no level 2 rn
+            }
+            else if (missionselected == 3)
+            {
+                // no level 3 rn
+            }
+            else if (missionselected == 4)
+            {
+                // no level 4 rn
+            }
 
         }
-        private void Save1BTN_Clicked(object sender, EventArgs e)
+        private void Save1BTN_Clicked(object sender, EventArgs e) // save accept btn = accept02
         {
+            SoundBoard(8);
             Save1_ClickedAnim();
             this.Resources["ColourOfSave1BTNClicked"] = Colors.White;
             this.Resources["ColourOfSave2BTNClicked"] = Colors.DarkSlateGrey;
@@ -3233,6 +4372,7 @@ namespace BattleForAzuraTLOV
         }
         private void Save2BTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             Save2_ClickedAnim();
             this.Resources["ColourOfSave1BTNClicked"] = Colors.DarkSlateGrey;
             this.Resources["ColourOfSave2BTNClicked"] = Colors.White;
@@ -3241,6 +4381,7 @@ namespace BattleForAzuraTLOV
         }
         private void Save3BTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             Save3_ClickedAnim();
             this.Resources["ColourOfSave1BTNClicked"] = Colors.DarkSlateGrey;
             this.Resources["ColourOfSave2BTNClicked"] = Colors.DarkSlateGrey;
@@ -3249,9 +4390,11 @@ namespace BattleForAzuraTLOV
         }
         private void DelSaveBTN_Clicked(object sender, EventArgs e)
         {
+            // -------------------------------------------------------------------------------------
+            SoundBoard(8);
             if (saveselected == 1) // 1
             {
-                if (save01exist == 1) 
+                if (save01exist == 1)
                 {
                     MainMenu_Exit();
                 }
@@ -3273,6 +4416,7 @@ namespace BattleForAzuraTLOV
         }
         private void EscapeBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             MainMenuReturnAnim();
             newgameMenuRetreatAnim();
             ContinueMenuRetreatAnim();
@@ -3334,11 +4478,18 @@ namespace BattleForAzuraTLOV
             await levelportrait04.FadeTo(1, 5);
         }
         // menu animations
+        private void GameEndBTN_Clicked(object sender, EventArgs e)
+        {
+            SoundBoard(8);
+            //Level_Deactivate_01();
+            Application.Current.Quit();
+        }
         // tutorial stuff
         private void TutorialBTN_Clicked(object sender, EventArgs e)
         {
+            SoundBoard(8);
             tutorialbclicked++;
-            if (tutorialbclicked == 1) 
+            if (tutorialbclicked == 1)
             {
                 tutorialdynamictext.Text = $"Your Goal is to get to \nthe end of the map. ";
             }
@@ -3356,34 +4507,34 @@ namespace BattleForAzuraTLOV
                 Tutorial_dectivate05();
                 Tutorial_dectivate06();
             }
-            if (tutorialbclicked == 5) 
+            if (tutorialbclicked == 5)
             {
-                
+
                 Tutorial_dectivate01();
                 Tutorial_dectivate02();
                 Tutorial_dectivate03();
                 Tutorial_dectivate04();
             }
-           
+
         }
         async void Tutorial_dectivate01()
         {
-            await TutorialBox01.TranslateTo(1200, 100, 500);
-            
+            await TutorialBox01.TranslateTo(1700, 100, 800);
+
         }
         async void Tutorial_dectivate02()
         {
-            await TutorialBox02.TranslateTo(1000, 0, 500);
-            
+            await TutorialBox02.TranslateTo(1500, 0, 800);
+
         }
         async void Tutorial_dectivate03()
         {
-            await tutorialdynamictext.TranslateTo(1200, 100, 500);
-            
+            await tutorialdynamictext.TranslateTo(1700, 100, 800);
+
         }
         async void Tutorial_dectivate04()
         {
-            await Tutorialbutton.TranslateTo(1000, 160, 500);
+            await Tutorialbutton.TranslateTo(1500, 160, 800);
         }
         async void Tutorial_dectivate05()
         {
@@ -3424,44 +4575,44 @@ namespace BattleForAzuraTLOV
         async void Weaponmenuanim01()
         {
             await backgroundweaponmenu01.TranslateTo(475, 0, 400);
-            
+
 
         }
         async void Weaponmenuanim02()
         {
             await backgroundweaponmenu02.TranslateTo(475, -125, 400);
-            
+
 
         }
         async void Weaponmenuanim03()
         {
             await backgroundweaponmenu03.TranslateTo(395, -40, 400);
-            
+
 
         }
         async void Weaponmenuanim04()
         {
             await backgroundweaponmenu04.TranslateTo(395, 45, 400);
-            
+
 
         }
         async void Weaponmenuanim05()
         {
             await backgroundweaponmenu05.TranslateTo(395, 130, 400);
-            
+
 
         }
         async void Weaponmenuanim06()
         {
             await backgroundweaponmenu06.TranslateTo(555, -40, 400);
-            
+
 
         }
         async void Weaponmenuanim07()
         {
             await backgroundweaponmenu07.TranslateTo(555, 45, 400);
 
-            
+
         }
         async void Weaponmenuanim08()
         {
@@ -3470,27 +4621,27 @@ namespace BattleForAzuraTLOV
         async void Weaponmenuanim17()
         {
             await weaponmenu01.TranslateTo(355, -40, 400);
-            
+
         }
         async void Weaponmenuanim18()
         {
             await weaponmenu02.TranslateTo(355, 45, 400);
-            
+
         }
         async void Weaponmenuanim19()
         {
             await weaponmenu03.TranslateTo(355, 130, 400);
-            
+
         }
         async void Weaponmenuanim20()
         {
             await weaponmenu04.TranslateTo(515, -40, 400);
-            
+
         }
         async void Weaponmenuanim21()
         {
             await weaponmenu05.TranslateTo(515, 45, 400);
-            
+
         }
         async void Weaponmenuanim22()
         {
@@ -3609,7 +4760,7 @@ namespace BattleForAzuraTLOV
         async void Normal_ClickedAnim()
         {
             await normaldiffbutton.ScaleTo(0.75, 100);
-            await easydiffbutton.ScaleTo(0.6, 100);            
+            await easydiffbutton.ScaleTo(0.6, 100);
             await harddiffbutton.ScaleTo(0.6, 100);
             await veryharddiffbutton.ScaleTo(0.6, 100);
         }
@@ -3626,7 +4777,7 @@ namespace BattleForAzuraTLOV
             await easydiffbutton.ScaleTo(0.6, 100);
             await normaldiffbutton.ScaleTo(0.6, 100);
             await harddiffbutton.ScaleTo(0.6, 100);
-            
+
         }
         async void Save1_ClickedAnim()
         {
@@ -3838,16 +4989,16 @@ namespace BattleForAzuraTLOV
         }
         async void SeperatedMenuRetreat15()
         {
-            await accept01button.TranslateTo(125, (195-1000), 500);
+            await accept01button.TranslateTo(125, (195 - 1000), 500);
 
         }
         async void SeperatedMenuRetreat16()
         {
-            await leavebutton.TranslateTo(250, (195-1000), 500);
+            await leavebutton.TranslateTo(250, (195 - 1000), 500);
         }
         async void SeperatedMenuRetreat17()
         {
-            await NewGameScreen01.TranslateTo(0,-1000, 500);
+            await NewGameScreen01.TranslateTo(0, -1000, 500);
         }
         private void newgameMenuReturnAnim() // seperated between multiples to all move in sync at once
         {
@@ -3862,27 +5013,27 @@ namespace BattleForAzuraTLOV
         async void SeperatedMenuReturn11()
         {
             await easydiffbutton.TranslateTo(-280, -50, 500);
-            
+
         }
         async void SeperatedMenuReturn12()
         {
             await normaldiffbutton.TranslateTo(-280, -20, 500);
-            
+
         }
         async void SeperatedMenuReturn13()
         {
             await harddiffbutton.TranslateTo(-280, 10, 500);
-            
+
         }
         async void SeperatedMenuReturn14()
         {
             await veryharddiffbutton.TranslateTo(-280, 40, 500);
-            
+
         }
         async void SeperatedMenuReturn15()
         {
             await accept01button.TranslateTo(125, 195, 500);
-            
+
         }
         async void SeperatedMenuReturn16()
         {
@@ -3906,32 +5057,32 @@ namespace BattleForAzuraTLOV
         async void SeperatedMenuRereat19()
         {
             await saveslot1button.TranslateTo(-325, -1050, 500);
-            
+
 
         }
         async void SeperatedMenuRereat20()
         {
             await saveslot2button.TranslateTo(-325, -1000, 500);
-            
+
         }
         async void SeperatedMenuRereat21()
         {
             await saveslot3button.TranslateTo(-325, -950, 500);
-           
+
         }
         async void SeperatedMenuRereat22()
         {
             await deletesavebutton.TranslateTo(0, (195 - 1000), 500);
-            
+
         }
         async void SeperatedMenuRereat23()
         {
             await accept02button.TranslateTo(125, (195 - 1000), 500);
-            
+
         }
         async void SeperatedMenuRereat24()
         {
-            await leave02button.TranslateTo(250, (195 - 1000), 500); 
+            await leave02button.TranslateTo(250, (195 - 1000), 500);
         }
         async void SeperatedMenuRereat25()
         {
@@ -3950,31 +5101,31 @@ namespace BattleForAzuraTLOV
         async void SeperatedMenuReturn19()
         {
             await saveslot1button.TranslateTo(-325, -50, 500);
-            
+
         }
         async void SeperatedMenuReturn20()
         {
             await saveslot2button.TranslateTo(-325, 0, 500);
-            
+
         }
         async void SeperatedMenuReturn21()
         {
             await saveslot3button.TranslateTo(-325, 50, 500);
-            
+
         }
         async void SeperatedMenuReturn22()
         {
             await deletesavebutton.TranslateTo(0, 195, 500);
-            
+
         }
         async void SeperatedMenuReturn23()
         {
             await accept02button.TranslateTo(125, 195, 500);
-            
+
         }
         async void SeperatedMenuReturn24()
         {
-            await leave02button.TranslateTo(250, 195, 500); 
+            await leave02button.TranslateTo(250, 195, 500);
         }
         async void SeperatedMenuReturn25()
         {
@@ -3999,7 +5150,7 @@ namespace BattleForAzuraTLOV
         }
         async void SeperatedMenuRetreat34()
         {
-            await leave03button.TranslateTo(75,(40-1000), 5);
+            await leave03button.TranslateTo(75, (40 - 1000), 5);
         }
         async void SeperatedMenuRetreat35()
         {
@@ -4021,13 +5172,13 @@ namespace BattleForAzuraTLOV
         }
         async void SeperatedMenuReturn32()
         {
-            
+
             await GrayFilterScreen01.FadeTo(0.5, 300);
         }
         async void SeperatedMenuReturn33()
         {
             await accept03button.TranslateTo(-75, 40, 5);
-            
+
         }
         async void SeperatedMenuReturn34()
         {
@@ -4062,24 +5213,24 @@ namespace BattleForAzuraTLOV
         async void SeperatedMenuRetreat26()
         {
             await previousmissionbutton.TranslateTo(-445, (30 - 1000), 500);
-            
+
         }
         async void SeperatedMenuRetreat27()
         {
             await nextmissionbutton.TranslateTo(445, (30 - 1000), 500);
-            
+
 
         }
         async void SeperatedMenuRetreat28()
         {
             await missionstatsbutton.TranslateTo(0, (195 - 1000), 500);
-            
+
 
         }
         async void SeperatedMenuRetreat29()
         {
             await accept04button.TranslateTo(125, (195 - 1000), 500);
-            
+
         }
         async void SeperatedMenuRetreat30()
         {
@@ -4088,32 +5239,32 @@ namespace BattleForAzuraTLOV
         async void SeperatedMenuRetreat31()
         {
             await MissionScreen01.TranslateTo(0, -1000, 500);
-            
+
         }
         async void SeperatedMenuRetreat37()
         {
             await blockadescreen01.TranslateTo(50, (55 - 1000), 500);
-            
+
         }
         async void SeperatedMenuRetreat38()
         {
             await blockadescreen02.TranslateTo(290, (55 - 1000), 500);
-            
+
         }
         async void SeperatedMenuRetreat39()
         {
             await levelportrait01.TranslateTo(-225, (35 - 1000), 500);
-            
+
         }
         async void SeperatedMenuRetreat40()
         {
             await levelportrait02.TranslateTo(55, (55 - 1000), 500);
-            
+
         }
         async void SeperatedMenuRetreat41()
         {
             await levelportrait03.TranslateTo(290, (55 - 1000), 500);
-            
+
         }
         async void SeperatedMenuRetreat42()
         {
@@ -4162,7 +5313,7 @@ namespace BattleForAzuraTLOV
         }
         async void SeperatedMenuReturn30()
         {
-            await leave04button.TranslateTo(250, 195 , 500);
+            await leave04button.TranslateTo(250, 195, 500);
         }
         async void SeperatedMenuReturn31()
         {
@@ -4206,36 +5357,503 @@ namespace BattleForAzuraTLOV
         }
         private void SuperShopMenuRetreatAnim()
         {
-
+            SeperatedMenuRetreat44();
+            SeperatedMenuRetreat45();
+            SeperatedMenuRetreat46();
+            SeperatedMenuRetreat47();
+            SeperatedMenuRetreat48();
+            SeperatedMenuRetreat49();
+            SeperatedMenuRetreat50();
+            SeperatedMenuRetreat51();
+            SeperatedMenuRetreat52();
+            SeperatedMenuRetreat53();
+            SeperatedMenuRetreat54();
+            SeperatedMenuRetreat55();
+            SeperatedMenuRetreat56();
+            SeperatedMenuRetreat57();
+            SeperatedMenuRetreat58();
+            SeperatedMenuRetreat59();
+            SeperatedMenuRetreat60();
+            SeperatedMenuRetreat61();
+            SeperatedMenuRetreat62();
+            SeperatedMenuRetreat63();
+            SeperatedMenuRetreat64();
+            SeperatedMenuRetreat65();
+        }
+        async void SeperatedMenuRetreat44()
+        {
+            await Permasupershopscreen.TranslateTo(0, -1000, 500);
+        }
+        async void SeperatedMenuRetreat45()
+        {
+            await Attackupimage.TranslateTo(-260, (-150 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat46()
+        {
+            await Speedupimage.TranslateTo(-140, (-150 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat47()
+        {
+            await gun1image.TranslateTo(70, (-175 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat48()
+        {
+            await gun2image.TranslateTo(70, (-110 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat49()
+        {
+            await gun3image.TranslateTo(70, (-45 -1000), 500);
+        }
+        async void SeperatedMenuRetreat50()
+        {
+            await gun4image.TranslateTo(70, (20 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat51()
+        {
+            await gun5image.TranslateTo(70, (85 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat52()
+        {
+            await gun6image.TranslateTo(70, (150 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat53()
+        {
+            await Ammoupitemimage.TranslateTo(-380, (-150 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat54()
+        {
+            await permastoretextbutton.TranslateTo(-390, (-228 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat55()
+        {
+            await buyconfirmbutton.TranslateTo(200, (220 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat56()
+        {
+            await leave05button.TranslateTo(350, (220 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat57()
+        {
+            await buyitem02button.TranslateTo(-260, (-60 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat58()
+        {
+            await buyitem03button.TranslateTo(-140, (-60 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat59()
+        {
+            await buyitem04button.TranslateTo(270, (-175 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat60()
+        {
+            await buyitem05button.TranslateTo(270, (-110 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat61()
+        {
+            await buyitem06button.TranslateTo(270, (-45 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat62()
+        {
+            await buyitem07button.TranslateTo(270, (20 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat63()
+        {
+            await buyitem08button.TranslateTo(270, (85 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat64()
+        {
+            await buyitem09button.TranslateTo(270, (150 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat65()
+        {
+            await buyitem01button.TranslateTo(-380, (-60 - 1000), 500);
         }
         private void SuperShopMenuReturnAnim()
         {
-
+            SeperatedMenuReturn44();
+            SeperatedMenuReturn45();
+            SeperatedMenuReturn46();
+            SeperatedMenuReturn47();
+            SeperatedMenuReturn48();
+            SeperatedMenuReturn49();
+            SeperatedMenuReturn50();
+            SeperatedMenuReturn51();
+            SeperatedMenuReturn52();
+            SeperatedMenuReturn53();
+            SeperatedMenuReturn54();
+            SeperatedMenuReturn55();
+            SeperatedMenuReturn56();
+            SeperatedMenuReturn57();
+            SeperatedMenuReturn58();
+            SeperatedMenuReturn59();
+            SeperatedMenuReturn60();
+            SeperatedMenuReturn61();
+            SeperatedMenuReturn62();
+            SeperatedMenuReturn63();
+            SeperatedMenuReturn64();
+            SeperatedMenuReturn65();
         }
+        async void SeperatedMenuReturn44()
+        {
+            await Permasupershopscreen.TranslateTo(0, 0, 500);
+        }
+        async void SeperatedMenuReturn45()
+        {
+            await Attackupimage.TranslateTo(-260, -150, 500);
+        }
+        async void SeperatedMenuReturn46()
+        {
+            await Speedupimage.TranslateTo(-140, -150, 500);
+        }
+        async void SeperatedMenuReturn47()
+        {
+            await gun1image.TranslateTo(70, -175, 500);
+        }
+        async void SeperatedMenuReturn48()
+        {
+            await gun2image.TranslateTo(70, -110, 500);
+        }
+        async void SeperatedMenuReturn49()
+        {
+            await gun3image.TranslateTo(70, -45, 500);
+        }
+        async void SeperatedMenuReturn50()
+        {
+            await gun4image.TranslateTo(70, 20, 500);
+        }
+        async void SeperatedMenuReturn51()
+        {
+            await gun5image.TranslateTo(70, 85, 500);
+        }
+        async void SeperatedMenuReturn52()
+        {
+            await gun6image.TranslateTo(70, 150, 500);
+        }
+        async void SeperatedMenuReturn53()
+        {
+            await Ammoupitemimage.TranslateTo(-380, -150, 500);
+        }
+        async void SeperatedMenuReturn54()
+        {
+            await permastoretextbutton.TranslateTo(-390, -228, 500);
+        }
+        async void SeperatedMenuReturn55()
+        {
+            await buyconfirmbutton.TranslateTo(200, 220, 500);
+        }
+        async void SeperatedMenuReturn56()
+        {
+            await leave05button.TranslateTo(350, 220, 500);
+        }
+        async void SeperatedMenuReturn57()
+        {
+            await buyitem02button.TranslateTo(-260, -60, 500);
+        }
+        async void SeperatedMenuReturn58()
+        {
+            await buyitem03button.TranslateTo(-140, -60, 500);
+        }
+        async void SeperatedMenuReturn59()
+        {
+            await buyitem04button.TranslateTo(270, -175, 500);
+        }
+        async void SeperatedMenuReturn60()
+        {
+            await buyitem05button.TranslateTo(270, -110, 500);
+        }
+        async void SeperatedMenuReturn61()
+        {
+            await buyitem06button.TranslateTo(270, -45, 500);
+        }
+        async void SeperatedMenuReturn62()
+        {
+            await buyitem07button.TranslateTo(270, 20, 500);
+        }
+        async void SeperatedMenuReturn63()
+        {
+            await buyitem08button.TranslateTo(270, 85, 500);
+        }
+        async void SeperatedMenuReturn64()
+        {
+            await buyitem09button.TranslateTo(270, 150, 500);
+        }
+        async void SeperatedMenuReturn65()
+        {
+            await buyitem01button.TranslateTo(-380, -60, 500);
+        }
+
         private void ChallengeMenuRetreatAnim()
         {
-
+            //MissionMenuRetreatAnim(); // returns mission menu screen 
         }
         private void ChallengeMenuReturnAnim()
         {
-
+            MissionMenuReturnAnim();
         }
-        private void MusicMenuRetreatAnim()
-        {
 
-        }
-        private void MusicMenuReturnAnim()
-        {
-
-        }
         private void SettingsMenuRetreatAnim()
         {
+            SeperatedMenuRetreat66();
+            SeperatedMenuRetreat67();
+            SeperatedMenuRetreat68();
+            SeperatedMenuRetreat69();
+            SeperatedMenuRetreat70();
+            SeperatedMenuRetreat71();
+            SeperatedMenuRetreat72(); 
+            SeperatedMenuRetreat73();
+            SeperatedMenuRetreat74();
+            SeperatedMenuRetreat75();
+            SeperatedMenuRetreat76();
+            SeperatedMenuRetreat77();
+        }
+        async void SeperatedMenuRetreat66()
+        {
+            await Settingmusicscreen.TranslateTo(0, -1000, 500);
+        }
+        async void SeperatedMenuRetreat67()
+        {
+            await mainmenubutton01.TranslateTo(-260, (-150 - 1000), 500);
+  
+        }
+        async void SeperatedMenuRetreat68()
+        {
+            await mainmenubutton02.TranslateTo(-260, (-50 - 1000), 500);
+            
+        }
+        async void SeperatedMenuRetreat69()
+        {
+            await mainmenubutton03.TranslateTo(-260, (50 - 1000), 500);
 
+        }
+        async void SeperatedMenuRetreat70()
+        {
+            await mainmenubutton04.TranslateTo(-260, (150 - 1000), 500);
+
+        }
+        async void SeperatedMenuRetreat71()
+        {
+            await mainmenubutton05.TranslateTo(0, (220 - 1000), 500);
+
+        }
+        async void SeperatedMenuRetreat72()
+        {
+            await mainmenubutton06.TranslateTo(260, (-150 - 1000), 500);
+
+        }
+        async void SeperatedMenuRetreat73()
+        {
+            await mainmenubutton07.TranslateTo(260, (-50 - 1000), 500);
+
+        }
+        async void SeperatedMenuRetreat74()
+        {
+            await mainmenubutton08.TranslateTo(260, (50 - 1000), 500);
+
+        }
+        async void SeperatedMenuRetreat75()
+        {
+            await mainmenubutton09.TranslateTo(260, (150 - 1000), 500);
+        }
+        async void SeperatedMenuRetreat76()
+        {
+            await mainmenutextbutton.TranslateTo(0, (-220 - 1000), 500);
+            
+        }
+        async void SeperatedMenuRetreat77()
+        {
+            await leave06button.TranslateTo(350, (220 - 1000), 500);
         }
         private void SettingsMenuReturnAnim()
         {
+            SeperatedMenuReturn66();
+            SeperatedMenuReturn67();
+            SeperatedMenuReturn68();
+            SeperatedMenuReturn69();
+            SeperatedMenuReturn70();
+            SeperatedMenuReturn71();
+            SeperatedMenuReturn72();
+            SeperatedMenuReturn73();
+            SeperatedMenuReturn74();
+            SeperatedMenuReturn75();
+            SeperatedMenuReturn76();
+            SeperatedMenuReturn77();
+            //GameMenuAct();
+        }
+        async void SeperatedMenuReturn66()
+        {
+            await Settingmusicscreen.TranslateTo(0, 0, 500);
+        }
+        async void SeperatedMenuReturn67()
+        {
+            await mainmenubutton01.TranslateTo(-260, -150, 500);
+            
+        }
+        async void SeperatedMenuReturn68()
+        {
+            await mainmenubutton02.TranslateTo(-260, -50, 500);
+            
+        }
+        async void SeperatedMenuReturn69()
+        {
+            await mainmenubutton03.TranslateTo(-260, 50, 500);
+            
+        }
+        async void SeperatedMenuReturn70()
+        {
+            await mainmenubutton04.TranslateTo(-260, 150, 500);
+            
+        }
+        async void SeperatedMenuReturn71()
+        {
+            await mainmenubutton05.TranslateTo(0, 220, 500);
+            
+        }
+        async void SeperatedMenuReturn72()
+        {
+            await mainmenubutton06.TranslateTo(260, -150, 500);
+            
+        }
+        async void SeperatedMenuReturn73()
+        {
+            await mainmenubutton07.TranslateTo(260, -50, 500);
+            
+        }
+        async void SeperatedMenuReturn74()
+        {
+            await mainmenubutton08.TranslateTo(260, 50, 500);
+            
+        }
+        async void SeperatedMenuReturn75()
+        {
+            await mainmenubutton09.TranslateTo(260, 150, 500);
+            
+        }
+        async void SeperatedMenuReturn76()
+        {
+            await mainmenutextbutton.TranslateTo(0, -220, 500);
 
         }
+        async void SeperatedMenuReturn77()
+        {
+            await leave06button.TranslateTo(350, 220, 500);
+        }
+
+        private void MusicMenuRetreatAnim()
+        {
+            SeperatedMenuRetreat66();
+            SeperatedMenuRetreat78();
+            SeperatedMenuRetreat79();
+            SeperatedMenuRetreat80();
+            SeperatedMenuRetreat81();
+            SeperatedMenuRetreat82();
+            SeperatedMenuRetreat83();
+            SeperatedMenuRetreat84();
+            SeperatedMenuRetreat85();
+            SeperatedMenuRetreat86();
+        }
+        async void SeperatedMenuRetreat78()
+        {
+            await musicbutton01.TranslateTo(-250, (-150 - 1000), 5);
+
+        }
+        async void SeperatedMenuRetreat79()
+        {
+            await musicbutton02.TranslateTo(-250, (-50 - 1000), 5);
+
+        }
+        async void SeperatedMenuRetreat80()
+        {
+            await musicbutton03.TranslateTo(-250, (50 - 1000), 5);
+
+        }
+        async void SeperatedMenuRetreat81()
+        {
+            await musicbutton04.TranslateTo(-250, (150 - 1000), 5);
+
+        }
+        async void SeperatedMenuRetreat82()
+        {
+            await musicbutton05.TranslateTo(250, (-150 - 1000), 5);
+
+        }
+        async void SeperatedMenuRetreat83()
+        {
+            await musicbutton06.TranslateTo(250, (-50 - 1000), 5);
+
+        }
+        async void SeperatedMenuRetreat84()
+        {
+            await musicbutton07.TranslateTo(250, (50 - 1000), 5);
+
+        }
+        async void SeperatedMenuRetreat85()
+        {
+            await musictextbutton.TranslateTo(0, (-220 - 1000), 5);
+
+        }
+        async void SeperatedMenuRetreat86()
+        {
+            await leave07button.TranslateTo(350, (220-1000), 500);
+        }
+
+        private void MusicMenuReturnAnim()
+        {
+            SeperatedMenuReturn66();
+            SeperatedMenuReturn78();
+            SeperatedMenuReturn79();
+            SeperatedMenuReturn80();
+            SeperatedMenuReturn81();
+            SeperatedMenuReturn82();
+            SeperatedMenuReturn83();
+            SeperatedMenuReturn84();
+            SeperatedMenuReturn85();
+            SeperatedMenuReturn86();
+        }
+        async void SeperatedMenuReturn78()
+        {
+            await musicbutton01.TranslateTo(-250, -150, 5);
+           
+        }
+        async void SeperatedMenuReturn79()
+        {
+            await musicbutton02.TranslateTo(-250, -50, 5);
+            
+        }
+        async void SeperatedMenuReturn80()
+        {
+            await musicbutton03.TranslateTo(-250, 50, 5);
+            
+        }
+        async void SeperatedMenuReturn81()
+        {
+            await musicbutton04.TranslateTo(-250, 150, 5);
+            
+        }
+        async void SeperatedMenuReturn82()
+        {
+            await musicbutton05.TranslateTo(250, -150, 5);
+            
+        }
+        async void SeperatedMenuReturn83()
+        {
+            await musicbutton06.TranslateTo(250, -50, 5);
+            
+        }
+        async void SeperatedMenuReturn84()
+        {
+            await musicbutton07.TranslateTo(250, 50, 5);
+            
+        }
+        async void SeperatedMenuReturn85()
+        {
+            await musictextbutton.TranslateTo(0, -220, 5);
+            
+        }
+        async void SeperatedMenuReturn86()
+        {
+            await leave07button.TranslateTo(350, 220, 500);
+        }
+
         // stats screens
         private void LevelStatisticsRetreatAnim()
         {
@@ -4253,13 +5871,414 @@ namespace BattleForAzuraTLOV
         {
 
         }
+        // music module
+        async void MusicPlayer01(int musicState, int musicSwitch, double volume)
+        {
+
+            if (_currentPlayer != null && _currentPlayer.IsPlaying)
+            {
+                var playmusic00 = _currentPlayer;
+                playmusic00.Volume = volume;
+            }
+            
+
+            switch (musicState)
+            {
+                case 1:
+                    var playmusic01 = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("01 Frank Zappa & The Mothers of Invention - I’m the Slime.mp3"));
+                    if (musicSwitch == 1)
+                    {
+                        playmusic01.Volume = volume;
+                        _currentPlayer = playmusic01;
+                        playmusic01.Play();
+                        playmusic01.Loop = true;
+                        this.Resources["Music1BTNText"] = "Playing";
+                        this.Resources["Music2BTNText"] = "Track 2";
+                        this.Resources["Music3BTNText"] = "Track 3";
+                        this.Resources["Music4BTNText"] = "Track 4";
+                        this.Resources["Music5BTNText"] = "Track 5";
+                        this.Resources["Music6BTNText"] = "Track 6";
+                        this.Resources["Music7BTNText"] = "Track 7";
+                        this.Resources["ColourOfMusic1BTNClicked"] = Colors.LightGray;
+                        this.Resources["ColourOfMusic2BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic3BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic4BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
+                    }
+                    if (musicSwitch == 0)
+                    {
+                        //await StopAsync(1);
+                        if (_currentPlayer != null)
+                        {
+                            playmusic01 = _currentPlayer;
+                        }
+                        playmusic01.Stop();
+                        playmusic01.Dispose();
+                    }
+                    if (musicSwitch == 3)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic01 = _currentPlayer;
+                        }
+                        playmusic01.Volume = volume;
+                    }
+                    break;
+                case 2:
+                    var playmusic02 = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("02 Frank Zappa - Dirty Love.mp3"));
+                    if (musicSwitch == 1)
+                    {
+                        playmusic02.Volume = volume;
+                        _currentPlayer = playmusic02;
+                        playmusic02.Play();
+                        playmusic02.Loop = true;
+                        this.Resources["Music1BTNText"] = "Track 1";
+                        this.Resources["Music2BTNText"] = "Playing";
+                        this.Resources["Music3BTNText"] = "Track 3";
+                        this.Resources["Music4BTNText"] = "Track 4";
+                        this.Resources["Music5BTNText"] = "Track 5";
+                        this.Resources["Music6BTNText"] = "Track 6";
+                        this.Resources["Music7BTNText"] = "Track 7";
+                        this.Resources["ColourOfMusic1BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic2BTNClicked"] = Colors.LightGray;
+                        this.Resources["ColourOfMusic3BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic4BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
+                    }
+                    if (musicSwitch == 0)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic02 = _currentPlayer;
+                        }
+                        playmusic02.Stop();
+                        playmusic02.Dispose();
+                    }
+                    if (musicSwitch == 3)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic02 = _currentPlayer;
+                        }
+                        playmusic02.Volume = volume;
+                    }
+                    break;
+                case 3:
+
+                    var playmusic03 = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("03 Frank Zappa - Dancin’ Fool.mp3"));
+                    if (musicSwitch == 1)
+                    {
+                        playmusic03.Volume = volume;
+                        _currentPlayer = playmusic03;
+                        playmusic03.Play();
+                        playmusic03.Loop = true;
+                        this.Resources["Music1BTNText"] = "Track 1";
+                        this.Resources["Music2BTNText"] = "Track 2";
+                        this.Resources["Music3BTNText"] = "Playing";
+                        this.Resources["Music4BTNText"] = "Track 4";
+                        this.Resources["Music5BTNText"] = "Track 5";
+                        this.Resources["Music6BTNText"] = "Track 6";
+                        this.Resources["Music7BTNText"] = "Track 7";
+                        this.Resources["ColourOfMusic1BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic2BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic3BTNClicked"] = Colors.LightGray;
+                        this.Resources["ColourOfMusic4BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
+                    }
+                    if (musicSwitch == 0)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic03 = _currentPlayer;
+                        }
+                        playmusic03.Stop();
+                        playmusic03.Dispose();
+                    }
+                    if (musicSwitch == 3)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic03 = _currentPlayer;
+                        }
+                        playmusic03.Volume = volume;
+                    }
+                    break;
+                case 4:
+                    var playmusic04 = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("04 Frank Zappa & The Mothers of Invention - Trouble Every Day.mp3"));
+                    if (musicSwitch == 1)
+                    {
+                        playmusic04.Volume = volume;
+                        _currentPlayer = playmusic04;
+                        playmusic04.Play();
+                        playmusic04.Loop = true;
+                        this.Resources["Music1BTNText"] = "Track 1";
+                        this.Resources["Music2BTNText"] = "Track 2";
+                        this.Resources["Music3BTNText"] = "Track 3";
+                        this.Resources["Music4BTNText"] = "Playing";
+                        this.Resources["Music5BTNText"] = "Track 5";
+                        this.Resources["Music6BTNText"] = "Track 6";
+                        this.Resources["Music7BTNText"] = "Track 7";
+                        this.Resources["ColourOfMusic1BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic2BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic3BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic4BTNClicked"] = Colors.LightGray;
+                        this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
+                    }
+                    if (musicSwitch == 0)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic04 = _currentPlayer;
+                        }
+                        playmusic04.Stop();
+                        playmusic04.Dispose();
+                    }
+                    if (musicSwitch == 3)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic04 = _currentPlayer;
+                        }
+                        playmusic04.Volume = volume;
+                    }
+                    break;
+                case 5:
+                    var playmusic05 = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("05 Frank Zappa - Peaches en Regalia.mp3"));
+                    if (musicSwitch == 1)
+                    {
+                        playmusic05.Volume = volume;
+                        _currentPlayer = playmusic05;
+                        playmusic05.Play();
+                        playmusic05.Loop = true;
+                        this.Resources["Music1BTNText"] = "Track 1";
+                        this.Resources["Music2BTNText"] = "Track 2";
+                        this.Resources["Music3BTNText"] = "Track 3";
+                        this.Resources["Music4BTNText"] = "Track 4";
+                        this.Resources["Music5BTNText"] = "Playing";
+                        this.Resources["Music6BTNText"] = "Track 6";
+                        this.Resources["Music7BTNText"] = "Track 7";
+                        this.Resources["ColourOfMusic1BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic2BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic3BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic4BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic5BTNClicked"] = Colors.LightGray;
+                        this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
+                    }
+                    if (musicSwitch == 0)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic05 = _currentPlayer;
+                        }
+                        playmusic05.Stop();
+                        playmusic05.Dispose();
+                    }
+                    if (musicSwitch == 3)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic05 = _currentPlayer;
+                        }
+                        playmusic05.Volume = volume;
+                    }
+
+                    break;
+                case 6:
+                    var playmusic06 = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("06 Frank Zappa - Tell Me You Love Me.mp3"));
+                    if (musicSwitch == 1)
+                    {
+                        playmusic06.Volume = volume;
+                        _currentPlayer = playmusic06;
+                        playmusic06.Play();
+                        playmusic06.Loop = true;
+                        this.Resources["Music1BTNText"] = "Track 1";
+                        this.Resources["Music2BTNText"] = "Track 2";
+                        this.Resources["Music3BTNText"] = "Track 3";
+                        this.Resources["Music4BTNText"] = "Track 4";
+                        this.Resources["Music5BTNText"] = "Track 5";
+                        this.Resources["Music6BTNText"] = "Playing";
+                        this.Resources["Music7BTNText"] = "Track 7";
+                        this.Resources["ColourOfMusic1BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic2BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic3BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic4BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic6BTNClicked"] = Colors.LightGray;
+                        this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
+                    }
+                    if (musicSwitch == 0)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic06 = _currentPlayer;
+                        }
+                        playmusic06.Stop();
+                        playmusic06.Dispose();
+                    }
+                    if (musicSwitch == 3)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic06 = _currentPlayer;
+                        }
+                        playmusic06.Volume = volume;
+                    }
+                    break;
+                case 7:
+                    var playmusic07 = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("07 Frank Zappa - Bobby Brown Goes Down.mp3"));
+                    if (musicSwitch == 1)
+                    {
+                        playmusic07.Volume = volume;
+                        _currentPlayer = playmusic07;
+                        playmusic07.Play();
+                        playmusic07.Loop = true;
+                        this.Resources["Music1BTNText"] = "Track 1";
+                        this.Resources["Music2BTNText"] = "Track 2";
+                        this.Resources["Music3BTNText"] = "Track 3";
+                        this.Resources["Music4BTNText"] = "Track 4";
+                        this.Resources["Music5BTNText"] = "Track 5";
+                        this.Resources["Music6BTNText"] = "Track 6";
+                        this.Resources["Music7BTNText"] = "Playing";
+                        this.Resources["ColourOfMusic1BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic2BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic3BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic4BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
+                        this.Resources["ColourOfMusic7BTNClicked"] = Colors.LightGray;
+                    }
+                    if (musicSwitch == 0)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic07 = _currentPlayer;
+                        }
+                        playmusic07.Stop();
+                        playmusic07.Dispose();
+                    }
+                    if (musicSwitch == 3)
+                    {
+                        if (_currentPlayer != null)
+                        {
+                            playmusic07 = _currentPlayer;
+                        }
+                        playmusic07.Volume = volume;
+                    }
+                    break;
+            }
+
+        }
+
+        async void SoundBoard(int sfxState)
+        {
+            if (_currentSFX != null)
+            {
+                var playSFX00 = _currentSFX;
+                playSFX00.Volume = SFXVolumeN;
+            }
+         
+            if (sfxState == 1)
+            {
+                var Playenter = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("drumssoundeffect.wav"));
+                _currentSFX = Playenter;
+                Playenter.Volume = SFXVolumeN;
+                Playenter.Play();
+                //Playenter.Dispose();
+            }
+            else if (sfxState == 2)
+            {
+                var Playexplosion = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("explosionsoundeffect.wav"));
+                _currentSFX = Playexplosion;
+                Playexplosion.Volume = SFXVolumeN;
+                Playexplosion.Play();
+                //Playexplosion.Dispose();
+            }
+            else if (sfxState == 3)
+            {
+                var Playfire = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("gunfiresoundeffect.wav"));
+                _currentSFX = Playfire;
+                Playfire.Volume = SFXVolumeN;
+                Playfire.Play();
+                //Playfire.Dispose();
+            }
+            else if (sfxState == 4)
+            {
+                var Playitem = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("itempickupsound.wav"));
+                _currentSFX = Playitem;
+                Playitem.Volume = SFXVolumeN;
+                Playitem.Play();
+                //Playitem.Dispose();
+            }
+            else if (sfxState == 5)
+            {
+                var Playdamaged01 = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("oof01.mp3"));
+                _currentSFX = Playdamaged01;
+                Playdamaged01.Volume = SFXVolumeN;
+                Playdamaged01.Play();
+                //Playdamaged01.Dispose();
+            }
+            else if (sfxState == 6)
+            {
+                var Playdamaged02 = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("oof02.mp3"));
+                _currentSFX = Playdamaged02;
+                Playdamaged02.Volume = SFXVolumeN;
+                Playdamaged02.Play();
+                //Playdamaged02.Dispose();
+            }
+            else if (sfxState == 7)
+            {
+                var Playcontact = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("strongpunchsfx.mp3"));
+                _currentSFX = Playcontact;
+                Playcontact.Volume = SFXVolumeN;
+                Playcontact.Play();
+                //Playcontact.Dispose();
+            }
+            else if (sfxState == 8)
+            {
+                var Playbtn = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("clicksfx.wav"));
+                _currentSFX = Playbtn;
+                Playbtn.Volume = SFXVolumeN;
+                Playbtn.Play();
+                //Playbtn.Dispose();
+            }
+
+            if (_currentSFX != null)
+            {
+                var playSFX00 = _currentSFX;
+                playSFX00.Volume = SFXVolumeN;
+            }
+        }
         // RNG lootdrops function
         private void DropItemRNG(int enemyN)
         {
-            int itemtype = 1;
+            int itemtype = 1, locken = 0;
             int RNGDropLoot = RNGmove.Next(1, 1000);
             testnumberT = RNGDropLoot;
             canDrop[dropSwitch] = 0;
+            for (int yn = 0; yn < canDrop.Length; yn++)
+            {
+                if (canDrop[yn] == 0)
+                {
+                    locken = 2;
+                    break;
+                }
+            }
+            if (locken == 0)
+            {
+                for (int jn = 0; jn < canDrop.Length; jn++)
+                {
+                    canDrop[jn] = 0;
+                }
+            }
             if (RNGDropLoot == 500) // 1 / 1000 chance drop / 0.1% chance
             {
                 for (int i = 0; i < itemInstance.Length; ++i)
@@ -4268,6 +6287,7 @@ namespace BattleForAzuraTLOV
                     {
                         itemtype = 1;
                         DropItem(i, enemyN, itemtype);
+                        canDrop[dropSwitch] = 1;
                         break;
                     }
                 }
@@ -4280,6 +6300,7 @@ namespace BattleForAzuraTLOV
                     {
                         itemtype = RNGmove.Next(2, 7);
                         DropItem(i, enemyN, itemtype);
+                        canDrop[dropSwitch] = 1;
                         break;
                     }
                 }
@@ -4290,8 +6311,9 @@ namespace BattleForAzuraTLOV
                 {
                     if (canDrop[i] == 8)
                     {
-                        itemtype = 1;
+                        itemtype = 8;
                         DropItem(i, enemyN, itemtype);
+                        canDrop[dropSwitch] = 1;
                         break;
                     }
                 }
@@ -4302,22 +6324,23 @@ namespace BattleForAzuraTLOV
                 {
                     if (canDrop[i] == 9)
                     {
-                        itemtype = 1;
+                        itemtype = 9;
                         DropItem(i, enemyN, itemtype);
+                        canDrop[dropSwitch] = 1;
                         break;
                     }
                 }
             }
             ++dropSwitch;
-            if (dropSwitch >= itemInstance.Length) 
+            if (dropSwitch >= itemInstance.Length)
             {
-            dropSwitch = 0;
+                dropSwitch = 0;
             }
         }
         async void DropItem(int itemN, int enemyN, int itemT)
         {
-            itemInstance[itemN].xposition= enemyInstance[enemyN].xposition;
-            itemInstance[itemN].yposition =enemyInstance[enemyN].yposition;
+            itemInstance[itemN].xposition = enemyInstance[enemyN].xposition;
+            itemInstance[itemN].yposition = enemyInstance[enemyN].yposition;
             itemInstance[itemN].xleftposition = itemInstance[itemN].xposition - 25;
             itemInstance[itemN].xrightposition = itemInstance[itemN].xposition + 25;
             itemInstance[itemN].type = itemT;
@@ -4341,18 +6364,18 @@ namespace BattleForAzuraTLOV
                 case 7:
                     this.Resources["ItemImageR01"] = "ammunitionlooticon06.png";
                     break;
-                    // non ammo drops
+                // non ammo drops
                 case 1:
-                    this.Resources["ItemImageR01"] = "ammunitionlooticon01.png";
+                    this.Resources["ItemImageR01"] = "permaorbimage.png";
                     break;
                 case 8:
-                    this.Resources["ItemImageR01"] = "ammunitionlooticon01.png";
+                    this.Resources["ItemImageR01"] = "healthpackimage.png";
                     break;
                 case 9:
-                    this.Resources["ItemImageR01"] = "ammunitionlooticon01.png";
+                    this.Resources["ItemImageR01"] = "attackitem.png";
                     break;
             }
-            switch (itemN) 
+            switch (itemN)
             {
                 case 0:
                     itemim01(itemN);
@@ -4384,7 +6407,7 @@ namespace BattleForAzuraTLOV
         {
             await item01.TranslateTo(itemInstance[itemN].xposition, itemInstance[itemN].yposition, 5);
             await Task.Delay(10000);
-            for (int i = 0; i < 10; i++) 
+            for (int i = 0; i < 10; i++)
             {
                 await item01.FadeTo(0.6, 500);
                 await item01.FadeTo(1, 500);
@@ -4516,10 +6539,69 @@ namespace BattleForAzuraTLOV
             itemInstance[itemN].type = 0;
             await item08.TranslateTo(itemInstance[itemN].xposition, itemInstance[itemN].yposition, 5);
         }
+        async void PlayerWinLevel()
+        {
+            playermovelock = 1;
+            if (CurrentPlayerPositionX > 1)
+            {
+                while (CurrentPlayerPositionX > 1)
+                {
+                    CurrentPlayerPositionX += -1;
+                    await PlayerIMG.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
+
+                }
+            }
+            else if (CurrentPlayerPositionX < -1)
+            {
+                while (CurrentPlayerPositionX < -1)
+                {
+                    CurrentPlayerPositionX += 1;
+                    await PlayerIMG.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 1);
+
+                }
+            }
+            while (CurrentPlayerPositionY >= -500)
+            {
+                CurrentPlayerPositionY += -2;
+                await PlayerIMG.TranslateTo(CurrentPlayerPositionX, CurrentPlayerPositionY, 2);
+
+            }
+            await PlayerIMG.FadeTo(0, 400);
+            hideplayerui02();
+            await Task.Delay(1500);
+            await BackgroundLevel01.FadeTo(0, 500);
+            await BackgroundLevel02.FadeTo(0, 500);
+            await BackgroundLevel03.FadeTo(0, 500);
+            await BackgroundLevel04.FadeTo(0, 500);
+            await BackgroundLevel05.FadeTo(0, 500);
+            await BackgroundLevel06.FadeTo(0, 500);
+            await BackgroundLevel07.FadeTo(0, 500);
+            await BackgroundLevel08.FadeTo(0, 500);
+            if (gamelevelflag == 1)
+            {
+                gamelevelflag = 2;
+                PDSA03();
+                await OutOfOrderscreen.TranslateTo(0, 0, 5);
+                await OutOfOrderscreen.FadeTo(1, 500);
+
+            }
+            else if (gamelevelflag == 2)
+            {
+                gamelevelflag = 3;
+                await OutOfOrderscreen.TranslateTo(0, 0, 5);
+                await OutOfOrderscreen.FadeTo(1, 500);
+            }
+            else if (gamelevelflag == 3)
+            {
+                gamelevelflag = 4;
+                await OutOfOrderscreen.TranslateTo(0, 0, 5);
+                await OutOfOrderscreen.FadeTo(1, 500);
+            }
+        }
         // enemy ai
         async void Enemy_AI_01() // basic enemy ai { will move towards player after certain distance }
         {
-            while (gamestatus !=0)
+            while (gamestatus != 0 && bossactive != 1)
             {
                 for (int i = 0; i < 50; i++)// move in chunks
                 {
@@ -4527,7 +6609,7 @@ namespace BattleForAzuraTLOV
                     {
                         if (eCanMove == 1 && enemyInstance[j].xposition > -500 && enemyInstance[j].yposition < 420)
                         {
-                            
+
                             if (enemyInstance[j].yposition >= -410 && enemyInstance[j].xposition > CurrentPlayerPositionX)
                             {
                                 enemyInstance[j].xposition = (enemyInstance[j].xposition + RNGmove.Next(-3, 1));
@@ -4553,20 +6635,20 @@ namespace BattleForAzuraTLOV
                             enemyInstance[j].xleftposition = enemyInstance[j].xposition - 25;
                             enemyInstance[j].xrightposition = enemyInstance[j].xposition + 25;
                         }// if
-                        
+
                     }// for in
-                    
+
                     Pushgamei01();
                     await Task.Delay(2);
                 }// for EN
                 await Task.Delay(1800);
             }
-            
+
         }// ai 1
         async void Enemy_AI_02()
         {
             int j = 8;
-            while (gamestatus != 0)// move at constant
+            while (gamestatus != 0 && bossactive != 1)// move at constant
             {
                 for (j = 8; j < 16; j++)
                 {
@@ -4577,7 +6659,7 @@ namespace BattleForAzuraTLOV
                             enemyInstance[j].xposition = (enemyInstance[j].xposition + RNGmove.Next(-1, 2));
                             enemyInstance[j].yposition = (enemyInstance[j].yposition + RNGmove.Next(-0, 2));
                         }
-                            
+
                         if (enemyInstance[j].xposition >= 445)
                         {
                             enemyInstance[j].xposition = 444;
@@ -4595,6 +6677,440 @@ namespace BattleForAzuraTLOV
                 await Task.Delay(2);
             }
         }
+        async void Boss_AI_01() // ai for the boss 
+        {
+            int tempx = 0, tempy = 0;
+            int actionstate = 0;
+            while (gamestatus != 0)
+            {
+                for (int j = 0; j < 60; j++)// will hover in the same spot for a while before doing an action
+                {
+                    bossInstance[0].xposition = (bossInstance[0].xposition + RNGmove.Next(-1, 2));
+                    bossInstance[0].yposition = (bossInstance[0].yposition + RNGmove.Next(-1, 2));
+                    bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                    bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                    if (bossInstance[0].xposition >= 445)
+                    {
+                        bossInstance[0].xposition = 444;
+                    }
+                    if (bossInstance[0].xposition <= -445)
+                    {
+                        bossInstance[0].xposition = -444;
+                    }// border check
+                    bi01split();
+                    await Task.Delay(2);
+                }// end neutral
+                actionstate = RNGmove.Next(100, 200);
+                if (actionstate <= 110) // rng action 1 ( 10% )
+                {
+                    while (bossInstance[0].yposition <= 50)
+                    {
+                        bossInstance[0].yposition += 5;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+                    bossInstance[0].xposition = 0;
+                    bi01split();
+                    await Task.Delay(2);
+
+                    for (int i = 0; i < 400; ++i)
+                    {
+                        bossInstance[0].xposition = (bossInstance[0].xposition + RNGmove.Next(-6, 8));
+                        bossInstance[0].yposition = (bossInstance[0].yposition + RNGmove.Next(-6, 8));
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+
+                    for (int i = 0; i < 80; ++i)
+                    {
+                        bossInstance[0].xposition += 5;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+                    while (bossInstance[0].yposition >= -400)
+                    {
+                        bossInstance[0].yposition += -5;
+                        bossInstance[0].xposition += -5;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+
+                }// 1
+
+                else if (actionstate >= 111 && actionstate <= 130) // rng action 2 ( 20% )
+                {
+                    while (bossInstance[0].yposition <= 100)
+                    {
+                        bossInstance[0].xposition += -5;
+                        bossInstance[0].yposition += 5;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+
+                    for (int i = 0; i < 40; ++i)
+                    {
+
+                        bossInstance[0].yposition += 5;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+                    while (bossInstance[0].xposition >= -400)
+                    {
+                        bossInstance[0].xposition += -5;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+                    for (int i = 0; i < 20; ++i)
+                    {
+
+                        bossInstance[0].yposition += -5;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+
+                    while (bossInstance[0].xposition <= 400)
+                    {
+                        bossInstance[0].xposition += -5;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+
+                    for (int i = 0; i < 20; ++i)
+                    {
+
+                        bossInstance[0].yposition += -5;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+
+                    while (bossInstance[0].xposition >= -400)
+                    {
+                        bossInstance[0].xposition += -5;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+
+                    while (bossInstance[0].yposition >= -400)
+                    {
+                        bossInstance[0].yposition += -5;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+                    while (bossInstance[0].xposition <= 0)
+                    {
+                        bossInstance[0].xposition += 5;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+                }// 2
+
+                else if (actionstate >= 131 && actionstate <= 150) // rng action 3 ( 20% )
+                {
+                    while (bossInstance[0].yposition <= CurrentPlayerPositionY + 35)
+                    {
+                        bossInstance[0].xposition += 3;
+                        bossInstance[0].yposition += 3;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+
+                    for (int i = 0; i < 30; i++)
+                    {
+                        bossInstance[0].xposition = (bossInstance[0].xposition + RNGmove.Next(-1, 2));
+                        bossInstance[0].yposition = (bossInstance[0].yposition + RNGmove.Next(-1, 2));
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+
+                    for (int j = 0; j < 70; j++)
+                    {
+                        bossInstance[0].xposition += -8;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                            j = 69;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(3);
+                    }
+
+                    while (bossInstance[0].yposition >= -400)
+                    {
+                        bossInstance[0].xposition += 3;
+                        bossInstance[0].yposition += -3;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+                    while (bossInstance[0].xposition != 0)
+                    {
+                        bossInstance[0].xposition += 3;
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 5)
+                        {
+                            bossInstance[0].xposition = 0;
+                        }
+                        if (bossInstance[0].xposition <= -5)
+                        {
+                            bossInstance[0].xposition = -0;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+                }// 3
+
+                else if (actionstate >= 151) // rng action 4 ( 50% )
+                {
+                    for (int u = 0; u < 200; u++) // charge & return
+                    {
+                        tempx = bossInstance[0].xposition;
+                        tempy = bossInstance[0].yposition;
+                        bossInstance[0].xposition = (bossInstance[0].xposition + RNGmove.Next(-1, 2));
+                        bossInstance[0].yposition = (bossInstance[0].yposition + RNGmove.Next(2, 8));
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+
+                        if (bossInstance[0].xposition >= 445)
+                        {
+                            bossInstance[0].xposition = 444;
+                        }
+                        if (bossInstance[0].xposition <= -445)
+                        {
+                            bossInstance[0].xposition = -444;
+                        }// border check
+
+                        bi01split();
+                        await Task.Delay(2);
+                    }
+                    await Task.Delay(1000);
+
+                    while (bossInstance[0].yposition > -400)
+                    {
+                        bossInstance[0].yposition = (bossInstance[0].yposition - 5);
+                        if (bossInstance[0].yposition < -400)
+                        {
+                            bossInstance[0].yposition = -400;
+                        }
+                        bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+                        bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+                        if (bossInstance[0].xposition != tempx) {
+                            bossInstance[0].xposition = (bossInstance[0].xposition + RNGmove.Next(-1, 2));
+                        }
+                        bi01split();
+                        await Task.Delay(2);
+
+                    }
+                }// end actionstate action(s)
+
+
+
+            }// while
+        }
         // death animations
         // player
         private void PlayerDeath()
@@ -4607,24 +7123,52 @@ namespace BattleForAzuraTLOV
         {
             await PlayerIMG.RotateTo(720, 500);
         }
-        async void playerdeathanim02()
+        async void playerdeathanim03()
         {
             await PlayerIMG.FadeTo(0, 500);
         }
-        async void playerdeathanim03()
+        async void playerdeathanim02()
         {
             await PlayerIMG.ScaleTo(1.4, 200);
             await PlayerIMG.ScaleTo(0.6, 300);
         }
+        private void PlayerDeathScreenAct()
+        {
+            PDSA01();
+            PDSA02();
+            PDSA03();
+        }
+        async void PDSA01()
+        {
+            await Pdeathscreen01.FadeTo(1, 1000);
+
+        }
+        async void PDSA02()
+        {
+            await Pdeathscreen02.FadeTo(1, 1000);
+        }
+        async void PDSA03()
+        {
+            await deathscreenbutton.FadeTo(1, 1000);
+        }
+
         // enemies
         // enemy death ctrl
         private void EnemyDying(int enemyN)
         {
+            int RNGSound = RNGmove.Next(1, 200);
+            if (RNGSound < 100)
+            {
+                SoundBoard(6);
+            }
+            else
+            {
+                SoundBoard(5);
+            }
             DropItemRNG(enemyN); // played at every death
             switch (enemyN) // input enemyN decides which enemy dies
             {
                 case 0:
-
                     ei1death();
                     break;
                 case 1:
@@ -4686,10 +7230,6 @@ namespace BattleForAzuraTLOV
                 case 15:
 
                     ei16death();
-                    break;
-                case 101:
-
-                    bi01death();
                     break;
 
             }
@@ -4755,7 +7295,7 @@ namespace BattleForAzuraTLOV
             await e003.RotateTo(720, 300);
             enemyInstance[2].xposition += -1000;
             enemyInstance[2].xleftposition += -1000;
-            enemyInstance[2].xrightposition +=  -1000;
+            enemyInstance[2].xrightposition += -1000;
             if (enemyInstance[2].xposition > -1500)
             {
                 killCounter++;
@@ -5096,9 +7636,10 @@ namespace BattleForAzuraTLOV
         }
         private void bi01death()
         {
-            e016deathanim01();
-            e016deathanim02();
-            e016deathanim03();
+            SoundBoard(2);
+            b01deathanim01();
+            b01deathanim02();
+            b01deathanim03();
         }
         async void b01deathanim01()
         {
@@ -5109,8 +7650,10 @@ namespace BattleForAzuraTLOV
             bossInstance[0].xrightposition += -1000;
             if (bossInstance[0].xposition > -1500)
             {
-                killCounter++;
+                killcounter3++;
             }
+            await b01.TranslateTo(bossInstance[0].xposition, bossInstance[0].yposition, 300);
+            bossactive = 10000;
         }
         async void b01deathanim02()
         {
@@ -5127,97 +7670,97 @@ namespace BattleForAzuraTLOV
             switch (enemyN) // input enemyN decides which enemy ress's
             {
                 case 0:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei1Revive(enemyN);
                     }
                     break;
                 case 1:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei2Revive(enemyN);
-                    }    
+                    }
                     break;
                 case 2:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei3Revive(enemyN);
                     }
                     break;
                 case 3:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei4Revive(enemyN);
                     }
                     break;
                 case 4:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei5Revive(enemyN);
                     }
                     break;
                 case 5:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei6Revive(enemyN);
                     }
                     break;
                 case 6:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei7Revive(enemyN);
                     }
                     break;
                 case 7:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei8Revive(enemyN);
                     }
                     break;
                 case 8:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei9Revive(enemyN);
                     }
                     break;
                 case 9:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei10Revive(enemyN);
                     }
                     break;
                 case 10:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei11Revive(enemyN);
                     }
                     break;
                 case 11:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei12Revive(enemyN);
                     }
                     break;
                 case 12:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei13Revive(enemyN);
                     }
                     break;
                 case 13:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei14Revive(enemyN);
                     }
                     break;
                 case 14:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei15Revive(enemyN);
                     }
                     break;
                 case 15:
-                    if (BackgroundCurrentPositionY < 1400)
+                    if (BackgroundCurrentPositionY < 1000)
                     {
                         ei16Revive(enemyN);
                     }
@@ -5419,7 +7962,7 @@ namespace BattleForAzuraTLOV
             {
                 if (enemyT == 1)
                 {
-                    enemyInstance[enemyN].healthpoints = enemytype1hp*2;
+                    enemyInstance[enemyN].healthpoints = enemytype1hp * 2;
                 }
                 if (enemyT == 2)
                 {
@@ -5431,11 +7974,11 @@ namespace BattleForAzuraTLOV
             {
                 if (enemyT == 1)
                 {
-                    enemyInstance[enemyN].healthpoints = enemytype1hp*3;
+                    enemyInstance[enemyN].healthpoints = enemytype1hp * 3;
                 }
                 if (enemyT == 2)
                 {
-                    eliteEnemyInstance[enemyN].healthpoints = enemytype2hp*2;
+                    eliteEnemyInstance[enemyN].healthpoints = enemytype2hp * 2;
                 }
 
             }
@@ -5443,11 +7986,11 @@ namespace BattleForAzuraTLOV
             {
                 if (enemyT == 1)
                 {
-                    enemyInstance[enemyN].healthpoints = enemytype1hp*4;
+                    enemyInstance[enemyN].healthpoints = enemytype1hp * 4;
                 }
                 if (enemyT == 2)
                 {
-                    eliteEnemyInstance[enemyN].healthpoints = enemytype2hp*3;
+                    eliteEnemyInstance[enemyN].healthpoints = enemytype2hp * 3;
                 }
 
             }
@@ -5455,11 +7998,11 @@ namespace BattleForAzuraTLOV
             {
                 if (enemyT == 1)
                 {
-                    enemyInstance[enemyN].healthpoints = enemytype1hp*5;
+                    enemyInstance[enemyN].healthpoints = enemytype1hp * 5;
                 }
                 if (enemyT == 2)
                 {
-                    eliteEnemyInstance[enemyN].healthpoints = enemytype2hp*5;
+                    eliteEnemyInstance[enemyN].healthpoints = enemytype2hp * 5;
                 }
 
             }
@@ -5469,12 +8012,12 @@ namespace BattleForAzuraTLOV
         private void enemy_instance_openpos01()
         {
 
-            for (int i = 0; i < enemyInstance.Length; i++) 
+            for (int i = 0; i < enemyInstance.Length; i++)
             {
-              enemyInstance[i].xposition = RNGmove.Next(-220, 220);
-              enemyInstance[i].xleftposition = enemyInstance[i].xposition - 25;
-              enemyInstance[i].xrightposition = enemyInstance[i].xposition + 25;
-              enemyInstance[i].yposition = RNGmove.Next(-1400, -420);
+                enemyInstance[i].xposition = RNGmove.Next(-220, 220);
+                enemyInstance[i].xleftposition = enemyInstance[i].xposition - 25;
+                enemyInstance[i].xrightposition = enemyInstance[i].xposition + 25;
+                enemyInstance[i].yposition = RNGmove.Next(-1400, -420);
             }
             bossInstance[0].xposition = 0;
             bossInstance[0].yposition = -550;
@@ -5508,10 +8051,31 @@ namespace BattleForAzuraTLOV
         {
             // empty rn
         }
+        private void enemy_instance_resetpos01()
+        {
+
+            for (int i = 0; i < enemyInstance.Length; i++)
+            {
+                enemyInstance[i].xposition = -2000;
+                enemyInstance[i].xleftposition = enemyInstance[i].xposition - 25;
+                enemyInstance[i].xrightposition = enemyInstance[i].xposition + 25;
+                enemyInstance[i].yposition = 0;
+            }
+            bossInstance[0].xposition = -2000;
+            bossInstance[0].yposition = -550;
+            bossInstance[0].xleftposition = bossInstance[0].xposition - 25;
+            bossInstance[0].xrightposition = bossInstance[0].xposition + 25;
+            e001startpos();
+        }
         // level set ups / --------------------------------- 1 ---------------------------------/
         private void Level_Activate_01()
         {
             enemy_instance_openpos01();
+            SoundBoard(1);
+        }
+        private void Level_Deactivate_01()
+        {
+            enemy_instance_resetpos01();
         }
         // constantly updates the positions of every game object ( except for player )
         async void Update_All_Position_Constant()
@@ -5524,6 +8088,7 @@ namespace BattleForAzuraTLOV
             Update_backgrounds();
             PlayerUpdateBars();
             StaminaManage();
+            BossManage();
             testtext();
             while (gamestatus != 0)
             {
@@ -5552,7 +8117,7 @@ namespace BattleForAzuraTLOV
                 {
                     ammunitioncurrent = ammunition06;
                 }
-         
+
                 ammoqtext.Text = $"Current Ammo: {ammunitioncurrent}   ";
                 //testnumber.Text = $"enemy1 x left= {enemyinstance[0].xleftposition}, x right={enemyinstance[0].xrightposition}, y={enemyinstance[0].yposition}";
 
@@ -5586,15 +8151,32 @@ namespace BattleForAzuraTLOV
                 else
                 {
                     this.Resources["StaminaBarValue"] = 1;
-                    
+
                 }
                 await Task.Delay(50);
                 if (playerHealthPoints <= 0)// ends the game when conditions are met
                 {
-                    gamestatus = 0;
+
                     PlayerDeath();
+                    gamestatus = 0;
+                    await Task.Delay(1500);
+                    PlayerDeathScreenAct();
                 }
 
+            }
+        }
+        async void BossManage()
+        {
+
+            while (gamestatus != 0)
+            {
+                if (bossInstance[0].healthpoints <= 0)
+                {
+                    bi01death();
+                    PlayerWinLevel();
+                    break;
+                }
+                await Task.Delay(50);
             }
         }
         async void StaminaManage()// split to not delay bar loop
@@ -5611,7 +8193,7 @@ namespace BattleForAzuraTLOV
                     {
                         //testnumberT++;
                         delay = 1;
-                        playerMoveamount = 1;
+                        playerMoveamount += -2;
                         this.Resources["ColourOfSprintBTNClicked"] = Colors.LightBlue;
                         sprintSwitch = 0;
                         await Task.Delay(6500);
@@ -5622,7 +8204,7 @@ namespace BattleForAzuraTLOV
                                 ++playerStaminaPoints;
                                 this.Resources["StaminaBarValue"] = playerStaminaPoints;
                                 await Task.Delay(5);
-                                delay = 1;
+                                delay = 0;
                             }
                         }
                     }
@@ -5637,7 +8219,7 @@ namespace BattleForAzuraTLOV
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    testnumber.Text = $"KillCount= {killCounter}\nboss y = {bossInstance[0].yposition}\nboss x = {bossInstance[0].xposition}";
+                    testnumber.Text = $"KillCount= {killCounter}\nboss y = {testnumberT}\nboss hp = {bossInstance[0].healthpoints}";
                     await Task.Delay(50);
                 }
             }
@@ -5645,8 +8227,9 @@ namespace BattleForAzuraTLOV
         async void GameUniversalTimer()
         {
             await Task.Delay(3000);
-            while (gamestatus != 0) 
+            while (gamestatus != 0)
             {
+                //await Task.Delay(4000);// for testing
                 await Task.Delay(15000);
                 if (gamestatus != 0)// extra check so it won't push game after player dies 
                 {
@@ -5659,17 +8242,19 @@ namespace BattleForAzuraTLOV
                         }
                     }
                 }
-                if (BackgroundCurrentPositionY >= 2300 && bossactive == 0)
+                if (BackgroundCurrentPositionY >= 2300 && bossactive == 0 && BackgroundCurrentPositionX == 0)
                 {
                     bossactive = 1;
                     await Task.Delay(1500);
                     // enter the boss
-                    for (int y = 0; y < 120; y++)
+                    for (int y = 0; y < 130; y++)
                     {
                         bossInstance[0].yposition += 2;
                         bi01split();
+                        await Task.Delay(3);
                     }
-
+                    Boss_AI_01();
+                    ResetAll_EIP();
                 }
             }
         }
@@ -5686,11 +8271,15 @@ namespace BattleForAzuraTLOV
                         enemyInstance[i].yposition += 2;
 
                     }
+                    for (int i = 0; i < itemInstance.Length; i++)
+                    {
+                        itemInstance[i].yposition += 2;
+                    }
                     Pushgamei01();
                     Pushgamei02();
                     Update_backgrounds();
                 }
-                
+
                 await Task.Delay(25);
             }
             eCanMove = 1;
@@ -5728,37 +8317,37 @@ namespace BattleForAzuraTLOV
         async void ei01split()// split to move in sync
         {
             await e001.TranslateTo(enemyInstance[0].xposition, enemyInstance[0].yposition, 1);
-            
+
         }
         async void ei02split()
         {
             await e002.TranslateTo(enemyInstance[1].xposition, enemyInstance[1].yposition, 1);
-            
+
         }
         async void ei03split()
         {
             await e003.TranslateTo(enemyInstance[2].xposition, enemyInstance[2].yposition, 1);
-            
+
         }
         async void ei04split()
         {
             await e004.TranslateTo(enemyInstance[3].xposition, enemyInstance[3].yposition, 1);
-            
+
         }
         async void ei05split()
         {
             await e005.TranslateTo(enemyInstance[4].xposition, enemyInstance[4].yposition, 1);
-            
+
         }
         async void ei06split()
         {
             await e006.TranslateTo(enemyInstance[5].xposition, enemyInstance[5].yposition, 1);
-            
+
         }
         async void ei07split()
         {
             await e007.TranslateTo(enemyInstance[6].xposition, enemyInstance[6].yposition, 1);
-           
+
         }
         async void ei08split()
         {
@@ -5848,6 +8437,7 @@ namespace BattleForAzuraTLOV
                 await Task.Delay(20);
 
                 Player_collision();
+
             }
         }
         async void Player_collision_object_updater()
@@ -5857,7 +8447,7 @@ namespace BattleForAzuraTLOV
                 await PlayerHitBoxtopleft.TranslateTo(playercollisiontopleftX, CurrentPlayerPositionY - 35, 1);
                 await PlayerHitBoxtopright.TranslateTo(playercollisiontoprightX, CurrentPlayerPositionY - 35, 1);
                 await PlayerHitBoxbotleft.TranslateTo(playercollisionbotleftX, CurrentPlayerPositionY + 35, 1);
-                await PlayerHitBoxbotright.TranslateTo(playercollisionbotrightX, CurrentPlayerPositionY+35, 1);
+                await PlayerHitBoxbotright.TranslateTo(playercollisionbotrightX, CurrentPlayerPositionY + 35, 1);
             }
         }
         async void Player_weapon_updater()
@@ -5915,6 +8505,126 @@ namespace BattleForAzuraTLOV
                 }
             }
         }
+        async void Setting_updater()
+        {
+            while (true)
+            {
+                await Task.Delay(20);
+                if (settingsVolume == 0)
+                {
+                    this.Resources["ColourOfSetting1BTNClicked"] = Colors.Ivory;
+                    this.Resources["Settings1BTNText"] = " -> Music Volume (On) <- ";
+
+                }
+                else if (settingsVolume == 1)
+                {
+                    this.Resources["ColourOfSetting1BTNClicked"] = Colors.Black;
+                    this.Resources["Settings1BTNText"] = " -> Music Volume (Off) <- ";
+                }
+
+                if (settingsVolume2 == 0)
+                {
+                    this.Resources["ColourOfSetting2BTNClicked"] = Colors.Ivory;
+                    this.Resources["Settings2BTNText"] = " -> SFX Volume (On) <- ";
+
+                }
+                else if (settingsVolume2 == 1)
+                {
+                    this.Resources["ColourOfSetting2BTNClicked"] = Colors.Black;
+                    this.Resources["Settings2BTNText"] = " -> SFX Volume (Off) <- ";
+                }
+
+                if (settingsEnhancedGamePlay == 0)
+                {
+                    this.Resources["ColourOfSetting3BTNClicked"] = Colors.Ivory;
+                    this.Resources["Settings3BTNText"] = " -> Enhanced Gameplay (On) <- ";
+
+                }
+                else if (settingsEnhancedGamePlay == 1)
+                {
+                    this.Resources["ColourOfSetting3BTNClicked"] = Colors.Black;
+                    this.Resources["Settings3BTNText"] = " -> Enhanced Gameplay (Off) <- ";
+                }
+
+                if (settingsItalienVoiceActing == 0)
+                {
+                    this.Resources["ColourOfSetting4BTNClicked"] = Colors.Ivory;
+                    this.Resources["Settings4BTNText"] = " -> Italian Voice Acting (On) <- ";
+
+                }
+                else if (settingsItalienVoiceActing == 1)
+                {
+                    this.Resources["ColourOfSetting4BTNClicked"] = Colors.Black;
+                    this.Resources["Settings4BTNText"] = " -> Italian Voice Acting (Off) <- ";
+                }
+
+                if (settingsQuitgame == 0)
+                {
+                    this.Resources["ColourOfSetting5BTNClicked"] = Colors.Ivory;
+                    this.Resources["Settings5BTNText"] = " -> Quit Game <- ";
+
+                }
+                else if (settingsQuitgame == 1)
+                {
+                    this.Resources["ColourOfSetting5BTNClicked"] = Colors.Black;
+                    this.Resources["Settings5BTNText"] = " -> Quit Game <- ";
+                }
+
+                if (settingsGameOs == 0)
+                {
+                    this.Resources["ColourOfSetting6BTNClicked"] = Colors.Ivory;
+                    this.Resources["Settings6BTNText"] = " -> Game Osmosis (On) <- ";
+
+                }
+                else if (settingsGameOs == 1)
+                {
+                    this.Resources["ColourOfSetting6BTNClicked"] = Colors.Black;
+                    this.Resources["Settings6BTNText"] = " -> Game Osmosis (Off) <- ";
+                }
+
+                if (settingsEnhancedAI == 0)
+                {
+                    this.Resources["ColourOfSetting7BTNClicked"] = Colors.Ivory;
+                    this.Resources["Settings7BTNText"] = " -> Enhanced AI Features (On) <- ";
+
+                }
+                else if (settingsEnhancedAI == 1)
+                {
+                    this.Resources["ColourOfSetting7BTNClicked"] = Colors.Black;
+                    this.Resources["Settings7BTNText"] = " -> Enhanced AI Features (Off) <- ";
+                }
+
+                if (settingsGraphics == 0)
+                {
+                    this.Resources["ColourOfSetting8BTNClicked"] = Colors.Ivory;
+                    this.Resources["Settings8BTNText"] = " -> Graphics (On) <- ";
+
+                }
+                else if (settingsGraphics == 1)
+                {
+                    this.Resources["ColourOfSetting8BTNClicked"] = Colors.Black;
+                    this.Resources["Settings8BTNText"] = " -> Graphics (Off) <- ";
+                }
+
+                if (settingsSpiderMode == 0)
+                {
+                    this.Resources["ColourOfSetting9BTNClicked"] = Colors.Ivory;
+                    this.Resources["Settings9BTNText"] = " -> Spider-phobia Mode (On) <- ";
+
+                }
+                else if (settingsSpiderMode == 1)
+                {
+                    this.Resources["ColourOfSetting9BTNClicked"] = Colors.Black;
+                    this.Resources["Settings9BTNText"] = " -> Spider-phobia Mode (Off) <- ";
+                }
+
+
+
+
+
+            }
+        } 
+
         async void Update_backgrounds()
         {
             if (gamelevelflag == 1)
