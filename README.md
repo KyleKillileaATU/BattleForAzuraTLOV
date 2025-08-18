@@ -67,3 +67,12 @@ which can be set on and off individually in the menu settings.
 
 With music in particular, you can switch between a selection of tracks,
 to have playing while playing.
+
+> opening the game, <
+
+To Start playing, all you should have to do, is download and unzip the file, 
+(to the main hardrive of the device)
+
+Then, Open it, either through visual studio, or as it's own application.
+
+
