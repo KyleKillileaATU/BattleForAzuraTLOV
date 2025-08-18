@@ -15,6 +15,7 @@ It features a custom UI i designed primarilly using X,Y positioning on the defau
 With all 4 vertical, and horizontal corner grids in use.
 
 > Menu Features, <
+
 Starting with the Title Screen, the game features Multiple Menu options, 
 The ' Main menu ' which connects all the menu options, ' New Game menu ', ' Continue Game menu ', 
 ' Select Mission menu ', ' Permability SuperStore menu ',' Audio menu ',' settings menu '.
@@ -22,6 +23,7 @@ Every menu is interactive, and functional.
 
 
 > Game Features, <
+
 You can select a different game difficulty before the launch of a new game.
 
 Once started, it plays in the style of a Linear 2D Vertical Shooter game.
@@ -59,6 +61,7 @@ Keeping a hold of how far the player has gotten between levels,
 (Demo includes only 1 level. )
 
 > Audio Features, <
+
 A custom Audioboard is integrated with the game, sound effects, and music,
 which can be set on and off individually in the menu settings.
 
