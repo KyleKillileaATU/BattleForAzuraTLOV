@@ -29,7 +29,7 @@
     <AppXManifest Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-08-17T19:45:37.097</Modified>
+      <Modified>2025-08-18T08:34:49.952</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\BattleForAzuraTLOV.dll">
       <PackagePath>BattleForAzuraTLOV.dll</PackagePath>
-      <Modified>2025-08-17T19:45:35.847</Modified>
+      <Modified>2025-08-18T08:34:48.441</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>BattleForAzuraTLOV.exe</PackagePath>
-      <Modified>2025-08-17T19:45:35.884</Modified>
+      <Modified>2025-08-18T08:34:48.467</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\01 Frank Zappa &amp; The Mothers of Invention - I’m the Slime.mp3">
       <PackagePath>01 Frank Zappa &amp; The Mothers of Invention - I’m the Slime.mp3</PackagePath>

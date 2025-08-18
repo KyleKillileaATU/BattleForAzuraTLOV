@@ -659,7 +659,7 @@
         <Grid>
             <Label 
                 x:Name ="testnumber"
-                Text="Test number: 0   "
+                Text=""
             />
             <!-- Tutorial  -->
             <Label 
