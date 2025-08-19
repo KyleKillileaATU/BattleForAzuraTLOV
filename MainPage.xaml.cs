@@ -143,6 +143,13 @@ namespace BattleForAzuraTLOV
             playerMoveamount = PermaPlayerSpeed;
             ItemOffSet();
         }
+        /*
+        * The main goal of the big brick of async 'setup' methods,
+        * is to move every button, image, and game object into
+        * a predisposed position, and also giving initial values
+        * to the resource values for the xaml page, this mainly targets the menus,
+        * so that they do not overlap eachother on startup. and is called at the start, and on re-looping the game.
+        */
         async void setupallgameobjects()
         {
             // backgrounds, items
@@ -991,6 +998,12 @@ namespace BattleForAzuraTLOV
         }
 
         // buttons
+        /*
+        * The Movement system, using the saved speed, of ' PermaPlayerSpeed', 
+        * into the playerMoveamount, on 4 buttons, for up down, left and right,
+        * With a 5th, the ' sprint' button, to with which, switches between more speed or less
+        * while sprintSwitch = 1, playerStaminaPoints will decrease on every movement, until 0
+        */
         private void SprintBTN_Clicked(object sender, EventArgs e) // while pressed
         {
             if (gamestatus != 0)
@@ -1158,6 +1171,12 @@ namespace BattleForAzuraTLOV
         {
             isMoving[3] = 0;
         }
+        /*
+         * The AttackBTN_Clicked, when used will activate the Atacking() function,
+         * Which, will first check for the weapon equipped, on 'WeaponEquipped' 0-5
+         * and if the player has the ammo to use, before it then changed the projectile used,
+         * then, once confirmed, uses bulledt_lifecycleNN(), 
+         */
         private void AttackBTN_Clicked(object sender, EventArgs e)
         {
             SoundBoard(3);
@@ -1180,8 +1199,6 @@ namespace BattleForAzuraTLOV
             await Task.Delay(80);
             this.Resources["ColourOfAttackBTNClicked"] = Colors.Red;
         }
-
-        // player attacking (when attack button is clicked)
         private void Attacking()
         {
             if (weaponEquipped == 0) // gun 1
@@ -1286,7 +1303,7 @@ namespace BattleForAzuraTLOV
         // and reseting after use.
         async void bullet_lifecycle01()
         {
-            switch (projectilecycle01)// projectile cylcle == the gun equipped, 1 is for gunequipped ' 0 ' and so on
+            switch (projectilecycle01)
             {
                 case 1:
                     canHit[0] = 1;
@@ -2491,7 +2508,11 @@ namespace BattleForAzuraTLOV
                     break;
             }
         }
-        private void GameMenuBTN_Clicked(object sender, EventArgs e)// ( does not pause the game )
+        // the in-action settings menu, has the necesarry functions of the main menu, settings menu,
+        // the menu buttons are saved and loaded on game open and close, and are each 0-1 value switches,
+        // that makes, sound, sfx, 6 plains and the quit game option buttons.
+        // the in game menu button does not pause the game, 
+        private void GameMenuBTN_Clicked(object sender, EventArgs e)
         {
             if (gamestatus != 0)
             {
@@ -2694,6 +2715,12 @@ namespace BattleForAzuraTLOV
             }
             SoundBoard(8);       
         }
+        /*
+        * The WeaponBTN_Clicked, is a switch button, which opens and closes
+        * the panel of weapons, the player can then click on the weapon, by name of
+        * '' gun 1 '' or '' gun 2 '' or so on, to switch, that is, if the player
+        * unlocked the gun or not. the successful switching of gun, will also switch ammo displayed. (each has seperate)
+        */
         private void WeaponBTN_Clicked(object sender, EventArgs e)
         {
             SoundBoard(8);
@@ -2811,8 +2838,13 @@ namespace BattleForAzuraTLOV
                 this.Resources["ColourOfWeapon6BTNClicked"] = Colors.DarkSlateBlue;
             }
         }
-        // collission detection
-        // player to object collision
+        /*
+        * The Collisions, 1 half of collisions is handles in this file, the other in the 
+        * ' ItemObject ' or ' EnemyObject ' class files, very important function of the game,
+        * if the player's X values, or Y values overlap with an object's X or Y values, 
+        * it will be detected here, for enemies, this will deal damage to the player's HP points,
+        * for items, it will remove, and apply the effects of the item.
+        */
         private void Player_collision()
         {
             playercollisiontopleftX = (CurrentPlayerPositionX - 35);
@@ -2946,7 +2978,8 @@ namespace BattleForAzuraTLOV
                 }
             }
         }
-        // resets object positions
+        // resets object positions such as the projectiles, removing them from play when this activates,
+        // or for enemy objects, doing the same,
         async void Remove_Projectile_cur(int imputprojectile)
         {
             switch (imputprojectile)
@@ -3166,7 +3199,15 @@ namespace BattleForAzuraTLOV
             activeprojectileposition01x[21] = activeprojectileposition01x[21] + 1000;
             await Projectile22.TranslateTo(activeprojectileposition01x[21], 0, 4);
         }
-        // main menu buttons
+
+        /*
+        * The StartBTN_Clicked, is a 1 time use button, not intended to be seen again while the application runs,
+        * it will load the player information from the ' permasave.txt ' file, ( to note, this is not the 
+        * ' permasave.txt. that is in the same space as the class files, and would be instead, somewhere else, such as:
+        * " C:\Users\ {user} \AppData\Local\Packages\com.companyname.battleforazuratlov_9zz4h110yvjzm\LocalState\permasave.txt " )
+        * the ' permasave.txt ', and other save files, are only for show and are not of functional use.
+        * after loading info, will bring over the ' main menu ' screen, while also playing music.
+        */
         private void StartBTN_Clicked(object sender, EventArgs e)
         {
             if (startSwitch == 0)
@@ -3188,7 +3229,7 @@ namespace BattleForAzuraTLOV
                 this.Resources["ColourOfStartGameBTNClicked"] = Colors.White;
             }
         }
-        // load perma data on start ( then save perma data when closing game ) { doesn't have any functionality }
+        // load perma data on start ( then save perma data when closing game ) 
         // format = { 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 5 1000 1 0 0 0 0 0 0 0 0 0 0 } all int's
         public void LoadGame()
         {
@@ -3239,6 +3280,7 @@ namespace BattleForAzuraTLOV
                 }
             }
         }
+        // saves the player's permament data to record, to the permasave.txt file.
         public void SaveGame()
         {
             if (DeviceInfo.Platform == DevicePlatform.WinUI)
@@ -3282,6 +3324,11 @@ namespace BattleForAzuraTLOV
                 }
             }
         }
+        /*
+        * These are some of the ' main menu ' buttons, when used, they move the mainpage away,
+        * and bring in the respective page they alude to, except for the ' training ' and ' brutal ' 
+        * buttons, which do not. thsoe ones instead, lead to starting the game.
+        */
         private void NGameBTN_Clicked(object sender, EventArgs e)
         {
             SoundBoard(8);
@@ -3307,13 +3354,19 @@ namespace BattleForAzuraTLOV
             MainMenuRetreatAnim();
             MissionMenuReturnAnim();
         }
-        // shop buttons
         private void SShopBTN_Clicked(object sender, EventArgs e)
         {
             SoundBoard(8);
             SuperShopMenuReturnAnim();
             MainMenuRetreatAnim();
         }
+        /*
+        * the ' Permability Superstore ' has 9 different upgrade choices, between the 6 guns, and 3 status'
+        * on use of these buttons, they increase ' pruchaseamount[] ' by 1, and double the amount of cost of
+        * ' itemNcost ', 10 maximum times, this is then added to ' cartTotal ' and if 
+        * confirm purchase is clicked, and there is enough money, the purchased items are added, and can then be saved
+        * when exiting the game,
+        */
         private void ItemBuy01BTN_Clicked(object sender, EventArgs e)
         {
             this.Resources["ColourOfItemBuy01BTNClicked"] = Colors.Orange;
@@ -3650,7 +3703,11 @@ namespace BattleForAzuraTLOV
             SettingsMenuReturnAnim();
             MainMenuRetreatAnim();
         }
-        // new game menu buttons
+        /*
+        * the new game buttons, when one of the 4 options are clicked, it is held, and if the ' Accept01 ' button
+        * is then clicked after, it will start the game at the selected difficulty, between ' easy ', 'normal ',
+        * ' hard ' and ' very hard ', launching the game on use.
+        */
         private void EasyDBTN_Clicked(object sender, EventArgs e)
         {
             SoundBoard(8);
@@ -3691,6 +3748,11 @@ namespace BattleForAzuraTLOV
             this.Resources["ColourOfVeryHardBTNClicked"] = Colors.White;
             newgamedifficulty = 4;
         }
+        /*
+        * difficultychanger, is the switch between 5 difficulties, which will increase
+        * the base statistics of the enemy objects the playerfights, such as .healthpoints,
+        * or .damagevar, this can significantly increase how hard it is to play.
+        */
         private void DifficultyChanger()
         {
             if (difficultysetting == 1)
@@ -4072,6 +4134,8 @@ namespace BattleForAzuraTLOV
         {
             NewGameStart();
         }
+        // the newgamestart is part of the newgame menu, and is applied whenever the Accept01BTN_Clicked is used
+        // and its' conditions are met, switches between difficulties, and applies baseline ammunition.
         private void NewGameStart()
         {
             if (DeviceInfo.Platform == DevicePlatform.Android)
@@ -4174,6 +4238,11 @@ namespace BattleForAzuraTLOV
             weaponEquipped = 0;
             DifficultyChanger();
         }
+        /*
+        * the MainMenu_Exit() function is used whenever a game begins, resetting all button colours,
+        * and the positions of menus, moving away any of the menus so that that the game objects can be
+        * moved into play.
+        */
         private void MainMenu_Exit()
         {
             MainMenuRetreatAnim();
@@ -4212,7 +4281,10 @@ namespace BattleForAzuraTLOV
                 MainMenu_Exit();
             }
         }
-        
+        /*
+        * LoadgameInfo, loads in the saved data to the three ' saveslotN.tct ' files, which is essentially entirely where teh player is, in the game,
+        * such as levels completed, and the level statistics.
+        */
         public void LoadGameInfo()
         {
 
@@ -4420,6 +4492,12 @@ namespace BattleForAzuraTLOV
                 }
             }
         }
+        /*
+        * The EscapeBTN_Clicked, button is a multi-purpose multi-use button used whenever
+        * a menu is switching, which will move away the current menu screen so that
+        * the required oen can move into view, while also resetting any colour changes
+        * that are to be reset when moving screen.
+        */
         private void EscapeBTN_Clicked(object sender, EventArgs e)
         {
             SoundBoard(8);
@@ -4480,7 +4558,10 @@ namespace BattleForAzuraTLOV
             await levelportrait03.FadeTo(1, 5);
             await levelportrait04.FadeTo(1, 5);
         }
-        // menu animations
+        /*
+        * the GameEndBTN_Clicked, will reset the game back to the main menu, ( won't exit the game)
+        * resets player hp, and saves the game aswell, ( the data to the permasave.txt) 
+        */
         private void GameEndBTN_Clicked(object sender, EventArgs e)
         {
             playerHealthPoints = 140;
@@ -4488,7 +4569,7 @@ namespace BattleForAzuraTLOV
             SaveGame();
             GameAppear();
         }
-        // tutorial stuff
+        // the tutorial button, manages the in game tutorial, closes after 5 clicks
         private void TutorialBTN_Clicked(object sender, EventArgs e)
         {
             SoundBoard(8);
@@ -4553,7 +4634,11 @@ namespace BattleForAzuraTLOV
             await Tutorialbutton.TranslateTo(0, 160, 5);
             tutorialdynamictext.Text = $"Welcome to Battle For Azura. ";
         }
-        // game menus
+        /*
+        * game menu animations, a big brick of animations tha trun simultaniously when each 
+        * are activated, for a smooth and immersive user experience, which includes android specific 
+        * menus for platform compatibility.
+        */
         private void Weapon_menu_Open()
         {
             Weaponmenuanim01();
@@ -6118,8 +6203,13 @@ namespace BattleForAzuraTLOV
         {
             await leave06button.TranslateTo(0, -80, 500);
         }
-        // end of android menu's 
-        // music module
+        /*
+        * the Music module, using the ' Plugin.Maui.Audio ', specificaly for windows use, 
+        * has multiple tracks of music, with 3 main functions, using the 
+        *  ' musicSwitch ' input variable, 1, for play, 0 for stop & dispose, 3 for volume adjusting.
+        * the Soundboard below handles the SFX, and has less input values,
+        * the assets used are held in the ' Raw ' file.
+        */
         async void MusicPlayer01(int musicState, int musicSwitch, double volume)
         {
             if (_currentPlayer != null && _currentPlayer.IsPlaying)
@@ -6493,8 +6583,13 @@ namespace BattleForAzuraTLOV
                 }
             }
         }
-        // RNG lootdrops function
-        // manages the dropping, chance of, and where items spawn
+        /*
+         * These are the functions used for managing the item objects, such as
+         * DropItemRNG() which handles the random chance of items being dropped,
+         * and is played whenever an enemy instance dies, with 9 possible item drops,
+         * and at set % chances of each to drop. this is then led to teh DropItem() after the 
+         * item % hits, whcih will then move and display the item on the playing field.
+         */
         private void DropItemRNG(int enemyN)
         {
             int itemtype = 1, locken = 0;
@@ -6681,6 +6776,7 @@ namespace BattleForAzuraTLOV
             {
                 gamelevelflag = 2;
                 PDSA03();
+                PDSA04();
                 await OutOfOrderscreen.TranslateTo(0, 0, 5);
                 await OutOfOrderscreen.FadeTo(1, 500);
             }
@@ -6698,7 +6794,6 @@ namespace BattleForAzuraTLOV
             }
             gamestatus = 0;
         }
-        // enemy ai
         async void enemies()
         {
             enemyCollection.Add(e001);
@@ -6718,6 +6813,12 @@ namespace BattleForAzuraTLOV
             enemyCollection.Add(e015);
             enemyCollection.Add(e016);
         }
+        /*
+         * The collection of Enemy Ai's, 2 main enemyinstance[] focus'ed ai's, and a special
+         * ai for the boss itself. For the enemy instances, 1 set of the ai is a continous loop, 
+         * moving the enemy downwards, and the other ai will move the ai towards the player on a timer.
+         * ai's are bound by the ' eCanMove ', and will not move based on teh ai, whenever the map is moving.
+         */
         async void Enemy_AI_01() // basic enemy ai { will move towards player after certain distance }
         {
             while (gamestatus != 0 && bossactive != 1)
@@ -7183,8 +7284,12 @@ namespace BattleForAzuraTLOV
                 }// end actionstate action(s)
             }// while
         }
-        // death animations
-        // player
+        /*
+         * the death animations, for the player, and the enemy instances activate once each, and will play when,
+         * the PlayerHealthPoints reach 0 ( for the player), or if the enemy instance has 0 .healthpoints.
+         * the object is then moved off the map, and when the timeis right, returns later as a new rng enemy,
+         * with the ' enemy revive' functions, to keep the game more active.
+         */
         private void PlayerDeath()
         {
             playerdeathanim01();
@@ -7685,7 +7790,13 @@ namespace BattleForAzuraTLOV
         {
             enemy_instance_resetpos01();
         }
-        // constantly updates the positions of every game object ( except for player )
+        /*
+          * Update_All_Position_Constant() was to be a single continuously unning loop, split to for more use,
+          * and the goal of this continuous loop is to manage the map's movement in the ' GameUniversalTimer' 
+          * enemy positions, such as when the map is moving, aswell as button switches and weapon states, and colours, and includes 
+          * managing the player status' such as health and stamina, and the boss instance, and induce the required
+          * effects when the status' reach the needed conditions.
+          */
         async void Update_All_Position_Constant()
         {
             await Task.Delay(200);
