@@ -3,7 +3,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BattleForAzuraTLOV.MainPage"
-             Background="LimeGreen">
+             Background="DarkGreen">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="defaultbutton">#393939</Color>
@@ -234,7 +234,9 @@
             
             />
         <!-- items -->
+        
         <Image 
+            
              x:Name ="item01"
              Source="{ DynamicResource ItemImageR01 }" 
              HeightRequest="40"
@@ -291,6 +293,7 @@
               SemanticProperties.Description="item" 
               />
         <!-- enemy's  -->
+       
         <Image 
              x:Name ="e001"
              Source="ahomeless.png" 
@@ -675,10 +678,9 @@
                 <Button x:Name="leftmovebutton"  Text="Left" Pressed="LeftMoveBTN_Clicked" Released="LeftMoveBTN_UnClicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfLeftMoveBTNClicked }"/>
                 <Button x:Name="rightmovebutton"  Text="Right" Pressed="RightMoveBTN_Clicked" Released="RightMoveBTN_UnClicked" WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfRightMoveBTNClicked }"/>
                 <Button x:Name="forwardmovebutton"  Text="Forwards" Pressed="MoveBTN_Clicked" Released="MoveBTN_UnClicked"  WidthRequest="100" TextColor="OrangeRed" BackgroundColor="{ DynamicResource ColourOfForwardMoveBTNClicked }"/>
-            </VerticalStackLayout>
-            <VerticalStackLayout HorizontalOptions="End" VerticalOptions="End" Padding="10,20,10,20" Spacing="5">
                 <Button x:Name="attackbutton"  Text="Shoot" Clicked="AttackBTN_Clicked" WidthRequest="80" TextColor="blue" BackgroundColor="{ DynamicResource ColourOfAttackBTNClicked }"/>
             </VerticalStackLayout>
+
             <VerticalStackLayout HorizontalOptions="End" VerticalOptions="Start" Padding="10,20,10,20" Spacing="5">
                 <Button x:Name="gamemenubutton"  Text="Menu" Clicked="GameMenuBTN_Clicked" WidthRequest="80" TextColor="blue" BackgroundColor="{ DynamicResource ColourOfGameMenuBTNClicked }"/>
                 <Button x:Name="weaponswitchbutton"  Text="Weapon" Clicked="WeaponBTN_Clicked" WidthRequest="90" TextColor="blue" BackgroundColor="{ DynamicResource ColourOfWeaponSwitchBTNClicked }"/>
@@ -719,31 +721,31 @@
             <Button x:Name="deathscreenbutton"  Text="Finish" Clicked="GameEndBTN_Clicked"  WidthRequest="100" HeightRequest="80" TextColor="Red" BackgroundColor="{ DynamicResource ColourOfDeadBTNClicked }"/>
 
             <!-- main  -->
-            <Button x:Name="NewGamebutton"  Text="New Game" Clicked="NGameBTN_Clicked" WidthRequest="120" HeightRequest ="30" TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfNewGameBTNClicked }"/>
-            <Button x:Name="Continuebutton"  Text="Continue" Clicked="ConBTN_Clicked" WidthRequest="120" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfContinueBTNClicked }"/>
-            <Button x:Name="Trainingbutton"  Text="Testing Area" Clicked="TrainBTN_Clicked" WidthRequest="120" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfTrainingBTNClicked }"/>
-            <Button x:Name="Missionbutton"  Text="Missions" Clicked="MissionBTN_Clicked" WidthRequest="120" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfMissionBTNClicked }"/>
-            <Button x:Name="SuperShopbutton"  Text="Super Store" Clicked="SShopBTN_Clicked" WidthRequest="120" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfSuperShopBTNClicked }"/>
-            <Button x:Name="Brutalbutton"  Text="Brutal" Clicked="BrutaBTN_Clicked" WidthRequest="120" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfBrutalBTNClicked }"/>
+            <Button x:Name="NewGamebutton"  Text="New Game" Clicked="NGameBTN_Clicked" WidthRequest="120" HeightRequest ="40" TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfNewGameBTNClicked }"/>
+            <Button x:Name="Continuebutton"  Text="Continue" Clicked="ConBTN_Clicked" WidthRequest="120" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfContinueBTNClicked }"/>
+            <Button x:Name="Trainingbutton"  Text="Testing Area" Clicked="TrainBTN_Clicked" WidthRequest="120" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfTrainingBTNClicked }"/>
+            <Button x:Name="Missionbutton"  Text="Missions" Clicked="MissionBTN_Clicked" WidthRequest="120" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfMissionBTNClicked }"/>
+            <Button x:Name="SuperShopbutton"  Text="Super Store" Clicked="SShopBTN_Clicked" WidthRequest="120" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfSuperShopBTNClicked }"/>
+            <Button x:Name="Brutalbutton"  Text="Brutal" Clicked="BrutaBTN_Clicked" WidthRequest="120" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfBrutalBTNClicked }"/>
             <Button x:Name="Challengebutton"  Text="Challenges" Clicked="ChallBTN_Clicked" WidthRequest="120" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfChallengeBTNClicked }"/>
-            <Button x:Name="Musicbutton"  Text="Audio" Clicked="MusicBTN_Clicked" WidthRequest="120" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfMusicBTNClicked }"/>
-            <Button x:Name="Settingsbutton"  Text="Options" Clicked="SettingsBTN_Clicked" WidthRequest="120" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfSettingsBTNClicked }"/>
+            <Button x:Name="Musicbutton"  Text="Audio" Clicked="MusicBTN_Clicked" WidthRequest="120" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfMusicBTNClicked }"/>
+            <Button x:Name="Settingsbutton"  Text="Options" Clicked="SettingsBTN_Clicked" WidthRequest="120" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfSettingsBTNClicked }"/>
             
             <!-- new game  -->
-            <Button x:Name="easydiffbutton"  Text="Easy" Clicked="EasyDBTN_Clicked" WidthRequest="220" HeightRequest ="15" TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfEasyBTNClicked }"/>
-            <Button x:Name="normaldiffbutton"  Text="Normal" Clicked="NormDBTN_Clicked" WidthRequest="220" HeightRequest ="15"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfNormalBTNClicked }"/>
-            <Button x:Name="harddiffbutton"  Text="Hard" Clicked="HardDBTN_Clicked" WidthRequest="220" HeightRequest ="15"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfHardBTNClicked }"/>
-            <Button x:Name="veryharddiffbutton"  Text="Very Hard" Clicked="VHardDBTN_Clicked" WidthRequest="220" HeightRequest ="15"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfVeryHardBTNClicked }"/>
-            <Button x:Name="accept01button"  Text="Accept" Clicked="Accept01BTN_Clicked" WidthRequest="80" HeightRequest ="10"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
-            <Button x:Name="leavebutton"  Text="Exit" Clicked="EscapeBTN_Clicked" WidthRequest="80" HeightRequest ="10"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
+            <Button x:Name="easydiffbutton"  Text="Easy" Clicked="EasyDBTN_Clicked" WidthRequest="220" HeightRequest ="40" TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfEasyBTNClicked }"/>
+            <Button x:Name="normaldiffbutton"  Text="Normal" Clicked="NormDBTN_Clicked" WidthRequest="220" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfNormalBTNClicked }"/>
+            <Button x:Name="harddiffbutton"  Text="Hard" Clicked="HardDBTN_Clicked" WidthRequest="220" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfHardBTNClicked }"/>
+            <Button x:Name="veryharddiffbutton"  Text="Very Hard" Clicked="VHardDBTN_Clicked" WidthRequest="220" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfVeryHardBTNClicked }"/>
+            <Button x:Name="accept01button"  Text="Accept" Clicked="Accept01BTN_Clicked" WidthRequest="80" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
+            <Button x:Name="leavebutton"  Text="Exit" Clicked="EscapeBTN_Clicked" WidthRequest="80" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
             
             <!-- Continue game  -->
-            <Button x:Name="saveslot1button"  Text="Save 1" Clicked="Save1BTN_Clicked" WidthRequest="150" HeightRequest ="15" TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfSave1BTNClicked }"/>
-            <Button x:Name="saveslot2button"  Text="Save 2" Clicked="Save2BTN_Clicked" WidthRequest="150" HeightRequest ="15"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfSave2BTNClicked }"/>
-            <Button x:Name="saveslot3button"  Text="Save 3" Clicked="Save3BTN_Clicked" WidthRequest="150" HeightRequest ="15"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfSave3BTNClicked }"/>
-            <Button x:Name="deletesavebutton"  Text="Delete" Clicked="DelSaveBTN_Clicked" WidthRequest="80" HeightRequest ="15"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
-            <Button x:Name="accept02button"  Text="Accept" Clicked="Accept02BTN_Clicked" WidthRequest="80" HeightRequest ="10"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
-            <Button x:Name="leave02button"  Text="Exit" Clicked="EscapeBTN_Clicked" WidthRequest="80" HeightRequest ="10"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
+            <Button x:Name="saveslot1button"  Text="Save 1" Clicked="Save1BTN_Clicked" WidthRequest="150" HeightRequest ="40" TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfSave1BTNClicked }"/>
+            <Button x:Name="saveslot2button"  Text="Save 2" Clicked="Save2BTN_Clicked" WidthRequest="150" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfSave2BTNClicked }"/>
+            <Button x:Name="saveslot3button"  Text="Save 3" Clicked="Save3BTN_Clicked" WidthRequest="150" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfSave3BTNClicked }"/>
+            <Button x:Name="deletesavebutton"  Text="Delete" Clicked="DelSaveBTN_Clicked" WidthRequest="80" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
+            <Button x:Name="accept02button"  Text="Accept" Clicked="Accept02BTN_Clicked" WidthRequest="80" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
+            <Button x:Name="leave02button"  Text="Exit" Clicked="EscapeBTN_Clicked" WidthRequest="80" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
             <!-- Testing Area  -->
             <Button x:Name="accept03button"  Text="Accept" Clicked="Accept03BTN_Clicked" WidthRequest="80" HeightRequest ="10"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
             <Button x:Name="leave03button"  Text="Exit" Clicked="EscapeBTN_Clicked" WidthRequest="80" HeightRequest ="10"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
@@ -777,16 +779,16 @@
             <!-- settings  -->
             <Button x:Name="mainmenutextbutton"  Text="Settings"  WidthRequest="250" HeightRequest="60" TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
 
-            <Button x:Name="mainmenubutton01"  Text="{ DynamicResource Settings1BTNText }" Clicked="Setting1BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="DarkBlue" BackgroundColor="{ DynamicResource ColourOfSetting1BTNClicked }"/>
-            <Button x:Name="mainmenubutton02"  Text="{ DynamicResource Settings2BTNText }" Clicked="Setting2BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="DarkBlue" BackgroundColor="{ DynamicResource ColourOfSetting2BTNClicked }"/>
-            <Button x:Name="mainmenubutton03"  Text="{ DynamicResource Settings3BTNText }" Clicked="Setting3BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="DarkBlue" BackgroundColor="{ DynamicResource ColourOfSetting3BTNClicked }"/>
-            <Button x:Name="mainmenubutton04"  Text="{ DynamicResource Settings4BTNText }" Clicked="Setting4BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="DarkBlue" BackgroundColor="{ DynamicResource ColourOfSetting4BTNClicked }"/>
-            <Button x:Name="mainmenubutton05"  Text="{ DynamicResource Settings5BTNText }" Clicked="Setting5BTN_Clicked"  WidthRequest="250" HeightRequest="60" TextColor="DarkBlue" BackgroundColor="{ DynamicResource ColourOfSetting5BTNClicked }"/>
-            <Button x:Name="mainmenubutton06"  Text="{ DynamicResource Settings6BTNText }" Clicked="Setting6BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="DarkBlue" BackgroundColor="{ DynamicResource ColourOfSetting6BTNClicked }"/>
-            <Button x:Name="mainmenubutton07"  Text="{ DynamicResource Settings7BTNText }" Clicked="Setting7BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="DarkBlue" BackgroundColor="{ DynamicResource ColourOfSetting7BTNClicked }"/>
-            <Button x:Name="mainmenubutton08"  Text="{ DynamicResource Settings8BTNText }" Clicked="Setting8BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="DarkBlue" BackgroundColor="{ DynamicResource ColourOfSetting8BTNClicked }"/>
-            <Button x:Name="mainmenubutton09"  Text="{ DynamicResource Settings9BTNText }" Clicked="Setting9BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="DarkBlue" BackgroundColor="{ DynamicResource ColourOfSetting9BTNClicked }"/>
-            <Button x:Name="leave06button"  Text="Exit" Clicked="EscapeBTN_Clicked" WidthRequest="80" HeightRequest ="10"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
+            <Button x:Name="mainmenubutton01"  Text="{ DynamicResource Settings1BTNText }" Clicked="Setting1BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="{DynamicResource ColourOfSettings1Text}" BackgroundColor="{ DynamicResource ColourOfSetting1BTNClicked }"/>
+            <Button x:Name="mainmenubutton02"  Text="{ DynamicResource Settings2BTNText }" Clicked="Setting2BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="{DynamicResource ColourOfSettings2Text}" BackgroundColor="{ DynamicResource ColourOfSetting2BTNClicked }"/>
+            <Button x:Name="mainmenubutton03"  Text="{ DynamicResource Settings3BTNText }" Clicked="Setting3BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="{DynamicResource ColourOfSettings3Text}" BackgroundColor="{ DynamicResource ColourOfSetting3BTNClicked }"/>
+            <Button x:Name="mainmenubutton04"  Text="{ DynamicResource Settings4BTNText }" Clicked="Setting4BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="{DynamicResource ColourOfSettings4Text}" BackgroundColor="{ DynamicResource ColourOfSetting4BTNClicked }"/>
+            <Button x:Name="mainmenubutton05"  Text="{ DynamicResource Settings5BTNText }" Clicked="Setting5BTN_Clicked"  WidthRequest="250" HeightRequest="60" TextColor="{DynamicResource ColourOfSettings5Text}" BackgroundColor="{ DynamicResource ColourOfSetting5BTNClicked }"/>
+            <Button x:Name="mainmenubutton06"  Text="{ DynamicResource Settings6BTNText }" Clicked="Setting6BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="{DynamicResource ColourOfSettings6Text}" BackgroundColor="{ DynamicResource ColourOfSetting6BTNClicked }"/>
+            <Button x:Name="mainmenubutton07"  Text="{ DynamicResource Settings7BTNText }" Clicked="Setting7BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="{DynamicResource ColourOfSettings7Text}" BackgroundColor="{ DynamicResource ColourOfSetting7BTNClicked }"/>
+            <Button x:Name="mainmenubutton08"  Text="{ DynamicResource Settings8BTNText }" Clicked="Setting8BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="{DynamicResource ColourOfSettings8Text}" BackgroundColor="{ DynamicResource ColourOfSetting8BTNClicked }"/>
+            <Button x:Name="mainmenubutton09"  Text="{ DynamicResource Settings9BTNText }" Clicked="Setting9BTN_Clicked"  WidthRequest="300" HeightRequest="40" TextColor="{DynamicResource ColourOfSettings9Text}" BackgroundColor="{ DynamicResource ColourOfSetting9BTNClicked }"/>
+            <Button x:Name="leave06button"  Text="Exit" Clicked="EscapeBTN_Clicked" WidthRequest="80" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
             
             <!-- music menu  -->
             <Button x:Name="musictextbutton"  Text="Settings"  WidthRequest="250" HeightRequest="60" TextColor="#a9a9a9" BackgroundColor="DarkSlateGrey"/>
@@ -821,7 +823,7 @@
              Aspect="AspectFit"
              SemanticProperties.Description="title screen" 
              />
-            <Button x:Name="EnterGamebutton"  Text="Enter" Clicked="StartBTN_Clicked" WidthRequest="280" HeightRequest ="30"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfStartGameBTNClicked }"/>
+            <Button x:Name="EnterGamebutton"  Text="Enter" Clicked="StartBTN_Clicked" WidthRequest="280" HeightRequest ="40"  TextColor="#a9a9a9" BackgroundColor="{ DynamicResource ColourOfStartGameBTNClicked }"/>
             
         </Grid>
         <!-- archived

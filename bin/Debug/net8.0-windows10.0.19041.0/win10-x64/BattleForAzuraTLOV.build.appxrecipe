@@ -37,89 +37,89 @@
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>BattleForAzuraTLOV.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\01 Frank Zappa &amp; The Mothers of Invention - I’m the Slime.mp3">
-      <PackagePath>01 Frank Zappa &amp; The Mothers of Invention - I’m the Slime.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\01fzimtheslime.mp3">
+      <PackagePath>01fzimtheslime.mp3</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\01introflakes.mp3">
       <PackagePath>01introflakes.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\02 Frank Zappa - Dirty Love.mp3">
-      <PackagePath>02 Frank Zappa - Dirty Love.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\02fzdirtylove.mp3">
+      <PackagePath>02fzdirtylove.mp3</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\02sanberdino.mp3">
       <PackagePath>02sanberdino.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\03 Frank Zappa - Dancin’ Fool.mp3">
-      <PackagePath>03 Frank Zappa - Dancin’ Fool.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\03fz.mp3">
+      <PackagePath>03fz.mp3</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\03tryintogrowachin.mp3">
       <PackagePath>03tryintogrowachin.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\04 Frank Zappa &amp; The Mothers of Invention - Trouble Every Day.mp3">
-      <PackagePath>04 Frank Zappa &amp; The Mothers of Invention - Trouble Every Day.mp3</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\04cityoftinylites.mp3">
       <PackagePath>04cityoftinylites.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\05 Frank Zappa - Peaches en Regalia.mp3">
-      <PackagePath>05 Frank Zappa - Peaches en Regalia.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\04fz.mp3">
+      <PackagePath>04fz.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\05fz.mp3">
+      <PackagePath>05fz.mp3</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\05thesquirm.mp3">
       <PackagePath>05thesquirm.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\06 Frank Zappa - Tell Me You Love Me.mp3">
-      <PackagePath>06 Frank Zappa - Tell Me You Love Me.mp3</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\06biglegemma.mp3">
       <PackagePath>06biglegemma.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\07 Frank Zappa - Bobby Brown Goes Down.mp3">
-      <PackagePath>07 Frank Zappa - Bobby Brown Goes Down.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\06fz.mp3">
+      <PackagePath>06fz.mp3</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\07audienceparticipation.mp3">
       <PackagePath>07audienceparticipation.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\08 Frank Zappa - You Are What You Is.mp3">
-      <PackagePath>08 Frank Zappa - You Are What You Is.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\07fz.mp3">
+      <PackagePath>07fz.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\08fz.mp3">
+      <PackagePath>08fz.mp3</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\08theblackpage2.mp3">
       <PackagePath>08theblackpage2.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\09 Frank Zappa &amp; Moon Zappa - Valley Girl.mp3">
-      <PackagePath>09 Frank Zappa &amp; Moon Zappa - Valley Girl.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\09fz.mp3">
+      <PackagePath>09fz.mp3</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\09jonescrusher.mp3">
       <PackagePath>09jonescrusher.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\10 Frank Zappa - Joe’s Garage.mp3">
-      <PackagePath>10 Frank Zappa - Joe’s Garage.mp3</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\10camarillobrillo.mp3">
       <PackagePath>10camarillobrillo.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\11 Frank Zappa - Cosmik Debris.mp3">
-      <PackagePath>11 Frank Zappa - Cosmik Debris.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\10fz.mp3">
+      <PackagePath>10fz.mp3</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\11blacknapkins.mp3">
       <PackagePath>11blacknapkins.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\12 Frank Zappa &amp; The Mothers of Invention - Sofa No. 1.mp3">
-      <PackagePath>12 Frank Zappa &amp; The Mothers of Invention - Sofa No. 1.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\11fz.mp3">
+      <PackagePath>11fz.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\13 Frank Zappa - Don’t Eat the Yellow Snow %28Single Version%29.mp3">
-      <PackagePath>13 Frank Zappa - Don’t Eat the Yellow Snow %28Single Version%29.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\12fz.mp3">
+      <PackagePath>12fz.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\15 Frank Zappa - G‐Spot Tornado.mp3">
-      <PackagePath>15 Frank Zappa - G‐Spot Tornado.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\13fz.mp3">
+      <PackagePath>13fz.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\16 Frank Zappa - Cocaine Decisions.mp3">
-      <PackagePath>16 Frank Zappa - Cocaine Decisions.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\15fz.mp3">
+      <PackagePath>15fz.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\17 Frank Zappa - Zoot Allures.mp3">
-      <PackagePath>17 Frank Zappa - Zoot Allures.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\16fz.mp3">
+      <PackagePath>16fz.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\18 Frank Zappa &amp; London Symphony Orchestra - Strictly Genteel.mp3">
-      <PackagePath>18 Frank Zappa &amp; London Symphony Orchestra - Strictly Genteel.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\17fz.mp3">
+      <PackagePath>17fz.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\18fz.mp3">
+      <PackagePath>18fz.mp3</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -142,8 +142,8 @@
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\gunfiresoundeffect.wav">
       <PackagePath>gunfiresoundeffect.wav</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\Inon Zur - Northern Lights.mp3">
-      <PackagePath>Inon Zur - Northern Lights.mp3</PackagePath>
+    <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\inon.mp3">
+      <PackagePath>inon.mp3</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\itempickupsound.wav">
       <PackagePath>itempickupsound.wav</PackagePath>
