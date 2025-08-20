@@ -64,7 +64,7 @@ namespace BattleForAzuraTLOV
         int enemytype1hp = 8, enemytype2hp = 12, enemytype1dmg = 3, enemytype2dmg = 5, boss1hp = 100, boss1dmg = 10, testnumberT = 0, dropSwitch = 0, startSwitch = 0, gameMenuSwitch = 0, currentMTrack = 0, tracklock =0;
         int settingsVolume = 0, settingsVolume2 = 0, settingsEnhancedGamePlay = 1, settingsItalienVoiceActing = 1, settingsQuitgame = 1, settingsGameOs = 1, settingsEnhancedAI = 1, settingsGraphics = 0, settingsSpiderMode = 1;
         int item1cost = 1, item2cost = 1, item3cost = 1, item4cost = 1, item5cost = 1, item6cost = 1, item7cost = 1, item8cost = 1, item9cost = 1;
-        float playerHealthPoints = 140, playerStaminaPoints = 140, playerMagicPoints = 140, sprintSwitch = 0, delay = 0, bossactive = 0;
+        float playerHealthPoints = 140, playerStaminaPoints = 140, playerMagicPoints = 140, sprintSwitch = 0, delay = 0, bossactive = 0, PermaGameStateus = 0;
         double musicVolume = 0.50;
 
         Random RNGmove = new Random();
@@ -96,6 +96,13 @@ namespace BattleForAzuraTLOV
             GameAppear();
             items();
             enemies();
+            if (PermaGameStateus == 0)
+            {
+                PermaGameStateus = 1;
+                SaveGame();
+            }
+
+
         }
         private void GameAppear()
         {
