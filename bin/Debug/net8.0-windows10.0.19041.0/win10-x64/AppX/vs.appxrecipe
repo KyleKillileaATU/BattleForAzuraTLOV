@@ -29,13 +29,13 @@
     <AppXManifest Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-08-19T14:35:51.313</Modified>
+      <Modified>2025-08-20T10:40:17.544</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-08-19T14:35:51.118</Modified>
+      <Modified>2025-08-20T09:41:54.236</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\BattleForAzuraTLOV.runtimeconfig.json">
       <PackagePath>BattleForAzuraTLOV.runtimeconfig.json</PackagePath>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\BattleForAzuraTLOV.dll">
       <PackagePath>BattleForAzuraTLOV.dll</PackagePath>
-      <Modified>2025-08-19T14:35:49.572</Modified>
+      <Modified>2025-08-20T10:40:17.006</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>BattleForAzuraTLOV.exe</PackagePath>
-      <Modified>2025-08-19T14:35:49.667</Modified>
+      <Modified>2025-08-20T10:40:17.023</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\Resources\Raw\01fzimtheslime.mp3">
       <PackagePath>01fzimtheslime.mp3</PackagePath>
@@ -655,7 +655,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\source\repos\BattleForAzuraTLOV\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\BattleForAzuraTLOV.deps.json">
       <PackagePath>BattleForAzuraTLOV.deps.json</PackagePath>
-      <Modified>2025-08-19T14:35:50.917</Modified>
+      <Modified>2025-08-20T09:41:54.076</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KyleK\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.34\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>

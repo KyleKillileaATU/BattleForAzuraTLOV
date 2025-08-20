@@ -7,7 +7,7 @@ G00433001
 The app was built using .NET 8.0
 The project was built using standard .NET MAUI App. No Blazor,
 Using the standard .NET MAUI libraries, ones that have been referred to in lectures/labs,
-or mentioned on the project breif, and does not use .NET MAUI Community Toolkit.
+or mentioned on the project brief, and does not use .NET MAUI Community Toolkit.
 
 The App itself, is a linear, action, 2d shooting game demo.
 
@@ -74,5 +74,7 @@ To Start playing, all you should have to do, is download and unzip the file,
 (to the main hardrive of the device)
 
 Then, Open it, either through visual studio, or as it's own application.
+
+For Andriod, please flip to landscape mode to play the game as common with most app games of this nature.
 
 

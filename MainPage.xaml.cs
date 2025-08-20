@@ -188,8 +188,8 @@ namespace BattleForAzuraTLOV
             await leftmovebutton.TranslateTo(-20, 30, 4);
             await rightmovebutton.TranslateTo(85, -20, 4);
             await forwardmovebutton.TranslateTo(30, -115, 4);
-            await sprintbutton.TranslateTo(-10, 30, 4);
-            await attackbutton.TranslateTo(60, -10, 4);
+            await sprintbutton.TranslateTo(30, 30, 4);
+            await attackbutton.TranslateTo(30, -10, 4);
             await backgroundweaponmenu01.TranslateTo(1475, 0, 4);
             await backgroundweaponmenu02.TranslateTo(1475, -125, 4);
             await backgroundweaponmenu03.TranslateTo(1395, -40, 4);
@@ -215,7 +215,16 @@ namespace BattleForAzuraTLOV
             await weaponswitchbutton.TranslateTo(0, 70, 4);
             await backgroundammotext.TranslateTo(-20, -35, 4);
             await ammoqtext.TranslateTo(-23, -75, 4);
-            await attackbutton.ScaleTo(1.7, 4);
+            if (DeviceInfo.Platform == DevicePlatform.Android)
+            {
+                await attackbutton.ScaleTo(1.1, 4);
+            }
+            else if (DeviceInfo.Platform == DevicePlatform.WinUI)
+            {
+
+                await attackbutton.ScaleTo(1.7, 4);
+            }
+            
             await sprintbutton.ScaleTo(0.9, 4);
             await weaponswitchbutton.ScaleTo(0.8, 4);
             await backgroundammotext.ScaleTo(1.3, 4);
@@ -250,6 +259,7 @@ namespace BattleForAzuraTLOV
             this.Resources["ColourOfAttackBTNClicked"] = Colors.Red;
             this.Resources["ColourOfGameMenuBTNClicked"] = Colors.DarkViolet;
             this.Resources["ColourOfWeaponSwitchBTNClicked"] = Colors.Yellow;
+            this.Resources["SprintTextColour"] = Colors.Black;
             this.Resources["ColourOfWeapon1BTNClicked"] = Colors.DarkSlateGray;
             this.Resources["ColourOfWeapon2BTNClicked"] = Colors.DarkSlateGray;
             this.Resources["ColourOfWeapon3BTNClicked"] = Colors.DarkSlateGray;
@@ -1010,7 +1020,8 @@ namespace BattleForAzuraTLOV
             {
                 if (sprintSwitch == 0 && playerStaminaPoints >= 1 && delay == 0)
                 {
-                    this.Resources["ColourOfSprintBTNClicked"] = Colors.Navy;
+                    this.Resources["SprintTextColour"] = Colors.Ivory;
+                    this.Resources["ColourOfSprintBTNClicked"] = Colors.Navy; 
                     playerMoveamount += 2;
                     sprintSwitch = 1;
 
@@ -1018,6 +1029,7 @@ namespace BattleForAzuraTLOV
                 else if (sprintSwitch == 1)
                 {
                     this.Resources["ColourOfSprintBTNClicked"] = Colors.LightBlue;
+                    this.Resources["SprintTextColour"] = Colors.Black;
                     playerMoveamount = PermaPlayerSpeed;
                     sprintSwitch = 0;
                 }
@@ -6243,6 +6255,13 @@ namespace BattleForAzuraTLOV
                             this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
                             this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
                             this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
+                            this.Resources["Music1TextColour"] = Colors.Black;
+                            this.Resources["Music2TextColour"] = Colors.Ivory;
+                            this.Resources["Music3TextColour"] = Colors.Ivory;
+                            this.Resources["Music4TextColour"] = Colors.Ivory;
+                            this.Resources["Music5TextColour"] = Colors.Ivory;
+                            this.Resources["Music6TextColour"] = Colors.Ivory;
+                            this.Resources["Music7TextColour"] = Colors.Ivory;
                         }
                         if (musicSwitch == 0)
                         {
@@ -6284,6 +6303,13 @@ namespace BattleForAzuraTLOV
                             this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
                             this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
                             this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
+                            this.Resources["Music1TextColour"] = Colors.Ivory;
+                            this.Resources["Music2TextColour"] = Colors.Black;
+                            this.Resources["Music3TextColour"] = Colors.Ivory;
+                            this.Resources["Music4TextColour"] = Colors.Ivory;
+                            this.Resources["Music5TextColour"] = Colors.Ivory;
+                            this.Resources["Music6TextColour"] = Colors.Ivory;
+                            this.Resources["Music7TextColour"] = Colors.Ivory;
                         }
                         if (musicSwitch == 0)
                         {
@@ -6325,6 +6351,13 @@ namespace BattleForAzuraTLOV
                             this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
                             this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
                             this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
+                            this.Resources["Music1TextColour"] = Colors.Ivory;
+                            this.Resources["Music2TextColour"] = Colors.Ivory;
+                            this.Resources["Music3TextColour"] = Colors.Black;
+                            this.Resources["Music4TextColour"] = Colors.Ivory;
+                            this.Resources["Music5TextColour"] = Colors.Ivory;
+                            this.Resources["Music6TextColour"] = Colors.Ivory;
+                            this.Resources["Music7TextColour"] = Colors.Ivory;
                         }
                         if (musicSwitch == 0)
                         {
@@ -6366,6 +6399,13 @@ namespace BattleForAzuraTLOV
                             this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
                             this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
                             this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
+                            this.Resources["Music1TextColour"] = Colors.Ivory;
+                            this.Resources["Music2TextColour"] = Colors.Ivory;
+                            this.Resources["Music3TextColour"] = Colors.Ivory;
+                            this.Resources["Music4TextColour"] = Colors.Black;
+                            this.Resources["Music5TextColour"] = Colors.Ivory;
+                            this.Resources["Music6TextColour"] = Colors.Ivory;
+                            this.Resources["Music7TextColour"] = Colors.Ivory;
                         }
                         if (musicSwitch == 0)
                         {
@@ -6407,6 +6447,13 @@ namespace BattleForAzuraTLOV
                             this.Resources["ColourOfMusic5BTNClicked"] = Colors.LightGray;
                             this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
                             this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
+                            this.Resources["Music1TextColour"] = Colors.Ivory;
+                            this.Resources["Music2TextColour"] = Colors.Ivory;
+                            this.Resources["Music3TextColour"] = Colors.Ivory;
+                            this.Resources["Music4TextColour"] = Colors.Ivory;
+                            this.Resources["Music5TextColour"] = Colors.Black;
+                            this.Resources["Music6TextColour"] = Colors.Ivory;
+                            this.Resources["Music7TextColour"] = Colors.Ivory;
                         }
                         if (musicSwitch == 0)
                         {
@@ -6448,6 +6495,13 @@ namespace BattleForAzuraTLOV
                             this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
                             this.Resources["ColourOfMusic6BTNClicked"] = Colors.LightGray;
                             this.Resources["ColourOfMusic7BTNClicked"] = Colors.DarkSlateGrey;
+                            this.Resources["Music1TextColour"] = Colors.Ivory;
+                            this.Resources["Music2TextColour"] = Colors.Ivory;
+                            this.Resources["Music3TextColour"] = Colors.Ivory;
+                            this.Resources["Music4TextColour"] = Colors.Ivory;
+                            this.Resources["Music5TextColour"] = Colors.Ivory;
+                            this.Resources["Music6TextColour"] = Colors.Black;
+                            this.Resources["Music7TextColour"] = Colors.Ivory;
                         }
                         if (musicSwitch == 0)
                         {
@@ -6489,6 +6543,13 @@ namespace BattleForAzuraTLOV
                             this.Resources["ColourOfMusic5BTNClicked"] = Colors.DarkSlateGrey;
                             this.Resources["ColourOfMusic6BTNClicked"] = Colors.DarkSlateGrey;
                             this.Resources["ColourOfMusic7BTNClicked"] = Colors.LightGray;
+                            this.Resources["Music1TextColour"] = Colors.Ivory;
+                            this.Resources["Music2TextColour"] = Colors.Ivory;
+                            this.Resources["Music3TextColour"] = Colors.Ivory;
+                            this.Resources["Music4TextColour"] = Colors.Ivory;
+                            this.Resources["Music5TextColour"] = Colors.Ivory;
+                            this.Resources["Music6TextColour"] = Colors.Ivory;
+                            this.Resources["Music7TextColour"] = Colors.Black;
                         }
                         if (musicSwitch == 0)
                         {
@@ -7835,7 +7896,7 @@ namespace BattleForAzuraTLOV
                 {
                     ammunitioncurrent = ammunition06;
                 }
-                ammoqtext.Text = $"Current Ammo: {ammunitioncurrent}   ";
+                ammoqtext.Text = $"Total Ammo: {ammunitioncurrent}   ";
             }// while 
         }// end of updatermain
         async void PlayerUpdateBars()
@@ -7914,8 +7975,9 @@ namespace BattleForAzuraTLOV
                     {
                         //testnumberT++;
                         delay = 1;
-                        playerMoveamount += -2;
+                        playerMoveamount = PermaPlayerSpeed;
                         this.Resources["ColourOfSprintBTNClicked"] = Colors.LightBlue;
+                        this.Resources["SprintTextColour"] = Colors.Black;
                         sprintSwitch = 0;
                         await Task.Delay(6500);
                         if (gamestatus != 0)// 3 stage check to make sure it doesn't run when status 0
